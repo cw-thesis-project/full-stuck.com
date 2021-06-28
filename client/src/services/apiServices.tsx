@@ -84,6 +84,3 @@ export async function learnTech(
     return null;
   }
 }
-
-// apiUrl+`/${username}`,{method: 'POST',headers: {Accept:'application/json','Content-Type': 'application/json',Authorization:`Bearer ${token}`}})
-// apiUrl+`/${username}`,{headers: {Accept:'application/json','Content-Type': 'application/json',Authorization:`Bearer ${token}`}})
