@@ -2,8 +2,6 @@ import React from 'react';
 import './App.css';
 
 function App() {
-  console.log('hlleo');
-
   return (
     <div className="App">
       <header className="App-header">
