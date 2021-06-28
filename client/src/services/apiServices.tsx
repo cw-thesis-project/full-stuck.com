@@ -10,8 +10,8 @@ export async function getToken(): Promise<void> {
   try {
     const accessToken = await getAccessTokenSilently();
     localStorage.setItem('token', accessToken);
-  } catch (u_u) {
-    console.log(u_u);
+  } catch (err) {
+    console.log(err);
   }
 }
 
@@ -23,8 +23,8 @@ export async function getUser(username: string): Promise<User | null> {
       },
     });
     return user;
-  } catch (u_u) {
-    console.log(u_u);
+  } catch (err) {
+    console.log(err);
     return null;
   }
 }
@@ -35,7 +35,7 @@ export async function saveActivity(
 ): Promise<User | null> {
   try {
     const updatedUser: User = await axios.post(
-      `${apiUrl}/${username}`,
+      `${apiUrl}/${user.username}`,
       {
         ...user,
         history: user.gameData.history.push(activity),
@@ -49,8 +49,8 @@ export async function saveActivity(
       }
     );
     return updatedUser;
-  } catch (u_u) {
-    console.log(u_u);
+  } catch (err) {
+    console.log(err);
     return null;
   }
 }
@@ -62,7 +62,7 @@ export async function learnTech(
   try {
     const increasedTechValue = user.gameData.techExperience[techName] + 1;
     const updatedUser: User = await axios.post(
-      `${apiUrl}/${username}`,
+      `${apiUrl}/${user.username}`,
       {
         ...user,
         techExperience: {
@@ -79,8 +79,8 @@ export async function learnTech(
       }
     );
     return updatedUser;
-  } catch (u_u) {
-    console.log(u_u);
+  } catch (err) {
+    console.log(err);
     return null;
   }
 }
