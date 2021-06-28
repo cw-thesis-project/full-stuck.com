@@ -11,7 +11,7 @@ export async function getToken(): Promise<void> {
     const accessToken = await getAccessTokenSilently();
     localStorage.setItem('token', accessToken);
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 
@@ -24,7 +24,7 @@ export async function getUser(username: string): Promise<User | null> {
     });
     return user;
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return null;
   }
 }
@@ -50,7 +50,7 @@ export async function saveActivity(
     );
     return updatedUser;
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return null;
   }
 }
@@ -80,7 +80,7 @@ export async function learnTech(
     );
     return updatedUser;
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return null;
   }
 }
