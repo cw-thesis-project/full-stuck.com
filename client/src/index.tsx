@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
+import './index.css';
 import * as dotenv from 'dotenv';
 import App from './components/App/App';
 import { auth0 } from './constants';
