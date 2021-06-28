@@ -12,9 +12,9 @@
 }
 
 .medium {
-  @include square(3em);
+  @include square(5em);
 }
 
 .large {
-  @include square(4em);
+  @include square(8em);
 }
