@@ -12,11 +12,11 @@ interface Props {
 // TODO: add all the icons
 const iconsMap: Record<TechName, string> = {
   javascript: logos.javascriptLogo,
-  git: logos.javascriptLogo,
-  react: logos.javascriptLogo,
-  graphql: logos.javascriptLogo,
+  git: logos.gitLogo,
+  react: logos.reactLogo,
+  graphql: logos.graphqlLogo,
   rxjs: logos.javascriptLogo,
-  typescript: logos.javascriptLogo,
+  typescript: logos.typescriptLogo,
   debugging: logos.javascriptLogo,
   eloquence: logos.javascriptLogo,
   espionage: logos.javascriptLogo,
