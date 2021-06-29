@@ -1,6 +1,7 @@
 import React from 'react';
 import { StarsCount, TechName } from '../../shared/types';
 import TechIcon from '../TechIcon';
+import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './PastScheduleCard.module.scss';
 
 interface Props {
@@ -13,19 +14,31 @@ const PastScheduleCard = ({ isFailed, stars, topic }: Props): JSX.Element => {
     <>
       {isFailed ? (
         <div className={styles.scheduleItem}>
-          <p>{`${topic}`}</p>
+          <ScheduleItemHeader scheduleItemTopic={topic} />
           <p>{`${stars}`}</p>
           <TechIcon techName={topic} iconSize="large" isGray />
           <p>nobody will ever hire you</p>
-          <p>Failed</p>
+          <div
+            className={
+              (styles.achievementRibbon, styles.achievementRibbonColorFailed)
+            }
+          >
+            <p className={styles.achievementMessage}>Failed</p>
+          </div>
         </div>
       ) : (
         <div className={styles.scheduleItem}>
-          <p>{`${topic}`}</p>
+          <ScheduleItemHeader scheduleItemTopic={topic} />
           <p>{`${stars}`}</p>
           <TechIcon techName={topic} iconSize="large" isGray={false} />
           <p>Don’t you like it?</p>
-          <p>Learnt</p>
+          <div
+            className={
+              (styles.achievementRibbon, styles.achievementRibbonColor)
+            }
+          >
+            <p className={styles.achievementMessage}>Learnt</p>
+          </div>
         </div>
       )}
     </>
