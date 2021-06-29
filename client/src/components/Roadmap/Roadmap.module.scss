@@ -23,6 +23,15 @@
   z-index: 0;
 }
 
+.verticalLine2 {
+  @include square(4em);
+  background-color: #1900a8;
+  position: absolute;
+  left: 0.25em;
+  width: 0.5em;
+  z-index: 1;
+}
+
 .pastLevel {
   color: #ff4034;
   .blob {
