@@ -1,6 +1,6 @@
 import React from 'react';
-import { TechName } from '../../../shared/types';
-import logos from '../../../assets/icons';
+import { TechName } from '../../shared/types';
+import logos from '../../assets/icons';
 import styles from './TechIcon.module.scss';
 
 interface Props {
