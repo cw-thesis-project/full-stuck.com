@@ -1,0 +1,51 @@
+// flexbox-related
+
+@mixin row {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+@mixin column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+@mixin center {
+  @include row;
+  justify-content: center;
+}
+
+// grid-related
+
+@mixin grid-center {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+@mixin columns($count) {
+  display: grid;
+  grid-template-columns: repeat($count, 1fr);
+}
+
+// others
+
+@mixin fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@mixin screen-center {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin debug($color: red) {
+  border: 1px solid $color;
+}

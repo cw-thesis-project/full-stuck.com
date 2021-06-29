@@ -1,0 +1,21 @@
+@mixin reset-space {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin reset-input {
+  border: none;
+  outline: none;
+}
+
+@mixin reset-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin hide-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
