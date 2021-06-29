@@ -4,6 +4,7 @@ import reactLogo from './react.svg';
 import typescriptLogo from './typescript.svg';
 import graphqlLogo from './graphql.svg';
 import medal from './medal.svg';
+import lock from './lock.svg';
 
 const toExport = {
   javascriptLogo,
@@ -12,6 +13,7 @@ const toExport = {
   reactLogo,
   graphqlLogo,
   medal,
+  lock,
 };
 
 export default toExport;
