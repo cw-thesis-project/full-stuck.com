@@ -20,6 +20,7 @@ const isFailed = (stars: number): boolean => {
   return false;
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const Schedule = ({ history }: Props) => {
   const futureCards: number[] = [];
   futureCards.length = 5 - history.length;
