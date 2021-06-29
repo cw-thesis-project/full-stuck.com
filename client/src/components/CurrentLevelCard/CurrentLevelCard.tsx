@@ -36,6 +36,7 @@ const CurrentLevelCard = ({
       );
     }
   );
+
   return (
     <div className={styles.container}>
       <div className={styles.points}>
