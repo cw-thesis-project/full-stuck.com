@@ -1,0 +1,46 @@
+@import '../../../style/style.scss';
+
+@mixin bubble($color: grey) {
+  @include circle(2.5em);
+  background-color: $color;
+  margin: 0;
+}
+
+.clickable {
+  &:hover {
+    fill: #e2d8ff;
+    filter: grayscale(100%) sepia(100%);
+  }
+  &:active {
+    filter: invert(100%);
+  }
+}
+
+.git {
+  @include bubble(#f15133);
+}
+
+.greyBubble {
+  @include bubble(grey);
+  // background-color: grey;
+}
+
+.javascript {
+  @include bubble(#f7df34);
+}
+
+.react {
+  @include bubble(#67c8e2);
+}
+
+.techColumn {
+  @include column;
+  gap: 0.5em;
+}
+
+h2,
+h3,
+h4 {
+  color: #f5f8ff;
+  text-transform: capitalize;
+}
