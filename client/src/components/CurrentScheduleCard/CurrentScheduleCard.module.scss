@@ -1,0 +1,7 @@
+@import '../../style/style.scss';
+
+.scheduleItem {
+  @include column();
+  @include rounded();
+  background-color: #200f50;
+}
