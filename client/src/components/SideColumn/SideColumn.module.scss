@@ -1,0 +1,7 @@
+@import '../../style/style.scss';
+
+.sideColumn {
+  @include debug;
+  @include column;
+  width: 10em;
+}
