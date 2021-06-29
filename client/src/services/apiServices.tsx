@@ -32,55 +32,42 @@ export async function getUser(username: string): Promise<User | null> {
 export async function saveActivity(
   activity: PastActivity,
   user: User
-): Promise<User | null> {
-  try {
-    const updatedUser: User = await axios.post(
-      `${apiUrl}/${user.username}`,
-      {
-        ...user,
-        history: user.gameData.history.push(activity),
+): Promise<User> {
+  const updatedUser: User = await axios.post(
+    `${apiUrl}/${user.username}`,
+    {
+      ...user,
+      history: user.gameData.history.push(activity),
+    },
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-      {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return updatedUser;
-  } catch (err) {
-    // console.log(err);
-    return null;
-  }
+    }
+  );
+  return updatedUser;
 }
 
-export async function learnTech(
-  techName: TechName,
-  user: User
-): Promise<User | null> {
-  try {
-    const increasedTechValue = user.gameData.techExperience[techName] + 1;
-    const updatedUser: User = await axios.post(
-      `${apiUrl}/${user.username}`,
-      {
-        ...user,
-        techExperience: {
-          ...user.gameData.techExperience,
-          [techName]: increasedTechValue,
-        },
+export async function learnTech(techName: TechName, user: User): Promise<User> {
+  const increasedTechValue = user.gameData.techExperience[techName] + 1;
+  const updatedUser: User = await axios.post(
+    `${apiUrl}/${user.username}`,
+    {
+      ...user,
+      techExperience: {
+        ...user.gameData.techExperience,
+        [techName]: increasedTechValue,
       },
-      {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return updatedUser;
-  } catch (err) {
-    // console.log(err);
-    return null;
-  }
+    },
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return updatedUser;
 }
