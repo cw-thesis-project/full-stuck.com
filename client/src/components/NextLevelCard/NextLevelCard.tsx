@@ -1,6 +1,6 @@
 import React from 'react';
 import { Level } from '../../shared/types';
-import styles from './NextLevel.module.scss';
+import styles from './NextLevelCard.module.scss';
 import icons from '../../assets/icons';
 
 interface Props {

@@ -1,1 +1,1 @@
-export { default } from './NextLevel';
+export { default } from './NextLevelCard';
