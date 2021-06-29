@@ -1,5 +1,7 @@
 import { PastActivity } from '../../shared/types';
 
+export const newWeek: PastActivity[] = [];
+
 export const failedWeek: PastActivity[] = [
   {
     name: 'memory',
@@ -17,7 +19,7 @@ export const failedWeek: PastActivity[] = [
     stars: 3,
   },
 ];
-export const newWeek: PastActivity[] = [];
+
 export const completedWeek: PastActivity[] = [
   {
     name: 'memory',

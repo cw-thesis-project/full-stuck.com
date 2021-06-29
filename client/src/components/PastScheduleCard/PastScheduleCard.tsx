@@ -5,14 +5,13 @@ import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './PastScheduleCard.module.scss';
 
 interface Props {
-  isFailed: boolean;
   stars: StarsCount;
   topic: TechName;
 }
-const PastScheduleCard = ({ isFailed, stars, topic }: Props): JSX.Element => {
+const PastScheduleCard = ({ stars, topic }: Props): JSX.Element => {
   return (
     <>
-      {isFailed ? (
+      {!stars ? (
         <div className={styles.scheduleItem}>
           <ScheduleItemHeader scheduleItemTopic={topic} />
           <p>{`${stars}`}</p>
