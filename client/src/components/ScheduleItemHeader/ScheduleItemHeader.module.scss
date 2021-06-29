@@ -1,0 +1,18 @@
+@import '../../style/layout.scss';
+@import '../../style/shapes.scss';
+
+.headerContainer {
+  @include row();
+}
+
+.headerColor {
+  @include rounded();
+  background-color: blue;
+  height: 4em;
+  width: 1em;
+  margin-right: auto;
+}
+
+h1 {
+  text-transform: capitalize;
+}
