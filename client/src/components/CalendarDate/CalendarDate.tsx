@@ -2,7 +2,7 @@
 import React from 'react';
 import styles from './CalendarDate.module.scss';
 
-type DateVariant = 'past' | 'current' | 'future';
+export type DateVariant = 'past' | 'current' | 'future';
 
 interface Props {
   variant: DateVariant;
