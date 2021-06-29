@@ -1,0 +1,7 @@
+@import '../../style/style.scss';
+@import '../../style/layout.scss';
+
+.scheduleItem {
+  background-color: red;
+  @include column();
+}
