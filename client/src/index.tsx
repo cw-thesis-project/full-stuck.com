@@ -7,6 +7,7 @@ import * as dotenv from 'dotenv';
 import App from './containers/App/App';
 import TempNavBar from './components/TempNavBar/TempNavBar';
 import { auth0 } from './constants';
+import CurrentLevelCard from './components/CurrentLevelCard/CurrentLevelCard';
 
 dotenv.config();
 
