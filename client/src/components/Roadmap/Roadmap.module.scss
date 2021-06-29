@@ -1,3 +1,28 @@
+@import '../../style/style.scss';
+
+.column {
+  position: absolute;
+}
+
+.container {
+  @include row;
+  height: 3em;
+  margin-bottom: 1.5em;
+  z-index: 5;
+  position: absolute;
+}
+
+.verticalLine {
+  @include square(4em);
+  background-color: #ff4034;
+  position: absolute;
+  top: 1.5em;
+  left: 0.25em;
+  height: 15em;
+  width: 0.5em;
+  z-index: 0;
+}
+
 .pastLevel {
   color: #ff4034;
   .blob {
@@ -8,8 +33,14 @@
 .currentLevel {
   background-color: red;
   color: white;
+  border-radius: 50px;
+  position: relative;
+  left: -1em;
+
   .blob {
+    @include circle(2em);
     background-color: #3b1c94;
+    margin-left: 0.5em;
   }
 }
 
@@ -20,11 +51,14 @@
   }
 }
 
-.levelText::first-letter {
-  text-transform: capitalize;
+.levelText {
+  margin-right: 3em;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
 }
+
 .blob {
-  height: 1em;
-  width: 1em;
-  border-radius: 50%;
+  @include circle(1em);
 }

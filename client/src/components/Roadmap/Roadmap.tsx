@@ -18,7 +18,7 @@ const levelToNumber: levelMap = {
 const Roadmap = ({ userLevel }: Props): JSX.Element => {
   const levels: Level[] = ['junior', 'senior', 'tutor', 'CEO'];
 
-  const display = levels.map((level) => {
+  const display = levels.map((level, index) => {
     let levelStatus = '';
 
     if (levelToNumber[level] < levelToNumber[userLevel])
@@ -28,17 +28,29 @@ const Roadmap = ({ userLevel }: Props): JSX.Element => {
     if (levelToNumber[level] > levelToNumber[userLevel])
       levelStatus = styles.futureLevel;
 
+    const containerStyle = {
+      top: `${index * 5}em`,
+    };
+
     return (
-      <div className={`${levelStatus}`}>
+      <div
+        className={`${levelStatus} ${styles.container}`}
+        style={containerStyle}
+      >
         <div className={styles.blob} />
-        <div className={`${styles.levelText}`}>
+        <div className={styles.levelText}>
           <h3>{level}</h3>
         </div>
       </div>
     );
   });
 
-  return <div>{display}</div>;
+  return (
+    <div className={styles.column}>
+      <div className={styles.verticalLine}>{`${' '}`}</div>
+      {display}
+    </div>
+  );
 };
 
 export default Roadmap;
