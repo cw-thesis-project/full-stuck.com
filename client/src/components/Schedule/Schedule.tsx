@@ -13,8 +13,22 @@ const isFailed = (stars: number): boolean => {
   return false;
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const Schedule = ({ history }: Props) => {
-  return <PastScheduleCard isFailed={isFailed(history[0].stars)} />;
+  return (
+    <div className={styles.scheduleList}>
+      {history.map((pastActivity: PastActivity) => {
+        return (
+          <PastScheduleCard
+            // key={pastActivity.name}
+            isFailed={isFailed(pastActivity.stars)}
+            stars={pastActivity.stars}
+            topic={pastActivity.topic}
+          />
+        );
+      })}
+    </div>
+  );
 };
 
 export default Schedule;
