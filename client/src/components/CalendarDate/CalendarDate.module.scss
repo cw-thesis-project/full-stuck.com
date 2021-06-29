@@ -1,0 +1,22 @@
+@import '../../style/style.scss';
+
+.container {
+  @include column;
+  @include center;
+  @include square(4em);
+  gap: 0;
+  color: #200f50;
+}
+
+.circle {
+  @include circle(4em);
+  background-color: #200f50;
+}
+
+.light {
+  color: #f5f8ff;
+}
+
+.number {
+  font-weight: 600;
+}
