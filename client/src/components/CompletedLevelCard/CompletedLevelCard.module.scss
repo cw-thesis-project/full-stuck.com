@@ -5,7 +5,7 @@
 }
 
 .container {
-  @include square(30em);
+  @include rectangle(30em, 35em);
   @include column;
   justify-content: space-between;
   background-color: #200f50;
