@@ -1,0 +1,20 @@
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+.gray {
+  filter: grayscale(1);
+}
+
+.small {
+  @include square(2.5em);
+}
+
+.medium {
+  @include square(5em);
+}
+
+.large {
+  @include square(8em);
+}

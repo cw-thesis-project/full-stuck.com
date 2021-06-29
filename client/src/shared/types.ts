@@ -1,4 +1,13 @@
-export type TechName = 'javascript' | 'angular';
+export type TechName =
+  | 'javascript'
+  | 'git'
+  | 'react'
+  | 'graphql'
+  | 'rxjs'
+  | 'typescript'
+  | 'debugging'
+  | 'eloquence'
+  | 'espionage';
 
 export type Level = 'junior' | 'senior' | 'tutor' | 'CEO';
 
