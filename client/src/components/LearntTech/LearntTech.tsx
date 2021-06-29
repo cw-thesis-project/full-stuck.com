@@ -13,7 +13,7 @@ interface Props {
 
 // TODO decide on hiding unlocked techs
 
-const LearntTech: React.FC<Props> = ({ techExperience }: Props) => {
+const LearntTech = ({ techExperience }: Props): JSX.Element => {
   const [firstTechIndex, setFirstTechIndex] = useState({});
   const techKeys = Object.keys(techExperience) as Array<keyof TechExperience>;
 

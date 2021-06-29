@@ -8,10 +8,10 @@ interface Props {
   techSkillLevel: number;
 }
 
-const TechAchievementCard: React.FC<Props> = ({
+const TechAchievementCard = ({
   techName,
   techSkillLevel,
-}: Props) => {
+}: Props): JSX.Element => {
   return (
     <div className={`${styles.column} ${styles.card}`}>
       <TechIcon techName={techName} iconSize="small" isGray={false} />
