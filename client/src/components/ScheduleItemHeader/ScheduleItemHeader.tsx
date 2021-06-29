@@ -4,7 +4,7 @@ import PastScheduleCard from '../PastScheduleCard/PastScheduleCard';
 import styles from './ScheduleItemHeader.module.scss';
 
 interface Props {
-  scheduleItemTopic: TechName;
+  scheduleItemTopic: string;
 }
 
 const ScheduleItemHeader = ({ scheduleItemTopic }: Props) => {
