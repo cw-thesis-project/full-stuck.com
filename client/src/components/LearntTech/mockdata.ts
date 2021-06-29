@@ -1,15 +1,15 @@
-import { TechExperience } from '../../shared/types';
+import { TechAchievements } from './LearntTech';
 
-const mockTechExperience: TechExperience = {
-  javascript: 3,
-  git: 3,
-  react: 3,
-  graphql: 2,
-  rxjs: 1,
-  typescript: 0,
-  debugging: 0,
-  eloquence: 0,
-  espionage: 0,
+const mockTechExperience: TechAchievements = {
+  javascript: { level: 3, isLocked: false },
+  git: { level: 3, isLocked: false },
+  react: { level: 1, isLocked: false },
+  graphql: { level: 0, isLocked: true },
+  rxjs: { level: 0, isLocked: true },
+  typescript: { level: 0, isLocked: true },
+  espionage: { level: 0, isLocked: true },
+  eloquence: { level: 0, isLocked: true },
+  debugging: { level: 0, isLocked: true },
 };
 
 export default mockTechExperience;
