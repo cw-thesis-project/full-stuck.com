@@ -7,6 +7,8 @@ interface Props {
   techName: TechName;
   iconSize: 'small' | 'medium' | 'large';
   isGray: boolean;
+  // eslint-disable-next-line react/require-default-props
+  isLocked?: boolean;
 }
 
 // TODO: add all the icons
@@ -22,10 +24,17 @@ const iconsMap: Record<TechName, string> = {
   espionage: logos.javascriptLogo,
 };
 
-const TechIcon = ({ techName, iconSize, isGray }: Props): JSX.Element => {
+const TechIcon = ({
+  techName,
+  iconSize,
+  isGray,
+  isLocked,
+}: Props): JSX.Element => {
   const className = `${styles[iconSize]} ${isGray ? styles.gray : ''}`;
 
-  return <img src={iconsMap[techName]} alt={techName} className={className} />;
+  const src = isLocked ? logos.questionLogo : iconsMap[techName];
+
+  return <img src={src} alt={techName} className={className} />;
 };
 
 export default TechIcon;
