@@ -4,7 +4,7 @@ interface Props {
   isFailed: boolean;
 }
 const PastScheduleCard = ({ isFailed }: Props): JSX.Element => {
-  return <div></div>;
+  return <p>{`${isFailed}`}</p>;
 };
 
 export default PastScheduleCard;
