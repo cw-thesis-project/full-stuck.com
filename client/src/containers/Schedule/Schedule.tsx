@@ -1,7 +1,13 @@
 import React from 'react';
+import Schedule from '../../components/Schedule';
+import { completedWeek } from '../../components/Schedule/mock';
 
-const Schedule = (): JSX.Element => {
-  return <div>schedule</div>;
+const ScheduleContainer = (): JSX.Element => {
+  return (
+    <div>
+      <Schedule history={completedWeek} />
+    </div>
+  );
 };
 
-export default Schedule;
+export default ScheduleContainer;
