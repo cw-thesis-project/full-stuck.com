@@ -1,5 +1,5 @@
 import React from 'react';
-import { TechExperience } from '../../../shared/types';
+import { TechExperience } from '../../shared/types';
 
 interface State {
   firstTechIndex: number;
@@ -9,8 +9,6 @@ interface Props {
   techExperience: TechExperience;
 }
 
-const LearntTech = ({ techExperience }: Props): JSX.Element => {
-  return;
-};
+const LearntTech = ({ techExperience }: Props): JSX.Element => {};
 
 export default LearntTech;
