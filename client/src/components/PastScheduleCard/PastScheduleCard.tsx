@@ -1,3 +1,10 @@
 import React from 'react';
 
-const;
+interface Props {
+  isFailed: boolean;
+}
+const PastScheduleCard = ({ isFailed }: Props): JSX.Element => {
+  return <div></div>;
+};
+
+export default PastScheduleCard;
