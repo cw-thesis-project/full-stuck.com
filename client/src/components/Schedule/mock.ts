@@ -19,7 +19,6 @@ export const failedWeek: PastActivity[] = [
     stars: 3,
   },
 ];
-
 export const completedWeek: PastActivity[] = [
   {
     name: 'memory',
