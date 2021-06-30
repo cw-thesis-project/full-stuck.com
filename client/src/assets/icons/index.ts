@@ -13,6 +13,7 @@ import graduationHat from './graduationHat.svg';
 import arrow from './arrow.svg';
 import flipCounter from './flipCounter.svg';
 import rxjsLogo from './rxjs.svg';
+import debuggingLogo from './debugging.svg';
 
 const toExport = {
   javascriptLogo,
@@ -30,6 +31,7 @@ const toExport = {
   arrow,
   flipCounter,
   rxjsLogo,
+  debuggingLogo,
 };
 
 export default toExport;
