@@ -2,18 +2,20 @@ import * as actions from './actions';
 import { Thunk } from './storeTypes';
 import { PastActivity, TechName } from '../shared/types';
 
-export function saveActivity(activity: PastActivity): Thunk {
+export function saveActivity(pastActivity: PastActivity): Thunk {
   return async function saveActivityThunk(dispatch, getState, apiService) {
     const { user } = getState();
 
-    dispatch(actions.saveActivityRequest(activity));
+    dispatch(actions.saveActivityRequest(pastActivity));
 
     try {
       if (!user) {
         throw new Error('not logged in');
       }
-      await apiService.saveActivity(activity, user);
-      dispatch(actions.saveActivitySuccess(activity));
+      const updatedUser = await apiService.saveActivity(pastActivity, user);
+      if (updatedUser) {
+        dispatch(actions.saveActivitySuccess(updatedUser));
+      }
     } catch (error) {
       dispatch(actions.saveActivityFailure(error));
     }
@@ -30,9 +32,11 @@ export function learnTech(techName: TechName): Thunk {
       if (!user) {
         throw new Error('not logged in');
       }
-      await apiService.learnTech(techName, user);
-      dispatch(actions.learnTechSuccess(techName));
-      dispatch(actions.decreasePointsToAssign());
+      const updatedUser = await apiService.learnTech(techName, user);
+      if (updatedUser) {
+        dispatch(actions.learnTechSuccess(updatedUser));
+        dispatch(actions.decreasePointsToAssign());
+      }
     } catch (error) {
       dispatch(actions.learnTechFailure(error));
     }
@@ -47,9 +51,9 @@ export function getUserData(username: string): Thunk {
     getState();
 
     try {
-      const apiResponse = await apiService.getUserData(username);
-      if (apiResponse !== null) {
-        dispatch(actions.getUserDataSuccess(apiResponse));
+      const user = await apiService.getUserData(username);
+      if (user !== null) {
+        dispatch(actions.getUserDataSuccess(user));
       } else {
         throw new Error('something wrong with the API');
       }

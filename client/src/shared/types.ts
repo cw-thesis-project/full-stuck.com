@@ -41,7 +41,7 @@ export interface User {
   gameData: UserGameData;
 }
 
-export interface UserFromDB {
+export interface ApiResponse {
   data: {
     headers: string;
     body: User;
