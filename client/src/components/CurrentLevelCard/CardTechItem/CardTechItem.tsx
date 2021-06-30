@@ -32,7 +32,8 @@ const CardTechItem = ({
       {coloredBubbles}
       <div
         role="button"
-        onKeyDown={() => onBubbleClick}
+        // eslint-disable-next-line no-console
+        onKeyDown={() => console.log('hi buddy')}
         onClick={() => onBubbleClick(techName)}
         className={styles.clickable}
         tabIndex={0}
