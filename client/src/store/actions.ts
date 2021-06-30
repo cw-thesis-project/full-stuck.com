@@ -62,6 +62,27 @@ export function decreasePointsToAssign(): AppAction {
   };
 }
 
+export function getUserDataRequest(username: string): AppAction {
+  return {
+    type: 'GET_USER_DATA_REQUEST',
+    username,
+  };
+}
+
+export function getUserDataSuccess(user: User): AppAction {
+  return {
+    type: 'GET_USER_DATA_SUCCESS',
+    user,
+  };
+}
+
+export function getUserDataFailure(error: Error | string): AppAction {
+  return {
+    type: 'GET_USER_DATA_FAILURE',
+    error,
+  };
+}
+
 // login
 
 // export function loginRequest(credentials: UserCredentials): AppAction {
@@ -71,19 +92,19 @@ export function decreasePointsToAssign(): AppAction {
 //   };
 // }
 
-export function loginSuccess(user: User): AppAction {
-  return {
-    type: 'LOGIN_SUCCESS',
-    user,
-  };
-}
+// export function loginSuccess(user: User): AppAction {
+//   return {
+//     type: 'LOGIN_SUCCESS',
+//     user,
+//   };
+// }
 
-export function loginFailure(error: Error | string): AppAction {
-  return {
-    type: 'LOGIN_FAILURE',
-    error,
-  };
-}
+// export function loginFailure(error: Error | string): AppAction {
+//   return {
+//     type: 'LOGIN_FAILURE',
+//     error,
+//   };
+// }
 
 // register
 
@@ -94,19 +115,19 @@ export function loginFailure(error: Error | string): AppAction {
 //   };
 // }
 
-export function registerSuccess(user: User): AppAction {
-  return {
-    type: 'REGISTER_SUCCESS',
-    user,
-  };
-}
+// export function registerSuccess(user: User): AppAction {
+//   return {
+//     type: 'REGISTER_SUCCESS',
+//     user,
+//   };
+// }
 
-export function registerFailure(error: Error | string): AppAction {
-  return {
-    type: 'REGISTER_FAILURE',
-    error,
-  };
-}
+// export function registerFailure(error: Error | string): AppAction {
+//   return {
+//     type: 'REGISTER_FAILURE',
+//     error,
+//   };
+// }
 
 // reset error
 

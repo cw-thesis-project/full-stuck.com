@@ -40,3 +40,10 @@ export interface User {
   username: string;
   gameData: UserGameData;
 }
+
+export interface UserFromDB {
+  data: {
+    headers: string;
+    body: User;
+  };
+}
