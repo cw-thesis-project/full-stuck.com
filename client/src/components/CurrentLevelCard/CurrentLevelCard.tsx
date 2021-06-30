@@ -3,14 +3,14 @@ import { Level, TechName } from '../../shared/types';
 import styles from './CurrentLevelCard.module.scss';
 import CardTechItem from './CardTechItem/CardTechItem';
 
-interface TechWhat {
+interface TechExperienceSubset {
   name: TechName;
   experience: number;
 }
 
 interface Props {
   pointsToAssign: number;
-  techExperienceSubset: TechWhat[];
+  techExperienceSubset: TechExperienceSubset[];
   level: Level;
   onIconClick(techName: TechName): void;
 }
