@@ -14,6 +14,7 @@ import arrow from './arrow.svg';
 import flipCounter from './flipCounter.svg';
 import rxjsLogo from './rxjs.svg';
 import debuggingLogo from './debugging.svg';
+import eloquenceLogo from './eloquence.svg';
 
 const toExport = {
   javascriptLogo,
@@ -32,6 +33,7 @@ const toExport = {
   flipCounter,
   rxjsLogo,
   debuggingLogo,
+  eloquenceLogo,
 };
 
 export default toExport;
