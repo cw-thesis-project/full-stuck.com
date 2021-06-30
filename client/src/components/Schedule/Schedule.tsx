@@ -1,5 +1,6 @@
 import React from 'react';
-import { PastActivity } from '../../shared/types';
+import { Link } from 'react-router-dom';
+import { Activity, PastActivity } from '../../shared/types';
 import FutureScheduleCard from '../FutureScheduleCard';
 import CurrentScheduleCard from '../CurrentScheduleCard';
 import PastScheduleCard from '../PastScheduleCard';
@@ -8,26 +9,21 @@ import styles from './Schedule.module.scss';
 
 interface Props {
   history: PastActivity[];
+  nextActivity: Activity;
 }
 
-const Schedule = ({ history }: Props): JSX.Element => {
+const Schedule = ({ history, nextActivity }: Props): JSX.Element => {
   const futureCards: number[] = [];
   futureCards.length = 5 - history.length;
   futureCards.fill(0);
 
-  const dates = [0, 1, 2, 3, 4, 5];
+  const daysIndexes = [0, 1, 2, 3, 4, 5];
 
   return (
     <div className={styles.scheduleList}>
-      {dates.map((date) => {
-        let variant: DateVariant = 'past';
-        if (date === history.length) {
-          variant = 'current';
-        } else if (date > history.length) {
-          variant = 'future';
-        }
-        return <CalendarDate variant={variant} dayIndex={date} />;
-      })}
+      {daysIndexes.map((index) => (
+        <CalendarDate variant={getDateVariant(index)} dayIndex={index} />
+      ))}
 
       {history.map((pastActivity) => (
         <PastScheduleCard
@@ -35,10 +31,10 @@ const Schedule = ({ history }: Props): JSX.Element => {
           topic={pastActivity.topic}
         />
       ))}
-      <div>
+      <Link to={`/game/${nextActivity}`}>
         <img src="" alt="study icon" />
         <p>Study Now</p>
-      </div>
+      </Link>
       <CurrentScheduleCard />
       {futureCards.map(() => (
         <FutureScheduleCard />
@@ -46,5 +42,16 @@ const Schedule = ({ history }: Props): JSX.Element => {
     </div>
   );
 };
+
+function getDateVariant(index: number): DateVariant {
+  if (index === history.length) {
+    return 'current';
+  }
+  if (index > history.length) {
+    return 'future';
+  }
+
+  return 'past';
+}
 
 export default Schedule;
