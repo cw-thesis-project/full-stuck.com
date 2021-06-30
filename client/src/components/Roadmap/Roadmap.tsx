@@ -45,9 +45,20 @@ const Roadmap = ({ userLevel }: Props): JSX.Element => {
     );
   });
 
+  const top = levelToNumber[userLevel];
+
+  const secondLineStyle = {
+    top: `${top * 3 + 1.5}em`,
+    height: `${(4 - top) * 4.5}em`,
+  };
+
   return (
     <div className={styles.column}>
       <div className={styles.verticalLine}>{`${' '}`}</div>
+      <div
+        className={styles.verticalLine2}
+        style={secondLineStyle}
+      >{`${' '}`}</div>
       {display}
     </div>
   );
