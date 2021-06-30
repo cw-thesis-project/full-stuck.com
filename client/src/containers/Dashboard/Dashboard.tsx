@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useDispatch, useSelector } from 'react-redux';
 import { getToken } from '../../services/apiServices';
 import { getUserData } from '../../store/thunks';
-import { store } from '../../store';
+import { AppState } from '../../store/storeTypes';
 
 const Dashboard = (): JSX.Element => {
   const { user, isLoading } = useAuth0();
+  const userStore = useSelector((state: AppState) => state.user);
+  // fix this type
+  const dispatch = useDispatch<any>();
 
   useEffect(() => {
     if (!isLoading) {
@@ -13,15 +17,13 @@ const Dashboard = (): JSX.Element => {
         if (localStorage.getItem('token') === null) {
           await getToken();
         }
-
         const username: string = user?.['https://full-stuck.com/username'];
-        store.dispatch(getUserData(username));
+        dispatch(getUserData(username));
       })();
-
-      // eslint-disable-next-line no-console
-      store.subscribe(() => console.log(store.getState()));
     }
   }, [isLoading, user]);
+  // eslint-disable-next-line no-console
+  console.log(userStore);
 
   return <div>dashboard</div>;
 };

@@ -7,9 +7,7 @@ import { ApiService, AppState, AppAction } from './storeTypes';
 const apiService: ApiService = {
   learnTech: (techName, user) => learnTech(techName, user),
   saveActivity: (activity, user) => saveActivity(activity, user),
-  getUserData: (username) => {
-    return getUserData(username);
-  },
+  getUserData: (username) => getUserData(username),
 };
 
 const thunkMiddleware = thunk.withExtraArgument(apiService);
