@@ -6,14 +6,14 @@ import TechIcon from '../../TechIcon';
 interface Props {
   experience: number;
   techName: TechName;
-  onBubbleClick(techName: TechName): void;
+  onIconClick(techName: TechName): void;
   maxBubbles: number;
 }
 
 const CardTechItem = ({
   experience,
   techName,
-  onBubbleClick,
+  onIconClick,
   maxBubbles,
 }: Props): JSX.Element => {
   const grayBubbleCount = maxBubbles - experience;
@@ -34,7 +34,7 @@ const CardTechItem = ({
         role="button"
         // eslint-disable-next-line no-console
         onKeyDown={() => console.log('hi buddy')}
-        onClick={() => onBubbleClick(techName)}
+        onClick={() => onIconClick(techName)}
         className={styles.clickable}
         tabIndex={0}
       >

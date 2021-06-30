@@ -12,14 +12,14 @@ interface Props {
   pointsToAssign: number;
   techExperienceSubset: TechWhat[];
   level: Level;
-  onBubbleClick(techName: TechName): void;
+  onIconClick(techName: TechName): void;
 }
 
 const CurrentLevelCard = ({
   pointsToAssign,
   techExperienceSubset,
   level,
-  onBubbleClick,
+  onIconClick,
 }: Props): JSX.Element => {
   const plusOrNot = pointsToAssign > 0 ? '+' : '';
   const maxBubbles = 5;
@@ -30,7 +30,7 @@ const CurrentLevelCard = ({
           key={name}
           techName={name}
           experience={experience}
-          onBubbleClick={onBubbleClick}
+          onIconClick={onIconClick}
           maxBubbles={maxBubbles}
         />
       );
