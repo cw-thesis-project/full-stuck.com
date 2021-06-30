@@ -3,34 +3,10 @@ import React, { useEffect } from 'react';
 import styles from './AssignPoints.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store';
 import CurrentLevelCard from '../../components/CurrentLevelCard';
-
+import { technologies, initialTechExperience } from './localUtils';
 import { Level, Tech, TechName } from '../../shared/types';
-
-const technologies: Tech[] = [
-  { name: 'javascript', level: 'junior' },
-  { name: 'git', level: 'junior' },
-  { name: 'react', level: 'junior' },
-  { name: 'graphql', level: 'senior' },
-  { name: 'rxjs', level: 'senior' },
-  { name: 'typescript', level: 'senior' },
-  { name: 'debugging', level: 'tutor' },
-  { name: 'eloquence', level: 'tutor' },
-  { name: 'espionage', level: 'tutor' },
-];
-
-const initialTechExperience = {
-  javascript: 0,
-  git: 0,
-  react: 0,
-  graphql: 0,
-  rxjs: 0,
-  typescript: 0,
-  debugging: 0,
-  eloquence: 0,
-  espionage: 0,
-};
-
-type TechAggregate = Record<string, Level>;
+import { levelToNumber } from '../../utils/utils';
+import { filterTechs, assignCards } from './helper';
 
 const AssignPoints = (): JSX.Element => {
   const appState = useAppSelector((state) => state);
@@ -44,36 +20,9 @@ const AssignPoints = (): JSX.Element => {
   let middleCard;
   let rightCard;
 
-  function filterTechs(lvl: Level) {
-    // create an object from tech structured as { {techName, level} etc }, to help filtering below
-    const techAggregate: TechAggregate = technologies.reduce(
-      (acc: TechAggregate, el) => {
-        if (!acc) return { [el.name]: el.level };
-        return { ...acc, [el.name]: el.level };
-      },
-      {}
-    );
-    const techExperienceSubset = Object.entries(techExperience).filter(
-      (tech) => {
-        return techAggregate[tech[0]] === lvl;
-      }
-    );
-    return techExperienceSubset;
-  }
-
-  filterTechs('junior');
-
-  // function assignCards() {
-  //   if (level === 'junior') {
-  //     leftCard = (
-  //       <CurrentLevelCard pointsToAssign={pointsToAssign} level={level} />
-  //     );
-  //   }
-  // }
-
-  function onIconClick(techName: TechName) {
-    console.log('hella');
-  }
+  useEffect(() => {
+    assignCards(level, pointsToAssign, techExperience);
+  }, []);
 
   return (
     <div>
