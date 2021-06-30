@@ -14,7 +14,13 @@ const ScheduleContainer = (): JSX.Element | null => {
   const { techExperience } = user.gameData;
   const nextActivity = getNextActivity(techExperience);
 
-  return <Schedule history={lastHistory} nextActivity={nextActivity} />;
+  return (
+    <Schedule
+      history={lastHistory}
+      nextActivity={nextActivity}
+      historyLength={user.gameData.history.length}
+    />
+  );
 };
 
 export default ScheduleContainer;

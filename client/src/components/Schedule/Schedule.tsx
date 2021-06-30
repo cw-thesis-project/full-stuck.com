@@ -12,9 +12,14 @@ import icons from '../../assets/icons';
 interface Props {
   history: PastActivity[];
   nextActivity: Activity;
+  historyLength: number;
 }
 
-const Schedule = ({ history, nextActivity }: Props): JSX.Element => {
+const Schedule = ({
+  history,
+  nextActivity,
+  historyLength,
+}: Props): JSX.Element => {
   const futureCards: number[] = [];
   futureCards.length = 5 - history.length;
   futureCards.fill(0);
@@ -26,7 +31,7 @@ const Schedule = ({ history, nextActivity }: Props): JSX.Element => {
       {daysIndexes.map((index) => (
         <CalendarDate
           variant={getDateVariant(index, history.length)}
-          dayIndex={index}
+          dayIndex={historyLength + index}
         />
       ))}
 
