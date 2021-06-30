@@ -7,8 +7,6 @@ export const actions = {
   learnTech: thunks.learnTech,
   saveActivity: thunks.saveActivity,
   getUserData: thunks.getUserData,
-  // login: thunks.login,
-  // register: thunks.register,
   decreasePointsToAssign: appActions.decreasePointsToAssign,
   setPointsToAssign: appActions.setPointsToAssign,
 };

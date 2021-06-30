@@ -21,28 +21,17 @@ function saveUser(user: User, state: AppState): AppState {
   return { ...state, user };
 }
 
-function addActivityToUserHistory(
-  activity: PastActivity,
-  state: AppState
-): AppState {
+function addActivityToUserHistory(user: User, state: AppState): AppState {
   if (!state.user) {
     return state;
   }
-
-  const user = deepCopy(state.user);
-  user.gameData.history.push(activity);
-
   return saveUser(user, state);
 }
 
-function makeUserLearnTech(techName: TechName, state: AppState): AppState {
+function makeUserLearnTech(user: User, state: AppState): AppState {
   if (!state.user) {
     return state;
   }
-
-  const user = deepCopy(state.user);
-  user.gameData.techExperience[techName] += 1;
-
   return saveUser(user, state);
 }
 
@@ -74,11 +63,11 @@ export function reducer(state = defaultState, action: AppAction): AppState {
 
     case 'SAVE_ACTIVITY_SUCCESS':
       auxState = stopLoading(state);
-      return addActivityToUserHistory(action.activity, auxState);
+      return addActivityToUserHistory(action.user, auxState);
 
     case 'LEARN_TECH_SUCCESS':
       auxState = stopLoading(state);
-      return makeUserLearnTech(action.techName, auxState);
+      return makeUserLearnTech(action.user, auxState);
 
     case 'GET_USER_DATA_SUCCESS':
       auxState = stopLoading(state);

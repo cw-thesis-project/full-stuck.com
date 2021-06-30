@@ -6,22 +6,20 @@ import { useAppDispatch, useAppSelector } from '../../store';
 
 const Dashboard = (): JSX.Element => {
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
+
   const userStore = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
+  // updates the storage from the API on the first load.
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && !userStore) {
       (async () => {
-        if (localStorage.getItem('token') === null) {
-          await getToken(getAccessTokenSilently);
-        }
+        await getToken(getAccessTokenSilently);
         const username: string = user?.['https://full-stuck.com/username'];
         dispatch(getUserData(username));
       })();
     }
-  }, [isLoading, user]);
-  // eslint-disable-next-line no-console
-  console.log(userStore);
+  }, []);
 
   return <div>dashboard</div>;
 };

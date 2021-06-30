@@ -7,7 +7,7 @@ import * as dotenv from 'dotenv';
 import { Provider } from 'react-redux';
 import App from './containers/App/App';
 import TempNavBar from './components/TempNavBar/TempNavBar';
-import { auth0 } from './constants';
+import { auth0 } from './shared/constants';
 import { store } from './store';
 
 dotenv.config();
