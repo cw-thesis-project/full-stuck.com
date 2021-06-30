@@ -10,14 +10,7 @@ interface Props {
   history: PastActivity[];
 }
 
-// converts user stars into a boolean
-const isFailed = (stars: number): boolean => {
-  if (!stars) return true;
-  return false;
-};
-
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const Schedule = ({ history }: Props) => {
+const Schedule = ({ history }: Props): JSX.Element => {
   const futureCards: number[] = [];
   futureCards.length = 5 - history.length;
   futureCards.fill(0);
