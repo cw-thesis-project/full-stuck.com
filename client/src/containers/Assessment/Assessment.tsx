@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
-import React, { useEffect } from 'react';
-import SideColumn, { mockIcons } from '../../components/SideColumn';
-import CenterBlob, { threeTechNames } from '../../components/CenterBlob';
+import React from 'react';
+import SideColumn from '../../components/SideColumn';
+import CenterBlob from '../../components/CenterBlob';
 import CountDownBar from '../../components/CountDownBar';
 import { useAssessmentGame } from './assessmentGame';
 import styles from './Assessment.module.scss';
 import { TechExperience } from '../../shared/types';
-import { Icon, IconsGroup } from './interfaces';
+import { Icon } from './interfaces';
 
 const experience: TechExperience = {
   javascript: 0,
@@ -21,19 +21,20 @@ const experience: TechExperience = {
 };
 
 const Assessment = (): JSX.Element => {
-  useAppSelector();
-  const { centerGroup, onIconMatch, round, sidesGroup } = useAssessmentGame({
+  const game = useAssessmentGame({
     level: 'junior',
     onGameEnd: () => console.log('end!'),
     techExperience: experience,
   });
 
   function handleMatch(index: number) {
-    const techName = sidesGroup.icons[index].name;
-    const isValid = centerGroup.icons.some((icon) => icon.name === techName);
+    const techName = game.sidesGroup.icons[index].name;
+    const isValid = game.centerGroup.icons.some(
+      (icon) => icon.name === techName
+    );
     if (isValid) {
       console.log('matched', techName);
-      onIconMatch(techName);
+      game.onIconMatch(techName);
     } else {
       console.log(techName, 'does not need to be clicked');
     }
@@ -48,13 +49,15 @@ const Assessment = (): JSX.Element => {
     });
   }
 
-  if (!sidesGroup) {
+  if (!game.sidesGroup) {
     return <div>game won!</div>;
   }
 
-  const leftIcons = adaptIcons(sidesGroup.icons.slice(0, 5));
-  const rightIcons = adaptIcons(sidesGroup.icons.slice(5));
-  const centerIcons = centerGroup.icons
+  // console.log('groupTimeLeftPercent', game.groupTimeLeftPercent);
+
+  const leftIcons = adaptIcons(game.sidesGroup.icons.slice(0, 5));
+  const rightIcons = adaptIcons(game.sidesGroup.icons.slice(5));
+  const centerIcons = game.centerGroup.icons
     .filter((icon) => !icon.isMatched)
     .map((icon) => icon.name);
 
@@ -65,9 +68,11 @@ const Assessment = (): JSX.Element => {
         onIconMatch={(index) => handleMatch(index)}
       />
       <div className={styles.centerSection}>
-        <h1>7.85s</h1>
+        <h1>{game.gameTime.toFixed(1)}s</h1>
         <CenterBlob techNames={centerIcons} />
-        <h2>0/15</h2>
+        <h2>
+          {game.round}/{game.rounds}
+        </h2>
         <CountDownBar currentPercentage={0.7} />
       </div>
       <SideColumn

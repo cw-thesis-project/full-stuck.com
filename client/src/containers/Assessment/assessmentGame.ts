@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useState } from 'react';
 import { TechName, Level } from '../../shared/types';
+import useElapsedTime from '../../shared/useElapsedTime';
 import {
   getTechnologiesNames,
   deepCopy,
@@ -11,28 +12,54 @@ import { Icon, IconsGroup, AssessmentGameOptions } from './interfaces';
 
 export function useAssessmentGame(gameOptions: AssessmentGameOptions) {
   const { level, onGameEnd } = gameOptions;
-  const groupSize = 3; // 3 if tutor, 2 if senior...
-  const rounds = 2; // 10 if tutor, 12 if senior...
-  // const maxTimeForGroup = 5_000; // 5 seconds to drag all center icons
 
-  const [groupsToDrag, setGroupsToDrag] = useState(
-    createIconsToDrag(level, groupSize, rounds)
-  );
-  const [sideChoices, setSideChoices] = useState(
-    createSideChoices(groupsToDrag)
-  );
+  // game constants
+  const groupSize = 3;
+  const rounds = 2;
+  const maxTimeForGroup = 5;
 
-  // TODO: add the time when the game started
+  const atCenter = createIconsToDrag(level, groupSize, rounds);
+  const atSides = createSideChoices(atCenter);
+
+  // icons states
+  const [groupsToDrag, setGroupsToDrag] = useState(atCenter);
+  const [sideChoices, setSideChoices] = useState(atSides);
+
+  // time states
+  const [gameTime] = useElapsedTime(Date.now());
+  const [groupTime] = useElapsedTime(Date.now());
+
+  // counter states
   const [round, setRound] = useState(0);
   const [matched, setMatched] = useState(0);
-  // const [timeLeftForGroup, setTimeLeftForGroup] = useState(maxTimeForGroup);
-  // const [iconsMatched, setIconsMatched] = useState(0);
-
-  //  useEffect(updateTimeLeft,[]);
 
   function onIconMatch(techName: TechName) {
-    setIconAsMatched(techName);
+    matchCenterIcon(techName);
+    matchSideIcon(techName);
+    handleRoundProgression();
+  }
 
+  function matchCenterIcon(techName: TechName) {
+    const toDragCopy = deepCopy(groupsToDrag);
+    const icon = findIconByTechName(toDragCopy[round].icons, techName);
+
+    if (icon) {
+      icon.isMatched = true;
+      setGroupsToDrag(toDragCopy);
+    }
+  }
+
+  function matchSideIcon(techName: TechName) {
+    const sideCopy = deepCopy(sideChoices);
+    const icon = findIconByTechName(sideCopy[round].icons, techName);
+
+    if (icon) {
+      icon.isMatched = true;
+      setSideChoices(sideCopy);
+    }
+  }
+
+  function handleRoundProgression() {
     const isRoundDone = matched === groupSize - 1;
 
     if (isRoundDone) {
@@ -47,34 +74,20 @@ export function useAssessmentGame(gameOptions: AssessmentGameOptions) {
     }
   }
 
-  function setIconAsMatched(techName: TechName) {
-    // in the center group
-    const toDragCopy = deepCopy(groupsToDrag);
-    const centerIcon = findIconByTechName(toDragCopy[round].icons, techName);
-
-    if (centerIcon) {
-      centerIcon.isMatched = true;
-      setGroupsToDrag(toDragCopy);
-    } else {
-      console.log('this should not happen!');
-    }
-
-    // in the sides
-    const sideCopy = deepCopy(sideChoices);
-    const sideIcon = findIconByTechName(sideCopy[round].icons, techName);
-
-    if (sideIcon) {
-      sideIcon.isMatched = true;
-      setSideChoices(sideCopy);
-    } else {
-      console.log('this should not happen (2)!');
-    }
-  }
-
+  // conversions before returning
+  const groupTimeLeftPercent = (groupTime / maxTimeForGroup) * 100;
   const centerGroup = groupsToDrag[round];
   const sidesGroup = sideChoices[round];
 
-  return { onIconMatch, centerGroup, sidesGroup, round };
+  return {
+    onIconMatch,
+    centerGroup,
+    sidesGroup,
+    round,
+    groupTimeLeftPercent,
+    rounds,
+    gameTime,
+  };
 }
 
 export function createIconsToDrag(
