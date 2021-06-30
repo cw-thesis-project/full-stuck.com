@@ -4,12 +4,14 @@
   @include column;
   @include center;
   @include square(4em);
+  justify-self: center;
+  align-self: center;
   gap: 0;
   color: #200f50;
 }
 
 .circle {
-  @include circle(4em);
+  @include circle(5em);
   background-color: #200f50;
 }
 
@@ -18,5 +20,10 @@
 }
 
 .number {
+  font-size: 2em;
   font-weight: 600;
+}
+
+.name {
+  text-transform: uppercase;
 }
