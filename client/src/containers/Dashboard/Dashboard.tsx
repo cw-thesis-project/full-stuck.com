@@ -2,7 +2,6 @@ import React from 'react';
 
 import { AppState } from '../../store/storeTypes';
 import LearntTech from '../../components/LearntTech/index';
-import createGreeting from './greeting';
 import mockTechExperience from '../../components/LearntTech/mockdata';
 import { Level, TechExperience } from '../../shared/types';
 import { technologies } from '../../utils/utils';
@@ -16,6 +15,41 @@ const levelToNumber: levelMap = {
   tutor: 2,
   CEO: 3,
 };
+
+const createGreeting = (level: Level | undefined) => {
+  let greetingMessage = '';
+  switch (level) {
+    case 'junior':
+      greetingMessage = "Let's GET Coding";
+      break;
+    case 'senior':
+      greetingMessage = 'PUT your back into it';
+      break;
+    case 'tutor':
+      greetingMessage = 'POST us a pun please';
+      break;
+    case 'CEO':
+      greetingMessage = 'DELETE and start again';
+      break;
+    default:
+      greetingMessage = '';
+  }
+  return greetingMessage;
+};
+
+function createTechAchievements(
+  userLevel: Level,
+  techExperience: TechExperience
+) {
+  // create { level: number, isLocked: boolean} for each Tech
+  const techAchievements = {};
+
+  Object.entries(techExperience).forEach(([tech, experienceLevel]) => {
+    //
+  });
+
+  return techAchievements;
+}
 
 const Dashboard = (): JSX.Element => {
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
@@ -34,24 +68,15 @@ const Dashboard = (): JSX.Element => {
     }
   }, []);
 
-  const greeting = createGreeting(userStore?.gameData.level);
+  const greetingMessage = createGreeting(userStore?.gameData.level);
 
-  function createTechAchievements(
-    userLevel: Level,
-    techExperience: undefined | TechExperience
-  ) {
-    // create { level: number, isLocked: boolean} for each Tech
-    const techAchievements = {};
-    console.log(techExperience);
-    Array.prototype.forEach.call(techExperience, (e) => console.log(e));
-    return techAchievements;
-  }
-  console.log(userStore?.gameData.techExperience);
-  createTechAchievements('senior', userStore?.gameData.techExperience);
-  return user ? (
+  // WIP
+  // createTechAchievements('senior', userStore?.gameData.techExperience);
+
+  return user && userStore ? (
     <div>
       <div className="greeting">
-        <h1>Hello, {userStore?.username ? userStore.username : 'coder'}</h1>
+        <h1>Hello, {userStore.username ? userStore.username : 'coder'}</h1>
         <h2>{greetingMessage}</h2>
       </div>
       <LearntTech techAchievements={mockTechExperience} />
