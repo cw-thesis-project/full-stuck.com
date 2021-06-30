@@ -21,13 +21,13 @@ export interface IconsGroup {
 }
 
 export interface IAssessmentGame {
-  centerGroup: Icon[]; // length based on level
-  sideChoices: Icon[]; // always 10 items
-  round: Round;
-  remainingGroupTimePercent: number;
-  startTime: number;
-  panaltyTime: number;
-  onIconMatch(techName: TechName): void;
+  onIconMatch: (techName: TechName) => void;
+  centerGroup: IconsGroup;
+  sidesGroup: IconsGroup;
+  round: number;
+  groupTimeLeftPercent: number;
+  rounds: number;
+  gameTime: number;
 }
 
 export interface AssessmentGameOptions {

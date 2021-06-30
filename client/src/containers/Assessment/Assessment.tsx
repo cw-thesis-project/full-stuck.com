@@ -3,11 +3,12 @@ import React from 'react';
 import SideColumn from '../../components/SideColumn';
 import CenterBlob from '../../components/CenterBlob';
 import CountDownBar from '../../components/CountDownBar';
-import { useAssessmentGame } from './assessmentGame';
+import useAssessmentGame from './assessmentGame';
 import styles from './Assessment.module.scss';
 import { TechExperience } from '../../shared/types';
-import { Icon } from './interfaces';
+import { getIconDescriptors } from './helpers';
 
+// not even used at the moment - will do in the future
 const experience: TechExperience = {
   javascript: 0,
   debugging: 0,
@@ -27,7 +28,7 @@ const Assessment = (): JSX.Element => {
     techExperience: experience,
   });
 
-  function handleMatch(index: number) {
+  function handleIconMatch(index: number) {
     const techName = game.sidesGroup.icons[index].name;
     const isValid = game.centerGroup.icons.some(
       (icon) => icon.name === techName
@@ -40,23 +41,13 @@ const Assessment = (): JSX.Element => {
     }
   }
 
-  function adaptIcons(icons: Icon[]) {
-    return icons.map((icon) => {
-      return {
-        techName: icon.name,
-        isGray: icon.isMatched,
-      };
-    });
-  }
-
   if (!game.sidesGroup) {
     return <div>game won!</div>;
   }
 
-  // console.log('groupTimeLeftPercent', game.groupTimeLeftPercent);
-
-  const leftIcons = adaptIcons(game.sidesGroup.icons.slice(0, 5));
-  const rightIcons = adaptIcons(game.sidesGroup.icons.slice(5));
+  // prepare props for children
+  const leftIcons = getIconDescriptors(game.sidesGroup.icons.slice(0, 5));
+  const rightIcons = getIconDescriptors(game.sidesGroup.icons.slice(5));
   const centerIcons = game.centerGroup.icons
     .filter((icon) => !icon.isMatched)
     .map((icon) => icon.name);
@@ -65,7 +56,7 @@ const Assessment = (): JSX.Element => {
     <div className={styles.page}>
       <SideColumn
         icons={leftIcons}
-        onIconMatch={(index) => handleMatch(index)}
+        onIconMatch={(index) => handleIconMatch(index)}
       />
       <div className={styles.centerSection}>
         <h1>{game.gameTime.toFixed(1)}s</h1>
@@ -77,7 +68,7 @@ const Assessment = (): JSX.Element => {
       </div>
       <SideColumn
         icons={rightIcons}
-        onIconMatch={(index) => handleMatch(index + 5)}
+        onIconMatch={(index) => handleIconMatch(index + 5)}
       />
     </div>
   );
