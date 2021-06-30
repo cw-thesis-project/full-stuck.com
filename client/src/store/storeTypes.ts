@@ -25,8 +25,8 @@ export type AppAction =
   | FailureAction;
 
 export interface ApiService {
-  learnTech(techName: TechName, user: User): void;
-  saveActivity(activity: PastActivity, user: User): void;
+  learnTech(techName: TechName, user: User): Promise<User | null>;
+  saveActivity(activity: PastActivity, user: User): Promise<User | null>;
   getUserData(username: string): Promise<User | null>;
   // login(): void;
   // register(): void;
@@ -49,7 +49,7 @@ interface SaveActivityRequestAction {
 
 interface SaveActivitySuccessAction {
   type: typeof SAVE_ACTIVITY_SUCCESS;
-  activity: PastActivity;
+  user: User;
 }
 
 interface LearnTechRequestAction {
@@ -59,7 +59,7 @@ interface LearnTechRequestAction {
 
 interface LearnTechSuccessAction {
   type: typeof LEARN_TECH_SUCCESS;
-  techName: TechName;
+  user: User;
 }
 
 interface SetPointsToAssignAction {

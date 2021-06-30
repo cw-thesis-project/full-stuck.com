@@ -10,10 +10,10 @@ export function saveActivityRequest(activity: PastActivity): AppAction {
   };
 }
 
-export function saveActivitySuccess(activity: PastActivity): AppAction {
+export function saveActivitySuccess(user: User): AppAction {
   return {
     type: 'SAVE_ACTIVITY_SUCCESS',
-    activity,
+    user,
   };
 }
 
@@ -33,10 +33,10 @@ export function learnTechRequest(techName: TechName): AppAction {
   };
 }
 
-export function learnTechSuccess(techName: TechName): AppAction {
+export function learnTechSuccess(user: User): AppAction {
   return {
     type: 'LEARN_TECH_SUCCESS',
-    techName,
+    user,
   };
 }
 
