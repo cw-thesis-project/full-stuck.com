@@ -19,7 +19,7 @@ const iconsMap: Record<TechName, string> = {
   graphql: logos.graphqlLogo,
   rxjs: logos.rxjsLogo,
   typescript: logos.typescriptLogo,
-  debugging: logos.javascriptLogo,
+  debugging: logos.debuggingLogo,
   eloquence: logos.javascriptLogo,
   espionage: logos.javascriptLogo,
 };
