@@ -8,7 +8,7 @@ const CurrentScheduleCard = (): JSX.Element => {
     <div className={styles.scheduleItem}>
       <ScheduleItemHeader scheduleItemTopic="await" />
       <img src={icons.hourGlassLogo} alt="hourGlass" />
-      <p>Who knows what the future will bring</p>
+      <p className={styles.quote}>Who knows what the future will bring</p>
     </div>
   );
 };

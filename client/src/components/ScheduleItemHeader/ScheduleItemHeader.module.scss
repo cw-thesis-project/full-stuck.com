@@ -2,6 +2,7 @@
 @import '../../style/shapes.scss';
 
 .headerContainer {
+  @include debug;
   display: flex;
   align-items: center;
   width: 100%;
@@ -13,13 +14,12 @@
   background-color: blue;
   height: 4em;
   width: 1em;
-  margin-right: auto;
   margin-left: 1em;
 }
 
 h1 {
   text-transform: capitalize;
   color: white;
-  font-size: 1.1em;
-  margin-right: 1.5em;
+  font-size: 1em;
+  margin-left: 1em;
 }

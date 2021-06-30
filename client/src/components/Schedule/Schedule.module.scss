@@ -3,7 +3,21 @@
 .scheduleList {
   @include debug;
   display: grid;
-  width: 80vw;
+  width: calc(100% - 4em);
+  padding: 0 2em;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 1fr 1fr 3fr;
+  color: white;
+  gap: 1em;
+  a {
+    color: white;
+  }
+}
+
+.button {
+  @include column;
+  @include rounded;
+  justify-content: space-around;
+  background-color: #ff4034;
+  height: 100%;
 }

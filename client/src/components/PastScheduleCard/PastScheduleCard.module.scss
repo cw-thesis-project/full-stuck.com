@@ -8,10 +8,9 @@
 }
 
 .achievementRibbon {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  @include center;
 }
+
 .achievementRibbonColor {
   margin-bottom: 1em;
   width: 100%;

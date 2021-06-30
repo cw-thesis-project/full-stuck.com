@@ -5,6 +5,7 @@ import FutureScheduleCard from '../FutureScheduleCard';
 import CurrentScheduleCard from '../CurrentScheduleCard';
 import PastScheduleCard from '../PastScheduleCard';
 import CalendarDate, { DateVariant } from '../CalendarDate';
+import getDateVariant from './helperFunctions';
 import styles from './Schedule.module.scss';
 
 interface Props {
@@ -22,7 +23,10 @@ const Schedule = ({ history, nextActivity }: Props): JSX.Element => {
   return (
     <div className={styles.scheduleList}>
       {daysIndexes.map((index) => (
-        <CalendarDate variant={getDateVariant(index)} dayIndex={index} />
+        <CalendarDate
+          variant={getDateVariant(index, history.length)}
+          dayIndex={index}
+        />
       ))}
 
       {history.map((pastActivity) => (
@@ -32,8 +36,10 @@ const Schedule = ({ history, nextActivity }: Props): JSX.Element => {
         />
       ))}
       <Link to={`/game/${nextActivity}`}>
-        <img src="" alt="study icon" />
-        <p>Study Now</p>
+        <div className={styles.button}>
+          <img src="" alt="study icon" />
+          <p>Study Now</p>
+        </div>
       </Link>
       <CurrentScheduleCard />
       {futureCards.map(() => (
@@ -42,16 +48,5 @@ const Schedule = ({ history, nextActivity }: Props): JSX.Element => {
     </div>
   );
 };
-
-function getDateVariant(index: number): DateVariant {
-  if (index === history.length) {
-    return 'current';
-  }
-  if (index > history.length) {
-    return 'future';
-  }
-
-  return 'past';
-}
 
 export default Schedule;

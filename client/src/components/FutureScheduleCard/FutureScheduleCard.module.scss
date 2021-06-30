@@ -6,3 +6,15 @@
   background-color: #200f50;
   grid-row: 2/4;
 }
+
+.iconContainer {
+  @include debug;
+  @include center;
+  @include column;
+  flex-grow: 1;
+  background-color: red;
+}
+
+.quote {
+  text-align: center;
+}
