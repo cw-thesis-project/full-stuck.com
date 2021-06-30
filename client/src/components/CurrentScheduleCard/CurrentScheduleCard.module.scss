@@ -7,6 +7,12 @@
   background-color: #200f50;
 }
 
+.imageContainer {
+  @include center;
+  flex-grow: 1;
+}
+
 .quote {
   text-align: center;
+  padding: 2em;
 }

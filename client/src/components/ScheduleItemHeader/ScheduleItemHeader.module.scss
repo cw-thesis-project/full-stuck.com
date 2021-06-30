@@ -2,7 +2,6 @@
 @import '../../style/shapes.scss';
 
 .headerContainer {
-  @include debug;
   display: flex;
   align-items: center;
   width: 100%;

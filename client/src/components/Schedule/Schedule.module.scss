@@ -9,15 +9,26 @@
   grid-template-rows: 1fr 1fr 3fr;
   color: white;
   gap: 1em;
+
   a {
     color: white;
+    text-decoration: none;
   }
 }
 
 .button {
   @include column;
   @include rounded;
+  gap: 0;
   justify-content: space-around;
   background-color: #ff4034;
   height: 100%;
+
+  img {
+    @include square(2em);
+  }
+
+  p {
+    font-weight: 700;
+  }
 }

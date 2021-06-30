@@ -4,9 +4,10 @@ import { Activity, PastActivity } from '../../shared/types';
 import FutureScheduleCard from '../FutureScheduleCard';
 import CurrentScheduleCard from '../CurrentScheduleCard';
 import PastScheduleCard from '../PastScheduleCard';
-import CalendarDate, { DateVariant } from '../CalendarDate';
+import CalendarDate from '../CalendarDate';
 import getDateVariant from './helperFunctions';
 import styles from './Schedule.module.scss';
+import icons from '../../assets/icons';
 
 interface Props {
   history: PastActivity[];
@@ -37,7 +38,7 @@ const Schedule = ({ history, nextActivity }: Props): JSX.Element => {
       ))}
       <Link to={`/game/${nextActivity}`}>
         <div className={styles.button}>
-          <img src="" alt="study icon" />
+          <img src={icons.graduationHat} alt="study icon" />
           <p>Study Now</p>
         </div>
       </Link>
