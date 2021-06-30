@@ -1,0 +1,32 @@
+@import '../../style/style.scss';
+
+.cardsGrid {
+  @include debug;
+  display: grid;
+  gap: 2em;
+  grid-template-columns: repeat(6, 5em);
+  grid-template-rows: repeat(3, 8em);
+
+  * {
+    text-align: center;
+  }
+}
+
+.card {
+  @include center;
+  @include column;
+
+  &.up {
+    background-color: yellow;
+  }
+
+  &.down {
+    color: gray;
+    background-color: gray;
+  }
+
+  &.matched {
+    color: white;
+    background-color: green;
+  }
+}
