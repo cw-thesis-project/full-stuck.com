@@ -6,7 +6,6 @@ export interface AppState {
   user: User | null;
   loading: boolean;
   error: Error | string;
-  token: string;
 }
 
 export type AppAction =
@@ -18,14 +17,17 @@ export type AppAction =
   | DecreasePointsToAssignAction
   // | LoginRequestAction
   // | RegisterRequestAction
-  | LoginSuccessAction
-  | RegisterSuccessAction
+  // | LoginSuccessAction
+  // | RegisterSuccessAction
+  | GetUserDataRequestAction
+  | GetUserDataSuccessAction
   | ResetErrorAction
   | FailureAction;
 
 export interface ApiService {
-  learnTech(techName: TechName, user: User, token: string): void;
-  saveActivity(activity: PastActivity, user: User, token: string): void;
+  learnTech(techName: TechName, user: User): void;
+  saveActivity(activity: PastActivity, user: User): void;
+  getUserData(username: string): Promise<User | null>;
   // login(): void;
   // register(): void;
 }
@@ -69,25 +71,35 @@ interface DecreasePointsToAssignAction {
   type: typeof DECREASE_POINTS_TO_ASSIGN;
 }
 
+interface GetUserDataSuccessAction {
+  type: typeof GET_USER_DATA_SUCCESS;
+  user: User;
+}
+
+interface GetUserDataRequestAction {
+  type: typeof GET_USER_DATA_REQUEST;
+  username: string;
+}
+
 // interface LoginRequestAction {
 //   type: typeof LOGIN_REQUEST;
 //   credentials: UserCredentials;
 // }
 
-interface LoginSuccessAction {
-  type: typeof LOGIN_SUCCESS;
-  user: User;
-}
+// interface LoginSuccessAction {
+//   type: typeof LOGIN_SUCCESS;
+//   user: User;
+// }
 
 // interface RegisterRequestAction {
 //   type: typeof REGISTER_REQUEST;
 //   credentials: UserCredentials;
 // }
 
-interface RegisterSuccessAction {
-  type: typeof REGISTER_SUCCESS;
-  user: User;
-}
+// interface RegisterSuccessAction {
+//   type: typeof REGISTER_SUCCESS;
+//   user: User;
+// }
 
 interface ResetErrorAction {
   type: typeof RESET_ERROR;
@@ -97,8 +109,9 @@ export interface FailureAction {
   type:
     | typeof SAVE_ACTIVITY_FAILURE
     | typeof LEARN_TECH_FAILURE
-    | typeof LOGIN_FAILURE
-    | typeof REGISTER_FAILURE;
+    | typeof GET_USER_DATA_FAILURE;
+  // | typeof LOGIN_FAILURE
+  // | typeof REGISTER_FAILURE
   error: Error | string;
 }
 
@@ -115,12 +128,16 @@ const LEARN_TECH_FAILURE = 'LEARN_TECH_FAILURE';
 const SET_POINTS_TO_ASSIGN = 'SET_POINTS_TO_ASSIGN';
 const DECREASE_POINTS_TO_ASSIGN = 'DECREASE_POINTS_TO_ASSIGN';
 
-// const LOGIN_REQUEST = 'LOGIN_REQUEST';
-const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-const LOGIN_FAILURE = 'LOGIN_FAILURE';
+const GET_USER_DATA_REQUEST = 'GET_USER_DATA_REQUEST';
+const GET_USER_DATA_SUCCESS = 'GET_USER_DATA_SUCCESS';
+const GET_USER_DATA_FAILURE = 'GET_USER_DATA_FAILURE';
 
-// const REGISTER_REQUEST = 'REGISTER_REQUEST';
-const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-const REGISTER_FAILURE = 'REGISTER_FAILURE';
+// const LOGIN_REQUEST = 'LOGIN_REQUEST';
+// const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+// const LOGIN_FAILURE = 'LOGIN_FAILURE';
+
+// // const REGISTER_REQUEST = 'REGISTER_REQUEST';
+// const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+// const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
 const RESET_ERROR = 'RESET_ERROR';
