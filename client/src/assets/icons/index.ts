@@ -10,6 +10,7 @@ import lock from './lock.svg';
 import star from './star.svg';
 import hourGlassLogo from './hourGlass.svg';
 import graduationHat from './graduationHat.svg';
+import flipCounter from './flipCounter.svg';
 
 const toExport = {
   javascriptLogo,
@@ -24,6 +25,7 @@ const toExport = {
   hourGlassLogo,
   star,
   graduationHat,
+  flipCounter,
 };
 
 export default toExport;
