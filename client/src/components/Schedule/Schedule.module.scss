@@ -1,0 +1,9 @@
+@import '../../style/style.scss';
+
+.scheduleList {
+  @include debug;
+  display: grid;
+  width: 80vw;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr 1fr 3fr;
+}

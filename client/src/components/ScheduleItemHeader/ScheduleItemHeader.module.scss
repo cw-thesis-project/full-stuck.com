@@ -1,0 +1,25 @@
+@import '../../style/layout.scss';
+@import '../../style/shapes.scss';
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 1.5em;
+}
+
+.headerColor {
+  @include rounded();
+  background-color: blue;
+  height: 4em;
+  width: 1em;
+  margin-right: auto;
+  margin-left: 1em;
+}
+
+h1 {
+  text-transform: capitalize;
+  color: white;
+  font-size: 1.1em;
+  margin-right: 1.5em;
+}
