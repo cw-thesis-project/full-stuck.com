@@ -6,6 +6,7 @@ import { getUserData } from '../../store/thunks';
 import { AppState } from '../../store/storeTypes';
 
 const Dashboard = (): JSX.Element => {
+
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
   const userStore = useSelector((state: AppState) => state.user);
   // fix this type
