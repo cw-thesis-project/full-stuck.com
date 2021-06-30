@@ -1,0 +1,17 @@
+@import '../../style/style.scss';
+
+.page {
+  @include row;
+  @include debug;
+  width: 100%;
+}
+
+.centerSection {
+  @include debug;
+  @include column;
+  flex-grow: 1;
+
+  h2 {
+    margin-top: -5em;
+  }
+}
