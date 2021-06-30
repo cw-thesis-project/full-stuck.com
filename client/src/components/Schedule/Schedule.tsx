@@ -1,13 +1,9 @@
 import React from 'react';
 import { PastActivity } from '../../shared/types';
-<<<<<<< HEAD
 import FutureScheduleCard from '../FutureScheduleCard';
 import CurrentScheduleCard from '../CurrentScheduleCard';
 import PastScheduleCard from '../PastScheduleCard';
 import CalendarDate, { DateVariant } from '../CalendarDate';
-=======
-import PastScheduleCard from '../PastScheduleCard/PastScheduleCard';
->>>>>>> feat: pass isfailed prop down to children
 import styles from './Schedule.module.scss';
 
 interface Props {
