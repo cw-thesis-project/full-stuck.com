@@ -6,7 +6,7 @@ import { getUserData } from '../../store/thunks';
 import { AppState } from '../../store/storeTypes';
 
 const Dashboard = (): JSX.Element => {
-  const { user, isLoading } = useAuth0();
+  const { user, isLoading, getAccessTokenSilently } = useAuth0();
   const userStore = useSelector((state: AppState) => state.user);
   // fix this type
   const dispatch = useDispatch<any>();
@@ -15,7 +15,7 @@ const Dashboard = (): JSX.Element => {
     if (!isLoading) {
       (async () => {
         if (localStorage.getItem('token') === null) {
-          await getToken();
+          await getToken(getAccessTokenSilently);
         }
         const username: string = user?.['https://full-stuck.com/username'];
         dispatch(getUserData(username));

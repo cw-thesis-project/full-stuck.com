@@ -3,8 +3,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { PastActivity, TechName, User, UserFromDB } from '../shared/types';
 import { apiUrl } from '../constants';
 
-export async function getToken(): Promise<void> {
-  const { getAccessTokenSilently } = useAuth0();
+export async function getToken(
+  getAccessTokenSilently: () => Promise<string>
+): Promise<void> {
   try {
     const accessToken = await getAccessTokenSilently();
     localStorage.setItem('token', accessToken);
