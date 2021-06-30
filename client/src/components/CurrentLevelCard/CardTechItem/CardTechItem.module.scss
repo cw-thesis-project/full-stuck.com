@@ -1,0 +1,44 @@
+@import '../../../style/style.scss';
+
+.bubble {
+  @include circle(2.5em);
+  margin: 0;
+}
+
+.clickable {
+  &:hover {
+    fill: #e2d8ff;
+    filter: grayscale(100%) sepia(100%);
+  }
+  &:active {
+    filter: invert(100%);
+  }
+}
+
+.git {
+  background-color: #f15133;
+}
+
+.greyBubble {
+  background-color: grey;
+}
+
+.javascript {
+background-color: #f7df34
+}
+
+.react {
+background-color: #67c8e2
+}
+
+.techColumn {
+  @include column;
+  gap: 0.3em;
+}
+
+h2,
+h3,
+h4 {
+  color: #f5f8ff;
+  text-transform: capitalize;
+}

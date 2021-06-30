@@ -1,0 +1,29 @@
+@import '../../style/style.scss';
+
+.bottom {
+  text-align: center;
+  width: 10em;
+}
+
+.container {
+  @include square(30em);
+  @include column;
+  justify-content: space-between;
+  background-color: #f5f8ff;
+}
+
+.img{
+  @include square(8em);
+}
+
+.medalZone {
+  @include column;
+}
+
+h2, h3, h4 {
+  color: #6435e9;
+}
+
+h2 {
+  text-transform: capitalize;
+}
