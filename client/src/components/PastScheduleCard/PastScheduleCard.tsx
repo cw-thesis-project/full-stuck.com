@@ -14,13 +14,11 @@ const PastScheduleCard = ({ stars, topic }: Props): JSX.Element => {
       {!stars ? (
         <div className={styles.scheduleItem}>
           <ScheduleItemHeader scheduleItemTopic={topic} />
-          <p>{`${stars}`}</p>
+          <p>{stars}</p>
           <TechIcon techName={topic} iconSize="large" isGray />
           <p>nobody will ever hire you</p>
           <div
-            className={
-              (styles.achievementRibbon, styles.achievementRibbonColorFailed)
-            }
+            className={`${styles.achievementRibbon} ${styles.achievementRibbonColorFailed}`}
           >
             <p className={styles.achievementMessage}>Failed</p>
           </div>
@@ -28,13 +26,11 @@ const PastScheduleCard = ({ stars, topic }: Props): JSX.Element => {
       ) : (
         <div className={styles.scheduleItem}>
           <ScheduleItemHeader scheduleItemTopic={topic} />
-          <p>{`${stars}`}</p>
+          <p>{stars}</p>
           <TechIcon techName={topic} iconSize="large" isGray={false} />
           <p>Don’t you like it?</p>
           <div
-            className={
-              (styles.achievementRibbon, styles.achievementRibbonColor)
-            }
+            className={`${styles.achievementRibbon} ${styles.achievementRibbonColor}`}
           >
             <p className={styles.achievementMessage}>Learnt</p>
           </div>
