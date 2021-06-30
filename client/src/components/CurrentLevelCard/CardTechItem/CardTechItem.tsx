@@ -19,11 +19,11 @@ const CardTechItem = ({
   const grayBubbleCount = maxBubbles - experience;
 
   const grayBubbles = Array.from({ length: grayBubbleCount }, (_, k) => (
-    <div key={k} className={styles.greyBubble} />
+    <div key={k} className={`${styles.bubble} ${styles.greyBubble}`} />
   ));
 
   const coloredBubbles = Array.from({ length: experience }, (_, k) => (
-    <div key={k} className={`${styles[techName]}`} />
+    <div key={k} className={`${styles.bubble} ${styles[techName]}`} />
   ));
 
   return (

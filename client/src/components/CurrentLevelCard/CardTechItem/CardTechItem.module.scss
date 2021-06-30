@@ -1,8 +1,7 @@
 @import '../../../style/style.scss';
 
-@mixin bubble($color: grey) {
+.bubble {
   @include circle(2.5em);
-  background-color: $color;
   margin: 0;
 }
 
@@ -17,25 +16,24 @@
 }
 
 .git {
-  @include bubble(#f15133);
+  background-color: #f15133;
 }
 
 .greyBubble {
-  @include bubble(grey);
-  // background-color: grey;
+  background-color: grey;
 }
 
 .javascript {
-  @include bubble(#f7df34);
+background-color: #f7df34
 }
 
 .react {
-  @include bubble(#67c8e2);
+background-color: #67c8e2
 }
 
 .techColumn {
   @include column;
-  gap: 0.5em;
+  gap: 0.3em;
 }
 
 h2,
