@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useDispatch, useSelector } from 'react-redux';
 import { getToken } from '../../services/apiServices';
 import { getUserData } from '../../store/thunks';
-import { AppState } from '../../store/storeTypes';
+import { useAppDispatch, useAppSelector } from '../../store';
 
 const Dashboard = (): JSX.Element => {
-
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
-  const userStore = useSelector((state: AppState) => state.user);
-  // fix this type
-  const dispatch = useDispatch<any>();
+  const userStore = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!isLoading) {
