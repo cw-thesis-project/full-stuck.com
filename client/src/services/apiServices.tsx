@@ -1,12 +1,11 @@
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
-import { PastActivity, TechName, User } from '../shared/types';
+import { PastActivity, TechName, User, UserFromDB } from '../shared/types';
+import { apiUrl } from '../constants';
 
-const { getAccessTokenSilently } = useAuth0();
-const token = localStorage.getItem('token');
-const apiUrl = '';
-
-export async function getToken(): Promise<void> {
+export async function getToken(
+  getAccessTokenSilently: () => Promise<string>
+): Promise<void> {
   try {
     const accessToken = await getAccessTokenSilently();
     localStorage.setItem('token', accessToken);
@@ -16,14 +15,19 @@ export async function getToken(): Promise<void> {
   }
 }
 
-export async function getUser(username: string): Promise<User | null> {
+export async function getUserData(username: string): Promise<User | null> {
+  // eslint-disable-next-line no-console
+  const token = localStorage.getItem('token');
   try {
-    const user: User = await axios.get(`${apiUrl}/${username}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return user;
+    const apiResponse: UserFromDB = await axios.get(
+      `${apiUrl}/user/${username}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return apiResponse.data.body;
   } catch (err) {
     // eslint-disable-next-line no-console
     console.log(err);
@@ -35,6 +39,7 @@ export async function saveActivity(
   activity: PastActivity,
   user: User
 ): Promise<User> {
+  const token = localStorage.getItem('token');
   const updatedUser: User = await axios.post(
     `${apiUrl}/${user.username}`,
     {
@@ -53,6 +58,7 @@ export async function saveActivity(
 }
 
 export async function learnTech(techName: TechName, user: User): Promise<User> {
+  const token = localStorage.getItem('token');
   const increasedTechValue = user.gameData.techExperience[techName] + 1;
   const updatedUser: User = await axios.post(
     `${apiUrl}/${user.username}`,

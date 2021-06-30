@@ -4,7 +4,6 @@ import { AppState, AppAction, FailureAction } from './storeTypes';
 
 export const defaultState: AppState = {
   pointsToAssign: 0,
-  token: '',
   user: null,
   loading: false,
   error: '',
@@ -81,13 +80,14 @@ export function reducer(state = defaultState, action: AppAction): AppState {
       auxState = stopLoading(state);
       return makeUserLearnTech(action.techName, auxState);
 
-    case 'LOGIN_SUCCESS':
-    case 'REGISTER_SUCCESS':
+    case 'GET_USER_DATA_SUCCESS':
       auxState = stopLoading(state);
       return saveUser(action.user, auxState);
 
-    case 'LOGIN_FAILURE':
-    case 'REGISTER_FAILURE':
+    // case 'LOGIN_SUCCESS':
+    // case 'REGISTER_SUCCESS':
+    // case 'LOGIN_FAILURE':
+    // case 'REGISTER_FAILURE':
     case 'LEARN_TECH_FAILURE':
     case 'SAVE_ACTIVITY_FAILURE':
       auxState = stopLoading(state);
@@ -95,6 +95,9 @@ export function reducer(state = defaultState, action: AppAction): AppState {
 
     // case 'LOGIN_REQUEST':
     // case 'REGISTER_REQUEST':
+    case 'GET_USER_DATA_REQUEST':
+      return startLoading(state);
+
     case 'LEARN_TECH_REQUEST':
     case 'SAVE_ACTIVITY_REQUEST':
       return startLoading(state);
