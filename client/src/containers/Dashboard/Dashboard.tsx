@@ -1,8 +1,7 @@
 import React from 'react';
-import Roadmap from '../../components/Roadmap';
 
-const Dashboard = () => {
-  return <Roadmap userLevel="junior" />;
+const Dashboard = (): JSX.Element => {
+  return <div>Dashboard</div>;
 };
 
 export default Dashboard;

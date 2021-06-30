@@ -9,10 +9,10 @@ interface Props {
 export type levelMap = Record<Level, number>;
 
 const levelToNumber: levelMap = {
-  junior: 1,
-  senior: 2,
-  tutor: 3,
-  CEO: 4,
+  junior: 0,
+  senior: 1,
+  tutor: 2,
+  CEO: 3,
 };
 
 const Roadmap = ({ userLevel }: Props): JSX.Element => {
@@ -29,12 +29,12 @@ const Roadmap = ({ userLevel }: Props): JSX.Element => {
       levelStatus = styles.futureLevel;
 
     const containerStyle = {
-      top: `${index * 5}em`,
+      top: `${index * 4.5}em`,
     };
 
     return (
       <div
-        className={`${levelStatus} ${styles.container}`}
+        className={`${levelStatus} ${styles.levelContainer}`}
         style={containerStyle}
       >
         <div className={styles.blob} />
@@ -45,19 +45,19 @@ const Roadmap = ({ userLevel }: Props): JSX.Element => {
     );
   });
 
-  const top = levelToNumber[userLevel];
+  const progress = levelToNumber[userLevel];
 
-  const secondLineStyle = {
-    top: `${top * 3 + 1.5}em`,
-    height: `${(4 - top) * 4.5}em`,
+  const progressBarStyle = {
+    top: `1.5em`,
+    height: `${progress * 4.5}em`,
   };
 
   return (
     <div className={styles.column}>
-      <div className={styles.verticalLine}>{`${' '}`}</div>
+      <div className={styles.fullBar}>{`${' '}`}</div>
       <div
-        className={styles.verticalLine2}
-        style={secondLineStyle}
+        className={styles.progressBar}
+        style={progressBarStyle}
       >{`${' '}`}</div>
       {display}
     </div>

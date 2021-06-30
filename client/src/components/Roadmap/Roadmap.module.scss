@@ -4,7 +4,7 @@
   position: absolute;
 }
 
-.container {
+.levelContainer {
   @include row;
   height: 3em;
   margin-bottom: 1.5em;
@@ -12,18 +12,18 @@
   position: absolute;
 }
 
-.verticalLine {
+.fullBar {
   @include square(4em);
   background-color: #ff4034;
   position: absolute;
   top: 1.5em;
   left: 0.25em;
-  height: 15em;
+  height: 13.5em;
   width: 0.5em;
   z-index: 0;
 }
 
-.verticalLine2 {
+.progressBar {
   @include square(4em);
   background-color: #1900a8;
   position: absolute;
@@ -61,6 +61,7 @@
 }
 
 .levelText {
+  margin: 0 0;
   margin-right: 3em;
 
   &::first-letter {
