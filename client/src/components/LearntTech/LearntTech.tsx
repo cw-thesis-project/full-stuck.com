@@ -16,6 +16,7 @@ const LearntTech = ({ techAchievements }: Props): JSX.Element => {
 
   const techKeys = Object.keys(techAchievements) as Array<keyof TechExperience>;
 
+  // TODO: scroll smoothly
   const achievementCards = techKeys
     .slice(startIndex, startIndex + 5)
     .map((techName: TechName) => (
@@ -27,22 +28,30 @@ const LearntTech = ({ techAchievements }: Props): JSX.Element => {
       />
     ));
 
-  const showForwardButton = startIndex <= 3;
-  const showBackButton = startIndex > 0;
+  const cantGoForward = startIndex === 4;
+  const cantGoBack = startIndex === 0;
 
   return (
     <div>
-      {showBackButton && (
-        <button onClick={() => setStartIndex(startIndex - 1)} type="button">
-          {'<'}
-        </button>
-      )}
+      <button
+        disabled={cantGoBack}
+        className={cantGoBack ? styles.disabled : ''}
+        onClick={() => setStartIndex(startIndex - 1)}
+        type="button"
+      >
+        {'<'}
+      </button>
+
       <div className={styles.row}>{achievementCards}</div>
-      {showForwardButton && (
-        <button onClick={() => setStartIndex(startIndex + 1)} type="button">
-          {'>'}
-        </button>
-      )}
+
+      <button
+        disabled={cantGoForward}
+        className={cantGoForward ? styles.disabled : ''}
+        onClick={() => setStartIndex(startIndex + 1)}
+        type="button"
+      >
+        {'>'}
+      </button>
     </div>
   );
 };
