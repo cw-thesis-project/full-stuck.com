@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 import { getToken } from '../../services/apiServices';
 import { getUserData } from '../../store/thunks';
 import { useAppDispatch, useAppSelector } from '../../store';
@@ -41,6 +42,9 @@ const Dashboard = (): JSX.Element => {
         <h1>Hello, {userStore.username ? userStore.username : 'coder'}</h1>
         <h2>{greetingMessage}</h2>
       </div>
+      <Link to="/schedule">
+        <div>Schedule</div>
+      </Link>
       <LearntTech techAchievements={userTechAchievements} />
       <Roadmap userLevel={userStore.gameData.level} />
     </div>
