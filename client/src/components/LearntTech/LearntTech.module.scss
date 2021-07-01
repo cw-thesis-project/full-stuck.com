@@ -1,5 +1,12 @@
+@import '../../style/style.scss';
+
 .row {
   display: flex;
   align-items: center;
   gap: 1em;
+}
+
+.disabled {
+  @include debug;
+  opacity: 0.3;
 }
