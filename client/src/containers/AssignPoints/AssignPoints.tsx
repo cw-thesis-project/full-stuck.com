@@ -3,17 +3,18 @@ import { useHistory } from 'react-router-dom';
 import styles from './AssignPoints.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { TechName, UserGameData } from '../../shared/types';
-import { levelToNumber } from '../../utils/utils';
 import { learnTech } from '../../store/thunks';
-import {
-  renderCurrentCard,
-  renderCompletedCard,
-  renderNextCard,
-} from './helpers';
-import { fakeState } from './localUtils';
+
+import { assignCards } from './helpers';
+import { fakeState, FakeState } from './localUtils';
+import TempTestZone from './TempTestZone/TempTestZone';
 
 const AssignPoints = (): JSX.Element => {
+  const [leftCard, setLeftCard] = useState<JSX.Element>(<div>Pabeli</div>);
+  const [middleCard, setMiddleCard] = useState<JSX.Element>(<div>Pabelow</div>);
+  const [rightCard, setRightCard] = useState<JSX.Element>(<div>Pabelu</div>);
   const history = useHistory();
+  // // TODO: remove the fakeAppState useState in prod
   const [fakeAppState, setFakeAppState] = useState<FakeState>(fakeState);
   const showAll = false;
   const dispatch = useAppDispatch();
@@ -32,37 +33,26 @@ const AssignPoints = (): JSX.Element => {
   function moveToSchedule() {
     if (pointsToAssign === 0) history.replace('/schedule');
   }
-            pointsToAssign,
-            techExperience,
-            onIconClick
-          )
-    );
-    if (stage === 0) {
-      setMiddleCard(renderNextCard('senior'));
-      setRightCard(renderNextCard('tutor'));
-    }
-    if (stage === 1) {
-      setMiddleCard(
-        renderCurrentCard('senior', pointsToAssign, techExperience, onIconClick)
-      );
-      setRightCard(renderNextCard('tutor'));
-    } else if (stage === 2) {
-      setMiddleCard(renderCompletedCard('senior'));
-      setRightCard(
-        renderCurrentCard('tutor', pointsToAssign, techExperience, onIconClick)
-      );
-    }
-  }
 
   useEffect(() => {
-    assignCards();
+    assignCards(
+      level,
+      showAll,
+      setLeftCard,
+      setMiddleCard,
+      setRightCard,
+      pointsToAssign,
+      techExperience,
+      onIconClick
+    );
   }, [pointsToAssign]);
 
   return (
-    <div className={styles.container}>
-      {leftCard}
-      {middleCard}
-      {rightCard}
+    <div className={styles.screen}>
+      <div className={styles.container}>
+        {leftCard}
+        {middleCard}
+        {rightCard}
         {showAll ? (
           <div className={styles.testZone}>
             <TempTestZone
