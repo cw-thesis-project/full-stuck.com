@@ -6,6 +6,7 @@
 }
 
 .clickable {
+  margin-top: 2em;
   &:hover {
     fill: #e2d8ff;
     filter: grayscale(100%) sepia(100%);
@@ -15,8 +16,28 @@
   }
 }
 
+.debugging {
+  background-color: #784421;
+}
+
+.eloquence {
+  background-color: #01d2c7;
+}
+
+.espionage {
+  background-color: #f5f8ff;
+}
+
 .git {
   background-color: #f15133;
+}
+
+.glow {
+  box-shadow: 0 0 0.3em 0.2em #ffd983;
+}
+
+.graphql {
+  background-color: #e534ab;
 }
 
 .greyBubble {
@@ -24,16 +45,25 @@
 }
 
 .javascript {
-background-color: #f7df34
+  background-color: #f7df34;
 }
 
 .react {
-background-color: #67c8e2
+  background-color: #67c8e2;
+}
+
+.rxjs {
+  background-color: #cf2286;
+}
+
+.typescript {
+  background-color: #3078c6;
 }
 
 .techColumn {
   @include column;
-  gap: 0.3em;
+  gap: 0.5em;
+  width: 6em;
 }
 
 h2,
@@ -41,4 +71,5 @@ h3,
 h4 {
   color: #f5f8ff;
   text-transform: capitalize;
+  margin-top: 0em;
 }
