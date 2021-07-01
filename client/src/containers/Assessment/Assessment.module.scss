@@ -1,0 +1,22 @@
+@import '../../style/style.scss';
+
+.page {
+  @include row;
+  @include debug;
+  width: 100%;
+}
+
+.centerSection {
+  @include debug;
+  @include column;
+  flex-grow: 1;
+
+  h1 {
+    color: #ff4034;
+    font-size: 3em;
+  }
+
+  h2 {
+    margin-top: -5em;
+  }
+}

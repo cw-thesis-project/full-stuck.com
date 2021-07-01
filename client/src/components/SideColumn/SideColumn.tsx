@@ -20,13 +20,8 @@ const SideColumn = ({ icons, onIconMatch }: Props): JSX.Element => {
   return (
     <div className={styles.sideColumn}>
       {icons.map(({ isGray, techName }, index) => (
-        <div onClick={() => onIconMatch(index)}>
-          <TechIcon
-            isGray={isGray}
-            techName={techName}
-            iconSize="large"
-            key={index}
-          />
+        <div onClick={() => onIconMatch(index)} key={index}>
+          <TechIcon isGray={isGray} techName={techName} iconSize="large" />
         </div>
       ))}
     </div>
