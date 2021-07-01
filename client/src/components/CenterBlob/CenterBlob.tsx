@@ -7,9 +7,10 @@ import TechIcon from '../TechIcon';
 
 interface Props {
   techNames: TechName[];
+  onDragStart(techName: TechName): void;
 }
 
-const CenterBlob = ({ techNames }: Props): JSX.Element => {
+const CenterBlob = ({ techNames, onDragStart }: Props): JSX.Element => {
   const iconsContainerClass = assignIconsContainerClass(techNames.length);
 
   return (
@@ -17,12 +18,14 @@ const CenterBlob = ({ techNames }: Props): JSX.Element => {
       <img className={styles.blob} src={icons.blob} alt="blob" />
       <div className={iconsContainerClass}>
         {techNames.map((techName) => (
-          <TechIcon
-            iconSize="medium"
-            isGray={false}
-            techName={techName}
-            key={techName}
-          />
+          <div draggable onDragStart={() => onDragStart(techName)}>
+            <TechIcon
+              iconSize="medium"
+              isGray={false}
+              techName={techName}
+              key={techName}
+            />
+          </div>
         ))}
       </div>
     </div>
