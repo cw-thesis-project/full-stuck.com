@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { saveActivity, learnTech } from '../../store/thunks';
+import { saveActivity, learnTech, getUserData } from '../../store/thunks';
+import { updateUser } from '../../services/apiServices';
 
 const TempNavBar = (): JSX.Element => {
   const userStore = useAppSelector((state) => state.user);
@@ -27,6 +28,19 @@ const TempNavBar = (): JSX.Element => {
     // eslint-disable-next-line no-console
     console.log('LearnTechThunk');
     dispatch(learnTech('debugging'));
+  }
+  async function resetUserHistory() {
+    // eslint-disable-next-line no-console
+    console.log('reset user history');
+
+    if (userStore) {
+      const emptyUser = {
+        ...userStore,
+        gameData: { ...userStore.gameData, history: [] },
+      };
+      await updateUser(emptyUser);
+      dispatch(getUserData(userStore.username));
+    }
   }
 
   if (isAuthenticated) {
@@ -67,6 +81,9 @@ const TempNavBar = (): JSX.Element => {
         </button>
         <button type="button" onClick={LearnTechThunk}>
           LearnTechThunk
+        </button>
+        <button type="button" onClick={resetUserHistory}>
+          Reset History
         </button>
       </div>
     );

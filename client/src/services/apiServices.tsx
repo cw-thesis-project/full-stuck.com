@@ -36,7 +36,7 @@ export async function getUserData(username: string): Promise<User | null> {
   }
 }
 
-async function updateUser(user: User): Promise<User | null> {
+export async function updateUser(user: User): Promise<User | null> {
   try {
     const token = localStorage.getItem('token');
     const headers = {
