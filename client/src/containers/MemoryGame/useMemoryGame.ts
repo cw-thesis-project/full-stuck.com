@@ -28,7 +28,7 @@ function useMemoryGame(): IMemoryGame {
   const [upCards, setUpCards] = useState<Card[]>([]);
 
   const allowedFlips = 30;
-  const afterPairDelay = 1_000;
+  const afterPairDelay = 300;
 
   function handleCardChoice(index: number) {
     const newCards = deepCopy(cards);
