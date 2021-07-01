@@ -34,16 +34,17 @@ const Assessment = (): JSX.Element => {
   }, [loading, game.round]);
 
   function handleIconMatch(index: number) {
-    const techName = game.sidesGroup.icons[index].name;
-    const isValid = game.centerGroup.icons.some(
-      (icon) => icon.name === techName
+    const { name } = game.sidesGroup.icons[index];
+
+    const centerIcon = game.centerGroup.icons.find(
+      (icon) => icon.name === name
     );
 
-    if (isValid) {
-      console.log('matched', techName);
-      game.onIconMatch(techName);
+    if (centerIcon && !centerIcon.isMatched) {
+      console.log('matched', name);
+      game.onIconMatch(name);
     } else {
-      console.log(techName, 'does not need to be clicked');
+      console.log(name, 'does not need to be clicked');
     }
   }
 
