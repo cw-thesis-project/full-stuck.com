@@ -1,6 +1,45 @@
 @import '../../style/style.scss';
 
+.activeBtn {
+  background-color: #ff4034;
+  &:hover {
+    fill: #e2d8ff;
+    filter: grayscale(100%);
+  }
+  &:active {
+    filter: invert(100%);
+  }
+}
+
 .container {
   @include row;
+}
+
+.inactiveBtn {
+  background-color: grey;
+}
+
+.scheduleButton {
+  @include rectangle(10em, 2em);
+  @include rounded;
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  h2 {
+    position: relative;
+    top: 29%;
+  }
+}
+
+.screen {
+  @include center;
+  flex-direction: column;
+  margin-top: 1em;
+}
+
+.testZone {
   position: absolute;
+  left: 0.5em;
 }
