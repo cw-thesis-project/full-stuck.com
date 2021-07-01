@@ -11,6 +11,11 @@
   @include column;
   flex-grow: 1;
 
+  h1 {
+    color: #ff4034;
+    font-size: 3em;
+  }
+
   h2 {
     margin-top: -5em;
   }
