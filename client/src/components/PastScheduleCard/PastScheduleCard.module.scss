@@ -8,10 +8,9 @@
 }
 
 .achievementRibbon {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  @include center;
 }
+
 .achievementRibbonColor {
   margin-bottom: 1em;
   width: 100%;
@@ -26,4 +25,13 @@
 .achievementMessage {
   color: white;
   font-size: 1.5em;
+}
+
+.starsContainer {
+  @include row;
+  gap: 0.5em;
+
+  img {
+    @include square(1em);
+  }
 }

@@ -1,33 +1,39 @@
 import React from 'react';
-import { PastActivity } from '../../shared/types';
+import { Link } from 'react-router-dom';
+import { Activity, PastActivity } from '../../shared/types';
 import FutureScheduleCard from '../FutureScheduleCard';
 import CurrentScheduleCard from '../CurrentScheduleCard';
 import PastScheduleCard from '../PastScheduleCard';
-import CalendarDate, { DateVariant } from '../CalendarDate';
+import CalendarDate from '../CalendarDate';
+import getDateVariant from './helperFunctions';
 import styles from './Schedule.module.scss';
+import icons from '../../assets/icons';
 
 interface Props {
   history: PastActivity[];
+  nextActivity: Activity;
+  historyLength: number;
 }
 
-const Schedule = ({ history }: Props): JSX.Element => {
+const Schedule = ({
+  history,
+  nextActivity,
+  historyLength,
+}: Props): JSX.Element => {
   const futureCards: number[] = [];
   futureCards.length = 5 - history.length;
   futureCards.fill(0);
 
-  const dates = [0, 1, 2, 3, 4, 5];
+  const daysIndexes = [0, 1, 2, 3, 4, 5];
 
   return (
     <div className={styles.scheduleList}>
-      {dates.map((date) => {
-        let variant: DateVariant = 'past';
-        if (date === history.length) {
-          variant = 'current';
-        } else if (date > history.length) {
-          variant = 'future';
-        }
-        return <CalendarDate variant={variant} dayIndex={date} />;
-      })}
+      {daysIndexes.map((index) => (
+        <CalendarDate
+          variant={getDateVariant(index, history.length)}
+          dayIndex={historyLength + index}
+        />
+      ))}
 
       {history.map((pastActivity) => (
         <PastScheduleCard
@@ -35,10 +41,12 @@ const Schedule = ({ history }: Props): JSX.Element => {
           topic={pastActivity.topic}
         />
       ))}
-      <div>
-        <img src="" alt="study icon" />
-        <p>Study Now</p>
-      </div>
+      <Link to={`/game/${nextActivity}`}>
+        <div className={styles.button}>
+          <img src={icons.graduationHat} alt="study icon" />
+          <p>Study Now</p>
+        </div>
+      </Link>
       <CurrentScheduleCard />
       {futureCards.map(() => (
         <FutureScheduleCard />

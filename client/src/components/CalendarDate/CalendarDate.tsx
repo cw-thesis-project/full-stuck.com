@@ -14,7 +14,7 @@ const dayNames = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const CalendarDate = ({ variant, dayIndex }: Props): JSX.Element => {
   return (
     <div className={makeContainerClasses(variant)}>
-      <div className={styles.number}>{dayIndex + 23}</div>
+      <div className={styles.number}># {dayIndex}</div>
       <div className={styles.name}>{dayNames[dayIndex]}</div>
     </div>
   );

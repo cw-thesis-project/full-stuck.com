@@ -6,3 +6,13 @@
   background-color: #200f50;
   grid-row: 2/4;
 }
+
+.iconContainer {
+  @include center;
+  flex-grow: 1;
+}
+
+.quote {
+  text-align: center;
+  padding: 2em;
+}

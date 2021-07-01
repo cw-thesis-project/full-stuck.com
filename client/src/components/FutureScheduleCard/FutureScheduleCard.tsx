@@ -7,8 +7,10 @@ const FutureScheduleCard = (): JSX.Element => {
   return (
     <div className={styles.scheduleItem}>
       <ScheduleItemHeader scheduleItemTopic="undefined" />
-      <TechIcon techName="javascript" iconSize="large" isGray isLocked />
-      <p>Who knows what the future will bring</p>
+      <div className={styles.iconContainer}>
+        <TechIcon techName="javascript" iconSize="large" isGray isLocked />
+      </div>
+      <p className={styles.quote}>Who knows what the future will bring</p>
     </div>
   );
 };

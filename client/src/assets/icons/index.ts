@@ -7,7 +7,9 @@ import graphqlLogo from './graphql.svg';
 import blob from './blob.svg';
 import medal from './medal.svg';
 import lock from './lock.svg';
+import star from './star.svg';
 import hourGlassLogo from './hourGlass.svg';
+import graduationHat from './graduationHat.svg';
 
 const toExport = {
   javascriptLogo,
@@ -20,6 +22,8 @@ const toExport = {
   lock,
   questionLogo,
   hourGlassLogo,
+  star,
+  graduationHat,
 };
 
 export default toExport;
