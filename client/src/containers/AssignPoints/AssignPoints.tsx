@@ -14,6 +14,8 @@ import { fakeState } from './localUtils';
 
 const AssignPoints = (): JSX.Element => {
   const history = useHistory();
+  const [fakeAppState, setFakeAppState] = useState<FakeState>(fakeState);
+  const showAll = false;
   const dispatch = useAppDispatch();
   const appState = useAppSelector((state) => state);
   const { pointsToAssign } = appState;
@@ -61,6 +63,15 @@ const AssignPoints = (): JSX.Element => {
       {leftCard}
       {middleCard}
       {rightCard}
+        {showAll ? (
+          <div className={styles.testZone}>
+            <TempTestZone
+              fakeAppState={fakeAppState}
+              setFakeAppState={setFakeAppState}
+            />
+          </div>
+        ) : null}
+      </div>
       <div
         role="button"
         // eslint-disable-next-line no-console
