@@ -6,7 +6,6 @@ import './index.css';
 import * as dotenv from 'dotenv';
 import { Provider } from 'react-redux';
 import App from './containers/App/App';
-import TempNavBar from './components/TempNavBar/TempNavBar';
 import { auth0 } from './shared/constants';
 import { store } from './store';
 
@@ -23,7 +22,6 @@ ReactDOM.render(
         scope="read:current_user update:current_user_metadata"
       >
         <Router>
-          <TempNavBar />
           <App />
         </Router>
       </Auth0Provider>
