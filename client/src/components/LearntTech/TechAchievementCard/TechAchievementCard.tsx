@@ -14,14 +14,14 @@ const TechAchievementCard = ({
   techSkillLevel,
   isLocked,
 }: Props): JSX.Element => {
-  return isLocked ? (
-    <div className={`${styles.column} ${styles.card}`}>
-      <h4>L</h4>
-      <h4>any</h4>
-    </div>
-  ) : (
-    <div className={`${styles.column} ${styles.card}`}>
-      <TechIcon techName={techName} iconSize="small" isGray={false} />
+  return (
+    <div className={styles.card}>
+      <TechIcon
+        techName={techName}
+        iconSize="small"
+        isGray={false}
+        isLocked={isLocked}
+      />
       <h4>{techSkillLevel}/3</h4>
     </div>
   );

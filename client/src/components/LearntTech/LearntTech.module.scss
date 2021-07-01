@@ -1,8 +1,10 @@
 @import '../../style/style.scss';
 
 .row {
-  display: flex;
-  align-items: center;
+  width: 500px;
+  height: 120px;
+  display: grid;
+  grid-template-columns: 2em repeat(5, 1fr) 2em;
   gap: 1em;
 }
 
