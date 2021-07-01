@@ -1,44 +1,62 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import SideColumn from '../../components/SideColumn';
 import CenterBlob from '../../components/CenterBlob';
 import CountDownBar from '../../components/CountDownBar';
 import useAssessmentGame from './assessmentGame';
 import styles from './Assessment.module.scss';
-import { TechExperience } from '../../shared/types';
 import { getIconDescriptors } from './helpers';
-
-// not even used at the moment - will do in the future
-const experience: TechExperience = {
-  javascript: 0,
-  debugging: 0,
-  eloquence: 0,
-  espionage: 0,
-  git: 0,
-  graphql: 0,
-  react: 0,
-  rxjs: 0,
-  typescript: 0,
-};
+import { useAppDispatch, useAppSelector, actions } from '../../store';
+import { AssessmentGameOptions } from './interfaces';
 
 const Assessment = (): JSX.Element => {
-  const game = useAssessmentGame({
+  const user = useAppSelector((state) => state.user);
+  const loading = useAppSelector((state) => state.loading);
+  const history = useHistory();
+  const dispatch = useAppDispatch();
+
+  const options: AssessmentGameOptions = {
     level: 'junior',
-    onGameEnd: () => console.log('end!'),
-    techExperience: experience,
-  });
+    onGameEnd,
+    techExperience: user?.gameData.techExperience,
+  };
+
+  const game = useAssessmentGame(options);
+
+  useEffect(() => {
+    if (!loading && game.round >= game.rounds) {
+      // TODO: change points based on score
+      dispatch(actions.setPointsToAssign(2));
+      history.replace('/assign-points');
+    }
+  }, [loading, game.round]);
 
   function handleIconMatch(index: number) {
     const techName = game.sidesGroup.icons[index].name;
     const isValid = game.centerGroup.icons.some(
       (icon) => icon.name === techName
     );
+
     if (isValid) {
       console.log('matched', techName);
       game.onIconMatch(techName);
     } else {
       console.log(techName, 'does not need to be clicked');
     }
+  }
+
+  function onGameEnd() {
+    console.log('game ended');
+
+    dispatch(
+      actions.saveActivity({
+        name: 'assessment',
+        topic: 'git',
+        stars: 3,
+      })
+    );
   }
 
   if (!game.sidesGroup) {

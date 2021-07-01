@@ -32,6 +32,6 @@ export interface IAssessmentGame {
 
 export interface AssessmentGameOptions {
   level: Level;
-  techExperience: TechExperience;
+  techExperience: TechExperience | undefined;
   onGameEnd(starsCount: StarsCount): void;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useState } from 'react';
@@ -10,7 +11,14 @@ import * as helpers from './helpers';
 function useAssessmentGame(
   gameOptions: AssessmentGameOptions
 ): IAssessmentGame {
-  const { level, onGameEnd } = gameOptions;
+  const { level, onGameEnd, techExperience } = gameOptions;
+
+  let userExperience = helpers.mockTechExperience;
+
+  if (techExperience) {
+    // TODO: create cards based on tech experience
+    userExperience = techExperience;
+  }
 
   // game constants
   const groupSize = 3;
@@ -62,12 +70,12 @@ function useAssessmentGame(
     const isRoundDone = matched === groupSize - 1;
 
     if (isRoundDone) {
-      if (round < rounds) {
-        setRound((r) => r + 1);
+      if (round < rounds - 1) {
         setMatched(0);
       } else {
         onGameEnd(3);
       }
+      setRound((r) => r + 1);
     } else {
       setMatched(matched + 1);
     }

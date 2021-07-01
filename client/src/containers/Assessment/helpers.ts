@@ -1,4 +1,4 @@
-import { TechName, Level } from '../../shared/types';
+import { TechName, Level, TechExperience } from '../../shared/types';
 import {
   getTechnologiesNames,
   deepCopy,
@@ -79,3 +79,15 @@ export function getIconDescriptors(icons: Icon[]): IconDescriptor[] {
     };
   });
 }
+
+export const mockTechExperience: TechExperience = {
+  javascript: 0,
+  debugging: 0,
+  eloquence: 0,
+  espionage: 0,
+  git: 0,
+  graphql: 0,
+  react: 0,
+  rxjs: 0,
+  typescript: 0,
+};
