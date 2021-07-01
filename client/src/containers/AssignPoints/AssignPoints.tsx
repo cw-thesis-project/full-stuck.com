@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styles from './AssignPoints.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { TechName, UserGameData } from '../../shared/types';
@@ -12,9 +13,7 @@ import {
 import { fakeState } from './localUtils';
 
 const AssignPoints = (): JSX.Element => {
-  const [leftCard, setLeftCard] = useState<JSX.Element>(<div>hello</div>);
-  const [middleCard, setMiddleCard] = useState<JSX.Element>(<div>hello</div>);
-  const [rightCard, setRightCard] = useState<JSX.Element>(<div>hello</div>);
+  const history = useHistory();
   const dispatch = useAppDispatch();
   const appState = useAppSelector((state) => state);
   const { pointsToAssign } = appState;
@@ -28,13 +27,9 @@ const AssignPoints = (): JSX.Element => {
     if (pointsToAssign > 0) dispatch(learnTech(techName));
   }
 
-  function assignCards() {
-    const stage = levelToNumber[level];
-    setLeftCard(
-      stage > 0
-        ? renderCompletedCard('junior')
-        : renderCurrentCard(
-            'junior',
+  function moveToSchedule() {
+    if (pointsToAssign === 0) history.replace('/schedule');
+  }
             pointsToAssign,
             techExperience,
             onIconClick
@@ -66,6 +61,18 @@ const AssignPoints = (): JSX.Element => {
       {leftCard}
       {middleCard}
       {rightCard}
+      <div
+        role="button"
+        // eslint-disable-next-line no-console
+        onKeyDown={() => console.log('hi buddy')}
+        onClick={() => moveToSchedule()}
+        tabIndex={0}
+        className={`${styles.scheduleButton} ${
+          pointsToAssign > 0 ? styles.inactiveBtn : styles.activeBtn
+        }`}
+      >
+        <h2>Schedule</h2>
+      </div>
     </div>
   );
 };
