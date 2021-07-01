@@ -32,13 +32,13 @@ const LearntTech = ({ techAchievements }: Props): JSX.Element => {
     ));
 
   return (
-    <div>
+    <div className={styles.row}>
       <ScrollButton
         type="back"
         onClick={() => setStartIndex(startIndex - 1)}
         disabled={startIndex === 0}
       />
-      <div className={styles.row}>{achievementCards}</div>
+      {achievementCards}
       <ScrollButton
         type="forward"
         onClick={() => setStartIndex(startIndex + 1)}
