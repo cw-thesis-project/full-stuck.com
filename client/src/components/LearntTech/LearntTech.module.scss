@@ -6,7 +6,18 @@
   gap: 1em;
 }
 
+.scrollButton {
+  @include reset-input;
+
+  img {
+    @include square(2em);
+  }
+}
+
 .disabled {
-  @include debug;
   opacity: 0.3;
+}
+
+.flipped {
+  transform: scaleX(-1);
 }

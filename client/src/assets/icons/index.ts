@@ -10,6 +10,7 @@ import lock from './lock.svg';
 import star from './star.svg';
 import hourGlassLogo from './hourGlass.svg';
 import graduationHat from './graduationHat.svg';
+import arrow from './arrow.svg';
 
 const toExport = {
   javascriptLogo,
@@ -24,6 +25,7 @@ const toExport = {
   hourGlassLogo,
   star,
   graduationHat,
+  arrow,
 };
 
 export default toExport;
