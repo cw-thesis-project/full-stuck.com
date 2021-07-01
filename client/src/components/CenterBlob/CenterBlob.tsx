@@ -12,18 +12,11 @@ interface Props {
 const CenterBlob = ({ techNames }: Props): JSX.Element => {
   const [dragging, setDragging] = useState(false);
 
-  const dragItem = useRef();
-  const dragItemNode = useRef();
-
   const handletDragStart = (
     e: React.DragEvent<HTMLDivElement>,
     techName: TechName
   ) => {
     console.log('Starting to drag', techName);
-
-    // dragItemNode.current = e.target;
-    // dragItemNode.current.addEventListener('dragend', handleDragEnd);
-    // dragItem.current = item;
 
     setTimeout(() => {
       setDragging(true);
@@ -33,12 +26,10 @@ const CenterBlob = ({ techNames }: Props): JSX.Element => {
     e: React.DragEvent<HTMLDivElement> | null,
     techName: TechName
   ) => {
-    console.log('Ending drag', techName);
+    console.log('Ending drag', e && e.clientY, e && e.clientX);
     setDragging(false);
-    // dragItem.current = null;
-    // dragItemNode.current.removeEventListener('dragend', handleDragEnd);
-    // dragItemNode.current = null;
   };
+
   const iconsContainerClass = assignIconsContainerClass(techNames.length);
 
   return (
@@ -49,7 +40,7 @@ const CenterBlob = ({ techNames }: Props): JSX.Element => {
           <div
             draggable
             onDragStart={(e) => handletDragStart(e, techName)}
-            onDragEnd={dragging ? (e) => handleDragEnd(e, techName) : null}
+            onDragEnd={(e) => dragging && handleDragEnd(e, techName)}
           >
             <TechIcon
               iconSize="medium"
