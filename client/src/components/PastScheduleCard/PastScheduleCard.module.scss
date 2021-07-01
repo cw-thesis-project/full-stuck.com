@@ -3,8 +3,10 @@
 .scheduleItem {
   @include column();
   @include rounded();
+  justify-content: space-between;
   background-color: $primaryDark;
   grid-row: 2 / 4;
+  padding: 1.5em 0 2.5em 0;
 }
 
 .achievementRibbon {
@@ -12,12 +14,10 @@
 }
 
 .achievementRibbonColor {
-  margin-bottom: 1em;
   width: 100%;
   background-color: $primaryLight;
 }
 .achievementRibbonColorFaied {
-  margin-bottom: 1em;
   width: 100%;
   background-color: #291252;
 }

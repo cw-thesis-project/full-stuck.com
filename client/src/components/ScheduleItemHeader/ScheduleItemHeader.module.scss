@@ -1,24 +1,21 @@
-@import '../../style/layout.scss';
-@import '../../style/shapes.scss';
+@import '../../style/style.scss';
 
 .headerContainer {
-  display: flex;
-  align-items: center;
+  @include row;
   width: 100%;
-  margin-top: 1.5em;
 
-  h1 {
+  .topic {
     text-transform: capitalize;
     color: white;
-    font-size: 1em;
+    font-size: 1.5em;
     margin-left: 1em;
   }
 }
 
 .headerColor {
-  @include rounded();
-  background-color: blue;
-  height: 4em;
-  width: 1em;
+  @include rounded;
+  background-color: $primaryLight;
+  height: 3em;
+  width: 0.5em;
   margin-left: 1em;
 }

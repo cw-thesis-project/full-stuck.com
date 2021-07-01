@@ -11,18 +11,19 @@
 }
 
 .container {
-  @include rectangle(25em, 35em);
   @include column;
   @include rounded;
   justify-content: space-between;
   background-color: $primaryDark;
+  box-shadow: $shadow;
+  margin-right: 1em;
+  margin-left: 1em;
+
   h2,
   h3,
   h4 {
     color: $light;
   }
-  margin-right: 1em;
-  margin-left: 1em;
 }
 
 .img {

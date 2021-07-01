@@ -14,10 +14,10 @@ const levelToNumber: levelMap = {
 
 export const createGreeting = (level: Level): string => {
   const greetingsMap: Record<Level, string> = {
-    junior: "Let's GET Coding",
-    senior: 'PUT your back into it',
-    tutor: 'POST us a pun please',
-    CEO: 'DELETE and start again',
+    junior: "Let's GET Coding!",
+    senior: 'PUT your back into it!',
+    tutor: 'POST us a pun please!',
+    CEO: 'DELETE and start again!',
   };
 
   return greetingsMap[level];

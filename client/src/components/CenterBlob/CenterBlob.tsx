@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import React from 'react';
+import classnames from 'classnames';
 import { TechName } from '../../shared/types';
 import styles from './CenterBlob.module.scss';
 import icons from '../../assets/icons';
@@ -11,14 +11,22 @@ interface Props {
 }
 
 const CenterBlob = ({ techNames, onDragStart }: Props): JSX.Element => {
-  const iconsContainerClass = assignIconsContainerClass(techNames.length);
+  const container = classnames({
+    [styles.iconsContainer]: true,
+    [styles.oneIcon]: techNames.length === 1,
+    [styles.twoIcons]: techNames.length === 2,
+    [styles.threeIcons]: techNames.length === 3,
+  });
 
   return (
     <div className={styles.container}>
-      <img className={styles.blob} src={icons.blob} alt="blob" />
-      <div className={iconsContainerClass}>
+      <div className={container}>
         {techNames.map((techName) => (
-          <div draggable onDragStart={() => onDragStart(techName)}>
+          <div
+            draggable
+            onDragStart={() => onDragStart(techName)}
+            className={styles.draggable}
+          >
             <TechIcon
               iconSize="medium"
               isGray={false}
@@ -31,19 +39,5 @@ const CenterBlob = ({ techNames, onDragStart }: Props): JSX.Element => {
     </div>
   );
 };
-
-function assignIconsContainerClass(iconsCount: number): string {
-  let className = styles.iconsContainer;
-
-  if (iconsCount === 1) {
-    className += ` ${styles.oneIcon}`;
-  } else if (iconsCount === 2) {
-    className += ` ${styles.twoIcons}`;
-  } else {
-    className += ` ${styles.threeIcons}`;
-  }
-
-  return className;
-}
 
 export default CenterBlob;

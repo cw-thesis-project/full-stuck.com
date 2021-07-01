@@ -1,43 +1,32 @@
 @import '../../style/style.scss';
 
-.bottom {
-  text-align: center;
-  width: 10em;
-  position: relative;
-  position: relative;
-  bottom: 1em;
-  h4 {
-    text-transform: none;
-  }
-}
-
 .container {
-  @include rectangle(25em, 35em);
   @include column;
   @include rounded;
+  box-shadow: $shadow;
   justify-content: space-between;
   background-color: $light;
+
   h2,
   h3,
   h4 {
     color: $primaryLight;
   }
-  margin-right: 1em;
-  margin-left: 1em;
-}
-
-.img {
-  @include square(8em);
-}
-
-.lockedZone {
-  @include column;
 }
 
 .title {
   margin-top: 1em;
 }
 
-h2 {
-  text-transform: capitalize;
+.lockedZone {
+  @include column;
+}
+
+.lockIcon {
+  @include square(8em);
+}
+
+.bottom {
+  text-align: center;
+  color: $primaryDark;
 }

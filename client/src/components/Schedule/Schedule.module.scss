@@ -1,11 +1,10 @@
 @import '../../style/style.scss';
 
-.scheduleList {
+.container {
   @include debug;
   @include fill;
   display: grid;
-  width: calc(100% - 4em);
-  padding: 0 2em;
+  padding: 0 6em;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 1fr 1fr 3fr;
   color: white;
@@ -20,15 +19,9 @@
 .button {
   @include column;
   @include rounded;
-  gap: 0;
-  justify-content: space-around;
   background-color: $accent;
-  height: 100%;
-
-  img {
-    @include square(2em);
-  }
-
+  font-size: 1.5em;
+  padding: 0.5em;
   p {
     font-weight: 700;
   }

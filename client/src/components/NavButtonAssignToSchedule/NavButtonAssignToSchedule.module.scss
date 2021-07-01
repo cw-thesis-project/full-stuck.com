@@ -16,17 +16,11 @@
 }
 
 .scheduleButton {
-  @include rectangle(10em, 2em);
+  @include rectangle(10em, 4em);
   @include rounded;
-  margin-top: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include center;
+  box-shadow: $shadow;
+  margin-top: 4em;
   padding: 1em;
   cursor: pointer;
-
-  h2 {
-    position: relative;
-    top: 29%;
-  }
 }

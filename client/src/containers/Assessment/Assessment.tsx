@@ -85,9 +85,10 @@ const Assessment = (): JSX.Element => {
           techNames={centerIcons}
           onDragStart={(techName) => setDraggedName(techName)}
         />
-        <h2>
-          {game.round}/{game.rounds}
-        </h2>
+        <div className={styles.roundsContainer}>
+          <h2 className={styles.roundsDone}>{game.round}</h2>
+          <h2 className={styles.totalRounds}>/{game.rounds}</h2>
+        </div>
         <CountDownBar currentPercentage={0.7} />
       </div>
       <SideColumn

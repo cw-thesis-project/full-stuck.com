@@ -23,6 +23,7 @@ const CurrentLevelCard = ({
   onIconClick,
 }: Props): JSX.Element => {
   const plusOrNot = pointsToAssign > 0 ? '+' : '';
+
   const techZone: JSX.Element[] = techExperienceSubset.map(
     ({ name, experience }) => {
       return (
@@ -37,23 +38,16 @@ const CurrentLevelCard = ({
     }
   );
 
+  const pointsString = `${plusOrNot}${pointsToAssign}`;
+
   return (
     <div className={styles.container}>
-      <div className={styles.points}>
-        <h3>
-          {plusOrNot}
-          {pointsToAssign}
-        </h3>
+      <div className={styles.header}>
+        <h2 className={styles.title}>{level}</h2>
+        <h3 className={styles.pointsBadge}>{pointsString}</h3>
       </div>
-      <div className={styles.body}>
-        <div className={styles.bodyTitle}>
-          <h2>{level}</h2>
-        </div>
-        <div className={styles.techZone}>{techZone}</div>
-        <div className={styles.bottom}>
-          <h4>Spend points to improve your skills</h4>
-        </div>
-      </div>
+      <div className={styles.techZone}>{techZone}</div>
+      <p className={styles.bottom}>Spend points to improve your skills</p>
     </div>
   );
 };
