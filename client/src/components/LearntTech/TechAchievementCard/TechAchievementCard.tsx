@@ -18,11 +18,11 @@ const TechAchievementCard = ({
     <div className={styles.card}>
       <TechIcon
         techName={techName}
-        iconSize="small"
+        iconSize="medium"
         isGray={false}
         isLocked={isLocked}
       />
-      <h4>{techSkillLevel}/3</h4>
+      <h2>{techSkillLevel}/3</h2>
     </div>
   );
 };
