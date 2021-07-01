@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { PastActivity, TechName, User, ApiResponse } from '../shared/types';
-import { apiUrl } from '../shared/constants';
+import { apiUrl, emptyUser } from '../shared/constants';
 import { deepCopy } from '../utils/utils';
 
 export async function getToken(
@@ -55,6 +55,12 @@ export async function updateUser(user: User): Promise<User | null> {
     console.log(err);
     return null;
   }
+}
+
+export async function newGame(username: string): Promise<User | null> {
+  const newUser = deepCopy(emptyUser);
+  newUser.username = username;
+  return updateUser(newUser);
 }
 
 export async function learnTech(

@@ -1,4 +1,4 @@
-import { Tech } from './types';
+import { Tech, User } from './types';
 
 export const auth0 = {
   domain: process.env.REACT_APP_AUTH0_DOMAIN as string,
@@ -20,3 +20,21 @@ export const technologies: Tech[] = [
   { name: 'eloquence', level: 'tutor' },
   { name: 'espionage', level: 'tutor' },
 ];
+export const emptyUser: User = {
+  username: '',
+  gameData: {
+    techExperience: {
+      javascript: 0,
+      git: 0,
+      react: 0,
+      graphql: 0,
+      rxjs: 0,
+      typescript: 0,
+      debugging: 0,
+      eloquence: 0,
+      espionage: 0,
+    },
+    history: [],
+    level: 'junior',
+  },
+};

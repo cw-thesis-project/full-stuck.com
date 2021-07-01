@@ -15,10 +15,8 @@ export type AppAction =
   | LearnTechSuccessAction
   | SetPointsToAssignAction
   | DecreasePointsToAssignAction
-  // | LoginRequestAction
-  // | RegisterRequestAction
-  // | LoginSuccessAction
-  // | RegisterSuccessAction
+  | NewGameRequestAction
+  | NewGameSuccessAction
   | GetUserDataRequestAction
   | GetUserDataSuccessAction
   | ResetErrorAction
@@ -27,9 +25,8 @@ export type AppAction =
 export interface ApiService {
   learnTech(techName: TechName, user: User): Promise<User | null>;
   saveActivity(activity: PastActivity, user: User): Promise<User | null>;
+  newGame(username: string): Promise<User | null>;
   getUserData(username: string): Promise<User | null>;
-  // login(): void;
-  // register(): void;
 }
 
 // see https://redux.js.org/usage/usage-with-typescript#type-checking-redux-thunks
@@ -81,25 +78,17 @@ interface GetUserDataRequestAction {
   username: string;
 }
 
-// interface LoginRequestAction {
-//   type: typeof LOGIN_REQUEST;
-//   credentials: UserCredentials;
-// }
+// new game
 
-// interface LoginSuccessAction {
-//   type: typeof LOGIN_SUCCESS;
-//   user: User;
-// }
+interface NewGameRequestAction {
+  type: typeof NEW_GAME_REQUEST;
+  username: string;
+}
 
-// interface RegisterRequestAction {
-//   type: typeof REGISTER_REQUEST;
-//   credentials: UserCredentials;
-// }
-
-// interface RegisterSuccessAction {
-//   type: typeof REGISTER_SUCCESS;
-//   user: User;
-// }
+interface NewGameSuccessAction {
+  type: typeof NEW_GAME_SUCCESS;
+  user: User;
+}
 
 interface ResetErrorAction {
   type: typeof RESET_ERROR;
@@ -109,9 +98,9 @@ export interface FailureAction {
   type:
     | typeof SAVE_ACTIVITY_FAILURE
     | typeof LEARN_TECH_FAILURE
-    | typeof GET_USER_DATA_FAILURE;
-  // | typeof LOGIN_FAILURE
-  // | typeof REGISTER_FAILURE
+    | typeof GET_USER_DATA_FAILURE
+    | typeof NEW_GAME_FAILURE;
+
   error: Error | string;
 }
 
@@ -132,12 +121,8 @@ const GET_USER_DATA_REQUEST = 'GET_USER_DATA_REQUEST';
 const GET_USER_DATA_SUCCESS = 'GET_USER_DATA_SUCCESS';
 const GET_USER_DATA_FAILURE = 'GET_USER_DATA_FAILURE';
 
-// const LOGIN_REQUEST = 'LOGIN_REQUEST';
-// const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-// const LOGIN_FAILURE = 'LOGIN_FAILURE';
-
-// // const REGISTER_REQUEST = 'REGISTER_REQUEST';
-// const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-// const REGISTER_FAILURE = 'REGISTER_FAILURE';
+const NEW_GAME_FAILURE = 'NEW_GAME_FAILURE';
+const NEW_GAME_REQUEST = 'NEW_GAME_REQUEST';
+const NEW_GAME_SUCCESS = 'NEW_GAME_SUCCESS';
 
 const RESET_ERROR = 'RESET_ERROR';

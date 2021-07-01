@@ -2,8 +2,7 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { saveActivity, learnTech, getUserData } from '../../store/thunks';
-import { updateUser } from '../../services/apiServices';
+import { saveActivity, learnTech, newGame } from '../../store/thunks';
 
 const TempNavBar = (): JSX.Element => {
   const userStore = useAppSelector((state) => state.user);
@@ -11,6 +10,7 @@ const TempNavBar = (): JSX.Element => {
 
   const { isLoading, isAuthenticated, error, loginWithRedirect, logout } =
     useAuth0();
+  const gettingUserData = useAppSelector((state) => state.loading);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -20,26 +20,15 @@ const TempNavBar = (): JSX.Element => {
   }
 
   function SaveActivityThunk() {
-    // eslint-disable-next-line no-console
-    console.log('SaveActivityThunk');
     dispatch(saveActivity({ name: 'assessment', stars: 1, topic: 'git' }));
   }
   function LearnTechThunk() {
-    // eslint-disable-next-line no-console
-    console.log('LearnTechThunk');
     dispatch(learnTech('debugging'));
   }
-  async function resetUserHistory() {
-    // eslint-disable-next-line no-console
-    console.log('reset user history');
 
+  function newGameButton() {
     if (userStore) {
-      const emptyUser = {
-        ...userStore,
-        gameData: { ...userStore.gameData, history: [] },
-      };
-      await updateUser(emptyUser);
-      dispatch(getUserData(userStore.username));
+      dispatch(newGame(userStore.username));
     }
   }
 
@@ -76,15 +65,21 @@ const TempNavBar = (): JSX.Element => {
         <Link to="/assign-points">
           <button type="button">AssignPoints</button>
         </Link>
-        <button type="button" onClick={SaveActivityThunk}>
-          SaveActivityThunk
-        </button>
-        <button type="button" onClick={LearnTechThunk}>
-          LearnTechThunk
-        </button>
-        <button type="button" onClick={resetUserHistory}>
-          Reset History
-        </button>
+        {gettingUserData ? (
+          <div>Getting your game history</div>
+        ) : (
+          <div>
+            <button type="button" onClick={SaveActivityThunk}>
+              SaveActivityThunk
+            </button>
+            <button type="button" onClick={LearnTechThunk}>
+              LearnTechThunk
+            </button>
+            <button type="button" onClick={newGameButton}>
+              NewGame (resets user profile!!!)
+            </button>
+          </div>
+        )}
       </div>
     );
   }

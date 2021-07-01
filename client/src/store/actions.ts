@@ -24,6 +24,29 @@ export function saveActivityFailure(error: Error | string): AppAction {
   };
 }
 
+// new game
+
+export function newGameRequest(username: string): AppAction {
+  return {
+    type: 'NEW_GAME_REQUEST',
+    username,
+  };
+}
+
+export function newGameSuccess(user: User): AppAction {
+  return {
+    type: 'NEW_GAME_SUCCESS',
+    user,
+  };
+}
+
+export function newGameFailure(error: Error | string): AppAction {
+  return {
+    type: 'NEW_GAME_FAILURE',
+    error,
+  };
+}
+
 // learn tech
 
 export function learnTechRequest(techName: TechName): AppAction {
@@ -82,52 +105,6 @@ export function getUserDataFailure(error: Error | string): AppAction {
     error,
   };
 }
-
-// login
-
-// export function loginRequest(credentials: UserCredentials): AppAction {
-//   return {
-//     type: 'LOGIN_REQUEST',
-//     credentials
-//   };
-// }
-
-// export function loginSuccess(user: User): AppAction {
-//   return {
-//     type: 'LOGIN_SUCCESS',
-//     user,
-//   };
-// }
-
-// export function loginFailure(error: Error | string): AppAction {
-//   return {
-//     type: 'LOGIN_FAILURE',
-//     error,
-//   };
-// }
-
-// register
-
-// export function registerRequest(credentials: UserCredentials): AppAction {
-//   return {
-//     type: 'REGISTER_REQUEST',
-//     credentials
-//   };
-// }
-
-// export function registerSuccess(user: User): AppAction {
-//   return {
-//     type: 'REGISTER_SUCCESS',
-//     user,
-//   };
-// }
-
-// export function registerFailure(error: Error | string): AppAction {
-//   return {
-//     type: 'REGISTER_FAILURE',
-//     error,
-//   };
-// }
 
 // reset error
 
