@@ -3,10 +3,12 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { saveActivity, learnTech, newGame } from '../../store/thunks';
+import usePageTitle from '../../utils/usePageTitle';
 
 const TempNavBar = (): JSX.Element => {
   const userStore = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  usePageTitle('Full Stuck - Admin');
 
   const { isLoading, isAuthenticated, error, loginWithRedirect, logout } =
     useAuth0();
