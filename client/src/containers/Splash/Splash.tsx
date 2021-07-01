@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styles from './Splash.module.scss';
 
 const Splash = (): JSX.Element => {
@@ -24,6 +24,9 @@ const Splash = (): JSX.Element => {
       <button type="button" onClick={handleButtonClick}>
         {buttonText}
       </button>
+      <Link to="/admin" target="_blank">
+        admin
+      </Link>
     </div>
   );
 };
