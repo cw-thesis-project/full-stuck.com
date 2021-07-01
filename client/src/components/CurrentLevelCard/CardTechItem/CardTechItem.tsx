@@ -38,7 +38,7 @@ const CardTechItem = ({
     ));
 
   function checkIconClick(tech: TechName): void {
-    if (experience <= maxBubbles) onIconClick(tech);
+    if (experience < maxBubbles) onIconClick(tech);
   }
 
   return (
