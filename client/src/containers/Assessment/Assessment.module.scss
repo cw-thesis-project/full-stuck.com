@@ -3,7 +3,9 @@
 .page {
   @include row;
   @include debug;
-  width: 100%;
+  @include screen;
+  background: url('../../assets/images/wave-columns.svg');
+  background-size: cover;
 }
 
 .centerSection {

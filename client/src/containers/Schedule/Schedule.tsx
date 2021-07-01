@@ -2,6 +2,7 @@ import React from 'react';
 import Schedule from '../../components/Schedule';
 import { useAppSelector } from '../../store';
 import { lastFiveElements, getNextActivity } from './helperFunctions';
+import styles from './Schedule.module.scss';
 
 const ScheduleContainer = (): JSX.Element | null => {
   const user = useAppSelector((state) => state.user);
@@ -15,11 +16,13 @@ const ScheduleContainer = (): JSX.Element | null => {
   const nextActivity = getNextActivity(techExperience);
 
   return (
-    <Schedule
-      history={lastHistory}
-      nextActivity={nextActivity}
-      historyLength={user.gameData.history.length}
-    />
+    <div className={styles.screen}>
+      <Schedule
+        history={lastHistory}
+        nextActivity={nextActivity}
+        historyLength={user.gameData.history.length}
+      />
+    </div>
   );
 };
 

@@ -6,8 +6,11 @@
 
 .screen {
   @include center;
+  @include row;
+  @include screen;
   flex-direction: column;
-  margin-top: 1em;
+  background: #fff url('../../assets/images/wave-bottom.svg');
+  background-size: cover;
 }
 
 .testZone {

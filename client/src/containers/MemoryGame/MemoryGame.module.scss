@@ -1,3 +1,10 @@
 @import '../../style/style.scss';
 
-
+.screen {
+  @include center;
+  @include row;
+  @include screen;
+  flex-direction: column;
+  background: #fff url('../../assets/images/wave-corners.svg');
+  background-size: cover;
+}

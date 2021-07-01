@@ -1,0 +1,7 @@
+@import '../../style/style.scss';
+
+.screen {
+  @include screen;
+  background: url('../../assets/images/wave-diagonal.svg');
+  padding: 4em;
+}
