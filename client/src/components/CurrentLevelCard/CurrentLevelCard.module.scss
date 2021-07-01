@@ -7,13 +7,16 @@
   justify-content: space-between;
   position: relative;
   height: 35em;
-  h2, h3, h4 {
+
+  h2,
+  h3,
+  h4 {
     color: #f5f8ff;
   }
 }
 
 .bodyTitle {
-  margin-top : 1em;
+  margin-top: 1em;
 }
 
 .bottom {
@@ -34,6 +37,16 @@
   position: relative;
   margin-right: 1em;
   margin-left: 1em;
+
+  h2,
+  h3,
+  h4 {
+    color: #f5f8ff;
+  }
+
+  h2 {
+    text-transform: capitalize;
+  }
 }
 
 .points {
@@ -51,12 +64,4 @@
 .techZone {
   @include row;
   align-items: flex-end;
-}
-
-h2,h3,h4 {
-  color: #f5f8ff;
-}
-
-h2 {
-  text-transform: capitalize;
 }

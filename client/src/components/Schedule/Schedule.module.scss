@@ -2,6 +2,7 @@
 
 .scheduleList {
   @include debug;
+  @include fill;
   display: grid;
   width: calc(100% - 4em);
   padding: 0 2em;

@@ -6,4 +6,29 @@
   @include center;
   @include column;
   background-color: #3b1c94;
+
+  h1 {
+    font-size: 10em;
+    line-height: 0.5em;
+
+    &:nth-of-type(odd) {
+      color: $accent;
+    }
+
+    &:nth-of-type(even) {
+      color: $light;
+    }
+  }
+}
+
+.logo {
+  @include row;
+}
+
+.subtitle {
+  font-size: 4em;
+  max-width: 70vw;
+  text-align: center;
+  color: $light;
+  margin: 0;
 }

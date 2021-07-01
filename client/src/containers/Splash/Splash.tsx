@@ -19,8 +19,17 @@ const Splash = (): JSX.Element => {
 
   return (
     <div className={styles.screen}>
-      <h1>FULL_STUCK</h1>
-      <p>Take part to this bootcamp, Become CEO as quick as you can</p>
+      <div className={styles.logo}>
+        <h1>F</h1>
+        <h1>ULL</h1>
+        <h1>_</h1>
+        <h1>ST</h1>
+        <h1>U</h1>
+        <h1>CK</h1>
+      </div>
+      <p className={styles.subtitle}>
+        Take part to the bootcamp, <br /> become CEO as quick as you can!
+      </p>
       <button type="button" onClick={handleButtonClick}>
         {buttonText}
       </button>
