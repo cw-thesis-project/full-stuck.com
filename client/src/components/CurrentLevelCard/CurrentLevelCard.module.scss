@@ -29,6 +29,7 @@
 .container {
   @include rectangle(25em, 35em);
   @include column;
+  @include rounded;
   background-color: #200f50;
   position: relative;
   margin-right: 1em;
@@ -38,7 +39,9 @@
 .points {
   @include square(3em);
   @include column;
-  justify-content: center;
+  border-bottom-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  justify-content: flex-end;
   position: absolute;
   top: 0em;
   right: 0em;
