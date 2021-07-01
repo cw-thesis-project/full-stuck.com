@@ -1,0 +1,9 @@
+@import '../../style/style.scss';
+
+.screen {
+  @include screen;
+  @include fixed;
+  @include center;
+  @include column;
+  background-color: #3b1c94;
+}
