@@ -1,7 +1,5 @@
 import React from 'react';
-import { Level } from '../../shared/types';
 import styles from './NavButtonAssignToSchedule.module.scss';
-import icons from '../../assets/icons';
 
 interface Props {
   moveToSchedule: () => void;
