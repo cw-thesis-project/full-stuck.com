@@ -10,14 +10,11 @@ interface Props {
 const FlipsCounter = ({ flipsDone, allowedFlips }: Props): JSX.Element => {
   return (
     <div className={styles.container}>
-      <img
-        className={styles.flipCounter}
-        src={icons.flipCounter}
-        alt="flipCounter"
-      />
-
-      <h1 className={styles.flipsDone}>{flipsDone}</h1>
-      <h2 className={styles.allowedFlips}>/ {allowedFlips}</h2>
+      <img className={styles.icon} alt="flip counter" src={icons.flipCounter} />
+      <div className={styles.textRow}>
+        <h1 className={styles.flipsDone}>{flipsDone} </h1>
+        <h2 className={styles.allowedFlips}>/ {allowedFlips}</h2>
+      </div>
     </div>
   );
 };

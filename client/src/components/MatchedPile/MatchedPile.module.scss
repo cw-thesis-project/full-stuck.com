@@ -1,2 +1,14 @@
 @import '../../style/style.scss';
 
+.container {
+  align-self: flex-end;
+  margin-right: 4em;
+}
+
+.card {
+  @include rectangle(5em, 8em);
+  @include column;
+  @include center;
+  @include rounded;
+  background-color: $light;
+}

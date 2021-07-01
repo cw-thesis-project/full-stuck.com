@@ -5,6 +5,7 @@
   @include column;
   @include rounded;
   box-shadow: $shadow;
+  background-color: $light;
 
   &.up {
     background-color: $light;
@@ -14,6 +15,7 @@
     color: $accent;
     background-color: $primaryDark;
     font-size: 2em;
+    cursor: pointer;
   }
 
   &.matched img {
