@@ -1,6 +1,35 @@
-// @import './colors.scss';
+@import '../../style/colors.scss';
 @import '../../style/style.scss';
 
 .roadmap {
-  @include debug;
+  background-color: aqua;
+  height: 20em;
+  position: absolute;
+  right: 15em;
+}
+
+.dashboardheader {
+  color: black;
+}
+
+.screen {
+  @include screen;
+  @include fixed;
+  background-color: $indigo900;
+}
+
+.bkg {
+  @include page;
+}
+
+.scheduleBtn {
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 2em;
+    padding: 0.5em;
+  }
+  background-color: $red500;
+  width: fit-content;
+  border-radius: 15px;
 }

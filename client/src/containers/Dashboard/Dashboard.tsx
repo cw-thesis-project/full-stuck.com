@@ -9,6 +9,7 @@ import LearntTech from '../../components/LearntTech/index';
 import Roadmap from '../../components/Roadmap';
 import { createTechAchievements, createGreeting } from './helpers';
 import styles from './Dashboard.module.scss';
+// import logo from '../../assets/icons/index';
 
 const Dashboard = (): JSX.Element => {
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
@@ -38,17 +39,18 @@ const Dashboard = (): JSX.Element => {
   const greetingMessage = createGreeting(userStore.gameData.level);
 
   return (
-    <div>
-      <div>
+    <div className={styles.screen}>
+      {/* <img className={styles.bkg} src={logo.backgroundTestBlob} alt="bkg" /> */}
+      <div className={styles.dashboardheader}>
         <h1>Hello, {userStore.username ? userStore.username : 'coder'}</h1>
         <h2>{greetingMessage}</h2>
       </div>
-      <Link to="/schedule">
-        <div>Schedule</div>
-      </Link>
       <LearntTech techAchievements={userTechAchievements} />
       <div className={styles.roadmap}>
         <Roadmap userLevel={userStore.gameData.level} />
+      </div>
+      <div className={styles.scheduleBtn}>
+        <Link to="/schedule">Schedule</Link>
       </div>
     </div>
   );
