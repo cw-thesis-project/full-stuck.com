@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import { Level, TechExperience } from '../../shared/types';
-import { technologies } from '../../utils/utils';
+import { technologies } from '../../shared/constants';
 import { TechAchievements } from '../../components/LearntTech/LearntTech';
 
 type levelMap = Record<Level, number>;
