@@ -32,7 +32,7 @@ const Dashboard = (): JSX.Element => {
     userStore.gameData.techExperience
   );
 
-  const greetingMessage = createGreeting(userStore?.gameData.level);
+  const greetingMessage = createGreeting(userStore.gameData.level);
 
   return (
     <div>
