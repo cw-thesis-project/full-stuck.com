@@ -6,6 +6,7 @@
 @mixin reset-input {
   border: none;
   outline: none;
+  background: none;
 }
 
 @mixin reset-list {
