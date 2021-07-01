@@ -9,6 +9,7 @@ const ProtectedRoute = ({ path, component }: RouteProps): JSX.Element => {
     return <div>loading authetication</div>;
   }
   if (isAuthenticated) {
+    if (path === '/') return <Redirect to="/dashboard" />;
     return <Route path={path} component={component} exact />;
   }
   return <Redirect to="/" />;

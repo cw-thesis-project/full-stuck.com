@@ -70,26 +70,22 @@ export function reducer(state = defaultState, action: AppAction): AppState {
       return makeUserLearnTech(action.user, auxState);
 
     case 'GET_USER_DATA_SUCCESS':
+    case 'NEW_GAME_SUCCESS':
       auxState = stopLoading(state);
       return saveUser(action.user, auxState);
 
-    // case 'LOGIN_SUCCESS':
-    // case 'REGISTER_SUCCESS':
-    // case 'LOGIN_FAILURE':
-    // case 'REGISTER_FAILURE':
+    case 'NEW_GAME_REQUEST':
+    case 'GET_USER_DATA_REQUEST':
+    case 'LEARN_TECH_REQUEST':
+    case 'SAVE_ACTIVITY_REQUEST':
+      return startLoading(state);
+
+    case 'NEW_GAME_FAILURE':
+    case 'GET_USER_DATA_FAILURE':
     case 'LEARN_TECH_FAILURE':
     case 'SAVE_ACTIVITY_FAILURE':
       auxState = stopLoading(state);
       return handleError(auxState, action as FailureAction);
-
-    // case 'LOGIN_REQUEST':
-    // case 'REGISTER_REQUEST':
-    case 'GET_USER_DATA_REQUEST':
-      return startLoading(state);
-
-    case 'LEARN_TECH_REQUEST':
-    case 'SAVE_ACTIVITY_REQUEST':
-      return startLoading(state);
 
     case 'RESET_ERROR':
       return resetError(state);

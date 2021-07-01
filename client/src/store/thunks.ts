@@ -22,6 +22,26 @@ export function saveActivity(pastActivity: PastActivity): Thunk {
   };
 }
 
+export function newGame(username: string): Thunk {
+  return async function newGameThunk(dispatch, getState, apiService) {
+    const { user } = getState();
+
+    dispatch(actions.newGameRequest(username));
+
+    try {
+      if (!user) {
+        throw new Error('not logged in');
+      }
+      const updatedUser = await apiService.newGame(username);
+      if (updatedUser) {
+        dispatch(actions.newGameSuccess(updatedUser));
+      }
+    } catch (error) {
+      dispatch(actions.newGameFailure(error));
+    }
+  };
+}
+
 export function learnTech(techName: TechName): Thunk {
   return async function learnTechThunk(dispatch, getState, apiService) {
     const { user } = getState();
@@ -62,37 +82,3 @@ export function getUserData(username: string): Thunk {
     }
   };
 }
-
-// export function login(credentials: UserCredentials): Thunk {
-//   return async function (dispatch, getState, apiService) {
-//     dispatch(actions.loginRequest(credentials));
-
-//     // just so es-lint does not complain
-//     getState();
-
-//     try {
-//       // TODO: remove any for user
-//       const user = await apiService.login(credentials);
-//       dispatch(actions.loginSuccess(user));
-//     } catch (error) {
-//       dispatch(actions.loginFailure(error));
-//     }
-//   };
-// }
-
-// export function register(credentials: UserCredentials): Thunk {
-//   return async function (dispatch, getState, apiService) {
-//     dispatch(actions.registerRequest(credentials));
-
-//     // just so es-lint does not complain
-//     getState();
-
-//     try {
-//       // TODO: remove any for user
-//       const user = await apiService.register(credentials);
-//       dispatch(actions.registerSuccess(user));
-//     } catch (error) {
-//       dispatch(actions.registerFailure(error));
-//     }
-//   };
-// }
