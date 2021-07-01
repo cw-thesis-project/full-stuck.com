@@ -3,26 +3,40 @@
 .bottom {
   text-align: center;
   width: 10em;
+  position: relative;
+  position: relative;
+  bottom: 1em;
+  h4 {
+    text-transform: none;
+  }
 }
 
 .container {
-  @include square(30em);
+  @include rectangle(25em, 35em);
   @include column;
+  @include rounded;
   justify-content: space-between;
   background-color: #f5f8ff;
+  h2, h3, h4 {
+    color: #6435e9;
+  }
+  margin-right: 1em;
+  margin-left: 1em;
 }
 
 .img{
   @include square(8em);
 }
 
-.medalZone {
+.lockedZone {
   @include column;
 }
 
-h2, h3, h4 {
-  color: #6435e9;
+.title {
+  margin-top : 1em;
 }
+
+
 
 h2 {
   text-transform: capitalize;

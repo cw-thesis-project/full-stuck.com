@@ -1,26 +1,47 @@
 @import '../../style/style.scss';
 
+.body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  height: 35em;
+  h2, h3, h4 {
+    color: #f5f8ff;
+  }
+}
+
+.bodyTitle {
+  margin-top : 1em;
+}
+
 .bottom {
   text-align: center;
   width: 10em;
-
+  position: relative;
+  bottom: 1em;
   h4 {
     text-transform: none;
   }
 }
 
 .container {
-  @include rectangle(30em, 35em);
+  @include rectangle(25em, 35em);
   @include column;
-  justify-content: space-between;
+  @include rounded;
   background-color: #200f50;
-  position: fixed;
+  position: relative;
+  margin-right: 1em;
+  margin-left: 1em;
 }
 
 .points {
   @include square(3em);
   @include column;
-  justify-content: center;
+  border-bottom-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  justify-content: flex-end;
   position: absolute;
   top: 0em;
   right: 0em;
@@ -32,9 +53,7 @@
   align-items: flex-end;
 }
 
-h2,
-h3,
-h4 {
+h2,h3,h4 {
   color: #f5f8ff;
 }
 

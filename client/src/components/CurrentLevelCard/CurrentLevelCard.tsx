@@ -2,15 +2,16 @@ import React from 'react';
 import { Level, TechName } from '../../shared/types';
 import styles from './CurrentLevelCard.module.scss';
 import CardTechItem from './CardTechItem/CardTechItem';
+import { maxBubbles } from '../../utils/utils';
 
-interface TechWhat {
+interface TechExperienceSubset {
   name: TechName;
   experience: number;
 }
 
 interface Props {
   pointsToAssign: number;
-  techExperienceSubset: TechWhat[];
+  techExperienceSubset: TechExperienceSubset[];
   level: Level;
   onIconClick(techName: TechName): void;
 }
@@ -22,7 +23,6 @@ const CurrentLevelCard = ({
   onIconClick,
 }: Props): JSX.Element => {
   const plusOrNot = pointsToAssign > 0 ? '+' : '';
-  const maxBubbles = 5;
   const techZone: JSX.Element[] = techExperienceSubset.map(
     ({ name, experience }) => {
       return (
@@ -45,10 +45,14 @@ const CurrentLevelCard = ({
           {pointsToAssign}
         </h3>
       </div>
-      <h2>{level}</h2>
-      <div className={styles.techZone}>{techZone}</div>
-      <div className={styles.bottom}>
-        <h4>Spend points to improve your skills</h4>
+      <div className={styles.body}>
+        <div className={styles.bodyTitle}>
+          <h2>{level}</h2>
+        </div>
+        <div className={styles.techZone}>{techZone}</div>
+        <div className={styles.bottom}>
+          <h4>Spend points to improve your skills</h4>
+        </div>
       </div>
     </div>
   );

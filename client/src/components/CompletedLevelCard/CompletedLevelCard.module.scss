@@ -2,13 +2,25 @@
 
 .bottom {
   text-align: center;
+  width: 10em;
+  position: relative;
+  bottom: 1em;
+  h4 {
+    text-transform: none;
+  }
 }
 
 .container {
-  @include rectangle(30em, 35em);
+  @include rectangle(25em, 35em);
   @include column;
+  @include rounded;
   justify-content: space-between;
   background-color: #200f50;
+  h2, h3, h4 {
+    color: #f5f8ff;
+  }
+  margin-right: 1em;
+  margin-left: 1em;
 }
 
 .img{
@@ -19,10 +31,11 @@
   @include column;
 }
 
-h2, h3, h4 {
-  color: #f5f8ff;
+.title {
+  margin-top : 1em;
 }
 
-h2 {
+h2, h3, h4 {
+  color: #f5f8ff;
   text-transform: capitalize;
 }

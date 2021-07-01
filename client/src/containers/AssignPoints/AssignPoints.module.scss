@@ -1,0 +1,16 @@
+@import '../../style/style.scss';
+
+.container {
+  @include row;
+}
+
+.screen {
+  @include center;
+  flex-direction: column;
+  margin-top: 1em;
+}
+
+.testZone {
+  position: absolute;
+  left: 0.5em;
+}
