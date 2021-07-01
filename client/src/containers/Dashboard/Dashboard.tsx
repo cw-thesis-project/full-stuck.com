@@ -5,6 +5,7 @@ import { getToken } from '../../services/apiServices';
 import { getUserData } from '../../store/thunks';
 import { useAppDispatch, useAppSelector } from '../../store';
 import LearntTech from '../../components/LearntTech/index';
+import Roadmap from '../../components/Roadmap';
 import { createTechAchievements, createGreeting } from './helpers';
 
 const Dashboard = (): JSX.Element => {
@@ -36,11 +37,12 @@ const Dashboard = (): JSX.Element => {
 
   return (
     <div>
-      <div className="greeting">
+      <div>
         <h1>Hello, {userStore.username ? userStore.username : 'coder'}</h1>
         <h2>{greetingMessage}</h2>
       </div>
       <LearntTech techAchievements={userTechAchievements} />
+      <Roadmap userLevel={userStore.gameData.level} />
     </div>
   );
 };
