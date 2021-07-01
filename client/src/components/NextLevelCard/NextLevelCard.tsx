@@ -11,12 +11,15 @@ const NextLevel = ({ level }: Props): JSX.Element => {
   const previousLevel: Level = level === 'tutor' ? 'senior' : 'junior';
   return (
     <div className={styles.container}>
-      <h2>{level}</h2>
-      <div className={styles.medalZone}>
+      <div className={styles.title}>
+        <h2>{level}</h2>
+      </div>
+      <div className={styles.lockedZone}>
         <img src={icons.lock} alt="medal" className={styles.img} />
+        <h3>locked</h3>
       </div>
       <div className={styles.bottom}>
-        <h4>You must complete the {previousLevel} part first! DO IT!</h4>
+        <h4>You must complete the {previousLevel} part first!</h4>
       </div>
     </div>
   );
