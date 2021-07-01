@@ -13,6 +13,7 @@
 .container {
   @include rectangle(25em, 35em);
   @include column;
+  @include rounded;
   justify-content: space-between;
   background-color: #200f50;
   h2, h3, h4 {
