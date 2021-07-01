@@ -6,12 +6,12 @@ import FlipsCounter from '../../components/FlipsCounter';
 import MatchedPile from '../../components/MatchedPile';
 import CardsTable from '../../components/CardsTable';
 import useMemoryGame from './useMemoryGame';
-import { actions, useAppDispatch, useAppSelector } from '../../store';
+import { actions, useAppDispatch } from '../../store';
 
 const MemoryGame = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const loading = useAppSelector((state) => state.loading);
+
   const {
     lastMatched,
     matchesDone,
@@ -22,29 +22,17 @@ const MemoryGame = (): JSX.Element => {
   } = useMemoryGame();
 
   useEffect(() => {
-    const isGameOver = matchesDone >= cards.length / 2;
-    if (isGameOver) {
-      console.log('game over');
-      // save activity (async)
-      dispatch(
-        actions.saveActivity({
-          name: 'memory',
-          topic: 'git',
-          stars: 3,
-        })
-      );
-    }
-  }, [matchesDone]);
+    const areAllCardsMatched = matchesDone >= cards.length / 2;
+    const areAllFlipsUsed = flipsDone >= allowedFlips;
 
-  // after activity has been saved
-  useEffect(() => {
-    const isGameOver = matchesDone >= cards.length / 2;
-    if (isGameOver && !loading) {
-      console.log('activity saved');
+    if (areAllCardsMatched) {
       dispatch(actions.setPointsToAssign(1));
+    }
+
+    if (areAllFlipsUsed || areAllCardsMatched) {
       history.replace('/assign-points');
     }
-  }, [loading]);
+  }, [flipsDone, matchesDone]);
 
   return (
     <div className={styles.container}>
