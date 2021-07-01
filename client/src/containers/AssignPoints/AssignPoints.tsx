@@ -1,31 +1,68 @@
-import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './AssignPoints.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store';
-import CurrentLevelCard from '../../components/CurrentLevelCard';
-import { technologies, initialTechExperience } from './localUtils';
-import { Level, Tech, TechName } from '../../shared/types';
+import { TechName, UserGameData } from '../../shared/types';
 import { levelToNumber } from '../../utils/utils';
-import { filterTechs, assignCards } from './helper';
+import { learnTech } from '../../store/thunks';
+import {
+  renderCurrentCard,
+  renderCompletedCard,
+  renderNextCard,
+} from './helpers';
+import { fakeState } from './localUtils';
 
 const AssignPoints = (): JSX.Element => {
+  const [leftCard, setLeftCard] = useState<JSX.Element>(<div>hello</div>);
+  const [middleCard, setMiddleCard] = useState<JSX.Element>(<div>hello</div>);
+  const [rightCard, setRightCard] = useState<JSX.Element>(<div>hello</div>);
+  const dispatch = useAppDispatch();
   const appState = useAppSelector((state) => state);
-  const pointsToAssign = appState.user ? appState.pointsToAssign : 0;
-  const level = appState.user ? appState.user.gameData.level : 'junior';
-  const techExperience = appState.user
-    ? appState.user.gameData.techExperience
-    : initialTechExperience;
+  const { pointsToAssign } = appState;
+  const gameData: UserGameData = appState.user
+    ? appState.user.gameData
+    : fakeState.user.gameData;
+  const { level } = gameData;
+  const { techExperience } = gameData;
 
-  let leftCard;
-  let middleCard;
-  let rightCard;
+  function onIconClick(techName: TechName) {
+    if (pointsToAssign > 0) dispatch(learnTech(techName));
+  }
+
+  function assignCards() {
+    const stage = levelToNumber[level];
+    setLeftCard(
+      stage > 0
+        ? renderCompletedCard('junior')
+        : renderCurrentCard(
+            'junior',
+            pointsToAssign,
+            techExperience,
+            onIconClick
+          )
+    );
+    if (stage === 0) {
+      setMiddleCard(renderNextCard('senior'));
+      setRightCard(renderNextCard('tutor'));
+    }
+    if (stage === 1) {
+      setMiddleCard(
+        renderCurrentCard('senior', pointsToAssign, techExperience, onIconClick)
+      );
+      setRightCard(renderNextCard('tutor'));
+    } else if (stage === 2) {
+      setMiddleCard(renderCompletedCard('senior'));
+      setRightCard(
+        renderCurrentCard('tutor', pointsToAssign, techExperience, onIconClick)
+      );
+    }
+  }
 
   useEffect(() => {
-    assignCards(level, pointsToAssign, techExperience);
-  }, []);
+    assignCards();
+  }, [pointsToAssign]);
 
   return (
-    <div>
+    <div className={styles.container}>
       {leftCard}
       {middleCard}
       {rightCard}
@@ -34,43 +71,3 @@ const AssignPoints = (): JSX.Element => {
 };
 
 export default AssignPoints;
-
-/*
-<CompletedLevelCard level="junior" />
-
-NextLevelCard: Add this on Dashboard component:
-<NextLevelCard level="tutor" />
-
-CurrentLevelCard: Add this on Dashboard component:
-{
-  pointsToAssign: 0,
-  token: '',
-  user: null,
-  loading: false,
-  error: '',
-}
-
-<CurrentLevelCard
-          pointsToAssign={3}
-          techExperienceSubset={[
-            { name: 'react', experience: 2 },
-            { name: 'javascript', experience: 1 },
-            { name: 'git', experience: 0 },
-          ]}
-          level="senior"
-          onBubbleClick={() => console.log('hello my lady')}
-        />
-
-
-        export const technologies: Tech[] = [
-  { name: 'javascript', level: 'junior' },
-  { name: 'git', level: 'junior' },
-  { name: 'react', level: 'junior' },
-  { name: 'graphql', level: 'senior' },
-  { name: 'rxjs', level: 'senior' },
-  { name: 'typescript', level: 'senior' },
-  { name: 'debugging', level: 'tutor' },
-  { name: 'eloquence', level: 'tutor' },
-  { name: 'espionage', level: 'tutor' },
-];
-*/

@@ -1,0 +1,6 @@
+@import '../../style/style.scss';
+
+.container {
+  @include row;
+  position: absolute;
+}
