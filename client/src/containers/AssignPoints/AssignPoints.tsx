@@ -11,7 +11,6 @@ import { fakeState, FakeState } from './localUtils';
 import TempTestZone from './TempTestZone/TempTestZone';
 
 const AssignPoints = (): JSX.Element => {
-<<<<<<< HEAD
   const [leftCard, setLeftCard] = useState<JSX.Element>(<div>Pabeli</div>);
   const [middleCard, setMiddleCard] = useState<JSX.Element>(<div>Pabelow</div>);
   const [rightCard, setRightCard] = useState<JSX.Element>(<div>Pabelu</div>);
@@ -19,9 +18,6 @@ const AssignPoints = (): JSX.Element => {
   // // TODO: remove the fakeAppState useState in prod
   const [fakeAppState, setFakeAppState] = useState<FakeState>(fakeState);
   const showAll = false;
-=======
-  const history = useHistory();
->>>>>>> ff6c0b9 (feat: logic for navigation button to Schedule container)
   const dispatch = useAppDispatch();
   const appState = useAppSelector((state) => state);
   const { pointsToAssign } = appState;
@@ -37,30 +33,6 @@ const AssignPoints = (): JSX.Element => {
 
   function moveToSchedule() {
     if (pointsToAssign === 0) history.replace('/schedule');
-<<<<<<< HEAD
-=======
-  }
-            pointsToAssign,
-            techExperience,
-            onIconClick
-          )
-    );
-    if (stage === 0) {
-      setMiddleCard(renderNextCard('senior'));
-      setRightCard(renderNextCard('tutor'));
-    }
-    if (stage === 1) {
-      setMiddleCard(
-        renderCurrentCard('senior', pointsToAssign, techExperience, onIconClick)
-      );
-      setRightCard(renderNextCard('tutor'));
-    } else if (stage === 2) {
-      setMiddleCard(renderCompletedCard('senior'));
-      setRightCard(
-        renderCurrentCard('tutor', pointsToAssign, techExperience, onIconClick)
-      );
-    }
->>>>>>> ff6c0b9 (feat: logic for navigation button to Schedule container)
   }
 
   useEffect(() => {
@@ -77,7 +49,6 @@ const AssignPoints = (): JSX.Element => {
   }, [pointsToAssign]);
 
   return (
-<<<<<<< HEAD
     <div className={styles.screen}>
       <div className={styles.container}>
         {leftCard}
@@ -96,24 +67,6 @@ const AssignPoints = (): JSX.Element => {
         moveToSchedule={moveToSchedule}
         pointsToAssign={pointsToAssign}
       />
-=======
-    <div className={styles.container}>
-      {leftCard}
-      {middleCard}
-      {rightCard}
-      <div
-        role="button"
-        // eslint-disable-next-line no-console
-        onKeyDown={() => console.log('hi buddy')}
-        onClick={() => moveToSchedule()}
-        tabIndex={0}
-        className={`${styles.scheduleButton} ${
-          pointsToAssign > 0 ? styles.inactiveBtn : styles.activeBtn
-        }`}
-      >
-        <h2>Schedule</h2>
-      </div>
->>>>>>> ff6c0b9 (feat: logic for navigation button to Schedule container)
     </div>
   );
 };
