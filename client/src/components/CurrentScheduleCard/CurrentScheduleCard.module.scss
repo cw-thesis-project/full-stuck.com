@@ -1,10 +1,15 @@
 @import '../../style/style.scss';
 
-.scheduleItem {
+.container {
+  @include column;
+  grid-row: 3 / 4;
+}
+
+.card {
   @include column();
   @include rounded();
-  grid-row: 3 / 4;
   background-color: #200f50;
+  height: 80%;
 }
 
 .imageContainer {
@@ -15,4 +20,14 @@
 .quote {
   text-align: center;
   padding: 2em;
+}
+
+.backIcon {
+  margin-top: auto;
+
+  & img {
+    @include square(2em);
+    opacity: 50%;
+    cursor: pointer;
+  }
 }
