@@ -3,13 +3,16 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
 import React from 'react';
+import classNames from 'classnames';
 import styles from './CardComp.module.scss';
 import { TechName } from '../../../shared/types';
 import TechIcon from '../../TechIcon';
 
+type CardState = 'down' | 'up' | 'matched';
+
 export interface Card {
   name: TechName;
-  state: 'down' | 'up' | 'matched';
+  state: CardState;
 }
 
 interface CardProps {
@@ -18,7 +21,10 @@ interface CardProps {
 }
 
 const CardComp = ({ card, onCardClick }: CardProps): JSX.Element => {
-  const className = `${styles.card} ${styles[card.state]}`;
+  const className = classNames({
+    [styles.card]: true,
+    [styles[card.state]]: true,
+  });
 
   function handleClick() {
     if (card.state === 'down') {
@@ -26,26 +32,17 @@ const CardComp = ({ card, onCardClick }: CardProps): JSX.Element => {
     }
   }
 
-  switch (card.state) {
-    case 'down':
-    default:
-      return (
-        <div onClick={handleClick} className={className}>
-          <h1>?</h1>
-        </div>
-      );
+  const cardContentMap: Record<CardState, JSX.Element> = {
+    down: <h1>?</h1>,
+    up: <TechIcon techName={card.name} iconSize="medium" isGray={false} />,
+    matched: <TechIcon techName={card.name} iconSize="medium" isGray />,
+  };
 
-    case 'up':
-      return (
-        <div onClick={handleClick} className={className}>
-          <TechIcon techName={card.name} iconSize="medium" isGray={false} />
-          <div>{card.name}</div>
-        </div>
-      );
-
-    case 'matched':
-      return <div className={styles.matched} />;
-  }
+  return (
+    <div onClick={handleClick} className={className}>
+      {cardContentMap[card.state]}
+    </div>
+  );
 };
 
 export default CardComp;

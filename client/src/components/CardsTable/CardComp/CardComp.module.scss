@@ -4,17 +4,19 @@
   @include center;
   @include column;
   @include rounded;
+  box-shadow: $shadow;
 
   &.up {
     background-color: $light;
   }
 
   &.down {
-    color: gray;
-    background-color: gray;
+    color: $accent;
+    background-color: $primaryDark;
+    font-size: 2em;
   }
 
-  &.matched {
-    visibility: hidden;
+  &.matched img {
+    opacity: 30%;
   }
 }
