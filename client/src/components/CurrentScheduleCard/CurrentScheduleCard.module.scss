@@ -8,7 +8,7 @@
 .card {
   @include column();
   @include rounded();
-  background-color: #200f50;
+  background-color: $primaryDark;
   height: 80%;
 }
 

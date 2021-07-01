@@ -1,9 +1,9 @@
 @import '../../style/style.scss';
 
 .activeBtn {
-  background-color: #ff4034;
+  background-color: $accent;
   &:hover {
-    fill: #e2d8ff;
+    fill: $disabled;
     filter: grayscale(100%);
   }
   &:active {

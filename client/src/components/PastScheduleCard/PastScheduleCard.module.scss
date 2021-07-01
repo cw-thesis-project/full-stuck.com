@@ -3,7 +3,7 @@
 .scheduleItem {
   @include column();
   @include rounded();
-  background-color: #200f50;
+  background-color: $primaryDark;
   grid-row: 2 / 4;
 }
 
@@ -14,7 +14,7 @@
 .achievementRibbonColor {
   margin-bottom: 1em;
   width: 100%;
-  background-color: #6435e9;
+  background-color: $primaryLight;
 }
 .achievementRibbonColorFaied {
   margin-bottom: 1em;

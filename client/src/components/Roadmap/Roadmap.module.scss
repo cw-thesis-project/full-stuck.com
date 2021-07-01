@@ -14,7 +14,7 @@
 
 .fullBar {
   @include square(4em);
-  background-color: #ff4034;
+  background-color: $accent;
   position: absolute;
   top: 1.5em;
   left: 0.25em;
@@ -33,9 +33,9 @@
 }
 
 .pastLevel {
-  color: #ff4034;
+  color: $accent;
   .blob {
-    background-color: #ff4034;
+    background-color: $accent;
   }
 }
 
@@ -48,15 +48,15 @@
 
   .blob {
     @include circle(2em);
-    background-color: #3b1c94;
+    background-color: $primary;
     margin-left: 0.5em;
   }
 }
 
 .futureLevel {
-  color: #200f50;
+  color: $primaryDark;
   .blob {
-    background-color: #3b1c94;
+    background-color: $primary;
   }
 }
 

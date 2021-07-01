@@ -11,7 +11,7 @@
   h2,
   h3,
   h4 {
-    color: #f5f8ff;
+    color: $light;
   }
 }
 
@@ -33,7 +33,7 @@
   @include rectangle(25em, 35em);
   @include column;
   @include rounded;
-  background-color: #200f50;
+  background-color: $primaryDark;
   position: relative;
   margin-right: 1em;
   margin-left: 1em;
@@ -41,7 +41,7 @@
   h2,
   h3,
   h4 {
-    color: #f5f8ff;
+    color: $light;
   }
 
   h2 {
@@ -58,7 +58,7 @@
   position: absolute;
   top: 0em;
   right: 0em;
-  background-color: #ff4034;
+  background-color: $accent;
 }
 
 .techZone {

@@ -16,15 +16,17 @@
   @include column;
   @include rounded;
   justify-content: space-between;
-  background-color: #f5f8ff;
-  h2, h3, h4 {
-    color: #6435e9;
+  background-color: $light;
+  h2,
+  h3,
+  h4 {
+    color: $primaryLight;
   }
   margin-right: 1em;
   margin-left: 1em;
 }
 
-.img{
+.img {
   @include square(8em);
 }
 
@@ -33,10 +35,8 @@
 }
 
 .title {
-  margin-top : 1em;
+  margin-top: 1em;
 }
-
-
 
 h2 {
   text-transform: capitalize;

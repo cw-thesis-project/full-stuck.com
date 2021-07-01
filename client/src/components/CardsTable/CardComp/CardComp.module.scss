@@ -3,18 +3,18 @@
 .card {
   @include center;
   @include column;
+  @include rounded;
 
   &.up {
-    background-color: yellow;
+    background-color: $light;
   }
 
   &.down {
     color: gray;
     background-color: gray;
   }
-  
-  &.matched {
-    visibility:hidden
-  }
 
+  &.matched {
+    visibility: hidden;
+  }
 }
