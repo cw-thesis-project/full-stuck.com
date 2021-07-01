@@ -1,17 +1,22 @@
 import React from 'react';
 import styles from './MatchedPile.module.scss';
 import TechIcon from '../TechIcon';
+import { TechName } from '../../shared/types';
 
-import useMemoryGame from '../../containers/MemoryGame/useMemoryGame';
+interface Props {
+  lastMatchedTech: TechName;
+  numberOfMatches: number;
+}
 
-const MatchedPiled = (): JSX.Element => {
-  const { lastMatched, matchesDone } = useMemoryGame();
-
+const MatchedPiled = ({
+  lastMatchedTech,
+  numberOfMatches,
+}: Props): JSX.Element => {
   return (
     <div className={styles.container}>
-      <TechIcon techName={lastMatched} iconSize="medium" isGray={false} />
-      <div>{lastMatched}</div>
-      <div>{matchesDone}</div>
+      <TechIcon techName={lastMatchedTech} iconSize="medium" isGray={false} />
+      <div>{lastMatchedTech}</div>
+      <div>{numberOfMatches}</div>
     </div>
   );
 };

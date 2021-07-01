@@ -7,22 +7,22 @@ import styles from './CardComp.module.scss';
 import { TechName } from '../../../shared/types';
 import TechIcon from '../../TechIcon';
 
-interface Card {
+export interface Card {
   name: TechName;
   state: 'down' | 'up' | 'matched';
 }
 
 interface CardProps {
   card: Card;
-  onClick(): void;
+  onCardClick(): void;
 }
 
-const CardComp = ({ card, onClick }: CardProps): JSX.Element => {
+const CardComp = ({ card, onCardClick }: CardProps): JSX.Element => {
   const className = `${styles.card} ${styles[card.state]}`;
 
   function handleClick() {
     if (card.state === 'down') {
-      onClick();
+      onCardClick();
     }
   }
 

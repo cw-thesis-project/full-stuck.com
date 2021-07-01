@@ -1,11 +1,13 @@
 import React from 'react';
 import styles from './FlipsCounter.module.scss';
 import icons from '../../assets/icons';
-import useMemoryGame from '../../containers/MemoryGame/useMemoryGame';
 
-const FlipsCounter = (): JSX.Element => {
-  const { flipsDone, allowedFlips } = useMemoryGame();
+interface Props {
+  flipsDone: number;
+  allowedFlips: number;
+}
 
+const FlipsCounter = ({ flipsDone, allowedFlips }: Props): JSX.Element => {
   return (
     <div className={styles.container}>
       <img

@@ -4,17 +4,19 @@
 
 import React from 'react';
 import styles from './CardsTable.module.scss';
-import useMemoryGame from '../../containers/MemoryGame/useMemoryGame';
-import CardComp from './CardComp';
+import CardComp, { Card } from './CardComp/CardComp';
 
-const CardsTable = (): JSX.Element => {
-  const { cards, handleCardChoice } = useMemoryGame();
+interface Props {
+  cards: Card[];
+  onCardClick(index: number): void;
+}
 
+const CardsTable = ({ cards, onCardClick }: Props): JSX.Element => {
   return (
     <div>
       <div className={styles.container}>
-        {cards.map((card, i) => (
-          <CardComp card={card} onClick={() => handleCardChoice(i)} />
+        {cards.map((card: Card, i) => (
+          <CardComp card={card} onCardClick={() => onCardClick(i)} />
         ))}
       </div>
     </div>
