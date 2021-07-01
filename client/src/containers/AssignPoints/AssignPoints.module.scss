@@ -1,16 +1,5 @@
 @import '../../style/style.scss';
 
-.activeBtn {
-  background-color: #ff4034;
-  &:hover {
-    fill: #e2d8ff;
-    filter: grayscale(100%);
-  }
-  &:active {
-    filter: invert(100%);
-  }
-}
-
 .container {
   @include row;
 }
