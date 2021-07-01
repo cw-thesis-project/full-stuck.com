@@ -48,4 +48,4 @@ export const levelToNumber: LevelMap = {
   CEO: 3,
 };
 
-export const maxBubbles = 5;
+export const maxBubbles = 3;
