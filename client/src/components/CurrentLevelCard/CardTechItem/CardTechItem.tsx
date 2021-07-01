@@ -17,14 +17,29 @@ const CardTechItem = ({
   maxBubbles,
 }: Props): JSX.Element => {
   const grayBubbleCount = maxBubbles - experience;
+  const grayBubbles =
+    grayBubbleCount > 0
+      ? Array(grayBubbleCount)
+          .fill(null)
+          .map(() => (
+            <div className={`${styles.bubble} ${styles.greyBubble}`} />
+          ))
+      : [];
+  const coloredBubbles = Array(
+    experience < maxBubbles ? experience : maxBubbles
+  )
+    .fill(null)
+    .map(() => (
+      <div
+        className={`${styles.bubble} ${styles[techName]} ${
+          grayBubbleCount ? '' : styles.glow
+        }`}
+      />
+    ));
 
-  const grayBubbles = Array.from({ length: grayBubbleCount }, (_, k) => (
-    <div key={k} className={`${styles.bubble} ${styles.greyBubble}`} />
-  ));
-
-  const coloredBubbles = Array.from({ length: experience }, (_, k) => (
-    <div key={k} className={`${styles.bubble} ${styles[techName]}`} />
-  ));
+  function checkIconClick(tech: TechName): void {
+    if (experience <= maxBubbles) onIconClick(tech);
+  }
 
   return (
     <div className={styles.techColumn}>
@@ -34,11 +49,11 @@ const CardTechItem = ({
         role="button"
         // eslint-disable-next-line no-console
         onKeyDown={() => console.log('hi buddy')}
-        onClick={() => onIconClick(techName)}
+        onClick={() => checkIconClick(techName)}
         className={styles.clickable}
         tabIndex={0}
       >
-        <TechIcon techName={techName} iconSize="small" isGray={false} />
+        <TechIcon techName={techName} iconSize="medium" isGray={false} />
       </div>
       <h4>{techName}</h4>
     </div>
