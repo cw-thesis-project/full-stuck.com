@@ -1,18 +1,21 @@
 import React from 'react';
 import styles from './FlipsCounter.module.scss';
 import icons from '../../assets/icons';
+import useMemoryGame from '../../containers/MemoryGame/useMemoryGame';
 
-interface Props {
-  flipsDone: number;
-  allowedFlips: number;
-}
+const FlipsCounter = (): JSX.Element => {
+  const { flipsDone, allowedFlips } = useMemoryGame();
 
-const FlipsCounter = ({ flipsDone, allowedFlips }: Props): JSX.Element => {
   return (
     <div className={styles.container}>
-      <img className={styles.flipCounter} src={icons.flipCounter} alt="blob" />
+      <img
+        className={styles.flipCounter}
+        src={icons.flipCounter}
+        alt="flipCounter"
+      />
+
       <h1 className={styles.flipsDone}>{flipsDone}</h1>
-      <h2 className={styles.allowedFlips}>{allowedFlips}</h2>
+      <h2 className={styles.allowedFlips}>/ {allowedFlips}</h2>
     </div>
   );
 };
