@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { TechName } from '../../shared/types';
 import styles from './CenterBlob.module.scss';
 import icons from '../../assets/icons';
@@ -7,29 +7,10 @@ import TechIcon from '../TechIcon';
 
 interface Props {
   techNames: TechName[];
+  onDragStart(techName: TechName): void;
 }
 
-const CenterBlob = ({ techNames }: Props): JSX.Element => {
-  const [dragging, setDragging] = useState(false);
-
-  const handletDragStart = (
-    e: React.DragEvent<HTMLDivElement>,
-    techName: TechName
-  ) => {
-    console.log('Starting to drag', techName);
-
-    setTimeout(() => {
-      setDragging(true);
-    }, 0);
-  };
-  const handleDragEnd = (
-    e: React.DragEvent<HTMLDivElement> | null,
-    techName: TechName
-  ) => {
-    console.log('Ending drag', e && e.clientY, e && e.clientX);
-    setDragging(false);
-  };
-
+const CenterBlob = ({ techNames, onDragStart }: Props): JSX.Element => {
   const iconsContainerClass = assignIconsContainerClass(techNames.length);
 
   return (
@@ -37,11 +18,7 @@ const CenterBlob = ({ techNames }: Props): JSX.Element => {
       <img className={styles.blob} src={icons.blob} alt="blob" />
       <div className={iconsContainerClass}>
         {techNames.map((techName) => (
-          <div
-            draggable
-            onDragStart={(e) => handletDragStart(e, techName)}
-            onDragEnd={(e) => dragging && handleDragEnd(e, techName)}
-          >
+          <div draggable onDragStart={() => onDragStart(techName)}>
             <TechIcon
               iconSize="medium"
               isGray={false}

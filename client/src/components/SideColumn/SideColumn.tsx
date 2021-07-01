@@ -15,16 +15,15 @@ interface Props {
   icons: IconDescriptor[];
   onIconMatch(index: number): void;
 }
-document.addEventListener('dragend', (e) => {
-  console.log('here', e.clientX, e.clientY);
-  console.log(e.target);
-});
 
 const SideColumn = ({ icons, onIconMatch }: Props): JSX.Element => {
   return (
     <div className={styles.sideColumn}>
       {icons.map(({ isGray, techName }, index) => (
-        <div onClick={() => onIconMatch(index)} key={index}>
+        <div
+          onDrop={() => onIconMatch(index)}
+          onDragOver={(e) => e.preventDefault()}
+        >
           <TechIcon isGray={isGray} techName={techName} iconSize="large" />
         </div>
       ))}

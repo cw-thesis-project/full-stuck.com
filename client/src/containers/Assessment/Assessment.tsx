@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-console */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import SideColumn from '../../components/SideColumn';
 import CenterBlob from '../../components/CenterBlob';
@@ -10,12 +10,14 @@ import styles from './Assessment.module.scss';
 import { getIconDescriptors } from './helpers';
 import { useAppDispatch, useAppSelector, actions } from '../../store';
 import { AssessmentGameOptions } from './interfaces';
+import { TechName } from '../../shared/types';
 
 const Assessment = (): JSX.Element => {
   const user = useAppSelector((state) => state.user);
   const loading = useAppSelector((state) => state.loading);
   const history = useHistory();
   const dispatch = useAppDispatch();
+  const [draggedName, setDraggedName] = useState<TechName>('javascript');
 
   const options: AssessmentGameOptions = {
     level: 'junior',
@@ -40,11 +42,11 @@ const Assessment = (): JSX.Element => {
       (icon) => icon.name === name
     );
 
-    if (centerIcon && !centerIcon.isMatched) {
+    const isMatch = centerIcon && !centerIcon.isMatched && draggedName === name;
+
+    if (isMatch) {
       console.log('matched', name);
       game.onIconMatch(name);
-    } else {
-      console.log(name, 'does not need to be clicked');
     }
   }
 
@@ -79,7 +81,10 @@ const Assessment = (): JSX.Element => {
       />
       <div className={styles.centerSection}>
         <h1>{game.gameTime.toFixed(1)}s</h1>
-        <CenterBlob techNames={centerIcons} />
+        <CenterBlob
+          techNames={centerIcons}
+          onDragStart={(techName) => setDraggedName(techName)}
+        />
         <h2>
           {game.round}/{game.rounds}
         </h2>
