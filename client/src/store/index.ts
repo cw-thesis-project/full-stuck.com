@@ -1,7 +1,8 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import * as appActions from './actions';
 import * as thunks from './thunks';
-import { AppState } from './storeTypes';
+import { AppAction, AppState, Thunk } from './storeTypes';
 
 export const actions = {
   learnTech: thunks.learnTech,
@@ -13,7 +14,8 @@ export const actions = {
 };
 
 // <any> for now, until I figure out how to solve it (my bad)
-export const useAppDispatch: any = () => useDispatch();
+export const useAppDispatch = (): React.Dispatch<Thunk | AppAction> =>
+  useDispatch();
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
 
 export { default as store } from './store';
