@@ -4,6 +4,7 @@ import styles from './AssignPoints.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { TechName, UserGameData } from '../../shared/types';
 import { learnTech } from '../../store/thunks';
+import NavButtonAssignToSchedule from '../../components/NavButtonAssignToSchedule';
 
 import { assignCards } from './helpers';
 import { fakeState, FakeState } from './localUtils';
@@ -62,18 +63,10 @@ const AssignPoints = (): JSX.Element => {
           </div>
         ) : null}
       </div>
-      <div
-        role="button"
-        // eslint-disable-next-line no-console
-        onKeyDown={() => console.log('hi buddy')}
-        onClick={() => moveToSchedule()}
-        tabIndex={0}
-        className={`${styles.scheduleButton} ${
-          pointsToAssign > 0 ? styles.inactiveBtn : styles.activeBtn
-        }`}
-      >
-        <h2>Schedule</h2>
-      </div>
+      <NavButtonAssignToSchedule
+        moveToSchedule={moveToSchedule}
+        pointsToAssign={pointsToAssign}
+      />
     </div>
   );
 };
