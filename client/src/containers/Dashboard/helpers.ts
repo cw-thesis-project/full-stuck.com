@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import { Level, TechExperience } from '../../shared/types';
 import { technologies } from '../../utils/utils';
 import { TechAchievements } from '../../components/LearntTech/LearntTech';
@@ -11,25 +12,15 @@ const levelToNumber: levelMap = {
   CEO: 3,
 };
 
-export const createGreeting = (level: Level | undefined): string => {
-  let greetingMessage = '';
-  switch (level) {
-    case 'junior':
-      greetingMessage = "Let's GET Coding";
-      break;
-    case 'senior':
-      greetingMessage = 'PUT your back into it';
-      break;
-    case 'tutor':
-      greetingMessage = 'POST us a pun please';
-      break;
-    case 'CEO':
-      greetingMessage = 'DELETE and start again';
-      break;
-    default:
-      greetingMessage = '';
-  }
-  return greetingMessage;
+export const createGreeting = (level: Level): string => {
+  const greetingsMap: Record<Level, string> = {
+    junior: "Let's GET Coding",
+    senior: 'PUT your back into it',
+    tutor: 'POST us a pun please',
+    CEO: 'DELETE and start again',
+  };
+
+  return greetingsMap[level];
 };
 
 const techAchievements: TechAchievements = {
@@ -48,23 +39,21 @@ export const createTechAchievements = (
   userLevel: Level,
   techExperience: TechExperience
 ): TechAchievements => {
-  const userTechExperienceArray: [string, number][] =
-    Object.entries(techExperience);
-
-  userTechExperienceArray.forEach(([tech, userExperienceLevel]) => {
-    const techLevel = technologies.find(
-      (technology) => technology.name === tech
-    )?.level;
-
+  for (const [tech, userExperienceLevel] of Object.entries(techExperience)) {
     techAchievements[tech as keyof TechAchievements].level =
       userExperienceLevel;
 
-    if (techLevel) {
-      if (levelToNumber[userLevel] < levelToNumber[techLevel]) {
+    const technology = technologies.find((t) => t.name === tech);
+
+    if (technology) {
+      const techShouldBeLocked =
+        levelToNumber[userLevel] < levelToNumber[technology.level];
+
+      if (techShouldBeLocked) {
         techAchievements[tech as keyof TechAchievements].isLocked = true;
       }
     }
-  });
+  }
 
   return techAchievements;
 };
