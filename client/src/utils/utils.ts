@@ -1,4 +1,4 @@
-import { Level, TechName } from '../shared/types';
+import { Level, LevelMap, TechName } from '../shared/types';
 import { technologies } from '../shared/constants';
 
 export function deepCopy<T>(value: T): T {
@@ -39,3 +39,13 @@ export function getUnlockedTechNames(level: Level): TechName[] {
 export function getTechnologiesNames(): TechName[] {
   return technologies.map((tech) => tech.name);
 }
+export const a = 1;
+
+export const levelToNumber: LevelMap = {
+  junior: 0,
+  senior: 1,
+  tutor: 2,
+  CEO: 3,
+};
+
+export const maxBubbles = 5;
