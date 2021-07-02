@@ -1,4 +1,4 @@
-name: Build
+name: Builda
 
 on:
   pull_request:
