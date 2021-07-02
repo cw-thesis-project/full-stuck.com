@@ -3,6 +3,7 @@
 .scheduleItem {
   @include column();
   @include rounded();
+  padding-top: 2em;
   background-color: $primaryDark;
   grid-row: 2/4;
 }

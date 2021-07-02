@@ -9,7 +9,8 @@
   @include column();
   @include rounded();
   background-color: $primaryDark;
-  height: 80%;
+  padding-top: 2em;
+  height: 100%;
 }
 
 .imageContainer {
@@ -20,14 +21,4 @@
 .quote {
   text-align: center;
   padding: 2em;
-}
-
-.backIcon {
-  margin-top: auto;
-
-  & img {
-    @include square(2em);
-    opacity: 50%;
-    cursor: pointer;
-  }
 }

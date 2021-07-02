@@ -36,7 +36,6 @@
 }
 
 .button {
-  @include debug;
   @include rectangle(8em, 3em);
   @include rounded;
   @include center;

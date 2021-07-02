@@ -3,7 +3,7 @@
 .container {
   @include fill;
   display: grid;
-  padding: 0 6em;
+  padding: 0 4em;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 1fr 1fr 3fr;
   color: white;
