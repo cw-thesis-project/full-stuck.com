@@ -9,7 +9,7 @@ import App from './containers/App/App';
 import { auth0 } from './shared/constants';
 import { store } from './store';
 
-dotenv.config();
+dotenv.config({});
 
 ReactDOM.render(
   <React.StrictMode>
