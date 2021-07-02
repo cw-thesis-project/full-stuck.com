@@ -6,8 +6,8 @@ import { TechName, UserGameData } from '../../shared/types';
 import { learnTech } from '../../store/thunks';
 import NavButtonAssignToSchedule from '../../components/NavButtonAssignToSchedule';
 
-import { assignCards } from './helpers';
-import { fakeState } from './localUtils';
+import { assignCards, buttonAllowed } from './helpers';
+import { fakeState, FakeState } from './localUtils';
 
 const AssignPoints = (): JSX.Element => {
   const [leftCard, setLeftCard] = useState<JSX.Element>(<div>Pabeli</div>);
@@ -30,7 +30,8 @@ const AssignPoints = (): JSX.Element => {
   }
 
   function moveToSchedule() {
-    if (pointsToAssign === 0) history.replace('/schedule');
+    if (buttonAllowed(level, techExperience, pointsToAssign))
+      history.replace('/schedule');
   }
 
   useEffect(() => {

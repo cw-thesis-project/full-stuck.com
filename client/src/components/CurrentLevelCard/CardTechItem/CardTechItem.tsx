@@ -25,6 +25,7 @@ const CardTechItem = ({
             <div className={`${styles.bubble} ${styles.greyBubble}`} />
           ))
       : [];
+
   const coloredBubbles = Array(
     experience < maxBubbles ? experience : maxBubbles
   )
@@ -32,7 +33,7 @@ const CardTechItem = ({
     .map(() => (
       <div
         className={`${styles.bubble} ${styles[techName]} ${
-          grayBubbleCount ? '' : styles.glow
+          grayBubbleCount > 0 ? '' : styles.glow
         }`}
       />
     ));
