@@ -13,6 +13,7 @@ const AssignPoints = (): JSX.Element => {
   const [leftCard, setLeftCard] = useState<JSX.Element>(<div>Pabeli</div>);
   const [middleCard, setMiddleCard] = useState<JSX.Element>(<div>Pabelow</div>);
   const [rightCard, setRightCard] = useState<JSX.Element>(<div>Pabelu</div>);
+  const [redirectionAllowed, setRedirectionAllowed] = useState<boolean>(false);
   const history = useHistory();
   // // TODO: remove the fakeAppState useState in prod
   const showAll = false;
@@ -27,11 +28,13 @@ const AssignPoints = (): JSX.Element => {
 
   function onIconClick(techName: TechName) {
     if (pointsToAssign > 0) dispatch(learnTech(techName));
+    if (buttonAllowed(level, techExperience, pointsToAssign)) {
+      setRedirectionAllowed(true);
+    }
   }
 
   function moveToSchedule() {
-    if (buttonAllowed(level, techExperience, pointsToAssign))
-      history.replace('/schedule');
+    if (redirectionAllowed) history.replace('/schedule');
   }
 
   useEffect(() => {
@@ -45,7 +48,7 @@ const AssignPoints = (): JSX.Element => {
       techExperience,
       onIconClick
     );
-  }, [pointsToAssign]);
+  }, [pointsToAssign, redirectionAllowed]);
 
   return (
     <div className={styles.screen}>
@@ -56,7 +59,7 @@ const AssignPoints = (): JSX.Element => {
       </div>
       <NavButtonAssignToSchedule
         moveToSchedule={moveToSchedule}
-        pointsToAssign={pointsToAssign}
+        redirectionAllowed={redirectionAllowed}
       />
     </div>
   );

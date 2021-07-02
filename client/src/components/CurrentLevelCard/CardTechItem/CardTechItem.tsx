@@ -38,7 +38,7 @@ const CardTechItem = ({
       />
     ));
 
-  function checkIconClick(tech: TechName): void {
+  function preventFrivolousSpending(tech: TechName): void {
     if (experience < maxBubbles) onIconClick(tech);
   }
 
@@ -50,7 +50,7 @@ const CardTechItem = ({
         role="button"
         // eslint-disable-next-line no-console
         onKeyDown={() => console.log('hi buddy')}
-        onClick={() => checkIconClick(techName)}
+        onClick={() => preventFrivolousSpending(techName)}
         className={styles.clickable}
         tabIndex={0}
       >

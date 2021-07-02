@@ -100,18 +100,18 @@ export function buttonAllowed(
   pointsToAssign: number
 ): boolean {
   if (pointsToAssign === 0) return true;
-
-  const techExperienceSum: number = Object.values<number>(
-    techExperience
-  ).reduce((acc: number, el: number): number => {
-    return acc + el;
-  }, 0);
+  const techExperienceSum: number =
+    Object.values<number>(techExperience).reduce(
+      (acc: number, el: number): number => {
+        return acc + el;
+      },
+      0
+    ) + 1;
   const techPerLevel = 3;
   const levelThreshold = techPerLevel * (maxBubbles + 1) - 1;
   const juniorThreshold = levelThreshold;
   const seniorThreshold = juniorThreshold + 1 + levelThreshold;
   const tutorThreshold = seniorThreshold + 1 + levelThreshold;
-
   if (lvl === 'junior') return techExperienceSum === juniorThreshold;
   if (lvl === 'senior') return techExperienceSum === seniorThreshold;
   if (lvl === 'tutor') return techExperienceSum === tutorThreshold;
