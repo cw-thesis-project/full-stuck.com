@@ -7,7 +7,7 @@ import CenterBlob from '../../components/CenterBlob';
 import CountDownBar from '../../components/CountDownBar';
 import useAssessmentGame from './assessmentGame';
 import styles from './Assessment.module.scss';
-import { getIconDescriptors } from './helpers';
+import { getAssessmentTopic, getIconDescriptors } from './helpers';
 import { useAppDispatch, useAppSelector, actions } from '../../store';
 import { AssessmentGameOptions } from './interfaces';
 import { TechName } from '../../shared/types';
@@ -51,12 +51,19 @@ const Assessment = (): JSX.Element => {
   }
 
   function onGameEnd() {
-    console.log('game ended');
+    if (!user) {
+      return;
+    }
+
+    // choose activity topic based on techExperience
+    const topic = getAssessmentTopic(user.gameData.techExperience);
+
+    // check if need to level up
 
     dispatch(
       actions.saveActivity({
         name: 'assessment',
-        topic: 'git',
+        topic,
         stars: 3,
       })
     );

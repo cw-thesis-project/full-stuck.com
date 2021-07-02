@@ -1,9 +1,11 @@
-import { TechName, Level, TechExperience } from '../../shared/types';
+/* eslint-disable no-restricted-syntax */
+import { TechName, Level, TechExperience, Activity } from '../../shared/types';
 import {
   getTechnologiesNames,
   deepCopy,
   pickRandomElementsFromArray,
 } from '../../shared/utils';
+import { technologies, maxTechnologyExperience } from '../../shared/constants';
 import { Icon, IconsGroup } from './interfaces';
 import { IconDescriptor } from '../../components/SideColumn/SideColumn';
 
@@ -91,3 +93,13 @@ export const mockTechExperience: TechExperience = {
   rxjs: 0,
   typescript: 0,
 };
+
+export function getAssessmentTopic(techExperience: TechExperience): TechName {
+  for (const { name } of technologies) {
+    if (techExperience[name] === maxTechnologyExperience) {
+      return name;
+    }
+  }
+
+  throw new Error('assessment topic not found');
+}
