@@ -5,7 +5,7 @@ interface Props {
   currentPercentage: number;
 }
 
-const CountDownBar = ({ currentPercentage }: Props) => {
+const CountDownBar = ({ currentPercentage }: Props): JSX.Element => {
   const innerStyle: React.CSSProperties = {
     width: `${currentPercentage * 100}%`,
   };

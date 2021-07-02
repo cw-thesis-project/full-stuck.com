@@ -2,7 +2,7 @@ import React from 'react';
 import { Level, TechName } from '../../shared/types';
 import styles from './CurrentLevelCard.module.scss';
 import CardTechItem from './CardTechItem/CardTechItem';
-import { maxBubbles } from '../../utils/utils';
+import { maxBubbles } from '../../shared/utils';
 
 interface TechExperienceSubset {
   name: TechName;

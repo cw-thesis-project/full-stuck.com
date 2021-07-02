@@ -2,7 +2,6 @@ import React from 'react';
 import classnames from 'classnames';
 import { TechName } from '../../shared/types';
 import styles from './CenterBlob.module.scss';
-import icons from '../../assets/icons';
 import TechIcon from '../TechIcon';
 
 interface Props {

@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useState } from 'react';
 import { TechName } from '../../shared/types';
-import { deepCopy } from '../../utils/utils';
+import { deepCopy } from '../../shared/utils';
 import { technologies } from './helpers';
 
 export interface Card {

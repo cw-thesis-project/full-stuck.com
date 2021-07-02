@@ -1,5 +1,4 @@
-import { PastActivity, TechName, User } from '../shared/types';
-import { deepCopy } from '../utils/utils';
+import { User } from '../shared/types';
 import { AppState, AppAction, FailureAction } from './storeTypes';
 
 export const defaultState: AppState = {
