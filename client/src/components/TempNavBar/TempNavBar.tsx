@@ -42,6 +42,7 @@ const TempNavBar = (): JSX.Element => {
           username: {userStore?.username} level: {userStore?.gameData.level}
         </p>
         <p>history: {JSON.stringify(userStore?.gameData.history, null, 2)} </p>
+        <p>history length: {userStore?.gameData.history.length || 0} </p>
         <p>
           {' '}
           techExperience:{' '}
