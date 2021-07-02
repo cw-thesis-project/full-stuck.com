@@ -5,7 +5,9 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 2fr 1fr;
-  background: url('../../assets/images/wave-diagonal.svg');
+  background-image: url('../../assets/images/wave-diagonal.svg'),
+    linear-gradient($gradientLight, $gradientDark);
+  background-size: cover;
   padding: 4em;
 }
 

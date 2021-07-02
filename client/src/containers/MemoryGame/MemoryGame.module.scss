@@ -5,6 +5,7 @@
   @include row;
   @include screen;
   flex-direction: column;
-  background: #fff url('../../assets/images/wave-corners.svg');
+  background-image: url('../../assets/images/wave-corners.svg'),
+    radial-gradient($gradientLight, $gradientDark);
   background-size: cover;
 }

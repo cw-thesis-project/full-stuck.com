@@ -5,7 +5,8 @@
   @include screen;
   justify-content: space-between;
   align-items: stretch;
-  background: url('../../assets/images/wave-columns.svg');
+  background-image: url('../../assets/images/wave-columns.svg'),
+    radial-gradient($gradientLight, $gradientDark);
   background-size: cover;
   padding: 4em;
 }
