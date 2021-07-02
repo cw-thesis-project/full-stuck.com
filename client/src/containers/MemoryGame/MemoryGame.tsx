@@ -34,7 +34,7 @@ const MemoryGame = (): JSX.Element => {
         actions.saveActivity({
           name: 'memory',
           topic: 'git',
-          stars: 3,
+          stars: areAllFlipsUsed ? 0 : 3,
         })
       );
       history.replace('/assign-points');
