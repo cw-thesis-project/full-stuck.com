@@ -31,7 +31,7 @@ export function isUnlocked(currentLevel: Level, targetLevel: Level): boolean {
   return targetLevel === 'junior';
 }
 
-export function getUnlockedTechNames(level: Level): TechName[] {
+export function getUnlockedTechNames(): TechName[] {
   // .filter((tech) => isUnlocked(level, tech.level))
   return technologies.map((tech) => tech.name);
 }
