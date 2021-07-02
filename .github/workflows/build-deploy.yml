@@ -12,6 +12,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env: 
+      working-directory: ./client
     
     steps:
     - name: Checkout code
@@ -21,10 +23,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 13.x
-        
-    - name: Go to the right directory
-      run: cd client
-    
+           
     - name: Install NPM packages
       run: npm ci
     
