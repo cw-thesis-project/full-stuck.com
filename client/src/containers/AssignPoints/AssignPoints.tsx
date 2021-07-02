@@ -25,12 +25,20 @@ const AssignPoints = (): JSX.Element => {
     : fakeState.user.gameData;
   const { level } = gameData;
   const { techExperience } = gameData;
+  const { history: userHistory } = gameData;
 
   function onIconClick(techName: TechName) {
-    if (pointsToAssign > 0) dispatch(learnTech(techName));
+    if (pointsToAssign > 0) {
+      dispatch(learnTech(techName));
+      if (userHistory[userHistory.length - 1].name !== 'assessment') {
+        // rewrite history
+      }
+    }
     if (buttonAllowed(level, techExperience, pointsToAssign)) {
       setRedirectionAllowed(true);
     }
+    // if last activity === minigame
+    // rewrite history with techName
   }
 
   function moveToSchedule() {

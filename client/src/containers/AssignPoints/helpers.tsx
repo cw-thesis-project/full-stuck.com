@@ -60,6 +60,7 @@ export function assignCards(
   onIconClick: (techName: TechName) => void
 ): void {
   const stage = levelToNumber[level];
+  // for dev purposes
   if (showAll) {
     setLeftCard(
       renderCurrentCard('junior', pointsToAssign, techExperience, onIconClick)
@@ -72,6 +73,7 @@ export function assignCards(
     );
     return;
   }
+
   setLeftCard(
     stage > 0
       ? renderCompletedCard('junior')
