@@ -73,11 +73,12 @@ function useAssessmentGame(
       if (round < rounds - 1) {
         setMatched(0);
       } else {
+        setRound((r) => r + 1);
         onGameEnd(3);
       }
       setRound((r) => r + 1);
     } else {
-      setMatched(matched + 1);
+      setMatched((m) => m + 1);
     }
   }
 
