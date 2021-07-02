@@ -102,9 +102,9 @@ export function buttonAllowed(
   pointsToAssign: number
 ): boolean {
   if (pointsToAssign === 0) return true;
-  const techExperienceSum: number =
-    Object.values<number>(techExperience).reduce(
-      (acc: number, el: number): number => {
+  const techExperienceSum: number = Object.values<number>(
+    techExperience
+  ).reduce((acc: number, el: number): number => {
         return acc + el;
       },
       0

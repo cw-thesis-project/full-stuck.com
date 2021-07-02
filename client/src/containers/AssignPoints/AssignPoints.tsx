@@ -10,19 +10,19 @@ import { assignCards, buttonAllowed } from './helpers';
 import { fakeState, FakeState } from './localUtils';
 
 const AssignPoints = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const history = useHistory();
+
   const [leftCard, setLeftCard] = useState<JSX.Element>(<div>Pabeli</div>);
   const [middleCard, setMiddleCard] = useState<JSX.Element>(<div>Pabelow</div>);
   const [rightCard, setRightCard] = useState<JSX.Element>(<div>Pabelu</div>);
   const [redirectionAllowed, setRedirectionAllowed] = useState<boolean>(false);
-  const history = useHistory();
   // // TODO: remove the fakeAppState useState in prod
   const showAll = false;
-  const dispatch = useAppDispatch();
-  const appState = useAppSelector((state) => state);
-  const { pointsToAssign } = appState;
-  const gameData: UserGameData = appState.user
-    ? appState.user.gameData
-    : fakeState.user.gameData;
+
+  const pointsToAssign = useAppSelector((state) => state.pointsToAssign);
+  const user = useAppSelector((state) => state.user);
+  const gameData: UserGameData = user ? user.gameData : fakeState.user.gameData;
   const { level } = gameData;
   const { techExperience } = gameData;
   const { history: userHistory } = gameData;
@@ -30,15 +30,11 @@ const AssignPoints = (): JSX.Element => {
   function onIconClick(techName: TechName) {
     if (pointsToAssign > 0) {
       dispatch(learnTech(techName));
-      if (userHistory[userHistory.length - 1].name !== 'assessment') {
-        // rewrite history
-      }
+      // check if hitory got length
+      // if (userHistory[userHistory.length - 1].name !== 'assessment') {
+      //   // rewrite history
+      // }
     }
-    if (buttonAllowed(level, techExperience, pointsToAssign)) {
-      setRedirectionAllowed(true);
-    }
-    // if last activity === minigame
-    // rewrite history with techName
   }
 
   function moveToSchedule() {
@@ -57,6 +53,12 @@ const AssignPoints = (): JSX.Element => {
       onIconClick
     );
   }, [pointsToAssign, redirectionAllowed]);
+
+  useEffect(() => {
+    if (buttonAllowed(level, techExperience, pointsToAssign)) {
+      setRedirectionAllowed(true);
+    }
+  }, [pointsToAssign]);
 
   return (
     <div className={styles.screen}>
