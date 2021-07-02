@@ -16,7 +16,7 @@ const CalendarDate = ({ variant, dayIndex }: Props): JSX.Element => {
   const container = classNames({
     [styles.container]: true,
     [styles.circle]: variant === 'current',
-    [styles.light]: variant === 'current' || dayIndex > 3,
+    [styles.light]: variant === 'current' || dayIndex % 6 > 2,
   });
 
   return (

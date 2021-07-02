@@ -1,7 +1,6 @@
 @import '../../style/style.scss';
 
 .container {
-  @include debug;
   @include fill;
   display: grid;
   padding: 0 6em;
