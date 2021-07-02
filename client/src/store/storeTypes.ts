@@ -1,5 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import { PastActivity, TechName, User } from '../shared/types';
+import { Level, PastActivity, TechName, User } from '../shared/types';
 
 export interface AppState {
   pointsToAssign: number;
@@ -9,8 +9,12 @@ export interface AppState {
 }
 
 export type AppAction =
+  | UpdateUserSuccessAction
+  | UpdateUserRequestAction
   | SaveActivityRequestAction
   | SaveActivitySuccessAction
+  | LevelUserUpRequestAction
+  | LevelUserUpSuccessAction
   | LearnTechRequestAction
   | LearnTechSuccessAction
   | SetPointsToAssignAction
@@ -27,6 +31,7 @@ export interface ApiService {
   saveActivity(activity: PastActivity, user: User): Promise<User | null>;
   newGame(username: string): Promise<User | null>;
   getUserData(username: string): Promise<User | null>;
+  updateUser(user: User): Promise<User | null>;
 }
 
 // see https://redux.js.org/usage/usage-with-typescript#type-checking-redux-thunks
@@ -78,6 +83,16 @@ interface GetUserDataRequestAction {
   username: string;
 }
 
+interface UpdateUserSuccessAction {
+  type: typeof UPDATE_USER_SUCCESS;
+  user: User;
+}
+
+interface UpdateUserRequestAction {
+  type: typeof UPDATE_USER_REQUEST;
+  user: User;
+}
+
 // new game
 
 interface NewGameRequestAction {
@@ -90,17 +105,30 @@ interface NewGameSuccessAction {
   user: User;
 }
 
+// level user up
+
+interface LevelUserUpRequestAction {
+  type: typeof LEVEL_USER_UP_REQUEST;
+  nextLevel: Level;
+}
+
+interface LevelUserUpSuccessAction {
+  type: typeof LEVEL_USER_UP_SUCCESS;
+  user: User;
+}
+
 interface ResetErrorAction {
   type: typeof RESET_ERROR;
 }
 
 export interface FailureAction {
   type:
+    | typeof UPDATE_USER_FAILURE
     | typeof SAVE_ACTIVITY_FAILURE
     | typeof LEARN_TECH_FAILURE
     | typeof GET_USER_DATA_FAILURE
+    | typeof LEVEL_USER_UP_FAILURE
     | typeof NEW_GAME_FAILURE;
-
   error: Error | string;
 }
 
@@ -124,5 +152,13 @@ const GET_USER_DATA_FAILURE = 'GET_USER_DATA_FAILURE';
 const NEW_GAME_FAILURE = 'NEW_GAME_FAILURE';
 const NEW_GAME_REQUEST = 'NEW_GAME_REQUEST';
 const NEW_GAME_SUCCESS = 'NEW_GAME_SUCCESS';
+
+const LEVEL_USER_UP_FAILURE = 'LEVEL_USER_UP_FAILURE';
+const LEVEL_USER_UP_REQUEST = 'LEVEL_USER_UP_REQUEST';
+const LEVEL_USER_UP_SUCCESS = 'LEVEL_USER_UP_SUCCESS';
+
+const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
+const UPDATE_USER_REQUEST = 'UPDATE_USER_REQUEST';
+const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
 
 const RESET_ERROR = 'RESET_ERROR';

@@ -5,6 +5,7 @@ import {
   learnTech,
   saveActivity,
   newGame,
+  updateUser,
 } from '../services/apiServices';
 import { reducer } from './reducer';
 import { ApiService, AppState, AppAction } from './storeTypes';
@@ -14,6 +15,7 @@ const apiService: ApiService = {
   saveActivity: (activity, user) => saveActivity(activity, user),
   getUserData: (username) => getUserData(username),
   newGame: (username) => newGame(username),
+  updateUser: (user) => updateUser(user),
 };
 
 const thunkMiddleware = thunk.withExtraArgument(apiService);
