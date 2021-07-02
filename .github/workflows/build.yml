@@ -1,13 +1,9 @@
-name: Builda
+name: Build
 
 on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - main    
-
 jobs:
   build:
     name: Build
@@ -34,10 +30,3 @@ jobs:
         with:
           name: production-files
           path: ./build
-          
-      - name: Comment PR
-        uses: thollander/actions-comment-pull-request@master
-        with:
-          message: '[![Builda](https://github.com/pablocarbonell/full-stuck.com/actions/workflows/build-deploy.yml/badge.svg)](https://github.com/pablocarbonell/full-stuck.com/actions/workflows/build-deploy.yml)'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
