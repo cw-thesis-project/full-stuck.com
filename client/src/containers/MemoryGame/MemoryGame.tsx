@@ -30,6 +30,13 @@ const MemoryGame = (): JSX.Element => {
     }
 
     if (areAllFlipsUsed || areAllCardsMatched) {
+      dispatch(
+        actions.saveActivity({
+          name: 'memory',
+          topic: 'git',
+          stars: 3,
+        })
+      );
       history.replace('/assign-points');
     }
   }, [flipsDone, matchesDone]);
