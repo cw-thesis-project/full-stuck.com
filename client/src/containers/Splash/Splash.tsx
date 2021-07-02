@@ -30,12 +30,13 @@ const Splash = (): JSX.Element => {
       <p className={styles.subtitle}>
         Take part to the bootcamp, <br /> become CEO as quick as you can!
       </p>
-      <button type="button" onClick={handleButtonClick}>
+      <button
+        type="button"
+        onClick={handleButtonClick}
+        className={styles.button}
+      >
         {buttonText}
       </button>
-      <Link to="/admin" target="_blank">
-        admin
-      </Link>
     </div>
   );
 };
