@@ -20,6 +20,9 @@ export const technologies: Tech[] = [
   { name: 'eloquence', level: 'tutor' },
   { name: 'espionage', level: 'tutor' },
 ];
+
+export const maxTechnologyExperience = 3;
+
 export const emptyUser: User = {
   username: '',
   gameData: {
