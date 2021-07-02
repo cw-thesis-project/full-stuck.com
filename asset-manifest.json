@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0ec6879b.chunk.css",
+    "main.js": "/static/js/main.1225fac7.chunk.js",
+    "main.js.map": "/static/js/main.1225fac7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.7545a8a1.js",
+    "runtime-main.js.map": "/static/js/runtime-main.7545a8a1.js.map",
+    "static/js/2.90a54647.chunk.js": "/static/js/2.90a54647.chunk.js",
+    "static/js/2.90a54647.chunk.js.map": "/static/js/2.90a54647.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.0ec6879b.chunk.css.map": "/static/css/main.0ec6879b.chunk.css.map",
+    "static/js/2.90a54647.chunk.js.LICENSE.txt": "/static/js/2.90a54647.chunk.js.LICENSE.txt",
+    "static/media/arrow.234b236a.svg": "/static/media/arrow.234b236a.svg",
+    "static/media/back.66d65c54.svg": "/static/media/back.66d65c54.svg",
+    "static/media/CenterBlob.module.scss": "/static/media/blob.5f067d5e.svg",
+    "static/media/debugging.cce3020b.svg": "/static/media/debugging.cce3020b.svg",
+    "static/media/eloquence.a0f9e12e.svg": "/static/media/eloquence.a0f9e12e.svg",
+    "static/media/espionage.3cfe0745.svg": "/static/media/espionage.3cfe0745.svg",
+    "static/media/flipCounter.31c606ac.svg": "/static/media/flipCounter.31c606ac.svg",
+    "static/media/git.dd8f1dca.svg": "/static/media/git.dd8f1dca.svg",
+    "static/media/graduationHat.42aafb6f.svg": "/static/media/graduationHat.42aafb6f.svg",
+    "static/media/graphql.1b13781d.svg": "/static/media/graphql.1b13781d.svg",
+    "static/media/hourGlass.cee44acb.svg": "/static/media/hourGlass.cee44acb.svg",
+    "static/media/javascript.acc4642f.svg": "/static/media/javascript.acc4642f.svg",
+    "static/media/lock.403a2962.svg": "/static/media/lock.403a2962.svg",
+    "static/media/medal.ecc5bf7e.svg": "/static/media/medal.ecc5bf7e.svg",
+    "static/media/question.ca287274.svg": "/static/media/question.ca287274.svg",
+    "static/media/react.1e5127ec.svg": "/static/media/react.1e5127ec.svg",
+    "static/media/rxjs.45a8ffbc.svg": "/static/media/rxjs.45a8ffbc.svg",
+    "static/media/star.7cc8bcd7.svg": "/static/media/star.7cc8bcd7.svg",
+    "static/media/typescript.e0cf5672.svg": "/static/media/typescript.e0cf5672.svg",
+    "static/media/AssignPoints.module.scss": "/static/media/wave-bottom.0ef90068.svg",
+    "static/media/Assessment.module.scss": "/static/media/wave-columns.7b3bde5b.svg",
+    "static/media/MemoryGame.module.scss": "/static/media/wave-corners.2804e3e0.svg",
+    "static/media/Schedule.module.scss": "/static/media/wave-diagonal.3309f714.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7545a8a1.js",
+    "static/js/2.90a54647.chunk.js",
+    "static/css/main.0ec6879b.chunk.css",
+    "static/js/main.1225fac7.chunk.js"
+  ]
+}
