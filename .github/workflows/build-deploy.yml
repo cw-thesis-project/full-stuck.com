@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
        run:
-         working-directory: web
+         working-directory: ./client
     
     steps:
     - name: Checkout code
@@ -44,7 +44,7 @@ jobs:
     name: Deploy
     defaults:
      run:
-      working-directory: web
+         working-directory: ./client
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
