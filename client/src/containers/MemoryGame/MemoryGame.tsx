@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-console */
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -22,25 +23,32 @@ const MemoryGame = (): JSX.Element => {
     handleCardChoice,
   } = useMemoryGame();
 
-  useEffect(() => {
+  useEffect(checkIfGameOver, [flipsDone, matchesDone]);
+
+  function checkIfGameOver() {
     const areAllCardsMatched = matchesDone >= cards.length / 2;
     const areAllFlipsUsed = flipsDone >= allowedFlips;
 
-    if (areAllCardsMatched) {
+    if (areAllFlipsUsed || areAllCardsMatched) {
+      afterGameOver(areAllCardsMatched);
+    }
+  }
+
+  function afterGameOver(hasWon: boolean) {
+    if (hasWon) {
       dispatch(actions.setPointsToAssign(1));
     }
 
-    if (areAllFlipsUsed || areAllCardsMatched) {
-      dispatch(
-        actions.saveActivity({
-          name: 'memory',
-          topic: 'git',
-          stars: areAllFlipsUsed ? 0 : 3,
-        })
-      );
-      history.replace('/assign-points');
-    }
-  }, [flipsDone, matchesDone]);
+    dispatch(
+      actions.saveActivity({
+        name: 'memory',
+        topic: 'git',
+        stars: hasWon ? 0 : 3,
+      })
+    );
+
+    history.replace('/assign-points');
+  }
 
   return (
     <div className={styles.screen}>
@@ -49,6 +57,7 @@ const MemoryGame = (): JSX.Element => {
       <MatchedPile
         lastMatchedTech={lastMatched}
         numberOfMatches={matchesDone}
+        onClick={() => afterGameOver(true)}
       />
     </div>
   );
