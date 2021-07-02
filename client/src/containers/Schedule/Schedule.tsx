@@ -15,7 +15,7 @@ const ScheduleContainer = (): JSX.Element | null => {
 
   const lastHistory = lastFiveElements(user.gameData.history);
   const { techExperience } = user.gameData;
-  const nextActivity = getNextActivity(techExperience);
+  const nextActivity = getNextActivity();
 
   return (
     <div className={styles.screen}>
