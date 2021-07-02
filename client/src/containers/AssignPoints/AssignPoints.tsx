@@ -8,7 +8,6 @@ import NavButtonAssignToSchedule from '../../components/NavButtonAssignToSchedul
 
 import { assignCards } from './helpers';
 import { fakeState, FakeState } from './localUtils';
-import TempTestZone from './TempTestZone/TempTestZone';
 
 const AssignPoints = (): JSX.Element => {
   const [leftCard, setLeftCard] = useState<JSX.Element>(<div>Pabeli</div>);
