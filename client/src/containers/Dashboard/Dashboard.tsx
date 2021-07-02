@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import LearntTech from '../../components/LearntTech/index';
 import Roadmap from '../../components/Roadmap';
 import { createTechAchievements, createGreeting } from './helpers';
+import styles from './Dashboard.module.scss';
 
 const Dashboard = (): JSX.Element => {
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
@@ -37,15 +38,18 @@ const Dashboard = (): JSX.Element => {
   const greetingMessage = createGreeting(userStore.gameData.level);
 
   return (
-    <div>
-      <div>
+    <div className={styles.screen}>
+      <div className={styles.header}>
         <h1>Hello, {userStore.username ? userStore.username : 'coder'}</h1>
         <h2>{greetingMessage}</h2>
       </div>
-      <Link to="/schedule">
-        <div>Schedule</div>
-      </Link>
       <LearntTech techAchievements={userTechAchievements} />
+      <div className={styles.bottom}>
+        <p>Take a look at the activites that have been planned for you</p>
+        <Link to="/schedule" className={styles.button}>
+          Schedule
+        </Link>
+      </div>
       <Roadmap userLevel={userStore.gameData.level} />
     </div>
   );

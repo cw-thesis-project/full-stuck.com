@@ -5,5 +5,41 @@
   @include fixed;
   @include center;
   @include column;
-  background-color: #3b1c94;
+  gap: 4em;
+  background-color: $primary;
+
+  h1 {
+    font-size: 8em;
+
+    &:nth-of-type(odd) {
+      color: $accent;
+    }
+
+    &:nth-of-type(even) {
+      color: $light;
+    }
+  }
+}
+
+.logo {
+  @include row;
+}
+
+.subtitle {
+  font-size: 3.5em;
+  max-width: 70vw;
+  text-align: center;
+  color: $light;
+  margin: 0;
+}
+
+.button {
+  @include rectangle(13em, 4em);
+  @include reset-input;
+  @include rounded;
+  background-color: $accent;
+  color: $light;
+  font-weight: 700;
+  font-size: 1.5em;
+  cursor: pointer;
 }

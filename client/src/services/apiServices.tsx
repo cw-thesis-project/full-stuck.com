@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { PastActivity, TechName, User, ApiResponse } from '../shared/types';
 import { apiUrl, emptyUser } from '../shared/constants';
-import { deepCopy } from '../utils/utils';
+import { deepCopy } from '../shared/utils';
 
 export async function getToken(
   getAccessTokenSilently: () => Promise<string>

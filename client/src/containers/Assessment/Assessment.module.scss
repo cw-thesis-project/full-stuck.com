@@ -2,21 +2,36 @@
 
 .page {
   @include row;
-  @include debug;
-  width: 100%;
+  @include screen;
+  justify-content: space-between;
+  align-items: stretch;
+  background-image: url('../../assets/images/wave-columns.svg'),
+    radial-gradient($gradientLight, $gradientDark);
+  background-size: cover;
+  padding: 4em;
 }
 
 .centerSection {
-  @include debug;
   @include column;
-  flex-grow: 1;
+  justify-content: space-between;
 
   h1 {
-    color: #ff4034;
+    color: $accent;
     font-size: 3em;
   }
+}
 
-  h2 {
-    margin-top: -5em;
-  }
+.roundsContainer {
+  @include row;
+  align-items: flex-end;
+}
+
+.roundsDone {
+  color: $accent;
+  font-size: 2.5em;
+}
+
+.totalRounds {
+  color: $primaryDark;
+  margin-left: 0.5em;
 }

@@ -32,7 +32,7 @@ const LearntTech = ({ techAchievements }: Props): JSX.Element => {
     ));
 
   return (
-    <div className={styles.row}>
+    <div className={styles.container}>
       <ScrollButton
         type="back"
         onClick={() => setStartIndex(startIndex - 1)}

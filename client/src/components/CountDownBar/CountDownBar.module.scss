@@ -2,7 +2,7 @@
 
 .container {
   @include rounded-full;
-  background-color: #e2d8ff;
+  background-color: $disabled;
   height: 1em;
   display: flex;
   justify-content: center;
@@ -11,6 +11,6 @@
 
 .timeLeft {
   @include rounded-full;
-  background-color: #6435e9;
+  background-color: $primaryLight;
   height: 100%;
 }

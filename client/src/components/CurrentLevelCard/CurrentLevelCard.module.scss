@@ -1,62 +1,38 @@
 @import '../../style/style.scss';
 
-.body {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  height: 35em;
-  h2, h3, h4 {
-    color: #f5f8ff;
-  }
-}
-
-.bodyTitle {
-  margin-top : 1em;
-}
-
-.bottom {
-  text-align: center;
-  width: 10em;
-  position: relative;
-  bottom: 1em;
-  h4 {
-    text-transform: none;
-  }
-}
-
 .container {
-  @include rectangle(25em, 35em);
   @include column;
   @include rounded;
-  background-color: #200f50;
+  background-color: $primaryDark;
+  justify-content: space-between;
   position: relative;
-  margin-right: 1em;
-  margin-left: 1em;
+  color: $light;
+  box-shadow: $shadow;
 }
 
-.points {
+.header {
+  @include row;
+  @include center;
+  width: 100%;
+}
+
+.pointsBadge {
   @include square(3em);
   @include column;
-  border-bottom-left-radius: 0.5em;
-  border-top-right-radius: 0.5em;
-  justify-content: flex-end;
+  @include center;
+  border-radius: 0 0.5em 0 0.5em;
   position: absolute;
-  top: 0em;
-  right: 0em;
-  background-color: #ff4034;
+  right: 0;
+  top: 0;
+  background-color: $accent;
 }
 
 .techZone {
   @include row;
-  align-items: flex-end;
 }
 
-h2,h3,h4 {
-  color: #f5f8ff;
-}
-
-h2 {
-  text-transform: capitalize;
+.bottom {
+  text-align: center;
+  padding: 0 4em;
+  margin-bottom: 2em;
 }

@@ -7,8 +7,10 @@
 
 .clickable {
   margin-top: 2em;
+  cursor: pointer;
+
   &:hover {
-    fill: #e2d8ff;
+    fill: $disabled;
     filter: grayscale(100%) sepia(100%);
   }
   &:active {
@@ -25,7 +27,7 @@
 }
 
 .espionage {
-  background-color: #f5f8ff;
+  background-color: $light;
 }
 
 .git {
@@ -69,7 +71,7 @@
 h2,
 h3,
 h4 {
-  color: #f5f8ff;
+  color: $light;
   text-transform: capitalize;
   margin-top: 0em;
 }

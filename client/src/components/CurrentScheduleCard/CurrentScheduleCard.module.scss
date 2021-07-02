@@ -1,10 +1,16 @@
 @import '../../style/style.scss';
 
-.scheduleItem {
+.container {
+  @include column;
+  grid-row: 3 / 4;
+}
+
+.card {
   @include column();
   @include rounded();
-  grid-row: 3 / 4;
-  background-color: #200f50;
+  background-color: $primaryDark;
+  padding-top: 2em;
+  height: 100%;
 }
 
 .imageContainer {

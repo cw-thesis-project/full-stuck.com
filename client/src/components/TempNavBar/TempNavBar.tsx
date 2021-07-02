@@ -3,7 +3,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { saveActivity, learnTech, newGame } from '../../store/thunks';
-import usePageTitle from '../../utils/usePageTitle';
+import usePageTitle from '../../shared/usePageTitle';
+import styles from './TempNavBar.module.scss';
 
 const TempNavBar = (): JSX.Element => {
   const userStore = useAppSelector((state) => state.user);
@@ -36,7 +37,7 @@ const TempNavBar = (): JSX.Element => {
 
   if (isAuthenticated) {
     return (
-      <div>
+      <div className={styles.container}>
         <p>
           username: {userStore?.username} level: {userStore?.gameData.level}
         </p>

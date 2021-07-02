@@ -7,16 +7,16 @@
   justify-self: center;
   align-self: center;
   gap: 0;
-  color: #200f50;
+  color: $primaryDark;
 }
 
 .circle {
   @include circle(5em);
-  background-color: #200f50;
+  background-color: $primaryDark;
 }
 
 .light {
-  color: #f5f8ff;
+  color: $light;
 }
 
 .number {
@@ -26,4 +26,5 @@
 
 .name {
   text-transform: uppercase;
+  letter-spacing: 0.5em;
 }

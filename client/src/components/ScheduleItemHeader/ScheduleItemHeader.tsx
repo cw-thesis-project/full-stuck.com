@@ -9,7 +9,7 @@ const ScheduleItemHeader = ({ scheduleItemTopic }: Props): JSX.Element => {
   return (
     <div className={styles.headerContainer}>
       <div className={styles.headerColor} />
-      <h1>{scheduleItemTopic}</h1>
+      <h1 className={styles.topic}>{scheduleItemTopic}</h1>
     </div>
   );
 };

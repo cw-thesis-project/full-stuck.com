@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { TechName } from '../../shared/types';
 import useElapsedTime from '../../shared/useElapsedTime';
-import { deepCopy } from '../../utils/utils';
+import { deepCopy } from '../../shared/utils';
 import { AssessmentGameOptions, IAssessmentGame } from './interfaces';
 import * as helpers from './helpers';
 

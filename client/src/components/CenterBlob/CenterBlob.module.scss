@@ -2,10 +2,10 @@
 
 .container {
   @include center;
-}
-
-.blob {
-  @include square(40em);
+  @include square(30em);
+  background: url('../../assets/icons/blob.svg');
+  background-position: center;
+  background-size: cover;
 }
 
 .iconsContainer {
@@ -36,4 +36,8 @@
   img:nth-of-type(3) {
     justify-self: end;
   }
+}
+
+.draggable {
+  cursor: grab;
 }

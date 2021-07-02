@@ -1,3 +1,11 @@
 @import '../../style/style.scss';
 
-
+.screen {
+  @include center;
+  @include row;
+  @include screen;
+  flex-direction: column;
+  background-image: url('../../assets/images/wave-corners.svg'),
+    radial-gradient($gradientLight, $gradientDark);
+  background-size: cover;
+}

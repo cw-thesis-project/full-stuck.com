@@ -53,7 +53,7 @@ const Roadmap = ({ userLevel }: Props): JSX.Element => {
   };
 
   return (
-    <div className={styles.column}>
+    <div className={styles.container}>
       <div className={styles.fullBar}>{`${' '}`}</div>
       <div
         className={styles.progressBar}

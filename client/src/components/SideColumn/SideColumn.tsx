@@ -24,7 +24,7 @@ const SideColumn = ({ icons, onIconMatch }: Props): JSX.Element => {
           onDrop={() => onIconMatch(index)}
           onDragOver={(e) => e.preventDefault()}
         >
-          <TechIcon isGray={isGray} techName={techName} iconSize="large" />
+          <TechIcon isGray={isGray} techName={techName} iconSize="medium" />
         </div>
       ))}
     </div>

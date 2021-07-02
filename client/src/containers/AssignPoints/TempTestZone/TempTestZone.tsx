@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { FakeState } from '../localUtils';
-import { TechName } from '../../../shared/types';
 
 interface Props {
   fakeAppState: FakeState;

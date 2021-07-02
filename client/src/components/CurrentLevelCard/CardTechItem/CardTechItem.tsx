@@ -53,7 +53,7 @@ const CardTechItem = ({
         className={styles.clickable}
         tabIndex={0}
       >
-        <TechIcon techName={techName} iconSize="medium" isGray={false} />
+        <TechIcon techName={techName} iconSize="small" isGray={false} />
       </div>
       <h4>{techName}</h4>
     </div>

@@ -3,7 +3,7 @@ import {
   getTechnologiesNames,
   deepCopy,
   pickRandomElementsFromArray,
-} from '../../utils/utils';
+} from '../../shared/utils';
 import { Icon, IconsGroup } from './interfaces';
 import { IconDescriptor } from '../../components/SideColumn/SideColumn';
 

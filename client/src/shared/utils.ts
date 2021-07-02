@@ -1,5 +1,5 @@
-import { Level, LevelMap, TechName } from '../shared/types';
-import { technologies } from '../shared/constants';
+import { Level, LevelMap, TechName } from './types';
+import { technologies } from './constants';
 
 export function deepCopy<T>(value: T): T {
   return JSON.parse(JSON.stringify(value));

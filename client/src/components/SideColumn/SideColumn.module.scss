@@ -1,7 +1,7 @@
 @import '../../style/style.scss';
 
 .sideColumn {
-  @include debug;
   @include column;
+  justify-content: space-between;
   width: 10em;
 }

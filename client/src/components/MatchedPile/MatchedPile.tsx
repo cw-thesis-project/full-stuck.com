@@ -14,9 +14,10 @@ const MatchedPiled = ({
 }: Props): JSX.Element => {
   return (
     <div className={styles.container}>
-      <TechIcon techName={lastMatchedTech} iconSize="medium" isGray={false} />
-      <div>{lastMatchedTech}</div>
-      <div>{numberOfMatches}</div>
+      <div className={styles.card}>
+        <TechIcon techName={lastMatchedTech} iconSize="medium" isGray={false} />
+      </div>
+      <h3>{numberOfMatches} Matched</h3>
     </div>
   );
 };

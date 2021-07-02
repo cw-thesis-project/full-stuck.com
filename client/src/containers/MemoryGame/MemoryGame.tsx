@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -42,7 +43,7 @@ const MemoryGame = (): JSX.Element => {
   }, [flipsDone, matchesDone]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.screen}>
       <FlipsCounter flipsDone={flipsDone} allowedFlips={allowedFlips} />
       <CardsTable cards={cards} onCardClick={handleCardChoice} />
       <MatchedPile

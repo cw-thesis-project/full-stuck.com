@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styles from './Splash.module.scss';
 
 const Splash = (): JSX.Element => {
@@ -19,14 +19,24 @@ const Splash = (): JSX.Element => {
 
   return (
     <div className={styles.screen}>
-      <h1>FULL_STUCK</h1>
-      <p>Take part to this bootcamp, Become CEO as quick as you can</p>
-      <button type="button" onClick={handleButtonClick}>
+      <div className={styles.logo}>
+        <h1>F</h1>
+        <h1>ULL</h1>
+        <h1>_</h1>
+        <h1>ST</h1>
+        <h1>U</h1>
+        <h1>CK</h1>
+      </div>
+      <p className={styles.subtitle}>
+        Take part to the bootcamp, <br /> become CEO as quick as you can!
+      </p>
+      <button
+        type="button"
+        onClick={handleButtonClick}
+        className={styles.button}
+      >
         {buttonText}
       </button>
-      <Link to="/admin" target="_blank">
-        admin
-      </Link>
     </div>
   );
 };

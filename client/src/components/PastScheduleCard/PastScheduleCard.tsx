@@ -11,7 +11,7 @@ interface Props {
 }
 const PastScheduleCard = ({ stars, topic }: Props): JSX.Element => {
   const starsArray: number[] = [];
-  const fakeStars = stars + 2;
+  const fakeStars = stars;
   starsArray.length = fakeStars;
   starsArray.fill(0);
 

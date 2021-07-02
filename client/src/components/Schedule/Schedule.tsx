@@ -7,7 +7,7 @@ import PastScheduleCard from '../PastScheduleCard';
 import CalendarDate from '../CalendarDate';
 import getDateVariant from './helperFunctions';
 import styles from './Schedule.module.scss';
-import icons from '../../assets/icons';
+import graduationHat from '../../assets/icons/graduationHat.svg';
 
 interface Props {
   history: PastActivity[];
@@ -27,11 +27,12 @@ const Schedule = ({
   const daysIndexes = [0, 1, 2, 3, 4, 5];
 
   return (
-    <div className={styles.scheduleList}>
+    <div className={styles.container}>
       {daysIndexes.map((index) => (
         <CalendarDate
           variant={getDateVariant(index, history.length)}
           dayIndex={historyLength + index}
+          key={historyLength + index}
         />
       ))}
 
@@ -43,7 +44,7 @@ const Schedule = ({
       ))}
       <Link to={`/game/${nextActivity}`}>
         <div className={styles.button}>
-          <img src={icons.graduationHat} alt="study icon" />
+          <img src={graduationHat} alt="study icon" />
           <p>Study Now</p>
         </div>
       </Link>

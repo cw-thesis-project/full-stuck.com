@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { getToken } from '../../services/apiServices';
 import { getUserData } from '../../store/thunks';
 import { useAppDispatch, useAppSelector } from '../../store';
-import './App.css';
+import styles from './App.module.scss';
 import Splash from '../Splash/Splash';
 import Dashboard from '../Dashboard/Dashboard';
 import Schedule from '../Schedule/Schedule';
@@ -32,7 +32,7 @@ const App = (): JSX.Element => {
   }, [isLoading]);
 
   return (
-    <div>
+    <div className={styles.container}>
       <Switch>
         <Route path="/" component={Splash} exact />
         <ProtectedRoute path="/dashboard" component={Dashboard} />

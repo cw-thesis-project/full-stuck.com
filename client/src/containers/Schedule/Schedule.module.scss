@@ -1,0 +1,20 @@
+@import '../../style/style.scss';
+
+.screen {
+  @include screen;
+  @include row;
+  background-image: url('../../assets/images/wave-diagonal.svg'),
+    linear-gradient($gradientLight, $gradientDark);
+  background-size: cover;
+  padding: 4em;
+}
+
+.backIcon {
+  margin-top: auto;
+
+  & img {
+    @include square(2em);
+    opacity: 50%;
+    cursor: pointer;
+  }
+}
