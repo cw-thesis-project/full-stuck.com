@@ -1,4 +1,4 @@
-import { Activity, TechExperience, Tech } from '../../shared/types';
+import { Activity } from '../../shared/types';
 
 export function lastFiveElements<T>(list: T[]): T[] {
   const reversed = [...list].reverse();
