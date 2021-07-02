@@ -53,14 +53,6 @@ const AssignPoints = (): JSX.Element => {
         {leftCard}
         {middleCard}
         {rightCard}
-        {showAll ? (
-          <div className={styles.testZone}>
-            <TempTestZone
-              fakeAppState={fakeAppState}
-              setFakeAppState={setFakeAppState}
-            />
-          </div>
-        ) : null}
       </div>
       <NavButtonAssignToSchedule
         moveToSchedule={moveToSchedule}
