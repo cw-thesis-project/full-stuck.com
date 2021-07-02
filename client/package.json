@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://full-stuck.com",
   "dependencies": {
     "@auth0/auth0-react": "^1.5.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -25,6 +26,8 @@
     "typescript": "^4.3.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b deployed -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -56,6 +59,8 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "^2.3.2"
-  }
+    "prettier": "^2.3.2",
+    "gh-pages": "^3.2.3"
+  },
+  "_id": "client@0.1.0"
 }
