@@ -3,11 +3,11 @@ import { useHistory } from 'react-router-dom';
 import styles from './AssignPoints.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { TechName, UserGameData } from '../../shared/types';
-import { learnTech, setActivityTopic } from '../../store/thunks';
+import { setActivityTopic } from '../../store/thunks';
 import NavButtonAssignToSchedule from '../../components/NavButtonAssignToSchedule';
 
 import { assignCards, buttonAllowed } from './helpers';
-import { fakeState, FakeState } from './localUtils';
+import { fakeState } from './localUtils';
 
 const AssignPoints = (): JSX.Element => {
   const dispatch = useAppDispatch();

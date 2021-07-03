@@ -131,7 +131,6 @@ export function setActivityTopic(techName: TechName, user: User): Thunk {
     try {
       let updatedUser = await apiService.learnTech(techName, user);
       if (updatedUser) {
-        dispatch(actions.decreasePointsToAssign());
         const { history } = updatedUser.gameData;
         if (history[history.length - 1].name !== 'assessment') {
           updatedUser = await apiService.changeActivityTopic(
@@ -142,6 +141,7 @@ export function setActivityTopic(techName: TechName, user: User): Thunk {
       }
       if (updatedUser) {
         dispatch(actions.setActivityTopicSuccess(updatedUser));
+        dispatch(actions.decreasePointsToAssign());
       } else throw new Error('something wrong with the API');
     } catch (error) {
       dispatch(actions.setActivityTopicFailure(error));

@@ -2,6 +2,7 @@ import React from 'react';
 import { TechName } from '../../../shared/types';
 import styles from './CardTechItem.module.scss';
 import TechIcon from '../../TechIcon';
+import { useAppSelector } from '../../../store';
 
 interface Props {
   experience: number;
@@ -16,6 +17,7 @@ const CardTechItem = ({
   onIconClick,
   maxBubbles,
 }: Props): JSX.Element => {
+  const loading = useAppSelector((state) => state.loading);
   const grayBubbleCount = maxBubbles - experience;
   const grayBubbles =
     grayBubbleCount > 0
@@ -39,7 +41,7 @@ const CardTechItem = ({
     ));
 
   function preventFrivolousSpending(tech: TechName): void {
-    if (experience < maxBubbles) onIconClick(tech);
+    if (experience < maxBubbles && !loading) onIconClick(tech);
   }
 
   return (
