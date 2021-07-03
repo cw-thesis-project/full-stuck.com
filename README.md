@@ -1,4 +1,4 @@
-# full-stuck.com vasdasd
+# full-stuck.com 
 asdasd
 
 
