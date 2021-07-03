@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import SideColumn from '../../components/SideColumn';
@@ -7,7 +6,7 @@ import CenterBlob from '../../components/CenterBlob';
 import CountDownBar from '../../components/CountDownBar';
 import useAssessmentGame from './assessmentGame';
 import styles from './Assessment.module.scss';
-import { getIconDescriptors, userAfterAssessment } from './helpers';
+import { userAfterAssessment } from './helpers';
 import { useAppDispatch, useAppSelector, actions } from '../../store';
 import { updateUser } from '../../store/thunks';
 import { AssessmentGameOptions } from './interfaces';
@@ -20,38 +19,25 @@ const Assessment = (): JSX.Element => {
   const [draggedName, setDraggedName] = useState<TechName>('javascript');
 
   const options: AssessmentGameOptions = {
-    level: 'junior',
+    level: user?.gameData.level || 'junior',
     onGameEnd,
-    techExperience: user?.gameData.techExperience,
+    gameStartTime: Date.now(),
   };
 
   const game = useAssessmentGame(options);
 
   function handleIconMatch(index: number) {
-    const { name } = game.sidesGroup.icons[index];
-
-    const centerIcon = game.centerGroup.icons.find(
-      (icon) => icon.name === name
-    );
-
-    const isMatch = centerIcon && !centerIcon.isMatched && draggedName === name;
-
-    if (isMatch) {
-      game.onIconMatch(name);
-    }
+    game.onIconMatch(index, draggedName);
   }
 
-  function onGameEnd() {
+  function onGameEnd(starsCount: number) {
     if (!user) {
       return;
     }
 
-    // TODO: make hasWon dynamic
-    const hasWon = true;
+    const hasWon = starsCount > 0;
     const newUser = userAfterAssessment(user, hasWon);
-    // TODO: REPLACE POINTS TO ASSIGN
-    // const pointsToAssign = hasWon ? 2 : 0;
-    const pointsToAssign = 2;
+    const pointsToAssign = starsCount;
 
     dispatch(updateUser(newUser));
     dispatch(actions.setPointsToAssign(pointsToAssign));
@@ -59,14 +45,14 @@ const Assessment = (): JSX.Element => {
     history.replace('/assign-points');
   }
 
-  if (!game.sidesGroup) {
-    return <div>game won!</div>;
+  if (game.timeLeft < 0) {
+    return <div style={{ color: 'red' }}>game over!</div>;
   }
 
   // prepare props for children
-  const leftIcons = getIconDescriptors(game.sidesGroup.icons.slice(0, 5));
-  const rightIcons = getIconDescriptors(game.sidesGroup.icons.slice(5));
-  const centerIcons = game.centerGroup.icons
+  const leftIcons = game.sideIcons.slice(0, 5);
+  const rightIcons = game.sideIcons.slice(5);
+  const centerNames = game.centerIcons
     .filter((icon) => !icon.isMatched)
     .map((icon) => icon.name);
 
@@ -77,16 +63,15 @@ const Assessment = (): JSX.Element => {
         onIconMatch={(index) => handleIconMatch(index)}
       />
       <div className={styles.centerSection}>
-        <h1>{game.gameTime.toFixed(1)}s</h1>
+        <h1>{(game.timeLeft / 1000).toFixed(1)}s</h1>
         <CenterBlob
-          techNames={centerIcons}
+          techNames={centerNames}
           onDragStart={(techName) => setDraggedName(techName)}
         />
         <div className={styles.roundsContainer}>
-          <h2 className={styles.roundsDone}>{game.round}</h2>
-          <h2 className={styles.totalRounds}>/{game.rounds}</h2>
+          <h2 className={styles.roundsDone}>{game.totalMatchesCount}</h2>
         </div>
-        <button type="button" onClick={onGameEnd}>
+        <button type="button" onClick={() => onGameEnd(3)}>
           <CountDownBar currentPercentage={0.7} />
         </button>
       </div>
