@@ -1,25 +1,11 @@
-import { Level, LevelMap, TechName } from './types';
+import { Level, TechName } from './types';
 import { technologies } from './constants';
 
 export function deepCopy<T>(value: T): T {
   return JSON.parse(JSON.stringify(value));
 }
 
-export function pickRandomElementsFromArray<T>(array: T[], count: number): T[] {
-  return array.slice(0, count);
-  // const choices = deepCopy(array);
-  // const picks: T[] = [];
-
-  // for (let i = 0; i < count; i += 1) {
-  //   const randomIndex = Math.floor(Math.random() * choices.length);
-  //   picks.push(choices[randomIndex]);
-  //   choices.splice(randomIndex);
-  // }
-
-  // return picks;
-}
-
-export function isUnlocked(userLevel: Level, techLevel: Level): boolean {
+export function isTechUnlocked(techLevel: Level, userLevel: Level): boolean {
   if (userLevel === 'tutor' || userLevel === 'CEO') {
     return true;
   }
@@ -33,7 +19,7 @@ export function isUnlocked(userLevel: Level, techLevel: Level): boolean {
 
 export function getUnlockedTechNames(userLevel: Level): TechName[] {
   return technologies
-    .filter((tech) => isUnlocked(userLevel, tech.level))
+    .filter((tech) => isTechUnlocked(tech.level, userLevel))
     .map((tech) => tech.name);
 }
 
@@ -41,13 +27,20 @@ export function getTechnologiesNames(): TechName[] {
   return technologies.map((tech) => tech.name);
 }
 
-export const a = 1;
+export function shuffle<T>(array: T[]): T[] {
+  const arrayCopy = deepCopy(array);
+  let currentIndex = array.length;
+  let randomIndex: number;
 
-export const levelToNumber: LevelMap = {
-  junior: 0,
-  senior: 1,
-  tutor: 2,
-  CEO: 3,
-};
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
 
-export const maxBubbles = 3;
+    [arrayCopy[currentIndex], arrayCopy[randomIndex]] = [
+      arrayCopy[randomIndex],
+      arrayCopy[currentIndex],
+    ];
+  }
+
+  return arrayCopy;
+}

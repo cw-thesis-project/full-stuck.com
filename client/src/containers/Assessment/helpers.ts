@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 /* eslint-disable no-restricted-syntax */
 import {
   TechName,
@@ -7,11 +6,7 @@ import {
   User,
   StarsCount,
 } from '../../shared/types';
-import {
-  getUnlockedTechNames,
-  deepCopy,
-  pickRandomElementsFromArray,
-} from '../../shared/utils';
+import { getUnlockedTechNames, deepCopy, shuffle } from '../../shared/utils';
 import {
   technologies,
   maxTechnologyExperience as maxTechLevel,
@@ -29,17 +24,11 @@ export function makeIcon(name: TechName): Icon {
 
 export function createCenterIcons(userLevel: Level, groupSize: number): Icon[] {
   const availableTechNames = getUnlockedTechNames(userLevel);
-  const chosenTechNames = pickRandomElementsFromArray(
-    availableTechNames,
-    groupSize
-  );
 
-  return chosenTechNames.map(makeIcon);
+  return shuffle(availableTechNames).slice(0, groupSize).map(makeIcon);
 }
 
 export function createSideIcons(centerIcons: Icon[], userLevel: Level): Icon[] {
-  // C C C O O - O O O O O
-
   const centerNames = centerIcons.map((icon) => icon.name);
 
   const otherNames = getUnlockedTechNames(userLevel).filter(
@@ -49,14 +38,14 @@ export function createSideIcons(centerIcons: Icon[], userLevel: Level): Icon[] {
   const sideIcons = [...centerIcons];
 
   for (let i = centerIcons.length; i < 10; i += 1) {
-    // TODO: pick one random from otherNames
+    const randomIndex = Math.floor(Math.random() * otherNames.length);
     sideIcons.push({
-      name: otherNames[0],
+      name: otherNames[randomIndex],
       isMatched: false,
     });
   }
 
-  return sideIcons;
+  return shuffle(sideIcons);
 }
 
 export function findIconByTechName(
@@ -153,7 +142,7 @@ export function userAfterAssesment(user: User, hasWon: boolean): User {
 }
 
 export function getStars(totalMatchesCount: number): StarsCount {
-  for (let i = 0; i < scoreThresholds.length; i++) {
+  for (let i = 0; i < scoreThresholds.length; i += 1) {
     if (totalMatchesCount < scoreThresholds[i]) {
       return i as StarsCount;
     }
