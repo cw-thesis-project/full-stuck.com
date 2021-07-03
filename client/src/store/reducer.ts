@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { Level, User } from '../shared/types';
+import { User } from '../shared/types';
 import { AppState, AppAction, FailureAction } from './storeTypes';
 
 export const defaultState: AppState = {
