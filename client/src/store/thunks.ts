@@ -107,7 +107,6 @@ export function levelUserUp(nextLevel: Level): Thunk {
     }
   };
 }
-
 export function updateUser(newUser: User): Thunk {
   return async function levelUserUpThunk(dispatch, getState, apiService) {
     dispatch(actions.updateUserRequest(newUser));
@@ -121,6 +120,7 @@ export function updateUser(newUser: User): Thunk {
     }
   };
 }
+
 export function setActivityTopic(techName: TechName, user: User): Thunk {
   return async function setActivityTopicThunk(dispatch, getState, apiService) {
     dispatch(actions.setActivityTopicRequest(techName, user));
@@ -129,12 +129,23 @@ export function setActivityTopic(techName: TechName, user: User): Thunk {
     getState();
 
     try {
-      const updatedUser = await apiService.changeActivityTopic(techName, user);
-      if (updatedUser !== null) {
-        dispatch(actions.setActivityTopicSuccess(techName, user));
-      } else {
-        throw new Error('something wrong with the API');
+      let updatedUser = await apiService.learnTech(techName, user);
+      console.log('updatedUser after learnTech in thunk', updatedUser);
+
+      if (updatedUser) {
+        dispatch(actions.decreasePointsToAssign());
+        const { history } = updatedUser.gameData;
+        if (history[history.length - 1].name !== 'assessment') {
+          updatedUser = await apiService.changeActivityTopic(
+            techName,
+            updatedUser
+          );
+          console.log('updatedUser after changeActivityTopic', updatedUser);
+        }
       }
+      if (updatedUser) {
+        dispatch(actions.setActivityTopicSuccess(updatedUser));
+      } else throw new Error('something wrong with the API');
     } catch (error) {
       dispatch(actions.setActivityTopicFailure(error));
     }
