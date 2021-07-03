@@ -56,10 +56,6 @@ const AssignPoints = (): JSX.Element => {
     }
   }, [pointsToAssign]);
 
-  useEffect(() => {
-    console.log('use effect on mount, history = ', userHistory);
-  }, []);
-
   return (
     <div className={styles.screen}>
       <div className={styles.container}>
