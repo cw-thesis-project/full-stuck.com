@@ -1,0 +1,38 @@
+name: Deploy Dev
+
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  deploy:
+    name: Deploy Dev
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: 'dev'
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: rm -f package-lock.json
+      run: rm -f package-lock.json
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: npm run build:dev
+      run: npm run build:dev   
+
+    - name: Deploy to gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./client/build
+        cname: dev.full-stuck.com
