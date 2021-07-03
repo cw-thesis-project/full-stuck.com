@@ -1,6 +1,9 @@
 name: Deploy Dev
 
 on:
+  push:
+    branches:
+      - dev
   pull_request_target:
     branches:
       - dev
