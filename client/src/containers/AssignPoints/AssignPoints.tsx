@@ -26,10 +26,21 @@ const AssignPoints = (): JSX.Element => {
   const { level } = gameData;
   const { techExperience } = gameData;
   const { history: userHistory } = gameData;
+  // let clickActive = true;
+
+  // function dispatchHandler(techName) {
+  //   return new Promise((res, rej) => {
+  //     dispatch(learnTech(techName));
+  //     resolve();
+  //   });
+  // }
 
   function onIconClick(techName: TechName) {
+    // if (!clickActive) return;
     if (pointsToAssign > 0) {
+      // clickActive = false;
       dispatch(learnTech(techName));
+      // clickActive = true;
       if (user) dispatch(setActivityTopic('espionage', user));
       // check if hitory got length
       // if (userHistory[userHistory.length - 1].name !== 'assessment') {
@@ -53,7 +64,7 @@ const AssignPoints = (): JSX.Element => {
       techExperience,
       onIconClick
     );
-  }, [pointsToAssign, redirectionAllowed]);
+  }, [pointsToAssign, redirectionAllowed, level]);
 
   useEffect(() => {
     if (buttonAllowed(level, techExperience, pointsToAssign)) {
