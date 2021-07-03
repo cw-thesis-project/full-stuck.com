@@ -139,7 +139,7 @@ export function nextUserLevel(level: Level): Level {
   return nextLevelMap[level];
 }
 
-export function userAfterAssesment(user: User, hasWon: boolean): User {
+export function userAfterAssessment(user: User, hasWon: boolean): User {
   const newUser = deepCopy(user);
 
   const { techExperience, level, history } = newUser.gameData;

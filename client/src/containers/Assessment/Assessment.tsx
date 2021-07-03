@@ -7,7 +7,7 @@ import CenterBlob from '../../components/CenterBlob';
 import CountDownBar from '../../components/CountDownBar';
 import useAssessmentGame from './assessmentGame';
 import styles from './Assessment.module.scss';
-import { getIconDescriptors, userAfterAssesment } from './helpers';
+import { getIconDescriptors, userAfterAssessment } from './helpers';
 import { useAppDispatch, useAppSelector, actions } from '../../store';
 import { updateUser } from '../../store/thunks';
 import { AssessmentGameOptions } from './interfaces';
@@ -48,7 +48,7 @@ const Assessment = (): JSX.Element => {
 
     // TODO: make hasWon dynamic
     const hasWon = true;
-    const newUser = userAfterAssesment(user, hasWon);
+    const newUser = userAfterAssessment(user, hasWon);
     // TODO: REPLACE POINTS TO ASSIGN
     // const pointsToAssign = hasWon ? 2 : 0;
     const pointsToAssign = 2;
