@@ -130,8 +130,6 @@ export function setActivityTopic(techName: TechName, user: User): Thunk {
 
     try {
       let updatedUser = await apiService.learnTech(techName, user);
-      console.log('updatedUser after learnTech in thunk', updatedUser);
-
       if (updatedUser) {
         dispatch(actions.decreasePointsToAssign());
         const { history } = updatedUser.gameData;
@@ -140,7 +138,6 @@ export function setActivityTopic(techName: TechName, user: User): Thunk {
             techName,
             updatedUser
           );
-          console.log('updatedUser after changeActivityTopic', updatedUser);
         }
       }
       if (updatedUser) {
