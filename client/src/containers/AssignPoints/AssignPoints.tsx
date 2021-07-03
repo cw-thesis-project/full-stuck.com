@@ -7,7 +7,7 @@ import { learnTech } from '../../store/thunks';
 import NavButtonAssignToSchedule from '../../components/NavButtonAssignToSchedule';
 
 import { assignCards } from './helpers';
-import { fakeState, FakeState } from './localUtils';
+import { fakeState } from './localUtils';
 
 const AssignPoints = (): JSX.Element => {
   const [leftCard, setLeftCard] = useState<JSX.Element>(<div>Pabeli</div>);
@@ -15,7 +15,6 @@ const AssignPoints = (): JSX.Element => {
   const [rightCard, setRightCard] = useState<JSX.Element>(<div>Pabelu</div>);
   const history = useHistory();
   // // TODO: remove the fakeAppState useState in prod
-  const [fakeAppState, setFakeAppState] = useState<FakeState>(fakeState);
   const showAll = false;
   const dispatch = useAppDispatch();
   const appState = useAppSelector((state) => state);
