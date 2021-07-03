@@ -107,4 +107,5 @@ dist
 **/package-lock.json
 
 **/.DONT_UPLOAD.txt
-client/package-lock.json
+**/package-lock.json
+**/build
