@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { PastActivity, TechName, User, ApiResponse } from '../shared/types';
+import {
+  PastActivity,
+  TechName,
+  User,
+  ApiResponse,
+  Activity,
+} from '../shared/types';
 import { apiUrl, emptyUser } from '../shared/constants';
 import { deepCopy } from '../shared/utils';
 
@@ -78,5 +84,15 @@ export async function saveActivity(
 ): Promise<User | null> {
   const currentUserState = deepCopy(user);
   currentUserState.gameData.history.push(pastActivity);
+  return updateUser(currentUserState);
+}
+
+export async function changeActivityTopic(
+  techName: TechName,
+  user: User
+): Promise<User | null> {
+  const currentUserState = deepCopy(user);
+  const { history } = currentUserState.gameData;
+  history[history.length - 1].topic = techName;
   return updateUser(currentUserState);
 }

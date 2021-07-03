@@ -121,3 +121,22 @@ export function updateUser(newUser: User): Thunk {
     }
   };
 }
+export function setActivityTopic(techName: TechName, user: User): Thunk {
+  return async function setActivityTopicThunk(dispatch, getState, apiService) {
+    dispatch(actions.setActivityTopicRequest(techName, user));
+
+    // just so es-lint does not complain
+    getState();
+
+    try {
+      const updatedUser = await apiService.changeActivityTopic(techName, user);
+      if (updatedUser !== null) {
+        dispatch(actions.setActivityTopicSuccess(techName, user));
+      } else {
+        throw new Error('something wrong with the API');
+      }
+    } catch (error) {
+      dispatch(actions.setActivityTopicFailure(error));
+    }
+  };
+}

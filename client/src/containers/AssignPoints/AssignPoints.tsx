@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import styles from './AssignPoints.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { TechName, UserGameData } from '../../shared/types';
-import { learnTech } from '../../store/thunks';
+import { learnTech, setActivityTopic } from '../../store/thunks';
 import NavButtonAssignToSchedule from '../../components/NavButtonAssignToSchedule';
 
 import { assignCards, buttonAllowed } from './helpers';
@@ -30,6 +30,7 @@ const AssignPoints = (): JSX.Element => {
   function onIconClick(techName: TechName) {
     if (pointsToAssign > 0) {
       dispatch(learnTech(techName));
+      if (user) dispatch(setActivityTopic('espionage', user));
       // check if hitory got length
       // if (userHistory[userHistory.length - 1].name !== 'assessment') {
       //   // rewrite history

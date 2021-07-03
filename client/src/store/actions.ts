@@ -134,6 +134,14 @@ export function getUserDataFailure(error: Error | string): AppAction {
 export function updateUserRequest(user: User): AppAction {
   return {
     type: 'UPDATE_USER_REQUEST',
+// set topic
+export function setActivityTopicRequest(
+  techName: TechName,
+  user: User
+): AppAction {
+  return {
+    type: 'SET_ACTIVITY_TOPIC_REQUEST',
+    techName,
     user,
   };
 }
@@ -141,6 +149,13 @@ export function updateUserRequest(user: User): AppAction {
 export function updateUserSuccess(user: User): AppAction {
   return {
     type: 'UPDATE_USER_SUCCESS',
+export function setActivityTopicSuccess(
+  techName: TechName,
+  user: User
+): AppAction {
+  return {
+    type: 'SET_ACTIVITY_TOPIC_SUCCESS',
+    techName,
     user,
   };
 }
@@ -152,6 +167,12 @@ export function updateUserFailure(error: Error | string): AppAction {
   };
 }
 
+export function setActivityTopicFailure(error: Error | string): AppAction {
+  return {
+    type: 'SET_ACTIVITY_TOPIC_FAILURE',
+    error,
+  };
+}
 // reset error
 
 export function resetError(): AppAction {
