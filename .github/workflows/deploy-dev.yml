@@ -9,7 +9,7 @@ on:
       - dev
 jobs:
   build:
-    name: Build Dev
+    name: Deploy Dev
     runs-on: ubuntu-latest
     defaults:
       run:
