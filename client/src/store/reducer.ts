@@ -23,6 +23,14 @@ export function reducer(state = defaultState, action: AppAction): AppState {
       auxState = stopLoading(state);
       return addActivityToUserHistory(action.user, auxState);
 
+    case 'UPDATE_USER_SUCCESS':
+      auxState = stopLoading(state);
+      return saveUser(action.user, auxState);
+
+    case 'LEVEL_USER_UP_SUCCESS':
+      auxState = stopLoading(state);
+      return makeUserLevelUp(action.user, auxState);
+
     case 'LEARN_TECH_SUCCESS':
       auxState = stopLoading(state);
       return makeUserLearnTech(action.user, auxState);
@@ -34,12 +42,14 @@ export function reducer(state = defaultState, action: AppAction): AppState {
 
     case 'SET_ACTIVITY_TOPIC_SUCCESS':
       auxState = stopLoading(state);
-      return changeTopic(action.techName, auxState);
+      return changeTopic(action.user, auxState);
 
     case 'NEW_GAME_REQUEST':
     case 'GET_USER_DATA_REQUEST':
     case 'LEARN_TECH_REQUEST':
     case 'SAVE_ACTIVITY_REQUEST':
+    case 'LEVEL_USER_UP_REQUEST':
+    case 'UPDATE_USER_REQUEST':
     case 'SET_ACTIVITY_TOPIC_REQUEST':
       return startLoading(state);
 
@@ -47,6 +57,8 @@ export function reducer(state = defaultState, action: AppAction): AppState {
     case 'GET_USER_DATA_FAILURE':
     case 'LEARN_TECH_FAILURE':
     case 'SAVE_ACTIVITY_FAILURE':
+    case 'LEVEL_USER_UP_FAILURE':
+    case 'UPDATE_USER_FAILURE':
     case 'SET_ACTIVITY_TOPIC_FAILURE':
       auxState = stopLoading(state);
       return handleError(auxState, action as FailureAction);
@@ -108,12 +120,9 @@ function makeUserLevelUp(user: User, state: AppState): AppState {
   return saveUser(user, state);
 }
 
-function changeTopic(techName: TechName, state: AppState) {
+function changeTopic(user: User, state: AppState) {
   if (!state.user) {
     return state;
   }
-  const { history } = state.user.gameData;
-  history[history.length - 1].topic = techName;
-  console.log('state', state);
-  return { ...state };
+  return saveUser(user, state);
 }
