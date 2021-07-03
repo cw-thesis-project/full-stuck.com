@@ -23,6 +23,7 @@ const CenterBlob = ({ techNames, onDragStart }: Props): JSX.Element => {
         {techNames.map((techName) => (
           <div
             draggable
+            key={techName}
             onDragStart={() => onDragStart(techName)}
             className={styles.draggable}
           >
