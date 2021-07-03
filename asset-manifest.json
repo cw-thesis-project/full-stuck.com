@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "https://dev.full-stuck.com/static/css/main.9ee4754d.chunk.css",
+    "main.js": "https://dev.full-stuck.com/static/js/main.d64bffcc.chunk.js",
+    "main.js.map": "https://dev.full-stuck.com/static/js/main.d64bffcc.chunk.js.map",
+    "runtime-main.js": "https://dev.full-stuck.com/static/js/runtime-main.cb37aed7.js",
+    "runtime-main.js.map": "https://dev.full-stuck.com/static/js/runtime-main.cb37aed7.js.map",
+    "static/js/2.4ba74ac7.chunk.js": "https://dev.full-stuck.com/static/js/2.4ba74ac7.chunk.js",
+    "static/js/2.4ba74ac7.chunk.js.map": "https://dev.full-stuck.com/static/js/2.4ba74ac7.chunk.js.map",
+    "index.html": "https://dev.full-stuck.com/index.html",
+    "static/css/main.9ee4754d.chunk.css.map": "https://dev.full-stuck.com/static/css/main.9ee4754d.chunk.css.map",
+    "static/js/2.4ba74ac7.chunk.js.LICENSE.txt": "https://dev.full-stuck.com/static/js/2.4ba74ac7.chunk.js.LICENSE.txt",
+    "static/media/arrow.234b236a.svg": "https://dev.full-stuck.com/static/media/arrow.234b236a.svg",
+    "static/media/back.66d65c54.svg": "https://dev.full-stuck.com/static/media/back.66d65c54.svg",
+    "static/media/CenterBlob.module.scss": "https://dev.full-stuck.com/static/media/blob.5f067d5e.svg",
+    "static/media/debugging.cce3020b.svg": "https://dev.full-stuck.com/static/media/debugging.cce3020b.svg",
+    "static/media/eloquence.a0f9e12e.svg": "https://dev.full-stuck.com/static/media/eloquence.a0f9e12e.svg",
+    "static/media/espionage.3cfe0745.svg": "https://dev.full-stuck.com/static/media/espionage.3cfe0745.svg",
+    "static/media/flipCounter.31c606ac.svg": "https://dev.full-stuck.com/static/media/flipCounter.31c606ac.svg",
+    "static/media/git.dd8f1dca.svg": "https://dev.full-stuck.com/static/media/git.dd8f1dca.svg",
+    "static/media/graduationHat.42aafb6f.svg": "https://dev.full-stuck.com/static/media/graduationHat.42aafb6f.svg",
+    "static/media/graphql.1b13781d.svg": "https://dev.full-stuck.com/static/media/graphql.1b13781d.svg",
+    "static/media/hourGlass.cee44acb.svg": "https://dev.full-stuck.com/static/media/hourGlass.cee44acb.svg",
+    "static/media/javascript.acc4642f.svg": "https://dev.full-stuck.com/static/media/javascript.acc4642f.svg",
+    "static/media/lock.403a2962.svg": "https://dev.full-stuck.com/static/media/lock.403a2962.svg",
+    "static/media/medal.ecc5bf7e.svg": "https://dev.full-stuck.com/static/media/medal.ecc5bf7e.svg",
+    "static/media/question.ca287274.svg": "https://dev.full-stuck.com/static/media/question.ca287274.svg",
+    "static/media/react.1e5127ec.svg": "https://dev.full-stuck.com/static/media/react.1e5127ec.svg",
+    "static/media/rxjs.45a8ffbc.svg": "https://dev.full-stuck.com/static/media/rxjs.45a8ffbc.svg",
+    "static/media/star.7cc8bcd7.svg": "https://dev.full-stuck.com/static/media/star.7cc8bcd7.svg",
+    "static/media/typescript.e0cf5672.svg": "https://dev.full-stuck.com/static/media/typescript.e0cf5672.svg",
+    "static/media/AssignPoints.module.scss": "https://dev.full-stuck.com/static/media/wave-bottom.0ef90068.svg",
+    "static/media/Assessment.module.scss": "https://dev.full-stuck.com/static/media/wave-columns.7b3bde5b.svg",
+    "static/media/MemoryGame.module.scss": "https://dev.full-stuck.com/static/media/wave-corners.2804e3e0.svg",
+    "static/media/Schedule.module.scss": "https://dev.full-stuck.com/static/media/wave-diagonal.3309f714.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cb37aed7.js",
+    "static/js/2.4ba74ac7.chunk.js",
+    "static/css/main.9ee4754d.chunk.css",
+    "static/js/main.d64bffcc.chunk.js"
+  ]
+}
