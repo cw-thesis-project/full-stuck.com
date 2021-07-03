@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-console */
+/* eslint-disable no-shadow */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TechName } from '../../shared/types';
-import useElapsedTime from '../../shared/useElapsedTime';
 import { deepCopy } from '../../shared/utils';
 import { AssessmentGameOptions, IAssessmentGame } from './interfaces';
 import * as helpers from './helpers';
@@ -11,90 +9,113 @@ import * as helpers from './helpers';
 function useAssessmentGame(
   gameOptions: AssessmentGameOptions
 ): IAssessmentGame {
-  const { level, onGameEnd, techExperience } = gameOptions;
-
-  let userExperience = helpers.mockTechExperience;
-
-  if (techExperience) {
-    // TODO: create cards based on tech experience
-    userExperience = techExperience;
-  }
+  const { level, onGameEnd, gameStartTime } = gameOptions;
 
   // game constants
   const groupSize = 3;
-  const rounds = 2;
-  const maxTimeForGroup = 5;
+  // TODO: make game longer (for production)
+  const gameDuration = 5_000;
 
-  const atCenter = helpers.createIconsToDrag(level, groupSize, rounds);
-  const atSides = helpers.createSideChoices(atCenter);
+  const initialCenterIcons = helpers.createCenterIcons(level, groupSize);
+  const initialSideIcons = helpers.createSideIcons(initialCenterIcons, level);
 
-  // icons states
-  const [groupsToDrag, setGroupsToDrag] = useState(atCenter);
-  const [sideChoices, setSideChoices] = useState(atSides);
+  let intervalId: NodeJS.Timeout;
 
-  // time states
-  const [gameTime] = useElapsedTime(Date.now());
-  const [groupTime] = useElapsedTime(Date.now());
+  // states
+  const [centerIcons, setCenterIcons] = useState(initialCenterIcons);
+  const [sideIcons, setSideIcons] = useState(initialSideIcons);
+  const [timeLeft, setTimeLeft] = useState(gameDuration);
+  const [groupMatchesCount, setGroupMatchesCount] = useState(0);
+  const [totalMatchesCount, setTotalMatchesCount] = useState(0);
+  // interval on mount -> useEffect []
+  // read state inside set interval
 
-  // counter states
-  const [round, setRound] = useState(0);
-  const [matched, setMatched] = useState(0);
+  useEffect(createInterval, []);
 
-  function onIconMatch(techName: TechName) {
-    matchCenterIcon(techName);
-    matchSideIcon(techName);
-    handleRoundProgression();
+  function onIconMatch(index: number, draggedName: TechName) {
+    const { name } = sideIcons[index];
+
+    const centerIcon = centerIcons.find((icon) => icon.name === name);
+
+    if (centerIcon) {
+      const isMatch = !centerIcon.isMatched && draggedName === name;
+
+      if (!isMatch) {
+        return;
+      }
+    }
+
+    setTotalMatchesCount((total) => total + 1);
+    matchCenterIcon(draggedName);
+    matchSideIcon(draggedName);
+    handleGroupProgression();
   }
 
   function matchCenterIcon(techName: TechName) {
-    const toDragCopy = deepCopy(groupsToDrag);
-    const icon = helpers.findIconByTechName(toDragCopy[round].icons, techName);
+    const centerIconsCopy = deepCopy(centerIcons);
+    const icon = helpers.findIconByTechName(centerIconsCopy, techName);
 
     if (icon) {
       icon.isMatched = true;
-      setGroupsToDrag(toDragCopy);
+      setCenterIcons(() => centerIconsCopy);
     }
   }
 
   function matchSideIcon(techName: TechName) {
-    const sideCopy = deepCopy(sideChoices);
-    const icon = helpers.findIconByTechName(sideCopy[round].icons, techName);
+    const sideIconsCopy = deepCopy(sideIcons);
+    const icon = helpers.findIconByTechName(sideIconsCopy, techName);
 
     if (icon) {
       icon.isMatched = true;
-      setSideChoices(sideCopy);
+      setSideIcons(() => sideIconsCopy);
     }
   }
 
-  function handleRoundProgression() {
-    const isRoundDone = matched === groupSize - 1;
+  function handleGroupProgression() {
+    const isGroupDone = groupMatchesCount === groupSize - 1;
 
-    if (isRoundDone) {
-      if (round < rounds - 1) {
-        setMatched(0);
-      } else {
-        setRound((r) => r + 1);
-        onGameEnd(3);
-      }
-      setRound((r) => r + 1);
+    if (isGroupDone) {
+      const newCenterIcons = helpers.createCenterIcons(level, groupSize);
+      const newSideIcons = helpers.createSideIcons(newCenterIcons, level);
+
+      setCenterIcons(() => newCenterIcons);
+      setSideIcons(() => newSideIcons);
+      setGroupMatchesCount(() => 0);
     } else {
-      setMatched((m) => m + 1);
+      setGroupMatchesCount((count) => count + 1);
     }
   }
 
-  // conversions before returning
-  const groupTimeLeftPercent = (groupTime / maxTimeForGroup) * 100;
-  const centerGroup = groupsToDrag[round];
-  const sidesGroup = sideChoices[round];
+  function createInterval() {
+    console.log('createInterval');
+    intervalId = setInterval(checkGameOver, 50);
+  }
+
+  function checkGameOver() {
+    const newTimeLeft = gameDuration - (Date.now() - gameStartTime);
+    setTimeLeft(() => newTimeLeft);
+
+    // could not figure out a better way to make it work
+    setTotalMatchesCount((totalMatchesCount) => {
+      const isGameOver = newTimeLeft < 0;
+      console.log('totalMatchesCount', totalMatchesCount);
+
+      if (isGameOver) {
+        clearInterval(intervalId);
+        const starsCount = helpers.getStars(totalMatchesCount);
+        onGameEnd(starsCount);
+      }
+
+      return totalMatchesCount;
+    });
+  }
 
   return {
     onIconMatch,
-    centerGroup,
-    sidesGroup,
-    round,
-    groupTimeLeftPercent,
-    rounds,
-    gameTime,
+    centerIcons,
+    sideIcons,
+    timeLeft,
+    totalMatchesCount,
   };
 }
 

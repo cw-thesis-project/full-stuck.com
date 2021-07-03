@@ -2,30 +2,25 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
-import { TechName } from '../../shared/types';
 import styles from './SideColumn.module.scss';
 import TechIcon from '../TechIcon';
-
-export interface IconDescriptor {
-  techName: TechName;
-  isGray: boolean;
-}
+import { Icon } from '../../containers/Assessment/interfaces';
 
 interface Props {
-  icons: IconDescriptor[];
+  icons: Icon[];
   onIconMatch(index: number): void;
 }
 
 const SideColumn = ({ icons, onIconMatch }: Props): JSX.Element => {
   return (
     <div className={styles.sideColumn}>
-      {icons.map(({ isGray, techName }, index) => (
+      {icons.map(({ isMatched, name }, index) => (
         <div
           key={index}
           onDrop={() => onIconMatch(index)}
           onDragOver={(e) => e.preventDefault()}
         >
-          <TechIcon isGray={isGray} techName={techName} iconSize="medium" />
+          <TechIcon isGray={isMatched} techName={name} iconSize="medium" />
         </div>
       ))}
     </div>

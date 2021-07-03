@@ -1,7 +1,14 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-restricted-syntax */
-import { TechName, Level, TechExperience, User } from '../../shared/types';
 import {
-  getTechnologiesNames,
+  TechName,
+  Level,
+  TechExperience,
+  User,
+  StarsCount,
+} from '../../shared/types';
+import {
+  getUnlockedTechNames,
   deepCopy,
   pickRandomElementsFromArray,
 } from '../../shared/utils';
@@ -9,8 +16,9 @@ import {
   technologies,
   maxTechnologyExperience as maxTechLevel,
 } from '../../shared/constants';
-import { Icon, IconsGroup } from './interfaces';
-import { IconDescriptor } from '../../components/SideColumn/SideColumn';
+import { Icon } from './interfaces';
+
+const scoreThresholds = [5, 10, 15];
 
 export function makeIcon(name: TechName): Icon {
   return {
@@ -19,54 +27,36 @@ export function makeIcon(name: TechName): Icon {
   };
 }
 
-export function createIconsToDrag(
-  level: Level,
-  groupSize: number,
-  rounds: number
-): IconsGroup[] {
-  const iconsGroups: IconsGroup[] = [];
+export function createCenterIcons(userLevel: Level, groupSize: number): Icon[] {
+  const availableTechNames = getUnlockedTechNames(userLevel);
+  const chosenTechNames = pickRandomElementsFromArray(
+    availableTechNames,
+    groupSize
+  );
 
-  // for every round
-  for (let i = 0; i < rounds; i += 1) {
-    // choose #groupSize different icons
-    const available = getTechnologiesNames();
-    const techNames = pickRandomElementsFromArray(available, groupSize);
+  return chosenTechNames.map(makeIcon);
+}
 
-    iconsGroups.push({
-      groupIndex: i,
-      icons: techNames.map(makeIcon),
+export function createSideIcons(centerIcons: Icon[], userLevel: Level): Icon[] {
+  // C C C O O - O O O O O
+
+  const centerNames = centerIcons.map((icon) => icon.name);
+
+  const otherNames = getUnlockedTechNames(userLevel).filter(
+    (techName) => !centerNames.includes(techName)
+  );
+
+  const sideIcons = [...centerIcons];
+
+  for (let i = centerIcons.length; i < 10; i += 1) {
+    // TODO: pick one random from otherNames
+    sideIcons.push({
+      name: otherNames[0],
+      isMatched: false,
     });
   }
 
-  return iconsGroups;
-}
-
-export function makeSideChoice(
-  group: IconsGroup,
-  groupIndex: number
-): IconsGroup {
-  const chosenNames = group.icons.map((icon) => icon.name);
-
-  const sideGroup: IconsGroup = {
-    groupIndex,
-    icons: group.icons,
-  };
-
-  const otherNames = getTechnologiesNames().filter((techName) => {
-    return !chosenNames.includes(techName);
-  });
-
-  for (let i = 0; i < 10 - chosenNames.length; i += 1) {
-    sideGroup.icons.push({ isMatched: false, name: otherNames[0] });
-  }
-
-  return sideGroup;
-}
-
-export function createSideChoices(groupsToDrag: IconsGroup[]): IconsGroup[] {
-  return deepCopy(groupsToDrag).map((group, i) => {
-    return makeSideChoice(group, i);
-  });
+  return sideIcons;
 }
 
 export function findIconByTechName(
@@ -74,15 +64,6 @@ export function findIconByTechName(
   techName: TechName
 ): Icon | undefined {
   return icons.find((icon) => icon.name === techName);
-}
-
-export function getIconDescriptors(icons: Icon[]): IconDescriptor[] {
-  return icons.map((icon) => {
-    return {
-      techName: icon.name,
-      isGray: icon.isMatched,
-    };
-  });
 }
 
 export const mockTechExperience: TechExperience = {
@@ -104,7 +85,9 @@ export function getAssessmentTopic(techExperience: TechExperience): TechName {
     }
   }
 
-  throw new Error('assessment topic not found');
+  throw new Error(
+    'You should not be able to play an assessment right now. Did you use the URL to get here? (or admin page)?'
+  );
 }
 
 export function shouldLevelUp(
@@ -167,4 +150,14 @@ export function userAfterAssessment(user: User, hasWon: boolean): User {
   }
 
   return newUser;
+}
+
+export function getStars(totalMatchesCount: number): StarsCount {
+  for (let i = 0; i < scoreThresholds.length; i++) {
+    if (totalMatchesCount < scoreThresholds[i]) {
+      return i as StarsCount;
+    }
+  }
+
+  return 3;
 }
