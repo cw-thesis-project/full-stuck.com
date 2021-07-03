@@ -1,20 +1,22 @@
 name: Deploy Dev
 
 on:
-  push:
+  pull_request_target:
     branches:
       - dev
 jobs:
-  deploy:
-    name: Deploy Dev
+  build:
+    name: Build Dev
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./client
+        
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: 'dev'
+        ref: ${{github.event.pull_request.head.ref}}
+
 
     - name: Setup Node.js
       uses: actions/setup-node@v2
@@ -26,7 +28,7 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-
+        
     - name: npm run build:dev
       run: npm run build:dev   
 
