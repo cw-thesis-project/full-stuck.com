@@ -27,9 +27,15 @@ jobs:
     - name: npm run build
       run: npm run build    
 
-    - name: Deploy to gh-pages
-      uses: peaceiris/actions-gh-pages@v3
+   - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        deploy_key: ${{ secrets.KEY }}
-        external_repository: ${{ secrets.EXTERNAL_REPO }}
-        publish_dir: ./client/build
+        aws-access-key-id: ${{ secrets.AWS_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_PASS }}
+        aws-region: eu-central-1
+
+    - name: Deploy static site to S3 bucket
+      run: aws s3 sync ./build/ s3://asdasdasdasdasdasdasdasdad --delete
