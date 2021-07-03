@@ -1,9 +1,14 @@
-import { TechName, Level, TechExperience } from '../../shared/types';
+/* eslint-disable no-restricted-syntax */
+import { TechName, Level, TechExperience, User } from '../../shared/types';
 import {
   getTechnologiesNames,
   deepCopy,
   pickRandomElementsFromArray,
 } from '../../shared/utils';
+import {
+  technologies,
+  maxTechnologyExperience as maxTechLevel,
+} from '../../shared/constants';
 import { Icon, IconsGroup } from './interfaces';
 import { IconDescriptor } from '../../components/SideColumn/SideColumn';
 
@@ -91,3 +96,75 @@ export const mockTechExperience: TechExperience = {
   rxjs: 0,
   typescript: 0,
 };
+
+export function getAssessmentTopic(techExperience: TechExperience): TechName {
+  for (const { name } of technologies) {
+    if (techExperience[name] === maxTechLevel) {
+      return name;
+    }
+  }
+
+  throw new Error('assessment topic not found');
+}
+
+export function shouldLevelUp(
+  techExperience: TechExperience,
+  level: Level
+): boolean {
+  if (level === 'CEO') {
+    return false;
+  }
+
+  const techNames = technologies
+    .filter((technology) => technology.level === level)
+    .map((technology) => technology.name);
+
+  let experienceSum = 0;
+
+  for (const name of techNames) {
+    experienceSum += techExperience[name];
+  }
+
+  return experienceSum === 3 * (maxTechLevel + 1) - 1;
+}
+
+export function nextUserLevel(level: Level): Level {
+  const nextLevelMap: Record<Level, Level> = {
+    junior: 'senior',
+    senior: 'tutor',
+    tutor: 'CEO',
+    CEO: 'CEO',
+  };
+
+  return nextLevelMap[level];
+}
+
+export function userAfterAssessment(user: User, hasWon: boolean): User {
+  const newUser = deepCopy(user);
+
+  const { techExperience, level, history } = newUser.gameData;
+
+  const topic = getAssessmentTopic(techExperience);
+
+  // save activity
+  history.push({
+    name: 'assessment',
+    stars: hasWon ? 3 : 0,
+    topic,
+  });
+
+  if (hasWon) {
+    // level user up
+    const isReadyToLevelUp = shouldLevelUp(techExperience, level);
+
+    if (isReadyToLevelUp) {
+      const nextLevel = nextUserLevel(level);
+      newUser.gameData.level = nextLevel;
+    }
+
+    // update tech
+    techExperience[topic] += 1;
+  }
+
+  return newUser;
+}

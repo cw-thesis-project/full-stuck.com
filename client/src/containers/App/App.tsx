@@ -11,6 +11,7 @@ import Schedule from '../Schedule/Schedule';
 import AssignPoints from '../AssignPoints/AssignPoints';
 import Assessment from '../Assessment/Assessment';
 import MemoryGame from '../MemoryGame/MemoryGame';
+import CEO from '../CEO/CEO';
 import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute';
 import TempNavBar from '../../components/TempNavBar/TempNavBar';
 
@@ -35,6 +36,7 @@ const App = (): JSX.Element => {
     <div className={styles.container}>
       <Switch>
         <Route path="/" component={Splash} exact />
+        <ProtectedRoute path="/ceo" component={CEO} />
         <ProtectedRoute path="/dashboard" component={Dashboard} />
         <ProtectedRoute path="/schedule" component={Schedule} />
         <ProtectedRoute path="/assign-points" component={AssignPoints} />

@@ -9,6 +9,7 @@ export const actions = {
   saveActivity: thunks.saveActivity,
   getUserData: thunks.getUserData,
   newGame: thunks.newGame,
+  levelUserUp: thunks.levelUserUp,
   decreasePointsToAssign: appActions.decreasePointsToAssign,
   setPointsToAssign: appActions.setPointsToAssign,
 };

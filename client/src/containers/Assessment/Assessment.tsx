@@ -1,20 +1,20 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-console */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import SideColumn from '../../components/SideColumn';
 import CenterBlob from '../../components/CenterBlob';
 import CountDownBar from '../../components/CountDownBar';
 import useAssessmentGame from './assessmentGame';
 import styles from './Assessment.module.scss';
-import { getIconDescriptors } from './helpers';
+import { getIconDescriptors, userAfterAssessment } from './helpers';
 import { useAppDispatch, useAppSelector, actions } from '../../store';
+import { updateUser } from '../../store/thunks';
 import { AssessmentGameOptions } from './interfaces';
 import { TechName } from '../../shared/types';
 
 const Assessment = (): JSX.Element => {
   const user = useAppSelector((state) => state.user);
-  const loading = useAppSelector((state) => state.loading);
   const history = useHistory();
   const dispatch = useAppDispatch();
   const [draggedName, setDraggedName] = useState<TechName>('javascript');
@@ -27,14 +27,6 @@ const Assessment = (): JSX.Element => {
 
   const game = useAssessmentGame(options);
 
-  useEffect(() => {
-    if (!loading && game.round >= game.rounds) {
-      // TODO: change points based on score
-      dispatch(actions.setPointsToAssign(2));
-      history.replace('/assign-points');
-    }
-  }, [loading, game.round]);
-
   function handleIconMatch(index: number) {
     const { name } = game.sidesGroup.icons[index];
 
@@ -45,21 +37,26 @@ const Assessment = (): JSX.Element => {
     const isMatch = centerIcon && !centerIcon.isMatched && draggedName === name;
 
     if (isMatch) {
-      console.log('matched', name);
       game.onIconMatch(name);
     }
   }
 
   function onGameEnd() {
-    console.log('game ended');
+    if (!user) {
+      return;
+    }
 
-    dispatch(
-      actions.saveActivity({
-        name: 'assessment',
-        topic: 'git',
-        stars: 3,
-      })
-    );
+    // TODO: make hasWon dynamic
+    const hasWon = true;
+    const newUser = userAfterAssessment(user, hasWon);
+    // TODO: REPLACE POINTS TO ASSIGN
+    // const pointsToAssign = hasWon ? 2 : 0;
+    const pointsToAssign = 2;
+
+    dispatch(updateUser(newUser));
+    dispatch(actions.setPointsToAssign(pointsToAssign));
+
+    history.replace('/assign-points');
   }
 
   if (!game.sidesGroup) {
@@ -89,7 +86,9 @@ const Assessment = (): JSX.Element => {
           <h2 className={styles.roundsDone}>{game.round}</h2>
           <h2 className={styles.totalRounds}>/{game.rounds}</h2>
         </div>
-        <CountDownBar currentPercentage={0.7} />
+        <button type="button" onClick={onGameEnd}>
+          <CountDownBar currentPercentage={0.7} />
+        </button>
       </div>
       <SideColumn
         icons={rightIcons}

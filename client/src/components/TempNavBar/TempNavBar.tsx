@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { saveActivity, learnTech, newGame } from '../../store/thunks';
 import usePageTitle from '../../shared/usePageTitle';
 import styles from './TempNavBar.module.scss';
+import { TechName } from '../../shared/types';
 
 const TempNavBar = (): JSX.Element => {
   const userStore = useAppSelector((state) => state.user);
+  const [techName, setTechName] = useState('');
   const dispatch = useAppDispatch();
   usePageTitle('Full Stuck - Admin');
 
@@ -25,8 +27,9 @@ const TempNavBar = (): JSX.Element => {
   function SaveActivityThunk() {
     dispatch(saveActivity({ name: 'assessment', stars: 1, topic: 'git' }));
   }
+
   function LearnTechThunk() {
-    dispatch(learnTech('debugging'));
+    dispatch(learnTech(techName as TechName));
   }
 
   function newGameButton() {
@@ -42,6 +45,7 @@ const TempNavBar = (): JSX.Element => {
           username: {userStore?.username} level: {userStore?.gameData.level}
         </p>
         <p>history: {JSON.stringify(userStore?.gameData.history, null, 2)} </p>
+        <p>history length: {userStore?.gameData.history.length || 0} </p>
         <p>
           {' '}
           techExperience:{' '}
@@ -81,6 +85,12 @@ const TempNavBar = (): JSX.Element => {
             <button type="button" onClick={newGameButton}>
               NewGame (resets user profile!!!)
             </button>
+            <input
+              value={techName}
+              onChange={(e) => setTechName(e.target.value)}
+              type="text"
+              placeholder="tech name"
+            />
           </div>
         )}
       </div>

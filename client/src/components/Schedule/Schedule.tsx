@@ -25,14 +25,16 @@ const Schedule = ({
   futureCards.fill(0);
 
   const daysIndexes = [0, 1, 2, 3, 4, 5];
+  const quotient = Math.floor(historyLength / 6);
 
   return (
     <div className={styles.container}>
       {daysIndexes.map((index) => (
         <CalendarDate
           variant={getDateVariant(index, history.length)}
-          dayIndex={historyLength + index}
-          key={historyLength + index}
+          activityIndex={quotient * 6 + 1 + index}
+          dayIndex={index}
+          key={historyLength - index}
         />
       ))}
 
