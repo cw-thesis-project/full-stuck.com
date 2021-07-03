@@ -1,37 +1,20 @@
-import {
-  Level,
-  StarsCount,
-  TechExperience,
-  TechName,
-} from '../../shared/types';
+import { Level, StarsCount, TechName } from '../../shared/types';
 
 export interface Icon {
   name: TechName;
   isMatched: boolean;
 }
 
-export interface Round {
-  current: number;
-  total: number;
-}
-
-export interface IconsGroup {
-  groupIndex: number;
-  icons: Icon[];
+export interface AssessmentGameOptions {
+  level: Level;
+  onGameEnd(starsCount: StarsCount): void;
+  gameStartTime: number;
 }
 
 export interface IAssessmentGame {
-  onIconMatch: (techName: TechName) => void;
-  centerGroup: IconsGroup;
-  sidesGroup: IconsGroup;
-  round: number;
-  groupTimeLeftPercent: number;
-  rounds: number;
-  gameTime: number;
-}
-
-export interface AssessmentGameOptions {
-  level: Level;
-  techExperience: TechExperience | undefined;
-  onGameEnd(starsCount: StarsCount): void;
+  onIconMatch: (index: number, draggedName: TechName) => void;
+  centerIcons: Icon[];
+  sideIcons: Icon[];
+  totalMatchesCount: number;
+  timeLeft: number;
 }

@@ -19,26 +19,28 @@ export function pickRandomElementsFromArray<T>(array: T[], count: number): T[] {
   // return picks;
 }
 
-export function isUnlocked(currentLevel: Level, targetLevel: Level): boolean {
-  if (currentLevel === 'tutor' || currentLevel === 'CEO') {
+export function isUnlocked(userLevel: Level, techLevel: Level): boolean {
+  if (userLevel === 'tutor' || userLevel === 'CEO') {
     return true;
   }
 
-  if (currentLevel === 'senior') {
-    return targetLevel !== 'tutor';
+  if (userLevel === 'senior') {
+    return techLevel !== 'tutor';
   }
 
-  return targetLevel === 'junior';
+  return techLevel === 'junior';
 }
 
-export function getUnlockedTechNames(): TechName[] {
-  // .filter((tech) => isUnlocked(level, tech.level))
-  return technologies.map((tech) => tech.name);
+export function getUnlockedTechNames(userLevel: Level): TechName[] {
+  return technologies
+    .filter((tech) => isUnlocked(userLevel, tech.level))
+    .map((tech) => tech.name);
 }
 
 export function getTechnologiesNames(): TechName[] {
   return technologies.map((tech) => tech.name);
 }
+
 export const a = 1;
 
 export const levelToNumber: LevelMap = {
