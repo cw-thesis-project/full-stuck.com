@@ -21,6 +21,7 @@ const SideColumn = ({ icons, onIconMatch }: Props): JSX.Element => {
     <div className={styles.sideColumn}>
       {icons.map(({ isGray, techName }, index) => (
         <div
+          key={index}
           onDrop={() => onIconMatch(index)}
           onDragOver={(e) => e.preventDefault()}
         >
