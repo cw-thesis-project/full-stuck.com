@@ -2,6 +2,7 @@
 import { Level, TechExperience } from '../../shared/types';
 import { technologies } from '../../shared/constants';
 import { TechAchievements } from '../../components/LearntTech/LearntTech';
+import { maxBubbles } from '../../shared/utils';
 
 type levelMap = Record<Level, number>;
 
@@ -24,15 +25,15 @@ export const createGreeting = (level: Level): string => {
 };
 
 const techAchievements: TechAchievements = {
-  javascript: { level: 0, isLocked: false },
-  git: { level: 0, isLocked: false },
-  react: { level: 0, isLocked: false },
-  graphql: { level: 0, isLocked: false },
-  rxjs: { level: 0, isLocked: false },
-  typescript: { level: 0, isLocked: false },
-  debugging: { level: 0, isLocked: false },
-  eloquence: { level: 0, isLocked: false },
-  espionage: { level: 0, isLocked: false },
+  javascript: { experience: 0, isLocked: false },
+  git: { experience: 0, isLocked: false },
+  react: { experience: 0, isLocked: false },
+  graphql: { experience: 0, isLocked: false },
+  rxjs: { experience: 0, isLocked: false },
+  typescript: { experience: 0, isLocked: false },
+  debugging: { experience: 0, isLocked: false },
+  eloquence: { experience: 0, isLocked: false },
+  espionage: { experience: 0, isLocked: false },
 };
 
 export const createTechAchievements = (
@@ -40,8 +41,8 @@ export const createTechAchievements = (
   techExperience: TechExperience
 ): TechAchievements => {
   for (const [tech, userExperienceLevel] of Object.entries(techExperience)) {
-    techAchievements[tech as keyof TechAchievements].level =
-      userExperienceLevel;
+    techAchievements[tech as keyof TechAchievements].experience =
+      userExperienceLevel > maxBubbles ? maxBubbles : userExperienceLevel;
 
     const technology = technologies.find((t) => t.name === tech);
 
