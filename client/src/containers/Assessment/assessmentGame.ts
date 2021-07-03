@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect, useState } from 'react';
 import { TechName } from '../../shared/types';
@@ -14,7 +13,7 @@ function useAssessmentGame(
   // game constants
   const groupSize = 3;
   // TODO: make game longer (for production)
-  const gameDuration = 5_000;
+  const gameDuration = 20_000;
 
   const initialCenterIcons = helpers.createCenterIcons(level, groupSize);
   const initialSideIcons = helpers.createSideIcons(initialCenterIcons, level);
@@ -87,7 +86,6 @@ function useAssessmentGame(
   }
 
   function createInterval() {
-    console.log('createInterval');
     intervalId = setInterval(checkGameOver, 50);
   }
 
@@ -96,17 +94,16 @@ function useAssessmentGame(
     setTimeLeft(() => newTimeLeft);
 
     // could not figure out a better way to make it work
-    setTotalMatchesCount((totalMatchesCount) => {
+    setTotalMatchesCount((totalMatches) => {
       const isGameOver = newTimeLeft < 0;
-      console.log('totalMatchesCount', totalMatchesCount);
 
       if (isGameOver) {
         clearInterval(intervalId);
-        const starsCount = helpers.getStars(totalMatchesCount);
+        const starsCount = helpers.getStars(totalMatches);
         onGameEnd(starsCount);
       }
 
-      return totalMatchesCount;
+      return totalMatches;
     });
   }
 

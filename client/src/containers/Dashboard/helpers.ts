@@ -1,17 +1,8 @@
 /* eslint-disable no-restricted-syntax */
 import { Level, TechExperience } from '../../shared/types';
-import { technologies } from '../../shared/constants';
+import { technologies, levelToNumber } from '../../shared/constants';
 import { TechAchievements } from '../../components/LearntTech/LearntTech';
 import { maxBubbles } from '../../shared/utils';
-
-type levelMap = Record<Level, number>;
-
-const levelToNumber: levelMap = {
-  junior: 0,
-  senior: 1,
-  tutor: 2,
-  CEO: 3,
-};
 
 export const createGreeting = (level: Level): string => {
   const greetingsMap: Record<Level, string> = {

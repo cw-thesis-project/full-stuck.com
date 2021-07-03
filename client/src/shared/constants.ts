@@ -1,4 +1,4 @@
-import { Tech, User } from './types';
+import { LevelMap, Tech, User } from './types';
 
 export const auth0 = {
   domain: process.env.REACT_APP_AUTH0_DOMAIN as string,
@@ -40,4 +40,11 @@ export const emptyUser: User = {
     history: [],
     level: 'junior',
   },
+};
+
+export const levelToNumber: LevelMap = {
+  junior: 0,
+  senior: 1,
+  tutor: 2,
+  CEO: 3,
 };

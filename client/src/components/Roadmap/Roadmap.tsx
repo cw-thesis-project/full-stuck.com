@@ -1,19 +1,11 @@
 import React from 'react';
 import { Level } from '../../shared/types';
+import { levelToNumber } from '../../shared/constants';
 import styles from './Roadmap.module.scss';
 
 interface Props {
   userLevel: Level;
 }
-
-export type levelMap = Record<Level, number>;
-
-const levelToNumber: levelMap = {
-  junior: 0,
-  senior: 1,
-  tutor: 2,
-  CEO: 3,
-};
 
 const Roadmap = ({ userLevel }: Props): JSX.Element => {
   const levels: Level[] = ['junior', 'senior', 'tutor', 'CEO'];

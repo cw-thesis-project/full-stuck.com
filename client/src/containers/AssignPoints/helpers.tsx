@@ -4,7 +4,7 @@ import { Level, TechExperience, TechName } from '../../shared/types';
 import CurrentLevelCard from '../../components/CurrentLevelCard';
 import CompletedLevelCard from '../../components/CompletedLevelCard';
 import NextLevelCard from '../../components/NextLevelCard';
-import { maxBubbles, levelToNumber } from '../../shared/utils';
+import { maxTechnologyExperience, levelToNumber } from '../../shared/constants';
 
 interface TechExperienceSubset {
   name: TechName;
@@ -110,7 +110,7 @@ export function buttonAllowed(
       0
     ) + 1;
   const techPerLevel = 3;
-  const levelThreshold = techPerLevel * (maxBubbles + 1) - 1;
+  const levelThreshold = techPerLevel * (maxTechnologyExperience + 1) - 1;
   const juniorThreshold = levelThreshold;
   const seniorThreshold = juniorThreshold + 1 + levelThreshold;
   const tutorThreshold = seniorThreshold + 1 + levelThreshold;
