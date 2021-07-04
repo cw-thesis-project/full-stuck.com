@@ -1,10 +1,9 @@
 /* eslint-disable no-param-reassign */
-/* eslint-disable no-shadow */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { useState } from 'react';
-import { Tech, TechName } from '../../shared/types';
-import { deepCopy, shuffle } from '../../shared/utils';
-import { technologies } from './helpers';
+import { useEffect, useState } from 'react';
+import { StarsCount, TechName } from '../../shared/types';
+import { deepCopy } from '../../shared/utils';
+import { createCards, getStarsCount } from './helpers';
 
 export interface Card {
   name: TechName;
@@ -17,18 +16,28 @@ interface IMemoryGame {
   lastMatched: TechName;
   flipsDone: number;
   allowedFlips: number;
+  starsCount: StarsCount;
   handleCardChoice(index: number): void;
 }
 
 function useMemoryGame(): IMemoryGame {
+  // states
   const [cards, setCards] = useState(createCards());
   const [matchesDone, setMatchesDone] = useState(0);
   const [lastMatched, setLastMatched] = useState<TechName>('git');
   const [flipsDone, setFlipsDone] = useState(0);
   const [upCards, setUpCards] = useState<Card[]>([]);
+  const [starsCount, setStarsCount] = useState<StarsCount>(0);
+
+  // effects
+  useEffect(updateStarsCount, [matchesDone]);
+
+  // game constants
 
   const allowedFlips = 30;
   const afterPairDelay = 300;
+
+  // functions
 
   function handleCardChoice(index: number) {
     const newCards = deepCopy(cards);
@@ -64,10 +73,10 @@ function useMemoryGame(): IMemoryGame {
     setUpCards([]);
 
     const cardName = card.name;
-    const updatedCards = newCards.map((card) => {
+    const updatedCards = newCards.map((newCard) => {
       return {
-        ...card,
-        state: card.name === cardName ? 'matched' : card.state,
+        ...newCard,
+        state: newCard.name === cardName ? 'matched' : newCard.state,
       };
     });
 
@@ -103,6 +112,11 @@ function useMemoryGame(): IMemoryGame {
     setCards(noUpCards);
   }
 
+  function updateStarsCount() {
+    const newStarsCount = getStarsCount(matchesDone);
+    setStarsCount(newStarsCount);
+  }
+
   return {
     cards,
     matchesDone,
@@ -110,20 +124,7 @@ function useMemoryGame(): IMemoryGame {
     flipsDone,
     allowedFlips,
     handleCardChoice,
-  };
-}
-
-function createCards() {
-  const halfCards = technologies.map(makeCard);
-  const allCards = [...halfCards, ...halfCards];
-
-  return shuffle(allCards);
-}
-
-function makeCard(tech: Tech): Card {
-  return {
-    name: tech.name,
-    state: 'down',
+    starsCount,
   };
 }
 

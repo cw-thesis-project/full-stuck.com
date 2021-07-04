@@ -1,0 +1,22 @@
+@import '../../style/style.scss';
+
+.container {
+  @include reset-input;
+  cursor: pointer;
+}
+
+.matchesContainer {
+  @include row;
+  align-items: flex-end;
+}
+
+.matchesDone {
+  font-size: 3em;
+  color: $accent;
+}
+
+.matchesTotal {
+  font-size: 2em;
+  color: $light;
+  margin-left: 0.2em;
+}

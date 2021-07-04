@@ -4,8 +4,19 @@
   @include center;
   @include row;
   @include screen;
-  flex-direction: column;
+  gap: 4em;
+  padding: 0 4em;
   background-image: url('../../assets/images/wave-corners.svg'),
     radial-gradient($gradientLight, $gradientDark);
   background-size: cover;
+}
+
+.gameContent {
+  @include column;
+  flex-grow: 1;
+  gap: 3em;
+}
+
+.helperText {
+  color: $primaryDark;
 }
