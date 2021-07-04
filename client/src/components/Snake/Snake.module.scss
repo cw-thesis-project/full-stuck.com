@@ -1,0 +1,13 @@
+@import '../../style/style.scss';
+
+.gameboard {
+	position: relative;
+	margin: auto;
+	border-style: solid;
+  background:#FFF
+}
+
+.block {
+	position: absolute;
+}
+
