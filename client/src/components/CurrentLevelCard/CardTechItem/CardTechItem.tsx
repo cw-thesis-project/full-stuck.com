@@ -48,17 +48,14 @@ const CardTechItem = ({
     <div className={styles.techColumn}>
       {grayBubbles}
       {coloredBubbles}
-      <div
-        role="button"
-        // eslint-disable-next-line no-console
-        onKeyDown={() => console.log('hi buddy')}
+      <button
+        type="button"
         onClick={() => preventFrivolousSpending(techName)}
         className={styles.clickable}
-        tabIndex={0}
       >
         <TechIcon techName={techName} iconSize="small" isGray={false} />
-      </div>
-      <h4>{techName}</h4>
+      </button>
+      <h4 className={styles.techName}>{techName}</h4>
     </div>
   );
 };
