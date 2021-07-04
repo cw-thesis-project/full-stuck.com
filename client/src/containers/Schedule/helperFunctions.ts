@@ -1,10 +1,10 @@
 import { maxTechnologyExperience, technologies } from '../../shared/constants';
 import { Activity, TechExperience } from '../../shared/types';
-import { deepCopy } from '../../shared/utils';
 
 export function lastFiveElements<T>(list: T[]): T[] {
-  const listCopy = deepCopy(list);
-  return listCopy.slice(list.length - 5, list.length);
+  const pastLength = list.length % 6;
+
+  return list.slice(list.length - pastLength, list.length);
 }
 
 export function getNextActivity(techExperience: TechExperience): Activity {
