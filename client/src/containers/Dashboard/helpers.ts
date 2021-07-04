@@ -1,5 +1,9 @@
 import { Level, TechExperience } from '../../shared/types';
-import { technologies, levelToNumber } from '../../shared/constants';
+import {
+  technologies,
+  levelToNumber,
+  maxTechnologyExperience,
+} from '../../shared/constants';
 import { TechAchievements } from '../../components/LearntTech/LearntTech';
 
 export const createGreeting = (level: Level): string => {
@@ -31,7 +35,9 @@ export const createTechAchievements = (
 ): TechAchievements => {
   Object.entries(techExperience).forEach(([tech, userExperienceLevel]) => {
     techAchievements[tech as keyof TechAchievements].experience =
-      userExperienceLevel;
+      userExperienceLevel > maxTechnologyExperience
+        ? maxTechnologyExperience
+        : userExperienceLevel;
 
     const technology = technologies.find((t) => t.name === tech);
 
