@@ -18,7 +18,14 @@ const StarsRow = ({ starsCount }: Props): JSX.Element => {
           [styles.star]: true,
           [styles.gray]: starsCount <= number,
         });
-        return <img alt="star icon" className={className} src={icons.star} />;
+        return (
+          <img
+            alt="star icon"
+            className={className}
+            src={icons.star}
+            key={number}
+          />
+        );
       })}
     </div>
   );
