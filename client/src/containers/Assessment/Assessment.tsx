@@ -10,7 +10,7 @@ import { userAfterAssessment } from './helpers';
 import { useAppDispatch, useAppSelector, actions } from '../../store';
 import { updateUser } from '../../store/thunks';
 import { AssessmentGameOptions } from './interfaces';
-import { TechName } from '../../shared/types';
+import { StarsCount, TechName } from '../../shared/types';
 import icons from '../../assets/icons';
 
 const Assessment = (): JSX.Element => {
@@ -31,17 +31,15 @@ const Assessment = (): JSX.Element => {
     game.onIconMatch(index, draggedName);
   }
 
-  function onGameEnd(starsCount: number) {
+  function onGameEnd(starsCount: StarsCount) {
     if (!user) {
       return;
     }
 
-    const hasWon = starsCount > 0;
-    const newUser = userAfterAssessment(user, hasWon);
-    const pointsToAssign = starsCount;
+    const newUser = userAfterAssessment(user, starsCount);
 
     dispatch(updateUser(newUser));
-    dispatch(actions.setPointsToAssign(pointsToAssign));
+    dispatch(actions.setPointsToAssign(starsCount));
 
     history.replace('/assign-points');
   }
