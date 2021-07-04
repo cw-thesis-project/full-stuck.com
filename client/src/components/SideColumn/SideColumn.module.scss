@@ -2,6 +2,17 @@
 
 .sideColumn {
   @include column;
+  position: absolute;
   justify-content: space-between;
   width: 10em;
+  height: 100%;
+  padding: 4em;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
 }

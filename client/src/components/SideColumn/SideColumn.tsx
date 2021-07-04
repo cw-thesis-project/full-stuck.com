@@ -1,17 +1,24 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
+import classNames from 'classnames';
 import styles from './SideColumn.module.scss';
 import TechIcon from '../TechIcon';
 import { Icon } from '../../containers/Assessment/interfaces';
 
 interface Props {
   icons: Icon[];
+  variant: 'left' | 'right';
   onIconMatch(index: number): void;
 }
 
-const SideColumn = ({ icons, onIconMatch }: Props): JSX.Element => {
+const SideColumn = ({ icons, onIconMatch, variant }: Props): JSX.Element => {
+  const container = classNames({
+    [styles.sideColumn]: true,
+    [styles[variant]]: true,
+  });
+
   return (
-    <div className={styles.sideColumn}>
+    <div className={container}>
       {icons.map(({ isMatched, name }, index) => (
         <div
           key={index}

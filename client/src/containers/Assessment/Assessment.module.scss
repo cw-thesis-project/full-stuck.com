@@ -1,19 +1,16 @@
 @import '../../style/style.scss';
 
 .page {
-  @include row;
   @include screen;
-  justify-content: space-between;
-  align-items: stretch;
-  background-image: url('../../assets/images/wave-columns.svg'),
-    radial-gradient($gradientLight, $gradientDark);
-  background-size: cover;
-  padding: 4em;
 }
 
 .centerSection {
   @include column;
-  justify-content: space-between;
+  gap: 2em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .header {
@@ -34,9 +31,15 @@
   @include center;
   @include column;
   @include square(30em);
-  background: url('../../assets/icons/blob.svg');
-  background-position: center;
-  background-size: cover;
+  @include circle(25em);
+  background-color: $primary;
+  // background: url('../../assets/icons/blob.svg');
+  // background-position: center;
+  // background-size: cover;
+
+  &.centerDark {
+    background-color: $primaryDark;
+  }
 }
 
 .roundsContainer {
