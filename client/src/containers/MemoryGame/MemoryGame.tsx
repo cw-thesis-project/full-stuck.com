@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable no-console */
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-
 import styles from './MemoryGame.module.scss';
 import FlipsCounter from '../../components/FlipsCounter';
 import MemoryScore from '../../components/MemoryScore';
@@ -11,12 +9,15 @@ import useMemoryGame from './useMemoryGame';
 import { actions, useAppDispatch } from '../../store';
 
 const MemoryGameContainer = (): JSX.Element => {
+  // states
   const dispatch = useAppDispatch();
   const history = useHistory();
   const game = useMemoryGame();
 
+  // effects
   useEffect(checkIfGameOver, [game.flipsDone, game.matchesDone]);
 
+  // functions
   function checkIfGameOver() {
     const areAllCardsMatched = game.matchesDone >= game.cards.length / 2;
     const areAllFlipsUsed = game.flipsDone >= game.allowedFlips;
@@ -35,7 +36,7 @@ const MemoryGameContainer = (): JSX.Element => {
       actions.saveActivity({
         name: 'memory',
         topic: 'git',
-        stars: hasWon ? 0 : 3,
+        stars: game.starsCount,
       })
     );
 
