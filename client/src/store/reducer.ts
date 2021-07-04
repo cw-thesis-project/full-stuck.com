@@ -3,7 +3,7 @@ import { User } from '../shared/types';
 import { AppState, AppAction, FailureAction } from './storeTypes';
 
 export const defaultState: AppState = {
-  pointsToAssign: 10,
+  pointsToAssign: 0,
   user: null,
   loading: false,
   error: '',
