@@ -112,7 +112,7 @@ export function nextUserLevel(level: Level): Level {
   return nextLevelMap[level];
 }
 
-export function userAfterAssessment(user: User, hasWon: boolean): User {
+export function userAfterAssessment(user: User, starsCount: StarsCount): User {
   const newUser = deepCopy(user);
 
   const { techExperience, level, history } = newUser.gameData;
@@ -122,11 +122,11 @@ export function userAfterAssessment(user: User, hasWon: boolean): User {
   // save activity
   history.push({
     name: 'assessment',
-    stars: hasWon ? 3 : 0,
+    stars: starsCount,
     topic,
   });
 
-  if (hasWon) {
+  if (starsCount > 0) {
     // level user up
     const isReadyToLevelUp = shouldLevelUp(techExperience, level);
 
