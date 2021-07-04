@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector, actions } from '../../store';
 import { updateUser } from '../../store/thunks';
 import { AssessmentGameOptions } from './interfaces';
 import { TechName } from '../../shared/types';
+import icons from '../../assets/icons';
 
 const Assessment = (): JSX.Element => {
   const user = useAppSelector((state) => state.user);
@@ -63,7 +64,16 @@ const Assessment = (): JSX.Element => {
         onIconMatch={(index) => handleIconMatch(index)}
       />
       <div className={styles.centerSection}>
-        <h1>{(game.timeLeft / 1000).toFixed(1)}s</h1>
+        <div className={styles.header}>
+          <img
+            alt="hourglass icon"
+            className={styles.hourGlassIcon}
+            src={icons.hourGlassLogo}
+          />
+          <h1 className={styles.timeLeft}>
+            {(game.timeLeft / 1000).toFixed(1)}s
+          </h1>
+        </div>
         <CenterBlob
           techNames={centerNames}
           onDragStart={(techName) => setDraggedName(techName)}
