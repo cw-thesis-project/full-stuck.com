@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import SideColumn from '../../components/SideColumn';
-import CenterBlob from '../../components/CenterBlob';
+import CenterIcons from '../../components/CenterIcons';
 import AssessmentScore from '../../components/AssessmentScore';
 import useAssessmentGame from './assessmentGame';
 import styles from './Assessment.module.scss';
@@ -74,11 +74,8 @@ const Assessment = (): JSX.Element => {
             {(game.timeLeft / 1000).toFixed(1)}s
           </h1>
         </div>
-        <CenterBlob
-          techNames={centerNames}
-          onDragStart={(techName) => setDraggedName(techName)}
-        />
-        <div>
+        <div className={styles.centerIconsContainer}>
+          <CenterIcons techNames={centerNames} onDragStart={setDraggedName} />
           <button
             className={styles.cheatButton}
             type="button"

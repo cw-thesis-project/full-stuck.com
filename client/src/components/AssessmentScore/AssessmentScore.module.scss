@@ -1,7 +1,6 @@
 @import '../../style/style.scss';
 
 .container {
-  @include debug;
   @include column;
 }
 
@@ -30,6 +29,6 @@
   .minMatches {
     font-size: 2em;
     color: $light;
-    margin-left: 0.5em;
+    margin-left: 0.2em;
   }
 }
