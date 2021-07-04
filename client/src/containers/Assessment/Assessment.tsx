@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useState } from 'react';
+import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
 import SideColumn from '../../components/SideColumn';
 import CenterIcons from '../../components/CenterIcons';
@@ -13,12 +14,14 @@ import { AssessmentGameOptions } from './interfaces';
 import { StarsCount, TechName } from '../../shared/types';
 import icons from '../../assets/icons';
 import usePageTitle from '../../shared/usePageTitle';
+import AssessmentBackground from '../../components/AssessmentBackground';
 
 const Assessment = (): JSX.Element => {
   const user = useAppSelector((state) => state.user);
   const history = useHistory();
   const dispatch = useAppDispatch();
   const [draggedName, setDraggedName] = useState<TechName>('javascript');
+  const [isDragging, setIsDragging] = useState(false);
 
   const options: AssessmentGameOptions = {
     level: user?.gameData.level || 'junior',
@@ -30,6 +33,7 @@ const Assessment = (): JSX.Element => {
   usePageTitle('Assessment — Full Stuck');
 
   function handleIconMatch(index: number) {
+    setIsDragging(false);
     game.onIconMatch(index, draggedName);
   }
 
@@ -46,6 +50,15 @@ const Assessment = (): JSX.Element => {
     history.replace('/assign-points');
   }
 
+  function handleDragEnd() {
+    setIsDragging(false);
+  }
+
+  function handleDragStart(techName: TechName) {
+    setDraggedName(techName);
+    setIsDragging(true);
+  }
+
   if (game.timeLeft < 0) {
     return <div style={{ color: 'red' }}>game over!</div>;
   }
@@ -57,9 +70,16 @@ const Assessment = (): JSX.Element => {
     .filter((icon) => !icon.isMatched)
     .map((icon) => icon.name);
 
+  const centerContainer = classNames({
+    [styles.centerIconsContainer]: true,
+    [styles.centerDark]: isDragging,
+  });
+
   return (
     <div className={styles.page}>
+      <AssessmentBackground isDragging={isDragging} />
       <SideColumn
+        variant="left"
         icons={leftIcons}
         onIconMatch={(index) => handleIconMatch(index)}
       />
@@ -74,8 +94,12 @@ const Assessment = (): JSX.Element => {
             {(game.timeLeft / 1000).toFixed(1)}s
           </h1>
         </div>
-        <div className={styles.centerIconsContainer}>
-          <CenterIcons techNames={centerNames} onDragStart={setDraggedName} />
+        <div className={centerContainer}>
+          <CenterIcons
+            techNames={centerNames}
+            onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
+          />
           <button
             className={styles.cheatButton}
             type="button"
@@ -91,6 +115,7 @@ const Assessment = (): JSX.Element => {
         <h2 className={styles.helperText}>Drag the icons!</h2>
       </div>
       <SideColumn
+        variant="right"
         icons={rightIcons}
         onIconMatch={(index) => handleIconMatch(index + 5)}
       />
