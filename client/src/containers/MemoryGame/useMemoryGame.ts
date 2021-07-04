@@ -114,7 +114,6 @@ function useMemoryGame(options: MemoryGameOptions): IMemoryGame {
       flipsDone: state.flipsDone + 1,
       upCards: [...state.upCards, card],
       cards: newCards,
-      starsCount: getStarsCount(state.flipsDone + 1),
     }));
 
     afterDifferentActions(newCards);
