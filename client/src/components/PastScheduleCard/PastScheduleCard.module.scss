@@ -18,6 +18,11 @@
   img {
     @include square(1em);
   }
+
+  .grayStar {
+    filter: grayscale(1);
+    opacity: 0.5;
+  }
 }
 
 .sadFace {
