@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "https://dev.full-stuck.com/static/css/main.a0cee3a6.chunk.css",
-    "main.js": "https://dev.full-stuck.com/static/js/main.6cfb05c7.chunk.js",
-    "main.js.map": "https://dev.full-stuck.com/static/js/main.6cfb05c7.chunk.js.map",
+    "main.css": "https://dev.full-stuck.com/static/css/main.4367a279.chunk.css",
+    "main.js": "https://dev.full-stuck.com/static/js/main.662f4bd0.chunk.js",
+    "main.js.map": "https://dev.full-stuck.com/static/js/main.662f4bd0.chunk.js.map",
     "runtime-main.js": "https://dev.full-stuck.com/static/js/runtime-main.cb37aed7.js",
     "runtime-main.js.map": "https://dev.full-stuck.com/static/js/runtime-main.cb37aed7.js.map",
-    "static/js/2.0d0b6861.chunk.js": "https://dev.full-stuck.com/static/js/2.0d0b6861.chunk.js",
-    "static/js/2.0d0b6861.chunk.js.map": "https://dev.full-stuck.com/static/js/2.0d0b6861.chunk.js.map",
+    "static/js/2.65ac3839.chunk.js": "https://dev.full-stuck.com/static/js/2.65ac3839.chunk.js",
+    "static/js/2.65ac3839.chunk.js.map": "https://dev.full-stuck.com/static/js/2.65ac3839.chunk.js.map",
     "index.html": "https://dev.full-stuck.com/index.html",
-    "static/css/main.a0cee3a6.chunk.css.map": "https://dev.full-stuck.com/static/css/main.a0cee3a6.chunk.css.map",
-    "static/js/2.0d0b6861.chunk.js.LICENSE.txt": "https://dev.full-stuck.com/static/js/2.0d0b6861.chunk.js.LICENSE.txt",
+    "static/css/main.4367a279.chunk.css.map": "https://dev.full-stuck.com/static/css/main.4367a279.chunk.css.map",
+    "static/js/2.65ac3839.chunk.js.LICENSE.txt": "https://dev.full-stuck.com/static/js/2.65ac3839.chunk.js.LICENSE.txt",
     "static/media/arrow.234b236a.svg": "https://dev.full-stuck.com/static/media/arrow.234b236a.svg",
     "static/media/back.66d65c54.svg": "https://dev.full-stuck.com/static/media/back.66d65c54.svg",
-    "static/media/CenterBlob.module.scss": "https://dev.full-stuck.com/static/media/blob.5f067d5e.svg",
+    "static/media/blob.5f067d5e.svg": "https://dev.full-stuck.com/static/media/blob.5f067d5e.svg",
     "static/media/debugging.cce3020b.svg": "https://dev.full-stuck.com/static/media/debugging.cce3020b.svg",
     "static/media/eloquence.a0f9e12e.svg": "https://dev.full-stuck.com/static/media/eloquence.a0f9e12e.svg",
     "static/media/espionage.3cfe0745.svg": "https://dev.full-stuck.com/static/media/espionage.3cfe0745.svg",
-    "static/media/flipCounter.31c606ac.svg": "https://dev.full-stuck.com/static/media/flipCounter.31c606ac.svg",
+    "static/media/flipCounter.3c35ac3f.svg": "https://dev.full-stuck.com/static/media/flipCounter.3c35ac3f.svg",
     "static/media/git.dd8f1dca.svg": "https://dev.full-stuck.com/static/media/git.dd8f1dca.svg",
     "static/media/graduationHat.42aafb6f.svg": "https://dev.full-stuck.com/static/media/graduationHat.42aafb6f.svg",
     "static/media/graphql.1b13781d.svg": "https://dev.full-stuck.com/static/media/graphql.1b13781d.svg",
@@ -30,14 +30,13 @@
     "static/media/star.7cc8bcd7.svg": "https://dev.full-stuck.com/static/media/star.7cc8bcd7.svg",
     "static/media/typescript.e0cf5672.svg": "https://dev.full-stuck.com/static/media/typescript.e0cf5672.svg",
     "static/media/AssignPoints.module.scss": "https://dev.full-stuck.com/static/media/wave-bottom.0ef90068.svg",
-    "static/media/Assessment.module.scss": "https://dev.full-stuck.com/static/media/wave-columns.7b3bde5b.svg",
     "static/media/MemoryGame.module.scss": "https://dev.full-stuck.com/static/media/wave-corners.2804e3e0.svg",
     "static/media/Schedule.module.scss": "https://dev.full-stuck.com/static/media/wave-diagonal.3309f714.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.cb37aed7.js",
-    "static/js/2.0d0b6861.chunk.js",
-    "static/css/main.a0cee3a6.chunk.css",
-    "static/js/main.6cfb05c7.chunk.js"
+    "static/js/2.65ac3839.chunk.js",
+    "static/css/main.4367a279.chunk.css",
+    "static/js/main.662f4bd0.chunk.js"
   ]
 }
