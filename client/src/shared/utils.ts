@@ -44,3 +44,9 @@ export function shuffle<T>(array: T[]): T[] {
 
   return arrayCopy;
 }
+
+export function sleep(ms: number): Promise<unknown> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
