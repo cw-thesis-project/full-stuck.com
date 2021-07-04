@@ -8,6 +8,7 @@ import NavButtonAssignToSchedule from '../../components/NavButtonAssignToSchedul
 
 import { assignCards } from './helpers';
 import { fakeState } from './localUtils';
+import usePageTitle from '../../shared/usePageTitle';
 
 const AssignPoints = (): JSX.Element => {
   const [leftCard, setLeftCard] = useState<JSX.Element>(<div>Pabeli</div>);
@@ -24,6 +25,8 @@ const AssignPoints = (): JSX.Element => {
     : fakeState.user.gameData;
   const { level } = gameData;
   const { techExperience } = gameData;
+
+  usePageTitle('Game Over — Full Stuck');
 
   function onIconClick(techName: TechName) {
     if (pointsToAssign > 0) dispatch(learnTech(techName));
