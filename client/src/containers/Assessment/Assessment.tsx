@@ -6,7 +6,7 @@ import CenterIcons from '../../components/CenterIcons';
 import AssessmentScore from '../../components/AssessmentScore';
 import useAssessmentGame from './assessmentGame';
 import styles from './Assessment.module.scss';
-import { userAfterAssesment } from './helpers';
+import { userAfterAssessment } from './helpers';
 import { useAppDispatch, useAppSelector, actions } from '../../store';
 import { updateUser } from '../../store/thunks';
 import { AssessmentGameOptions } from './interfaces';
@@ -37,7 +37,7 @@ const Assessment = (): JSX.Element => {
     }
 
     const hasWon = starsCount > 0;
-    const newUser = userAfterAssesment(user, hasWon);
+    const newUser = userAfterAssessment(user, hasWon);
     const pointsToAssign = starsCount;
 
     dispatch(updateUser(newUser));
