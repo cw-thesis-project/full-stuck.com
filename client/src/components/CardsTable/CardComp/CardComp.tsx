@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 
 import React from 'react';
 import classNames from 'classnames';
@@ -21,7 +19,7 @@ interface CardProps {
 }
 
 const CardComp = ({ card, onCardClick }: CardProps): JSX.Element => {
-  const className = classNames({
+  const container = classNames({
     [styles.card]: true,
     [styles[card.state]]: true,
   });
@@ -39,9 +37,9 @@ const CardComp = ({ card, onCardClick }: CardProps): JSX.Element => {
   };
 
   return (
-    <div onClick={handleClick} className={className}>
+    <button type="button" onClick={handleClick} className={container}>
       {cardContentMap[card.state]}
-    </div>
+    </button>
   );
 };
 

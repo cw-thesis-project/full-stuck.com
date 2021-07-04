@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import {
   TechName,
   Level,
@@ -67,15 +66,18 @@ export const mockTechExperience: TechExperience = {
 };
 
 export function getAssessmentTopic(techExperience: TechExperience): TechName {
-  for (const { name } of technologies) {
+  for (let i = 0; i < technologies.length; i += 1) {
+    const { name } = technologies[i];
     if (techExperience[name] === maxTechLevel) {
       return name;
     }
   }
 
-  throw new Error(
-    'You should not be able to play an assessment right now. Did you use the URL to get here? (or admin page)?'
-  );
+  throw new Error(`
+  You should not be able to play an assessment.
+  Did you get here modifying directly the URL?
+  Are you coming from the admin page maybe?
+  `);
 }
 
 export function shouldLevelUp(
@@ -92,9 +94,9 @@ export function shouldLevelUp(
 
   let experienceSum = 0;
 
-  for (const name of techNames) {
-    experienceSum += techExperience[name];
-  }
+  techNames.forEach((techName) => {
+    experienceSum += techExperience[techName];
+  });
 
   return experienceSum === 3 * (maxTechLevel + 1) - 1;
 }
