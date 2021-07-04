@@ -1,60 +1,54 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from './MemoryGame.module.scss';
 import FlipsCounter from '../../components/FlipsCounter';
 import MemoryScore from '../../components/MemoryScore';
 import CardsTable from '../../components/CardsTable';
-import useMemoryGame from './useMemoryGame';
+import useMemoryGame, { allowedFlips } from './useMemoryGame';
 import { actions, useAppDispatch } from '../../store';
 import usePageTitle from '../../shared/usePageTitle';
+import { sleep } from '../../shared/utils';
 
 const MemoryGameContainer = (): JSX.Element => {
   // states
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const game = useMemoryGame();
+  const { gameState, handleCardChoice } = useMemoryGame({
+    onGameOver,
+  });
 
   // effects
-  useEffect(checkIfGameOver, [game.flipsDone, game.matchesDone]);
   usePageTitle('Memory — Full Stuck');
 
-  // functions
-  function checkIfGameOver() {
-    const areAllCardsMatched = game.matchesDone >= game.cards.length / 2;
-    const areAllFlipsUsed = game.flipsDone >= game.allowedFlips;
-
-    if (areAllFlipsUsed || areAllCardsMatched) {
-      afterGameOver(areAllCardsMatched);
-    }
-  }
-
-  function afterGameOver(hasWon: boolean) {
-    if (hasWon) {
+  async function onGameOver() {
+    if (gameState.starsCount > 0) {
       dispatch(actions.setPointsToAssign(1));
     }
 
     dispatch(
       actions.saveActivity({
         name: 'memory',
+        // topic is temporary, will be modified after assigning points
         topic: 'git',
-        stars: game.starsCount,
+        stars: gameState.starsCount,
       })
     );
 
+    await sleep(1_000);
     history.replace('/assign-points');
   }
 
   return (
     <div className={styles.screen}>
       <MemoryScore
-        starsCount={game.starsCount}
-        numberOfMatches={game.matchesDone}
-        onClick={() => afterGameOver(true)}
+        starsCount={gameState.starsCount}
+        numberOfMatches={gameState.matchesDone}
+        onClick={onGameOver}
       />
       <div className={styles.gameContent}>
-        <FlipsCounter flipsLeft={game.allowedFlips - game.flipsDone} />
-        <CardsTable cards={game.cards} onCardClick={game.handleCardChoice} />
+        <FlipsCounter flipsLeft={allowedFlips - gameState.flipsDone} />
+        <CardsTable cards={gameState.cards} onCardClick={handleCardChoice} />
         <h2 className={styles.helperText}>Match the pairs!</h2>
       </div>
     </div>

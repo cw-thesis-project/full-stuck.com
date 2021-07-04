@@ -1,8 +1,8 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable no-shadow */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StarsCount, TechName } from '../../shared/types';
-import { deepCopy } from '../../shared/utils';
+import { deepCopy, sleep } from '../../shared/utils';
 import { createCards, getStarsCount } from './helpers';
 
 export interface Card {
@@ -11,46 +11,53 @@ export interface Card {
 }
 
 interface IMemoryGame {
-  cards: Card[];
-  matchesDone: number;
-  lastMatched: TechName;
-  flipsDone: number;
-  allowedFlips: number;
-  starsCount: StarsCount;
+  gameState: MemoryGameState;
   handleCardChoice(index: number): void;
 }
 
-function useMemoryGame(): IMemoryGame {
-  // states
-  const [cards, setCards] = useState(createCards());
-  const [matchesDone, setMatchesDone] = useState(0);
-  const [lastMatched, setLastMatched] = useState<TechName>('git');
-  const [flipsDone, setFlipsDone] = useState(0);
-  const [upCards, setUpCards] = useState<Card[]>([]);
-  const [starsCount, setStarsCount] = useState<StarsCount>(0);
+interface MemoryGameState {
+  cards: Card[];
+  matchesDone: number;
+  flipsDone: number;
+  upCards: Card[];
+  starsCount: StarsCount;
+  isOver: boolean;
+}
 
-  // effects
-  useEffect(updateStarsCount, [matchesDone]);
+interface MemoryGameOptions {
+  onGameOver(starsCount: StarsCount): void;
+}
 
-  // game constants
+// game constants
 
-  const allowedFlips = 45;
-  const afterPairDelay = 300;
+export const allowedFlips = 45;
+const afterPairDelay = 300;
+
+function useMemoryGame(options: MemoryGameOptions): IMemoryGame {
+  const [gameState, setGameState] = useState<MemoryGameState>({
+    cards: createCards(),
+    matchesDone: 0,
+    flipsDone: 0,
+    upCards: [],
+    starsCount: 0,
+    isOver: false,
+  });
 
   // functions
+  useEffect(checkIfGameOver, [gameState]);
 
   function handleCardChoice(index: number) {
-    const newCards = deepCopy(cards);
+    const newCards = deepCopy(gameState.cards);
     const card = newCards[index];
 
-    if (upCards.length === 0) {
+    if (gameState.upCards.length === 0) {
       handleFirstCardFlip(card, newCards);
       return;
     }
 
-    const isSame = card.name === upCards[0].name;
+    const isSame = card.name === gameState.upCards[0].name;
 
-    if (upCards.length === 1) {
+    if (gameState.upCards.length === 1) {
       if (isSame) {
         handleMatchFlip(card, newCards);
       } else {
@@ -59,73 +66,95 @@ function useMemoryGame(): IMemoryGame {
     }
   }
 
-  function handleMatchFlip(card: Card, newCards: Card[]) {
-    card.state = 'up';
-    setLastMatched(card.name);
-    setMatchesDone(matchesDone + 1);
-    setCards(newCards);
-    setUpCards([...upCards, card]);
+  function checkIfGameOver() {
+    if (gameState.isOver) {
+      return;
+    }
 
-    setTimeout(() => afterMatchActions(card, newCards), afterPairDelay);
+    const areAllCardsMatched =
+      gameState.matchesDone >= gameState.cards.length / 2;
+    const areAllFlipsUsed = gameState.flipsDone >= allowedFlips;
+
+    if (areAllFlipsUsed || areAllCardsMatched) {
+      options.onGameOver(gameState.starsCount);
+
+      setGameState((state) => ({
+        ...state,
+        isOver: true,
+      }));
+    }
   }
 
-  function afterMatchActions(card: Card, newCards: Card[]) {
-    setUpCards([]);
+  async function handleMatchFlip(card: Card, newCards: Card[]) {
+    const newCard: Card = { ...card, state: 'up' };
 
-    const cardName = card.name;
-    const updatedCards = newCards.map((newCard) => {
-      return {
-        ...newCard,
-        state: newCard.name === cardName ? 'matched' : newCard.state,
-      };
-    });
+    setGameState((state) => ({
+      ...state,
+      matchesDone: state.matchesDone + 1,
+      cards: newCards,
+      upCards: [...state.upCards, newCard],
+      starsCount: getStarsCount(state.matchesDone + 1),
+    }));
 
-    setCards(updatedCards);
+    afterMatchActions(card, newCards);
+  }
+
+  async function afterMatchActions(card: Card, newCards: Card[]) {
+    const updatedCards = newCards.map((newCard) => ({
+      ...newCard,
+      state: newCard.name === card.name ? 'matched' : newCard.state,
+    }));
+
+    await sleep(afterPairDelay);
+
+    setGameState((state) => ({
+      ...state,
+      upCards: [],
+      cards: updatedCards,
+    }));
   }
 
   function handleFirstCardFlip(card: Card, newCards: Card[]) {
-    card.state = 'up';
-    setFlipsDone(flipsDone + 1);
-    setUpCards([...upCards, card]);
-    setCards(newCards);
+    const newCard: Card = { ...card, state: 'up' };
+
+    setGameState((state) => ({
+      ...state,
+      flipsDone: state.flipsDone + 1,
+      upCards: [...state.upCards, newCard],
+      cards: newCards,
+    }));
   }
 
   function handleDifferentChoice(card: Card, newCards: Card[]) {
-    card.state = 'up';
-    setFlipsDone(flipsDone + 1);
-    setUpCards([...upCards, card]);
-    setCards(newCards);
+    const newCard: Card = { ...card, state: 'up' };
 
-    setTimeout(() => afterDifferentActions(newCards), afterPairDelay);
+    setGameState((state) => ({
+      ...state,
+      flipsDone: state.flipsDone + 1,
+      upCards: [...state.upCards, newCard],
+      cards: newCards,
+      starsCount: getStarsCount(state.flipsDone + 1),
+    }));
+
+    afterDifferentActions(newCards);
   }
 
-  function afterDifferentActions(newCards: Card[]) {
-    setUpCards([]);
+  async function afterDifferentActions(newCards: Card[]) {
+    const noUpCards = newCards.map((card) => ({
+      ...card,
+      state: card.state === 'up' ? 'down' : card.state,
+    }));
 
-    const noUpCards = newCards.map((card) => {
-      return {
-        ...card,
-        state: card.state === 'up' ? 'down' : card.state,
-      };
-    });
+    await sleep(afterPairDelay);
 
-    setCards(noUpCards);
+    setGameState((state) => ({
+      ...state,
+      upCards: [],
+      cards: noUpCards,
+    }));
   }
 
-  function updateStarsCount() {
-    const newStarsCount = getStarsCount(matchesDone);
-    setStarsCount(newStarsCount);
-  }
-
-  return {
-    cards,
-    matchesDone,
-    lastMatched,
-    flipsDone,
-    allowedFlips,
-    handleCardChoice,
-    starsCount,
-  };
+  return { gameState, handleCardChoice };
 }
 
 export default useMemoryGame;
