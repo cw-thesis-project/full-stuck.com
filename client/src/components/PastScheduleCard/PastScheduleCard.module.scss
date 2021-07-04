@@ -7,6 +7,7 @@
   background-color: $primaryDark;
   grid-row: 2 / 4;
   padding: 1.5em 0 2.5em 0;
+  box-shadow: $shadow;
 }
 
 .achievementRibbon {
@@ -17,9 +18,9 @@
   width: 100%;
   background-color: $primaryLight;
 }
-.achievementRibbonColorFaied {
+.achievementRibbonColorFailed {
   width: 100%;
-  background-color: #291252;
+  background-color: $primary;
 }
 
 .achievementMessage {
@@ -34,4 +35,8 @@
   img {
     @include square(1em);
   }
+}
+
+.sadFace {
+  @include square(7em);
 }

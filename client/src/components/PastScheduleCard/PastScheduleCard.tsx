@@ -19,9 +19,9 @@ const PastScheduleCard = ({ stars, topic }: Props): JSX.Element => {
     <>
       {!stars ? (
         <div className={styles.scheduleItem}>
-          <ScheduleItemHeader scheduleItemTopic={topic} />
-          <TechIcon techName={topic} iconSize="large" isGray />
-          <p>will ever hire you</p>
+          <ScheduleItemHeader scheduleItemTopic="Test" />
+          <img className={styles.sadFace} src={icons.sadFace} alt="sad face" />
+          <p>Nobody will ever hire you</p>
           <div
             className={`${styles.achievementRibbon} ${styles.achievementRibbonColorFailed}`}
           >
