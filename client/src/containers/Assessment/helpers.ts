@@ -39,10 +39,9 @@ export function createSideIcons(centerIcons: Icon[], userLevel: Level): Icon[] {
 
   for (let i = centerIcons.length; i < 10; i += 1) {
     const randomIndex = Math.floor(Math.random() * otherNames.length);
-    sideIcons.push({
-      name: otherNames[randomIndex],
-      isMatched: false,
-    });
+    const name = otherNames[randomIndex];
+    const isMatched = !centerNames.includes(name);
+    sideIcons.push({ name, isMatched });
   }
 
   return shuffle(sideIcons);
