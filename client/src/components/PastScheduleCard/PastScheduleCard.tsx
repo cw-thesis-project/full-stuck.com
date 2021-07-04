@@ -10,10 +10,7 @@ interface Props {
   topic: TechName;
 }
 const PastScheduleCard = ({ stars, topic }: Props): JSX.Element => {
-  const starsArray: number[] = [];
-  const fakeStars = stars;
-  starsArray.length = fakeStars;
-  starsArray.fill(0);
+  const starsArray = [0, 1, 2];
 
   if (!stars) {
     return (
@@ -30,15 +27,14 @@ const PastScheduleCard = ({ stars, topic }: Props): JSX.Element => {
     <div className={styles.card}>
       <ScheduleItemHeader scheduleItemTopic={topic} />
       <div className={styles.starsRow}>
-        {starsArray.map((_, index) => {
-          const isRaised = fakeStars === 3 && index === 1;
-
-          const middleStyle = {
-            marginBottom: isRaised ? '1em' : 0,
-          };
-
-          return <img src={icons.star} style={middleStyle} alt="star" />;
-        })}
+        {starsArray.map((index) => (
+          <img
+            className={index >= stars ? styles.grayStar : ''}
+            src={icons.star}
+            alt="star"
+            key={index}
+          />
+        ))}
       </div>
       <TechIcon techName={topic} iconSize="large" isGray={false} />
       <p className={styles.paragraph}>You did great, keep on going!</p>
