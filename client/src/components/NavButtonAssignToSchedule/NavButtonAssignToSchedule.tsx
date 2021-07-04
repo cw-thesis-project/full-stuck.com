@@ -3,22 +3,22 @@ import styles from './NavButtonAssignToSchedule.module.scss';
 
 interface Props {
   moveToSchedule: () => void;
-  pointsToAssign: number;
+  redirectionAllowed: boolean;
 }
 
 const NavButtonAssignToSchedule = ({
   moveToSchedule,
-  pointsToAssign,
+  redirectionAllowed,
 }: Props): JSX.Element => {
   return (
     <div
       role="button"
       // eslint-disable-next-line no-console
-      onKeyDown={() => console.log('hi buddy')}
+      onKeyDown={() => console.log('hi budda')}
       onClick={() => moveToSchedule()}
       tabIndex={0}
       className={`${styles.scheduleButton} ${
-        pointsToAssign > 0 ? styles.inactiveBtn : styles.activeBtn
+        redirectionAllowed ? styles.activeBtn : styles.inactiveBtn
       }`}
     >
       <h2>Schedule</h2>

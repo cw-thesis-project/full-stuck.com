@@ -137,7 +137,6 @@ export function updateUserRequest(user: User): AppAction {
     user,
   };
 }
-
 export function updateUserSuccess(user: User): AppAction {
   return {
     type: 'UPDATE_USER_SUCCESS',
@@ -151,7 +150,31 @@ export function updateUserFailure(error: Error | string): AppAction {
     error,
   };
 }
+// set topic
+export function setActivityTopicRequest(
+  techName: TechName,
+  user: User
+): AppAction {
+  return {
+    type: 'SET_ACTIVITY_TOPIC_REQUEST',
+    techName,
+    user,
+  };
+}
 
+export function setActivityTopicSuccess(user: User): AppAction {
+  return {
+    type: 'SET_ACTIVITY_TOPIC_SUCCESS',
+    user,
+  };
+}
+
+export function setActivityTopicFailure(error: Error | string): AppAction {
+  return {
+    type: 'SET_ACTIVITY_TOPIC_FAILURE',
+    error,
+  };
+}
 // reset error
 
 export function resetError(): AppAction {

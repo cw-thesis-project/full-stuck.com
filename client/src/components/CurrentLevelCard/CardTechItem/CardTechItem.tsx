@@ -2,6 +2,7 @@ import React from 'react';
 import { TechName } from '../../../shared/types';
 import styles from './CardTechItem.module.scss';
 import TechIcon from '../../TechIcon';
+import { useAppSelector } from '../../../store';
 
 interface Props {
   experience: number;
@@ -16,6 +17,7 @@ const CardTechItem = ({
   onIconClick,
   maxBubbles,
 }: Props): JSX.Element => {
+  const loading = useAppSelector((state) => state.loading);
   const grayBubbleCount = maxBubbles - experience;
   const grayBubbles =
     grayBubbleCount > 0
@@ -25,6 +27,7 @@ const CardTechItem = ({
             <div className={`${styles.bubble} ${styles.greyBubble}`} />
           ))
       : [];
+
   const coloredBubbles = Array(
     experience < maxBubbles ? experience : maxBubbles
   )
@@ -32,13 +35,13 @@ const CardTechItem = ({
     .map(() => (
       <div
         className={`${styles.bubble} ${styles[techName]} ${
-          grayBubbleCount ? '' : styles.glow
+          grayBubbleCount > 0 ? '' : styles.glow
         }`}
       />
     ));
 
-  function checkIconClick(tech: TechName): void {
-    if (experience < maxBubbles) onIconClick(tech);
+  function preventFrivolousSpending(tech: TechName): void {
+    if (experience < maxBubbles && !loading) onIconClick(tech);
   }
 
   return (
@@ -49,7 +52,7 @@ const CardTechItem = ({
         role="button"
         // eslint-disable-next-line no-console
         onKeyDown={() => console.log('hi buddy')}
-        onClick={() => checkIconClick(techName)}
+        onClick={() => preventFrivolousSpending(techName)}
         className={styles.clickable}
         tabIndex={0}
       >
