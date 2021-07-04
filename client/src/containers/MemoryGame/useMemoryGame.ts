@@ -2,8 +2,8 @@
 /* eslint-disable no-shadow */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useState } from 'react';
-import { TechName } from '../../shared/types';
-import { deepCopy } from '../../shared/utils';
+import { Tech, TechName } from '../../shared/types';
+import { deepCopy, shuffle } from '../../shared/utils';
 import { technologies } from './helpers';
 
 export interface Card {
@@ -114,14 +114,17 @@ function useMemoryGame(): IMemoryGame {
 }
 
 function createCards() {
-  const halfCards: Card[] = technologies.map((tech) => {
-    return {
-      name: tech.name,
-      state: 'down',
-    };
-  });
+  const halfCards = technologies.map(makeCard);
+  const allCards = [...halfCards, ...halfCards];
 
-  return [...halfCards, ...halfCards];
+  return shuffle(allCards);
+}
+
+function makeCard(tech: Tech): Card {
+  return {
+    name: tech.name,
+    state: 'down',
+  };
 }
 
 export default useMemoryGame;
