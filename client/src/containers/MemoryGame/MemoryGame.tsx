@@ -5,29 +5,21 @@ import { useHistory } from 'react-router-dom';
 
 import styles from './MemoryGame.module.scss';
 import FlipsCounter from '../../components/FlipsCounter';
-import MatchedPile from '../../components/MatchedPile';
+import MemoryScore from '../../components/MemoryScore';
 import CardsTable from '../../components/CardsTable';
 import useMemoryGame from './useMemoryGame';
 import { actions, useAppDispatch } from '../../store';
 
-const MemoryGame = (): JSX.Element => {
+const MemoryGameContainer = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const history = useHistory();
+  const game = useMemoryGame();
 
-  const {
-    lastMatched,
-    matchesDone,
-    flipsDone,
-    allowedFlips,
-    cards,
-    handleCardChoice,
-  } = useMemoryGame();
-
-  useEffect(checkIfGameOver, [flipsDone, matchesDone]);
+  useEffect(checkIfGameOver, [game.flipsDone, game.matchesDone]);
 
   function checkIfGameOver() {
-    const areAllCardsMatched = matchesDone >= cards.length / 2;
-    const areAllFlipsUsed = flipsDone >= allowedFlips;
+    const areAllCardsMatched = game.matchesDone >= game.cards.length / 2;
+    const areAllFlipsUsed = game.flipsDone >= game.allowedFlips;
 
     if (areAllFlipsUsed || areAllCardsMatched) {
       afterGameOver(areAllCardsMatched);
@@ -52,15 +44,18 @@ const MemoryGame = (): JSX.Element => {
 
   return (
     <div className={styles.screen}>
-      <FlipsCounter flipsDone={flipsDone} allowedFlips={allowedFlips} />
-      <CardsTable cards={cards} onCardClick={handleCardChoice} />
-      <MatchedPile
-        lastMatchedTech={lastMatched}
-        numberOfMatches={matchesDone}
+      <MemoryScore
+        starsCount={game.starsCount}
+        numberOfMatches={game.matchesDone}
         onClick={() => afterGameOver(true)}
       />
+      <div className={styles.gameContent}>
+        <FlipsCounter flipsLeft={game.allowedFlips - game.flipsDone} />
+        <CardsTable cards={game.cards} onCardClick={game.handleCardChoice} />
+        <h2 className={styles.helperText}>Match the pairs!</h2>
+      </div>
     </div>
   );
 };
 
-export default MemoryGame;
+export default MemoryGameContainer;
