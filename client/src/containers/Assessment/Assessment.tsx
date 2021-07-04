@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import SideColumn from '../../components/SideColumn';
 import CenterIcons from '../../components/CenterIcons';
 import AssessmentScore from '../../components/AssessmentScore';
-import useAssessmentGame from './assessmentGame';
+import useAssessmentGame from './useAssessmentGame';
 import styles from './Assessment.module.scss';
 import { userAfterAssessment } from './helpers';
 import { useAppDispatch, useAppSelector, actions } from '../../store';
