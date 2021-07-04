@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect, useState } from 'react';
-import { TechName } from '../../shared/types';
+import { StarsCount, TechName } from '../../shared/types';
 import { deepCopy } from '../../shared/utils';
 import { AssessmentGameOptions, IAssessmentGame } from './interfaces';
 import * as helpers from './helpers';
@@ -26,10 +26,12 @@ function useAssessmentGame(
   const [timeLeft, setTimeLeft] = useState(gameDuration);
   const [groupMatchesCount, setGroupMatchesCount] = useState(0);
   const [totalMatchesCount, setTotalMatchesCount] = useState(0);
+  const [starsCount, setStarsCount] = useState<StarsCount>(0);
   // interval on mount -> useEffect []
   // read state inside set interval
 
   useEffect(createInterval, []);
+  useEffect(updateStarsCount, [totalMatchesCount]);
 
   function onIconMatch(index: number, draggedName: TechName) {
     const { name } = sideIcons[index];
@@ -99,12 +101,16 @@ function useAssessmentGame(
 
       if (isGameOver) {
         clearInterval(intervalId);
-        const starsCount = helpers.getStars(totalMatches);
         onGameEnd(starsCount);
       }
 
       return totalMatches;
     });
+  }
+
+  function updateStarsCount() {
+    const newStarsCount = helpers.getStars(totalMatchesCount);
+    setStarsCount(newStarsCount);
   }
 
   return {
@@ -113,6 +119,7 @@ function useAssessmentGame(
     sideIcons,
     timeLeft,
     totalMatchesCount,
+    starsCount,
   };
 }
 
