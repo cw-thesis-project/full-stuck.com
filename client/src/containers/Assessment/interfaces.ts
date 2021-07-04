@@ -17,4 +17,5 @@ export interface IAssessmentGame {
   sideIcons: Icon[];
   totalMatchesCount: number;
   timeLeft: number;
+  stars: number;
 }
