@@ -1,6 +1,6 @@
 @import '../../style/style.scss';
 
-.scheduleItem {
+.card {
   @include column();
   @include rounded();
   justify-content: space-between;
@@ -8,27 +8,10 @@
   grid-row: 2 / 4;
   padding: 1.5em 0 2.5em 0;
   box-shadow: $shadow;
+  text-align: center;
 }
 
-.achievementRibbon {
-  @include center;
-}
-
-.achievementRibbonColor {
-  width: 100%;
-  background-color: $primaryLight;
-}
-.achievementRibbonColorFailed {
-  width: 100%;
-  background-color: $primary;
-}
-
-.achievementMessage {
-  color: white;
-  font-size: 1.5em;
-}
-
-.starsContainer {
+.starsRow {
   @include row;
   gap: 0.5em;
 
@@ -39,4 +22,20 @@
 
 .sadFace {
   @include square(7em);
+}
+
+.paragraph {
+  padding: 0 2em;
+}
+
+.ribbon {
+  @include center;
+  @include rectangle(100%, 3em);
+  background-color: $primaryLight;
+  color: $light;
+  font-size: 1.5em;
+
+  &.failed {
+    background-color: $primary;
+  }
 }

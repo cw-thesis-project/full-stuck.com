@@ -15,43 +15,35 @@ const PastScheduleCard = ({ stars, topic }: Props): JSX.Element => {
   starsArray.length = fakeStars;
   starsArray.fill(0);
 
+  if (!stars) {
+    return (
+      <div className={styles.card}>
+        <ScheduleItemHeader scheduleItemTopic="Test" />
+        <img className={styles.sadFace} src={icons.sadFace} alt="sad face" />
+        <p className={styles.paragraph}>Maybe you’ll get it right next time!</p>
+        <div className={`${styles.ribbon} ${styles.failed}`}>Failed</div>
+      </div>
+    );
+  }
+
   return (
-    <>
-      {!stars ? (
-        <div className={styles.scheduleItem}>
-          <ScheduleItemHeader scheduleItemTopic="Test" />
-          <img className={styles.sadFace} src={icons.sadFace} alt="sad face" />
-          <p>Nobody will ever hire you</p>
-          <div
-            className={`${styles.achievementRibbon} ${styles.achievementRibbonColorFailed}`}
-          >
-            <p className={styles.achievementMessage}>Failed</p>
-          </div>
-        </div>
-      ) : (
-        <div className={styles.scheduleItem}>
-          <ScheduleItemHeader scheduleItemTopic={topic} />
-          <div className={styles.starsContainer}>
-            {starsArray.map((_, index) => {
-              const isRaised = fakeStars === 3 && index === 1;
+    <div className={styles.card}>
+      <ScheduleItemHeader scheduleItemTopic={topic} />
+      <div className={styles.starsRow}>
+        {starsArray.map((_, index) => {
+          const isRaised = fakeStars === 3 && index === 1;
 
-              const middleStyle = {
-                marginBottom: isRaised ? '1em' : 0,
-              };
+          const middleStyle = {
+            marginBottom: isRaised ? '1em' : 0,
+          };
 
-              return <img src={icons.star} style={middleStyle} alt="star" />;
-            })}
-          </div>
-          <TechIcon techName={topic} iconSize="large" isGray={false} />
-          <p>Don’t you like it?</p>
-          <div
-            className={`${styles.achievementRibbon} ${styles.achievementRibbonColor}`}
-          >
-            <p className={styles.achievementMessage}>Learnt</p>
-          </div>
-        </div>
-      )}
-    </>
+          return <img src={icons.star} style={middleStyle} alt="star" />;
+        })}
+      </div>
+      <TechIcon techName={topic} iconSize="large" isGray={false} />
+      <p className={styles.paragraph}>You did great, keep on going!</p>
+      <div className={styles.ribbon}>Learnt</div>
+    </div>
   );
 };
 
