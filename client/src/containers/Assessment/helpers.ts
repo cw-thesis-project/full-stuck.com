@@ -13,7 +13,7 @@ import {
 } from '../../shared/constants';
 import { Icon } from './interfaces';
 
-const scoreThresholds = [5, 10, 15];
+export const scoreThresholds = [5, 10, 15];
 
 export function makeIcon(name: TechName): Icon {
   return {
