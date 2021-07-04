@@ -83,7 +83,7 @@ const Assessment = (): JSX.Element => {
           >
             <AssessmentScore
               totalMatchesCount={game.totalMatchesCount}
-              stars={game.stars}
+              starsCount={game.starsCount}
               minMatchesCount={15}
             />
           </button>
