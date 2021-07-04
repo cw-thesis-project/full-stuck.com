@@ -34,7 +34,7 @@ function useMemoryGame(): IMemoryGame {
 
   // game constants
 
-  const allowedFlips = 30;
+  const allowedFlips = 45;
   const afterPairDelay = 300;
 
   // functions
