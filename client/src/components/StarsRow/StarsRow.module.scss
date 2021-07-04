@@ -1,0 +1,14 @@
+@import '../../style/style.scss';
+
+.container {
+  @include row;
+  gap: 0.5em;
+}
+
+.star {
+  @include square(1em);
+}
+
+.gray {
+  filter: grayscale(1);
+}
