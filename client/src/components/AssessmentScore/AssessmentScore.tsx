@@ -1,47 +1,26 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import React from 'react';
-import classnames from 'classnames';
 import styles from './AssessmentScore.module.scss';
-import icons from '../../assets/icons';
+import StarsRow from '../StarsRow';
+import { StarsCount } from '../../shared/types';
 
 interface Props {
   totalMatchesCount: number;
   minMatchesCount: number;
-  stars: number;
+  starsCount: StarsCount;
 }
 
 const AssessmentScore = ({
   totalMatchesCount,
   minMatchesCount,
-  stars,
+  starsCount,
 }: Props): JSX.Element => {
   return (
     <div className={styles.container}>
-      <StarsRow stars={stars} />
+      <StarsRow starsCount={starsCount} />
       <div className={styles.matchesContainer}>
         <h1 className={styles.totalMatches}>{totalMatchesCount}</h1>
         <h3 className={styles.minMatches}>/{minMatchesCount}</h3>
       </div>
-    </div>
-  );
-};
-
-const starsArray = [0, 1, 2];
-
-interface StarsRowProps {
-  stars: number;
-}
-
-const StarsRow = ({ stars }: StarsRowProps): JSX.Element => {
-  return (
-    <div className={styles.starsContainer}>
-      {starsArray.map((number) => {
-        const className = classnames({
-          [styles.star]: true,
-          [styles.gray]: stars <= number,
-        });
-        return <img alt="first star" className={className} src={icons.star} />;
-      })}
     </div>
   );
 };
