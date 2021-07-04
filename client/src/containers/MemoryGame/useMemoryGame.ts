@@ -1,32 +1,13 @@
-/* eslint-disable no-shadow */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useState, useEffect } from 'react';
-import { StarsCount, TechName } from '../../shared/types';
 import { deepCopy, sleep } from '../../shared/utils';
 import { createCards, getStarsCount } from './helpers';
-
-export interface Card {
-  name: TechName;
-  state: 'down' | 'up' | 'matched';
-}
-
-interface IMemoryGame {
-  gameState: MemoryGameState;
-  handleCardChoice(index: number): void;
-}
-
-interface MemoryGameState {
-  cards: Card[];
-  matchesDone: number;
-  flipsDone: number;
-  upCards: Card[];
-  starsCount: StarsCount;
-  isOver: boolean;
-}
-
-interface MemoryGameOptions {
-  onGameOver(starsCount: StarsCount): void;
-}
+import {
+  Card,
+  IMemoryGame,
+  MemoryGameOptions,
+  MemoryGameState,
+} from './interfaces';
 
 // game constants
 
@@ -43,7 +24,6 @@ function useMemoryGame(options: MemoryGameOptions): IMemoryGame {
     isOver: false,
   });
 
-  // functions
   useEffect(checkIfGameOver, [gameState]);
 
   function handleCardChoice(index: number) {
