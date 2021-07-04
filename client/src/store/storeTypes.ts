@@ -24,7 +24,10 @@ export type AppAction =
   | GetUserDataRequestAction
   | GetUserDataSuccessAction
   | ResetErrorAction
-  | FailureAction;
+  | FailureAction
+  | SetActivityTopicRequestAction
+  | SetActivityTopicSuccesAction
+  | SetActivityTopicFailureAction;
 
 export interface ApiService {
   learnTech(techName: TechName, user: User): Promise<User | null>;
@@ -32,6 +35,7 @@ export interface ApiService {
   newGame(username: string): Promise<User | null>;
   getUserData(username: string): Promise<User | null>;
   updateUser(user: User): Promise<User | null>;
+  changeActivityTopic(techName: TechName, user: User): Promise<User | null>;
 }
 
 // see https://redux.js.org/usage/usage-with-typescript#type-checking-redux-thunks
@@ -132,6 +136,21 @@ export interface FailureAction {
   error: Error | string;
 }
 
+interface SetActivityTopicRequestAction {
+  type: typeof SET_ACTIVITY_TOPIC_REQUEST;
+  techName: TechName;
+  user: User;
+}
+interface SetActivityTopicSuccesAction {
+  type: typeof SET_ACTIVITY_TOPIC_SUCCESS;
+  user: User;
+}
+
+interface SetActivityTopicFailureAction {
+  type: typeof SET_ACTIVITY_TOPIC_FAILURE;
+  error: Error | string;
+}
+
 // action types
 
 const SAVE_ACTIVITY_REQUEST = 'SAVE_ACTIVITY_REQUEST';
@@ -160,5 +179,9 @@ const LEVEL_USER_UP_SUCCESS = 'LEVEL_USER_UP_SUCCESS';
 const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 const UPDATE_USER_REQUEST = 'UPDATE_USER_REQUEST';
 const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+
+const SET_ACTIVITY_TOPIC_REQUEST = 'SET_ACTIVITY_TOPIC_REQUEST';
+const SET_ACTIVITY_TOPIC_SUCCESS = 'SET_ACTIVITY_TOPIC_SUCCESS';
+const SET_ACTIVITY_TOPIC_FAILURE = 'SET_ACTIVITY_TOPIC_FAILURE';
 
 const RESET_ERROR = 'RESET_ERROR';

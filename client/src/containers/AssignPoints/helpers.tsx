@@ -4,7 +4,7 @@ import { Level, TechExperience, TechName } from '../../shared/types';
 import CurrentLevelCard from '../../components/CurrentLevelCard';
 import CompletedLevelCard from '../../components/CompletedLevelCard';
 import NextLevelCard from '../../components/NextLevelCard';
-import { levelToNumber } from '../../shared/constants';
+import { levelToNumber, maxTechnologyExperience } from '../../shared/constants';
 
 interface TechExperienceSubset {
   name: TechName;
@@ -60,6 +60,7 @@ export function assignCards(
   onIconClick: (techName: TechName) => void
 ): void {
   const stage = levelToNumber[level];
+  // for dev purposes
   if (showAll) {
     setLeftCard(
       renderCurrentCard('junior', pointsToAssign, techExperience, onIconClick)
@@ -72,6 +73,7 @@ export function assignCards(
     );
     return;
   }
+
   setLeftCard(
     stage > 0
       ? renderCompletedCard('junior')
@@ -92,4 +94,28 @@ export function assignCards(
       renderCurrentCard('tutor', pointsToAssign, techExperience, onIconClick)
     );
   }
+}
+
+export function buttonAllowed(
+  lvl: Level,
+  techExperience: TechExperience,
+  pointsToAssign: number
+): boolean {
+  if (pointsToAssign === 0) return true;
+  const techExperienceSum: number =
+    Object.values<number>(techExperience).reduce(
+      (acc: number, el: number): number => {
+        return acc + el;
+      },
+      0
+    ) + 1;
+  const techPerLevel = 3;
+  const levelThreshold = techPerLevel * (maxTechnologyExperience + 1) - 1;
+  const juniorThreshold = levelThreshold;
+  const seniorThreshold = juniorThreshold + 1 + levelThreshold;
+  const tutorThreshold = seniorThreshold + 1 + levelThreshold;
+  if (lvl === 'junior') return techExperienceSum === juniorThreshold;
+  if (lvl === 'senior') return techExperienceSum === seniorThreshold;
+  if (lvl === 'tutor') return techExperienceSum === tutorThreshold;
+  return false;
 }

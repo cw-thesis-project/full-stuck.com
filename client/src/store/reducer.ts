@@ -3,7 +3,7 @@ import { User } from '../shared/types';
 import { AppState, AppAction, FailureAction } from './storeTypes';
 
 export const defaultState: AppState = {
-  pointsToAssign: 0,
+  pointsToAssign: 10,
   user: null,
   loading: false,
   error: '',
@@ -40,12 +40,17 @@ export function reducer(state = defaultState, action: AppAction): AppState {
       auxState = stopLoading(state);
       return saveUser(action.user, auxState);
 
+    case 'SET_ACTIVITY_TOPIC_SUCCESS':
+      auxState = stopLoading(state);
+      return changeTopic(action.user, auxState);
+
     case 'NEW_GAME_REQUEST':
     case 'GET_USER_DATA_REQUEST':
     case 'LEARN_TECH_REQUEST':
     case 'SAVE_ACTIVITY_REQUEST':
     case 'LEVEL_USER_UP_REQUEST':
     case 'UPDATE_USER_REQUEST':
+    case 'SET_ACTIVITY_TOPIC_REQUEST':
       return startLoading(state);
 
     case 'NEW_GAME_FAILURE':
@@ -54,6 +59,7 @@ export function reducer(state = defaultState, action: AppAction): AppState {
     case 'SAVE_ACTIVITY_FAILURE':
     case 'LEVEL_USER_UP_FAILURE':
     case 'UPDATE_USER_FAILURE':
+    case 'SET_ACTIVITY_TOPIC_FAILURE':
       auxState = stopLoading(state);
       return handleError(auxState, action as FailureAction);
 
@@ -108,6 +114,13 @@ function resetError(state: AppState): AppState {
 }
 
 function makeUserLevelUp(user: User, state: AppState): AppState {
+  if (!state.user) {
+    return state;
+  }
+  return saveUser(user, state);
+}
+
+function changeTopic(user: User, state: AppState) {
   if (!state.user) {
     return state;
   }

@@ -6,7 +6,7 @@ import TechAchievementCard from './TechAchievementCard';
 import styles from './LearntTech.module.scss';
 import icons from '../../assets/icons';
 
-export type TechAchievement = { level: number; isLocked: boolean };
+export type TechAchievement = { experience: number; isLocked: boolean };
 
 export type TechAchievements = Record<TechName, TechAchievement>;
 
@@ -27,7 +27,7 @@ const LearntTech = ({ techAchievements }: Props): JSX.Element => {
         techName={techName}
         key={techName}
         isLocked={techAchievements[techName].isLocked}
-        techSkillLevel={techAchievements[techName].level}
+        techSkillLevel={techAchievements[techName].experience}
       />
     ));
 

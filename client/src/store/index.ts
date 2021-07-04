@@ -10,6 +10,7 @@ export const actions = {
   getUserData: thunks.getUserData,
   newGame: thunks.newGame,
   levelUserUp: thunks.levelUserUp,
+  setActivityTopic: thunks.setActivityTopic,
   decreasePointsToAssign: appActions.decreasePointsToAssign,
   setPointsToAssign: appActions.setPointsToAssign,
 };
