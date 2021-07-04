@@ -7,9 +7,14 @@ import TechIcon from '../TechIcon';
 interface Props {
   techNames: TechName[];
   onDragStart(techName: TechName): void;
+  onDragEnd(): void;
 }
 
-const CenterIcons = ({ techNames, onDragStart }: Props): JSX.Element => {
+const CenterIcons = ({
+  techNames,
+  onDragStart,
+  onDragEnd,
+}: Props): JSX.Element => {
   const container = classnames({
     [styles.container]: true,
     [styles.oneIcon]: techNames.length === 1,
@@ -24,6 +29,7 @@ const CenterIcons = ({ techNames, onDragStart }: Props): JSX.Element => {
           draggable
           key={techName}
           onDragStart={() => onDragStart(techName)}
+          onDragEnd={onDragEnd}
           className={styles.draggable}
         >
           <TechIcon
