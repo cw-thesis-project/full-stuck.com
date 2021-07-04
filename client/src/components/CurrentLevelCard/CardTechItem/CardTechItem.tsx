@@ -1,4 +1,6 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
+import classNames from 'classnames';
 import { TechName } from '../../../shared/types';
 import styles from './CardTechItem.module.scss';
 import TechIcon from '../../TechIcon';
@@ -19,26 +21,25 @@ const CardTechItem = ({
 }: Props): JSX.Element => {
   const loading = useAppSelector((state) => state.loading);
   const grayBubbleCount = maxBubbles - experience;
-  const grayBubbles =
-    grayBubbleCount > 0
-      ? Array(grayBubbleCount)
-          .fill(null)
-          .map(() => (
-            <div className={`${styles.bubble} ${styles.greyBubble}`} />
-          ))
-      : [];
+  const grayBubbles = Array(grayBubbleCount)
+    .fill(null)
+    .map((_, index) => (
+      <div className={`${styles.bubble} ${styles.greyBubble}`} key={index} />
+    ));
 
   const coloredBubbles = Array(
     experience < maxBubbles ? experience : maxBubbles
   )
     .fill(null)
-    .map(() => (
-      <div
-        className={`${styles.bubble} ${styles[techName]} ${
-          grayBubbleCount > 0 ? '' : styles.glow
-        }`}
-      />
-    ));
+    .map((_, index) => {
+      const className = classNames({
+        [styles.bubble]: true,
+        [styles[techName]]: true,
+        [styles.glow]: grayBubbleCount > 0,
+      });
+
+      return <div className={className} key={index} />;
+    });
 
   function preventFrivolousSpending(tech: TechName): void {
     if (experience < maxBubbles && !loading) onIconClick(tech);
