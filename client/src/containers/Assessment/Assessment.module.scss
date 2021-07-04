@@ -14,10 +14,19 @@
 .centerSection {
   @include column;
   justify-content: space-between;
+}
 
-  h1 {
+.header {
+  @include row;
+  gap: 2em;
+
+  .timeLeft {
     color: $accent;
     font-size: 3em;
+  }
+
+  .hourGlassIcon {
+    @include square(3em);
   }
 }
 
