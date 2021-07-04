@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useState, useEffect } from 'react';
 import { deepCopy, sleep } from '../../shared/utils';
@@ -66,13 +67,13 @@ function useMemoryGame(options: MemoryGameOptions): IMemoryGame {
   }
 
   async function handleMatchFlip(card: Card, newCards: Card[]) {
-    const newCard: Card = { ...card, state: 'up' };
+    card.state = 'up';
 
     setGameState((state) => ({
       ...state,
       matchesDone: state.matchesDone + 1,
       cards: newCards,
-      upCards: [...state.upCards, newCard],
+      upCards: [...state.upCards, card],
       starsCount: getStarsCount(state.matchesDone + 1),
     }));
 
@@ -95,23 +96,23 @@ function useMemoryGame(options: MemoryGameOptions): IMemoryGame {
   }
 
   function handleFirstCardFlip(card: Card, newCards: Card[]) {
-    const newCard: Card = { ...card, state: 'up' };
+    card.state = 'up';
 
     setGameState((state) => ({
       ...state,
       flipsDone: state.flipsDone + 1,
-      upCards: [...state.upCards, newCard],
+      upCards: [...state.upCards, card],
       cards: newCards,
     }));
   }
 
   function handleDifferentChoice(card: Card, newCards: Card[]) {
-    const newCard: Card = { ...card, state: 'up' };
+    card.state = 'up';
 
     setGameState((state) => ({
       ...state,
       flipsDone: state.flipsDone + 1,
-      upCards: [...state.upCards, newCard],
+      upCards: [...state.upCards, card],
       cards: newCards,
       starsCount: getStarsCount(state.flipsDone + 1),
     }));
