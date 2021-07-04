@@ -14,7 +14,7 @@
 
   & img {
     @include square(2em);
-    opacity: 50%;
+    opacity: 0.5;
     cursor: pointer;
   }
 }
