@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "https://dev.full-stuck.com/static/css/main.ca505082.chunk.css",
-    "main.js": "https://dev.full-stuck.com/static/js/main.9e3dbdc0.chunk.js",
-    "main.js.map": "https://dev.full-stuck.com/static/js/main.9e3dbdc0.chunk.js.map",
+    "main.js": "https://dev.full-stuck.com/static/js/main.09d3d152.chunk.js",
+    "main.js.map": "https://dev.full-stuck.com/static/js/main.09d3d152.chunk.js.map",
     "runtime-main.js": "https://dev.full-stuck.com/static/js/runtime-main.cb37aed7.js",
     "runtime-main.js.map": "https://dev.full-stuck.com/static/js/runtime-main.cb37aed7.js.map",
     "static/js/2.4bd56bc2.chunk.js": "https://dev.full-stuck.com/static/js/2.4bd56bc2.chunk.js",
@@ -38,6 +38,6 @@
     "static/js/runtime-main.cb37aed7.js",
     "static/js/2.4bd56bc2.chunk.js",
     "static/css/main.ca505082.chunk.css",
-    "static/js/main.9e3dbdc0.chunk.js"
+    "static/js/main.09d3d152.chunk.js"
   ]
 }
