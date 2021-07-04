@@ -11,7 +11,7 @@ const TempNavBar = (): JSX.Element => {
   const userStore = useAppSelector((state) => state.user);
   const [techName, setTechName] = useState('');
   const dispatch = useAppDispatch();
-  usePageTitle('Full Stuck - Admin');
+  usePageTitle('Admin — Full Stuck');
 
   const { isLoading, isAuthenticated, error, loginWithRedirect, logout } =
     useAuth0();
