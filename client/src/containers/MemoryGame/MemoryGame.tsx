@@ -7,6 +7,7 @@ import MemoryScore from '../../components/MemoryScore';
 import CardsTable from '../../components/CardsTable';
 import useMemoryGame from './useMemoryGame';
 import { actions, useAppDispatch } from '../../store';
+import usePageTitle from '../../shared/usePageTitle';
 
 const MemoryGameContainer = (): JSX.Element => {
   // states
@@ -16,6 +17,7 @@ const MemoryGameContainer = (): JSX.Element => {
 
   // effects
   useEffect(checkIfGameOver, [game.flipsDone, game.matchesDone]);
+  usePageTitle('Memory — Full Stuck');
 
   // functions
   function checkIfGameOver() {

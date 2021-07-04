@@ -12,6 +12,7 @@ import { updateUser } from '../../store/thunks';
 import { AssessmentGameOptions } from './interfaces';
 import { StarsCount, TechName } from '../../shared/types';
 import icons from '../../assets/icons';
+import usePageTitle from '../../shared/usePageTitle';
 
 const Assessment = (): JSX.Element => {
   const user = useAppSelector((state) => state.user);
@@ -26,6 +27,7 @@ const Assessment = (): JSX.Element => {
   };
 
   const game = useAssessmentGame(options);
+  usePageTitle('Assessment — Full Stuck');
 
   function handleIconMatch(index: number) {
     game.onIconMatch(index, draggedName);

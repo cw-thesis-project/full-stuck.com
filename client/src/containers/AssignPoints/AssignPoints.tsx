@@ -8,6 +8,7 @@ import NavButtonAssignToSchedule from '../../components/NavButtonAssignToSchedul
 
 import { assignCards, buttonAllowed } from './helpers';
 import { fakeState } from './localUtils';
+import usePageTitle from '../../shared/usePageTitle';
 
 const AssignPoints = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -26,6 +27,8 @@ const AssignPoints = (): JSX.Element => {
   const { level } = gameData;
   const { techExperience } = gameData;
   const { history: userHistory } = gameData;
+
+  usePageTitle('Game Over — Full Stuck');
 
   function onIconClick(techName: TechName) {
     if (pointsToAssign) {

@@ -2,10 +2,12 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useHistory } from 'react-router-dom';
 import styles from './Splash.module.scss';
+import usePageTitle from '../../shared/usePageTitle';
 
 const Splash = (): JSX.Element => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   const history = useHistory();
+  usePageTitle('Full Stuck');
 
   function handleButtonClick() {
     if (isAuthenticated) {
