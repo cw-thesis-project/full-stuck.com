@@ -15,7 +15,7 @@ const PastScheduleCard = ({ stars, topic }: Props): JSX.Element => {
   if (!stars) {
     return (
       <div className={styles.card}>
-        <ScheduleItemHeader scheduleItemTopic="Test" />
+        <ScheduleItemHeader topic="Test" />
         <img className={styles.sadFace} src={icons.sadFace} alt="sad face" />
         <p className={styles.paragraph}>Maybe you’ll get it right next time!</p>
         <div className={`${styles.ribbon} ${styles.failed}`}>Failed</div>
@@ -25,7 +25,7 @@ const PastScheduleCard = ({ stars, topic }: Props): JSX.Element => {
 
   return (
     <div className={styles.card}>
-      <ScheduleItemHeader scheduleItemTopic={topic} />
+      <ScheduleItemHeader topic={topic} />
       <div className={styles.starsRow}>
         {starsArray.map((index) => (
           <img

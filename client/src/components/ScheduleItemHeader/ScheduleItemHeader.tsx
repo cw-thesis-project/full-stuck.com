@@ -2,14 +2,14 @@ import React from 'react';
 import styles from './ScheduleItemHeader.module.scss';
 
 interface Props {
-  scheduleItemTopic: string;
+  topic: string;
 }
 
-const ScheduleItemHeader = ({ scheduleItemTopic }: Props): JSX.Element => {
+const ScheduleItemHeader = ({ topic }: Props): JSX.Element => {
   return (
-    <div className={styles.headerContainer}>
-      <div className={styles.headerColor} />
-      <h1 className={styles.topic}>{scheduleItemTopic}</h1>
+    <div className={styles.container}>
+      <div className={styles.verticalBar} />
+      <h1 className={styles.topic}>{topic}</h1>
     </div>
   );
 };

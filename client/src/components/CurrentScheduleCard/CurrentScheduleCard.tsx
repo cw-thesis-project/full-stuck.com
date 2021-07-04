@@ -7,7 +7,7 @@ const CurrentScheduleCard = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <ScheduleItemHeader scheduleItemTopic="await" />
+        <ScheduleItemHeader topic="await" />
         <div className={styles.imageContainer}>
           <img src={icons.hourGlassLogo} alt="hourGlass" />
         </div>
