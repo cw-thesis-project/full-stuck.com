@@ -30,17 +30,34 @@
   }
 }
 
+.centerIconsContainer {
+  @include center;
+  @include column;
+  @include square(30em);
+  background: url('../../assets/icons/blob.svg');
+  background-position: center;
+  background-size: cover;
+}
+
 .roundsContainer {
   @include row;
   align-items: flex-end;
+
+  .roundsDone {
+    color: $accent;
+    font-size: 2.5em;
+  }
+
+  .totalRounds {
+    color: $primaryDark;
+    margin-left: 0.5em;
+  }
 }
 
-.roundsDone {
-  color: $accent;
-  font-size: 2.5em;
-}
-
-.totalRounds {
+.helperText {
   color: $primaryDark;
-  margin-left: 0.5em;
+}
+
+.cheatButton {
+  @include reset-input;
 }
