@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import SideColumn from '../../components/SideColumn';
 import CenterBlob from '../../components/CenterBlob';
-import CountDownBar from '../../components/CountDownBar';
+import AssessmentScore from '../../components/AssessmentScore';
 import useAssessmentGame from './assessmentGame';
 import styles from './Assessment.module.scss';
 import { userAfterAssesment } from './helpers';
@@ -78,12 +78,20 @@ const Assessment = (): JSX.Element => {
           techNames={centerNames}
           onDragStart={(techName) => setDraggedName(techName)}
         />
-        <div className={styles.roundsContainer}>
-          <h2 className={styles.roundsDone}>{game.totalMatchesCount}</h2>
+        <div>
+          <button
+            className={styles.cheatButton}
+            type="button"
+            onClick={() => onGameEnd(3)}
+          >
+            <AssessmentScore
+              totalMatchesCount={game.totalMatchesCount}
+              stars={game.stars}
+              minMatchesCount={15}
+            />
+          </button>
         </div>
-        <button type="button" onClick={() => onGameEnd(3)}>
-          <CountDownBar currentPercentage={0.7} />
-        </button>
+        <h2 className={styles.helperText}>Drag the icons!</h2>
       </div>
       <SideColumn
         icons={rightIcons}

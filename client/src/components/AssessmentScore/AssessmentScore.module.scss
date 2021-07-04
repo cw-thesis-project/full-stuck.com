@@ -1,0 +1,35 @@
+@import '../../style/style.scss';
+
+.container {
+  @include debug;
+  @include column;
+}
+
+.starsContainer {
+  @include row;
+  gap: 0.5em;
+
+  .star {
+    @include square(1em);
+  }
+
+  .gray {
+    filter: grayscale(1);
+  }
+}
+
+.matchesContainer {
+  @include row;
+  align-items: flex-end;
+
+  .totalMatches {
+    font-size: 3em;
+    color: $accent;
+  }
+
+  .minMatches {
+    font-size: 2em;
+    color: $light;
+    margin-left: 0.5em;
+  }
+}
