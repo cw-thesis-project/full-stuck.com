@@ -50,14 +50,13 @@ const CardTechItem = ({
       {coloredBubbles}
       <button
         type="button"
-        onClick={() => checkIconClick(techName)}
+        onClick={() => preventFrivolousSpending(techName)}
         className={styles.clickable}
-        tabIndex={0}
       >
         <TechIcon techName={techName} iconSize="small" isGray={false} />
       </button>
       <h4 className={styles.techName}>{techName}</h4>
-    </button>
+    </div>
   );
 };
 
