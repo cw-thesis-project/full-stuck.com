@@ -22,6 +22,7 @@ const CompletedLevelCard = ({ level }: Props): JSX.Element => {
     <div
       role="button"
       tabIndex={0}
+      // eslint-disable-next-line no-console
       onKeyDown={() => console.log('')}
       onClick={() => setShowDetails(!showDetails)}
       className={styles.container}
