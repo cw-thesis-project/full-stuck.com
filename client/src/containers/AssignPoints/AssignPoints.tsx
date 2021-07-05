@@ -8,6 +8,7 @@ import NavButtonAssignToSchedule from '../../components/NavButtonAssignToSchedul
 
 import { assignCards, buttonAllowed } from './helpers';
 import { fakeState } from './localUtils';
+import useAssignPointsAnimation from './useAssignPointsAnimation';
 
 const AssignPoints = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -18,10 +19,10 @@ const AssignPoints = (): JSX.Element => {
   const [rightCard, setRightCard] = useState<JSX.Element>(<div>Pabelu</div>);
   const [redirectionAllowed, setRedirectionAllowed] = useState<boolean>(false);
   // // TODO: remove the fakeAppState useState in prod
-  const showAll = false;
-
   const pointsToAssign = useAppSelector((state) => state.pointsToAssign);
   const user = useAppSelector((state) => state.user);
+  useAssignPointsAnimation();
+
   const gameData: UserGameData = user ? user.gameData : fakeState.user.gameData;
   const { level } = gameData;
   const { techExperience } = gameData;
@@ -40,7 +41,6 @@ const AssignPoints = (): JSX.Element => {
   useEffect(() => {
     assignCards(
       level,
-      showAll,
       setLeftCard,
       setMiddleCard,
       setRightCard,
@@ -58,15 +58,18 @@ const AssignPoints = (): JSX.Element => {
 
   return (
     <div className={styles.screen}>
-      <div className={styles.container}>
-        {leftCard}
-        {middleCard}
-        {rightCard}
+      <h1 className={styles.pageTitle}>Congratulations</h1>
+      <div className={styles.card}>{leftCard}</div>
+      <div className={styles.card}>{middleCard}</div>
+      <div className={styles.card}>{rightCard}</div>
+      <p className={styles.footerText}>Spend the points you have earned...</p>
+      <div className={styles.scheduleButton}>
+        <NavButtonAssignToSchedule
+          moveToSchedule={moveToSchedule}
+          redirectionAllowed={redirectionAllowed}
+        />
       </div>
-      <NavButtonAssignToSchedule
-        moveToSchedule={moveToSchedule}
-        redirectionAllowed={redirectionAllowed}
-      />
+      <p className={styles.footerText}>...to improve your knowledge!</p>
     </div>
   );
 };

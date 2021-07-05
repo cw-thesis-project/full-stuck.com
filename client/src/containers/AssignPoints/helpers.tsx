@@ -51,7 +51,6 @@ export function renderNextCard(lvl: Level): JSX.Element {
 
 export function assignCards(
   level: Level,
-  showAll: boolean,
   setLeftCard: React.Dispatch<React.SetStateAction<JSX.Element>>,
   setMiddleCard: React.Dispatch<React.SetStateAction<JSX.Element>>,
   setRightCard: React.Dispatch<React.SetStateAction<JSX.Element>>,
@@ -61,18 +60,6 @@ export function assignCards(
 ): void {
   const stage = levelToNumber[level];
   // for dev purposes
-  if (showAll) {
-    setLeftCard(
-      renderCurrentCard('junior', pointsToAssign, techExperience, onIconClick)
-    );
-    setMiddleCard(
-      renderCurrentCard('senior', pointsToAssign, techExperience, onIconClick)
-    );
-    setRightCard(
-      renderCurrentCard('tutor', pointsToAssign, techExperience, onIconClick)
-    );
-    return;
-  }
 
   setLeftCard(
     stage > 0
@@ -93,6 +80,9 @@ export function assignCards(
     setRightCard(
       renderCurrentCard('tutor', pointsToAssign, techExperience, onIconClick)
     );
+  } else if (stage > 2) {
+    setMiddleCard(renderCompletedCard('senior'));
+    setRightCard(renderCompletedCard('tutor'));
   }
 }
 
@@ -112,8 +102,10 @@ export function buttonAllowed(
   const juniorThreshold = levelThreshold;
   const seniorThreshold = juniorThreshold + 1 + levelThreshold;
   const tutorThreshold = seniorThreshold + 1 + levelThreshold;
+
   if (lvl === 'junior') return techExperienceSum === juniorThreshold;
   if (lvl === 'senior') return techExperienceSum === seniorThreshold;
   if (lvl === 'tutor') return techExperienceSum === tutorThreshold;
-  return false;
+
+  return lvl === 'CEO';
 }

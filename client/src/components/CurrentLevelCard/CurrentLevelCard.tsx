@@ -41,14 +41,12 @@ const CurrentLevelCard = ({
   const pointsString = `${plusOrNot}${pointsToAssign}`;
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>{level}</h2>
-        <h3 className={styles.pointsBadge}>{pointsString}</h3>
-      </div>
+    <button type="button" className={styles.container}>
+      <h2 className={styles.title}>{level}</h2>
+      <h3 className={styles.pointsBadge}>{pointsString}</h3>
       <div className={styles.techZone}>{techZone}</div>
-      <p className={styles.bottom}>Spend points to improve your skills</p>
-    </div>
+      <p className={styles.textBottom}>Spend points to improve your skills</p>
+    </button>
   );
 };
 

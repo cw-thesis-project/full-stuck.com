@@ -16,6 +16,11 @@ export const slideUp: gsap.TweenVars = {
   y: '2em',
 };
 
+export const slideDown: gsap.TweenVars = {
+  ...fadeIn,
+  y: '-2em',
+};
+
 export const slideLeft: gsap.TweenVars = {
   ...fadeIn,
   x: '2em',

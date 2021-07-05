@@ -2,34 +2,42 @@
 
 .container {
   @include column;
-  @include rounded;
+  @include roundedBig;
   @include rectangle(300px, 450px);
-
+  @include reset-input;
+  padding: 2em 0 3em 0;
   box-shadow: $shadow;
   justify-content: space-between;
   background-color: $light;
-  width: 15em;
 
   h2,
   h3,
   h4 {
     color: $primaryLight;
+    text-transform: capitalize;
+    margin: 0;
   }
 }
 
 .title {
-  margin-top: 1em;
+  font-size: 2em;
 }
 
 .lockedZone {
   @include column;
 }
 
-.lockIcon {
-  @include square(8em);
+.cardStatus {
+  font-size: 1.5em;
 }
 
-.bottom {
+.lockIcon {
+  @include square(7em);
+}
+
+.textBottom {
+  color: $primaryLight;
   text-align: center;
-  color: $primaryDark;
+  padding: 0 4em;
+  font-size: 1.2em;
 }

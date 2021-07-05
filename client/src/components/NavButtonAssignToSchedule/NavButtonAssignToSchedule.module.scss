@@ -1,25 +1,32 @@
 @import '../../style/style.scss';
 
+.scheduleButton {
+  @include rectangle(8em, 3em);
+  @include rounded;
+  @include center;
+  font-weight: 600;
+  font-size: 1.5em;
+  box-shadow: $shadow;
+  padding: 1em;
+  cursor: pointer;
+}
+
 .activeBtn {
   background-color: $accent;
+
   &:hover {
-    fill: $disabled;
-    filter: grayscale(100%);
+    background-color: $accentFocus;
   }
+
   &:active {
-    filter: invert(100%);
+    background-color: $accentActive;
   }
 }
 
 .inactiveBtn {
   background-color: grey;
-}
 
-.scheduleButton {
-  @include rectangle(10em, 4em);
-  @include rounded;
-  @include center;
-  box-shadow: $shadow;
-  padding: 1em;
-  cursor: pointer;
+  &:hover {
+    cursor: not-allowed;
+  }
 }
