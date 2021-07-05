@@ -1,63 +1,50 @@
 import { useHistory } from 'react-router-dom';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './SnakeGame.module.scss';
 import { actions, useAppDispatch } from '../../store';
 import SnakeBoard from '../../components/SnakeBoard/SnakeBoard';
-import useSnakeGame from './useSnakeGame';
+import SnakeScore from '../../components/SnakeScore/SnakeScore';
+import GameOver from '../../components/GameOver/GameOver';
 
 const SnakeGame = (): JSX.Element => {
-  const {
-    start,
-    stop,
-    isGameOver,
-    score,
-    board,
-    block,
-    handleKeyDown,
-    snake,
-    apple,
-  } = useSnakeGame();
-
   const dispatch = useAppDispatch();
-  const history = useHistory();
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    start();
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      stop();
-    };
-  }, []);
-
-  function afterGameOver() {
-    const hasWon = score >= 20;
-    if (hasWon) {
-      dispatch(actions.setPointsToAssign(1));
-    }
-
-    dispatch(
-      actions.saveActivity({
-        name: 'snake',
-        topic: 'git',
-        stars: hasWon ? 0 : 3,
-      })
-    );
-
-    history.replace('/assign-points');
-  }
+  const [points, setPoints] = useState<number>(0);
+  const [isGameOver, setIsGameOver] = useState<boolean>(false);
+  const [hasWon, setHasWon] = useState<boolean>(false);
+  const targetScore = 16;
 
   function checkIfGameOver() {
     if (isGameOver) {
-      afterGameOver();
+      dispatch(
+        actions.saveActivity({
+          name: 'snake',
+          topic: 'git',
+          stars: hasWon ? 0 : 3,
+        })
+      );
     }
   }
 
-  useEffect(checkIfGameOver, [isGameOver]);
+  function checkIfWon() {
+    if (points >= targetScore) {
+      dispatch(actions.setPointsToAssign(1));
+      setHasWon(true);
+      setIsGameOver(true);
+    }
+  }
 
+  useEffect(checkIfWon, [points]);
+  useEffect(checkIfGameOver, [isGameOver]);
   return (
     <div className={styles.screen}>
-      <SnakeBoard board={board} block={block} snake={snake} apple={apple} />
+      {isGameOver ? <GameOver hasWon={hasWon} /> : null}
+      <SnakeScore score={points} targetScore={targetScore} />
+      <SnakeBoard
+        isGameOver={isGameOver}
+        setIsGameOver={setIsGameOver}
+        points={points}
+        setPoints={setPoints}
+      />
     </div>
   );
 };
