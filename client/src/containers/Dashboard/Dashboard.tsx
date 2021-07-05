@@ -11,6 +11,7 @@ import { createTechAchievements, createGreeting } from './helpers';
 import styles from './Dashboard.module.scss';
 import usePageTitle from '../../shared/usePageTitle';
 import icons from '../../assets/icons';
+import useDashboardAnimation from './useDashboardAnimation';
 
 const Dashboard = (): JSX.Element => {
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
@@ -19,6 +20,7 @@ const Dashboard = (): JSX.Element => {
 
   useEffect(storeTokenAndUser, []);
   usePageTitle('Dashboard — Full Stuck');
+  useDashboardAnimation();
 
   function storeTokenAndUser() {
     if (!isLoading && !userStore) {
@@ -60,7 +62,9 @@ const Dashboard = (): JSX.Element => {
             src={icons.avatar}
           />
         </div>
-        <LearntTech techAchievements={userTechAchievements} />
+        <div className={styles.learntTech}>
+          <LearntTech techAchievements={userTechAchievements} />
+        </div>
         <div className={styles.footer}>
           <p>Start learning new technologies</p>
           <Link to="/schedule" className={styles.button}>
