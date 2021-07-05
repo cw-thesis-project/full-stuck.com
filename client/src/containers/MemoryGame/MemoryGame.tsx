@@ -9,6 +9,7 @@ import useMemoryGame, { allowedFlips } from './useMemoryGame';
 import { actions, useAppDispatch } from '../../store';
 import usePageTitle from '../../shared/usePageTitle';
 import { sleep } from '../../shared/utils';
+import { StarsCount } from '../../shared/types';
 
 const MemoryGameContainer = (): JSX.Element => {
   // states
@@ -21,7 +22,7 @@ const MemoryGameContainer = (): JSX.Element => {
   // effects
   usePageTitle('Memory — Full Stuck');
 
-  async function onGameOver() {
+  async function onGameOver(starsCount: StarsCount) {
     if (gameState.starsCount > 0) {
       dispatch(actions.setPointsToAssign(1));
     }
@@ -31,7 +32,7 @@ const MemoryGameContainer = (): JSX.Element => {
         name: 'memory',
         // topic is temporary, will be modified after assigning points
         topic: 'git',
-        stars: gameState.starsCount,
+        stars: starsCount,
       })
     );
 
@@ -44,7 +45,7 @@ const MemoryGameContainer = (): JSX.Element => {
       <MemoryScore
         starsCount={gameState.starsCount}
         numberOfMatches={gameState.matchesDone}
-        onClick={onGameOver}
+        onClick={() => onGameOver(2)}
       />
       <div className={styles.gameContent}>
         <FlipsCounter flipsLeft={allowedFlips - gameState.flipsDone} />
