@@ -33,7 +33,16 @@
   justify-self: flex-end;
   color: $light;
   background-color: $accent;
+  transition: background-color 0.3s ease-in-out;
   font-size: 1.5em;
+
+  &:hover {
+    background-color: $accentFocus;
+  }
+
+  &:active {
+    background-color: $accentActive;
+  }
 
   p {
     font-size: 1.3em;
