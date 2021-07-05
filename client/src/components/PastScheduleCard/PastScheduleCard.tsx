@@ -4,54 +4,42 @@ import TechIcon from '../TechIcon';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './PastScheduleCard.module.scss';
 import icons from '../../assets/icons';
+import StarsRow from '../StarsRow';
 
 interface Props {
   stars: StarsCount;
   topic: TechName;
+  className: string;
 }
-const PastScheduleCard = ({ stars, topic }: Props): JSX.Element => {
-  const starsArray: number[] = [];
-  const fakeStars = stars;
-  starsArray.length = fakeStars;
-  starsArray.fill(0);
+const PastScheduleCard = ({ stars, topic, className }: Props): JSX.Element => {
+  if (!stars) {
+    return (
+      <div className={`${styles.card} ${className}`}>
+        <ScheduleItemHeader topic="Test" variant="disabled" />
+        <div className={styles.centerContainer}>
+          <StarsRow starsCount={0} />
+          <img className={styles.sadFace} src={icons.sadFace} alt="sad face" />
+        </div>
+        <p className={styles.paragraph}>Maybe you’ll get it right next time!</p>
+        <div className={`${styles.ribbon} ${styles.failed}`}>
+          <p>Failed</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <>
-      {!stars ? (
-        <div className={styles.scheduleItem}>
-          <ScheduleItemHeader scheduleItemTopic={topic} />
-          <TechIcon techName={topic} iconSize="large" isGray />
-          <p>will ever hire you</p>
-          <div
-            className={`${styles.achievementRibbon} ${styles.achievementRibbonColorFailed}`}
-          >
-            <p className={styles.achievementMessage}>Failed</p>
-          </div>
-        </div>
-      ) : (
-        <div className={styles.scheduleItem}>
-          <ScheduleItemHeader scheduleItemTopic={topic} />
-          <div className={styles.starsContainer}>
-            {starsArray.map((_, index) => {
-              const isRaised = fakeStars === 3 && index === 1;
-
-              const middleStyle = {
-                marginBottom: isRaised ? '1em' : 0,
-              };
-
-              return <img src={icons.star} style={middleStyle} alt="star" />;
-            })}
-          </div>
-          <TechIcon techName={topic} iconSize="large" isGray={false} />
-          <p>Don’t you like it?</p>
-          <div
-            className={`${styles.achievementRibbon} ${styles.achievementRibbonColor}`}
-          >
-            <p className={styles.achievementMessage}>Learnt</p>
-          </div>
-        </div>
-      )}
-    </>
+    <div className={`${styles.card} ${className}`}>
+      <ScheduleItemHeader topic={topic} variant="primary" />
+      <div className={styles.centerContainer}>
+        <StarsRow starsCount={stars} />
+        <TechIcon techName={topic} iconSize="large" isGray={false} />
+      </div>
+      <p className={styles.paragraph}>You did great, keep on going!</p>
+      <div className={styles.ribbon}>
+        <p>Learnt</p>
+      </div>
+    </div>
   );
 };
 

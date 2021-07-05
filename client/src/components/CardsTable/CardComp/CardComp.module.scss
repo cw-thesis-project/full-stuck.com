@@ -1,24 +1,25 @@
 @import '../../../style/style.scss';
 
-.card {
+.container {
   @include center;
   @include column;
   @include rounded;
+  @include reset-input;
   box-shadow: $shadow;
   background-color: $light;
+}
 
-  &.up {
-    background-color: $light;
-  }
+.up {
+  background-color: $light;
+}
 
-  &.down {
-    color: $accent;
-    background-color: $primaryDark;
-    font-size: 2em;
-    cursor: pointer;
-  }
+.down {
+  color: $accent;
+  background-color: $primaryDark;
+  font-size: 2em;
+  cursor: pointer;
+}
 
-  &.matched img {
-    opacity: 30%;
-  }
+.matched img {
+  opacity: 0.3;
 }

@@ -2,47 +2,99 @@
 
 .screen {
   @include screen;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr 2fr 1fr;
-  background-image: url('../../assets/images/wave-diagonal.svg'),
+  @include row;
+  background-color: $primary;
+  background-image: url('./dashboardBackground.svg'),
     linear-gradient($gradientLight, $gradientDark);
-  background-size: cover;
-  padding: 4em;
+  background-repeat: no-repeat;
+  padding: 4em 8em;
+  align-items: stretch;
+
+  .leftColumn {
+    @include column;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 60%;
+  }
+
+  .rightColumn {
+    @include column;
+    align-items: flex-end;
+    flex-grow: 1;
+  }
 }
 
 .header {
-  h1 {
-    font-size: 3em;
+  @include row;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-bottom: auto;
+
+  .textContainer {
+    @include column;
+    justify-content: space-between;
+
+    h1 {
+      font-size: 3em;
+    }
+
+    h2 {
+      font-size: 2em;
+      font-weight: 500;
+    }
+
+    .title {
+      @include row;
+    }
+
+    .username {
+      color: $accent;
+      margin-left: 0.5em;
+    }
   }
 
-  h2 {
-    font-size: 2em;
-    font-weight: 500;
-  }
-
-  h1,
-  h2 {
-    color: $primaryDark;
+  .avatarIcon {
+    @include square(8em);
   }
 }
 
-.bottom {
+.footer {
   @include row;
-  grid-row: 3;
-  gap: 6em;
+  justify-content: space-between;
+  margin-top: 6em;
 
   p {
-    font-size: 1.2em;
+    font-size: 1.6em;
+  }
+
+  .button {
+    @include rectangle(8em, 3em);
+    @include rounded;
+    @include center;
+    font-size: 1.5em;
+    text-decoration: none;
+    background-color: $accent;
+    color: $light;
+    font-weight: 600;
+    box-shadow: $shadow;
   }
 }
 
-.button {
-  @include rectangle(8em, 3em);
-  @include rounded;
-  @include center;
-  font-size: 1.5em;
-  text-decoration: none;
-  background-color: $accent;
-  color: $light;
+.logo {
+  margin-right: 6em;
+  h1 {
+    color: $primaryDark;
+  }
+
+  .row {
+    @include row;
+    .accent {
+      color: $accent;
+    }
+  }
+}
+
+// just for animations
+.learntTech {
+  opacity: 1;
 }

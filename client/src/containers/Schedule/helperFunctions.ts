@@ -1,15 +1,15 @@
-/* eslint-disable no-restricted-syntax */
 import { maxTechnologyExperience, technologies } from '../../shared/constants';
 import { Activity, TechExperience } from '../../shared/types';
 
 export function lastFiveElements<T>(list: T[]): T[] {
-  const reversed = [...list].reverse();
-  const endIndex = list.length % 6;
-  return reversed.slice(0, endIndex);
+  const pastLength = list.length % 6;
+
+  return list.slice(list.length - pastLength, list.length);
 }
 
 export function getNextActivity(techExperience: TechExperience): Activity {
-  for (const { name } of technologies) {
+  for (let i = 0; i < technologies.length; i += 1) {
+    const { name } = technologies[i];
     if (techExperience[name] === maxTechnologyExperience) {
       return 'assessment';
     }

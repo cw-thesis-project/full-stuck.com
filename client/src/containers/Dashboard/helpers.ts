@@ -1,17 +1,10 @@
-/* eslint-disable no-restricted-syntax */
 import { Level, TechExperience } from '../../shared/types';
-import { technologies } from '../../shared/constants';
+import {
+  technologies,
+  levelToNumber,
+  maxTechnologyExperience,
+} from '../../shared/constants';
 import { TechAchievements } from '../../components/LearntTech/LearntTech';
-import { maxBubbles } from '../../shared/utils';
-
-type levelMap = Record<Level, number>;
-
-const levelToNumber: levelMap = {
-  junior: 0,
-  senior: 1,
-  tutor: 2,
-  CEO: 3,
-};
 
 export const createGreeting = (level: Level): string => {
   const greetingsMap: Record<Level, string> = {
@@ -40,9 +33,11 @@ export const createTechAchievements = (
   userLevel: Level,
   techExperience: TechExperience
 ): TechAchievements => {
-  for (const [tech, userExperienceLevel] of Object.entries(techExperience)) {
+  Object.entries(techExperience).forEach(([tech, userExperienceLevel]) => {
     techAchievements[tech as keyof TechAchievements].experience =
-      userExperienceLevel > maxBubbles ? maxBubbles : userExperienceLevel;
+      userExperienceLevel > maxTechnologyExperience
+        ? maxTechnologyExperience
+        : userExperienceLevel;
 
     const technology = technologies.find((t) => t.name === tech);
 
@@ -54,7 +49,7 @@ export const createTechAchievements = (
         techAchievements[tech as keyof TechAchievements].isLocked = true;
       }
     }
-  }
+  });
 
   return techAchievements;
 };

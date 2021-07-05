@@ -14,6 +14,8 @@
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "dotenv": "^8.2.0",
+    "env-cmd": "^10.1.0",
+    "gsap": "^3.7.0",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -22,8 +24,7 @@
     "react-scripts": "4.0.3",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
-    "typescript": "^4.3.4",
-    "env-cmd": "^10.1.0"
+    "typescript": "^4.3.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,7 +33,6 @@
     "eject": "react-scripts eject",
     "build:dev": "env-cmd -f .env.development npm run build"
   },
-
   "browserslist": {
     "production": [
       ">0.2%",

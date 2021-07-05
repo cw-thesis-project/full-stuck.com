@@ -1,37 +1,65 @@
 @import '../../style/style.scss';
 
 .page {
-  @include row;
   @include screen;
-  justify-content: space-between;
-  align-items: stretch;
-  background-image: url('../../assets/images/wave-columns.svg'),
-    radial-gradient($gradientLight, $gradientDark);
-  background-size: cover;
-  padding: 4em;
 }
 
 .centerSection {
   @include column;
-  justify-content: space-between;
+  gap: 2em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
-  h1 {
+.header {
+  @include row;
+  gap: 2em;
+
+  .timeLeft {
     color: $accent;
     font-size: 3em;
+  }
+
+  .hourGlassIcon {
+    @include square(3em);
+  }
+}
+
+.centerIconsContainer {
+  @include center;
+  @include column;
+  @include square(30em);
+  @include circle(25em);
+  background-color: $primary;
+  transition: background-color 0.3s ease-in-out;
+
+  &.centerDark {
+    background-color: $primaryDark;
   }
 }
 
 .roundsContainer {
   @include row;
   align-items: flex-end;
+
+  .roundsDone {
+    color: $accent;
+    font-size: 2.5em;
+  }
+
+  .totalRounds {
+    color: $primaryDark;
+    margin-left: 0.5em;
+  }
 }
 
-.roundsDone {
-  color: $accent;
-  font-size: 2.5em;
-}
-
-.totalRounds {
+.helperText {
   color: $primaryDark;
-  margin-left: 0.5em;
+}
+
+.cheatButton {
+  @include reset-input;
+  cursor: pointer;
 }

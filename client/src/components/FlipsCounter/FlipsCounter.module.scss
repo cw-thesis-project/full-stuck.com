@@ -1,27 +1,15 @@
 @import '../../style/style.scss';
 
 .container {
-  @include column;
-  align-self: flex-start;
-  justify-self: flex-start;
-  margin-left: 4em;
-}
-
-.icon {
-  @include square(4em);
-}
-
-.textRow {
   @include row;
-  align-items: flex-end;
 }
 
-.flipsDone {
+.flipIcon {
+  @include square(4em);
+  margin-right: 1em;
+}
+
+.flipsLeft {
   color: $accent;
   font-size: 3em;
-}
-
-.allowedFlips {
-  font-size: 2em;
-  margin-left: 0.5em;
 }

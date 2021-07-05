@@ -1,37 +1,45 @@
 @import '../../style/style.scss';
 
-.scheduleItem {
+.card {
   @include column();
   @include rounded();
   justify-content: space-between;
   background-color: $primaryDark;
   grid-row: 2 / 4;
   padding: 1.5em 0 2.5em 0;
+  box-shadow: $shadow;
+  text-align: center;
 }
 
-.achievementRibbon {
+.centerContainer {
+  @include column;
+  justify-content: space-between;
+  height: 10em;
+
+  .sadFace {
+    @include square(6em);
+    margin-bottom: 1em;
+  }
+}
+
+.paragraph {
+  padding: 0 2em;
+}
+
+.ribbon {
   @include center;
-}
-
-.achievementRibbonColor {
-  width: 100%;
+  @include rectangle(100%, 3em);
   background-color: $primaryLight;
-}
-.achievementRibbonColorFaied {
-  width: 100%;
-  background-color: #291252;
-}
-
-.achievementMessage {
-  color: white;
+  justify-self: flex-end;
+  color: $light;
   font-size: 1.5em;
-}
 
-.starsContainer {
-  @include row;
-  gap: 0.5em;
+  p {
+    font-size: 1.3em;
+    font-weight: 600;
+  }
 
-  img {
-    @include square(1em);
+  &.failed {
+    background-color: $primary;
   }
 }

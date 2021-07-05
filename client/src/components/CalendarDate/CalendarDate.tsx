@@ -21,7 +21,6 @@ const CalendarDate = ({
   const container = classNames({
     [styles.container]: true,
     [styles.circle]: variant === 'current',
-    [styles.light]: variant === 'current' || dayIndex % 6 > 2,
   });
 
   return (

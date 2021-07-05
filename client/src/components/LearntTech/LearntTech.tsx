@@ -33,17 +33,20 @@ const LearntTech = ({ techAchievements }: Props): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <ScrollButton
-        type="back"
-        onClick={() => setStartIndex(startIndex - 1)}
-        disabled={startIndex === 0}
-      />
-      {achievementCards}
-      <ScrollButton
-        type="forward"
-        onClick={() => setStartIndex(startIndex + 1)}
-        disabled={startIndex === 4}
-      />
+      <h2 className={styles.header}>Your skills</h2>
+      <div className={styles.techRow}>
+        <ScrollButton
+          type="back"
+          onClick={() => setStartIndex(startIndex - 1)}
+          disabled={startIndex === 0}
+        />
+        <div className={styles.cardsContainer}>{achievementCards}</div>
+        <ScrollButton
+          type="forward"
+          onClick={() => setStartIndex(startIndex + 1)}
+          disabled={startIndex === 4}
+        />
+      </div>
     </div>
   );
 };

@@ -1,24 +1,51 @@
 @import '../../style/style.scss';
 
-.container {
-  @include column;
-  grid-row: 3 / 4;
-}
-
 .card {
   @include column();
   @include rounded();
+  justify-content: space-between;
   background-color: $primaryDark;
-  padding-top: 2em;
-  height: 100%;
+  grid-row: 2 / 4;
+  padding: 1.5em 0 2.5em 0;
+  box-shadow: $shadow;
+  text-align: center;
+}
+
+.centerContainer {
+  @include column;
+  justify-content: space-between;
+  height: 10em;
 }
 
 .imageContainer {
   @include center;
-  flex-grow: 1;
+  @include square(7em);
 }
 
 .quote {
   text-align: center;
-  padding: 2em;
+  padding: 0 2em;
+}
+
+.ribbon {
+  @include center;
+  @include rectangle(100%, 3em);
+  justify-self: flex-end;
+  color: $light;
+  background-color: $accent;
+  transition: background-color 0.3s ease-in-out;
+  font-size: 1.5em;
+
+  &:hover {
+    background-color: $accentFocus;
+  }
+
+  &:active {
+    background-color: $accentActive;
+  }
+
+  p {
+    font-size: 1.3em;
+    font-weight: 600;
+  }
 }

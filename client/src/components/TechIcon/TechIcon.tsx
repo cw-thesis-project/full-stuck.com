@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import { TechName } from '../../shared/types';
 import logos from '../../assets/icons';
 import styles from './TechIcon.module.scss';
@@ -7,11 +8,9 @@ interface Props {
   techName: TechName;
   iconSize: 'small' | 'medium' | 'large';
   isGray: boolean;
-  // eslint-disable-next-line react/require-default-props
   isLocked?: boolean;
 }
 
-// TODO: add all the icons
 const iconsMap: Record<TechName, string> = {
   javascript: logos.javascriptLogo,
   git: logos.gitLogo,
@@ -30,11 +29,18 @@ const TechIcon = ({
   isGray,
   isLocked,
 }: Props): JSX.Element => {
-  const className = `${styles[iconSize]} ${isGray ? styles.gray : ''}`;
+  const className = classnames({
+    [styles[iconSize]]: true,
+    [styles.gray]: isGray,
+  });
 
   const src = isLocked ? logos.questionLogo : iconsMap[techName];
 
   return <img src={src} alt={techName} className={className} />;
+};
+
+TechIcon.defaultProps = {
+  isLocked: false,
 };
 
 export default TechIcon;
