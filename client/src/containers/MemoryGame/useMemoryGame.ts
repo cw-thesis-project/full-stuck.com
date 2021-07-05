@@ -13,7 +13,7 @@ import {
 // game constants
 
 export const allowedFlips = 45;
-const afterPairDelay = 300;
+const afterPairDelay = 800;
 
 function useMemoryGame(options: MemoryGameOptions): IMemoryGame {
   const [gameState, setGameState] = useState<MemoryGameState>({

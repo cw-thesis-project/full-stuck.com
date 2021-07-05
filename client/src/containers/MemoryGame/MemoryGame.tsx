@@ -10,6 +10,7 @@ import { actions, useAppDispatch } from '../../store';
 import usePageTitle from '../../shared/usePageTitle';
 import { sleep } from '../../shared/utils';
 import { StarsCount } from '../../shared/types';
+import useMemoryGameAnimations from './useMemoryGameAnimations';
 
 const MemoryGameContainer = (): JSX.Element => {
   // states
@@ -21,6 +22,7 @@ const MemoryGameContainer = (): JSX.Element => {
 
   // effects
   usePageTitle('Memory — Full Stuck');
+  useMemoryGameAnimations();
 
   async function onGameOver(starsCount: StarsCount) {
     if (starsCount > 0) {

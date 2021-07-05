@@ -1,6 +1,6 @@
 @import '../../../style/style.scss';
 
-.card {
+.container {
   @include center;
   @include column;
   @include rounded;
