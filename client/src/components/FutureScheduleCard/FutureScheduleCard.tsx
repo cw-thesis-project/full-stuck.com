@@ -4,9 +4,13 @@ import styles from './FutureScheduleCard.module.scss';
 import icons from '../../assets/icons';
 import StarsRow from '../StarsRow';
 
-const FutureScheduleCard = (): JSX.Element => {
+interface Props {
+  className: string;
+}
+
+const FutureScheduleCard = ({ className }: Props): JSX.Element => {
   return (
-    <div className={styles.scheduleItem}>
+    <div className={`${styles.scheduleItem} ${className}`}>
       <ScheduleItemHeader topic="<any>" variant="disabled" />
       <div className={styles.centerContainer}>
         <div style={{ opacity: 0 }}>

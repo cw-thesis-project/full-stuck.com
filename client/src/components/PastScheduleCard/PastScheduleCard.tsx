@@ -9,11 +9,12 @@ import StarsRow from '../StarsRow';
 interface Props {
   stars: StarsCount;
   topic: TechName;
+  className: string;
 }
-const PastScheduleCard = ({ stars, topic }: Props): JSX.Element => {
+const PastScheduleCard = ({ stars, topic, className }: Props): JSX.Element => {
   if (!stars) {
     return (
-      <div className={styles.card}>
+      <div className={`${styles.card} ${className}`}>
         <ScheduleItemHeader topic="Test" variant="disabled" />
         <div className={styles.centerContainer}>
           <StarsRow starsCount={0} />
@@ -28,7 +29,7 @@ const PastScheduleCard = ({ stars, topic }: Props): JSX.Element => {
   }
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${className}`}>
       <ScheduleItemHeader topic={topic} variant="primary" />
       <div className={styles.centerContainer}>
         <StarsRow starsCount={stars} />

@@ -6,10 +6,12 @@ import { lastFiveElements, getNextActivity } from './helperFunctions';
 import styles from './Schedule.module.scss';
 import back from '../../assets/icons/back.svg';
 import usePageTitle from '../../shared/usePageTitle';
+import useScheduleAnimation from './useScheduleAnimation';
 
 const ScheduleContainer = (): JSX.Element | null => {
   const user = useAppSelector((state) => state.user);
   usePageTitle('Schedule — Full Stuck');
+  useScheduleAnimation();
 
   if (!user) {
     return <div>Not logged in?</div>;

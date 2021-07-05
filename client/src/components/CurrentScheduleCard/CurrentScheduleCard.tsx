@@ -8,11 +8,15 @@ import StarsRow from '../StarsRow';
 
 interface Props {
   nextActivity: Activity;
+  className: string;
 }
 
-const CurrentScheduleCard = ({ nextActivity }: Props): JSX.Element => {
+const CurrentScheduleCard = ({
+  nextActivity,
+  className,
+}: Props): JSX.Element => {
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${className}`}>
       <ScheduleItemHeader topic="null" variant="accent" />
       <div className={styles.centerContainer}>
         <div style={{ opacity: 0 }}>

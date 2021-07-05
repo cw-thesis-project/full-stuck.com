@@ -40,11 +40,15 @@ const Schedule = ({
         <PastScheduleCard
           stars={pastActivity.stars}
           topic={pastActivity.topic}
+          className={styles.scheduleCard}
         />
       ))}
-      <CurrentScheduleCard nextActivity={nextActivity} />
+      <CurrentScheduleCard
+        nextActivity={nextActivity}
+        className={styles.scheduleCard}
+      />
       {futureCards.map(() => (
-        <FutureScheduleCard />
+        <FutureScheduleCard className={styles.scheduleCard} />
       ))}
     </div>
   );
