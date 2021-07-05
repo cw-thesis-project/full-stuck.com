@@ -19,11 +19,11 @@ const TechAchievementCard = ({
     <div className={styles.card}>
       <TechIcon
         techName={techName}
-        iconSize="small"
+        iconSize="medium"
         isGray={false}
         isLocked={isLocked}
       />
-      <h4>
+      <h4 className={styles.techLevel}>
         {techSkillLevel}/{maxTechnologyExperience}
       </h4>
     </div>

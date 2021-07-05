@@ -37,20 +37,9 @@ const Roadmap = ({ userLevel }: Props): JSX.Element => {
     );
   });
 
-  const progress = levelToNumber[userLevel];
-
-  const progressBarStyle = {
-    top: `1.5em`,
-    height: `${progress * 4.5}em`,
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.fullBar}>{`${' '}`}</div>
-      <div
-        className={styles.progressBar}
-        style={progressBarStyle}
-      >{`${' '}`}</div>
       {display}
     </div>
   );
