@@ -14,6 +14,7 @@ import MemoryGame from '../MemoryGame/MemoryGame';
 import CEO from '../CEO/CEO';
 import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute';
 import TempNavBar from '../../components/TempNavBar/TempNavBar';
+import SnakeGame from '../SnakeGame/SnakeGame';
 
 const App = (): JSX.Element => {
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
@@ -42,6 +43,7 @@ const App = (): JSX.Element => {
         <ProtectedRoute path="/assign-points" component={AssignPoints} />
         <ProtectedRoute path="/game/assessment" component={Assessment} />
         <ProtectedRoute path="/game/memory" component={MemoryGame} />
+        <ProtectedRoute path="/game/snake" component={SnakeGame} />
         <Route path="/admin">
           <TempNavBar />
         </Route>
