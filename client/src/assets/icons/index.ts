@@ -1,3 +1,4 @@
+import avatar from './avatar.svg';
 import javascriptLogo from './javascript.svg';
 import gitLogo from './git.svg';
 import questionLogo from './question.svg';
@@ -38,6 +39,7 @@ const toExport = {
   eloquenceLogo,
   espionageLogo,
   sadFace,
+  avatar,
 };
 
 export default toExport;
