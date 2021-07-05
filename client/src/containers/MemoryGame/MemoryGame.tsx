@@ -23,7 +23,7 @@ const MemoryGameContainer = (): JSX.Element => {
   usePageTitle('Memory — Full Stuck');
 
   async function onGameOver(starsCount: StarsCount) {
-    if (gameState.starsCount > 0) {
+    if (starsCount > 0) {
       dispatch(actions.setPointsToAssign(1));
     }
 
