@@ -1,18 +1,22 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect, useState } from 'react';
-import { StarsCount, TechName } from '../../shared/types';
+import { TechName } from '../../shared/types';
 import { deepCopy } from '../../shared/utils';
-import { AssessmentGameOptions, IAssessmentGame } from './interfaces';
+import {
+  AssesmentGameState,
+  AssessmentGameOptions,
+  IAssessmentGame,
+  Icon,
+} from './interfaces';
 import * as helpers from './helpers';
 
 function useAssessmentGame(
   gameOptions: AssessmentGameOptions
 ): IAssessmentGame {
-  const { level, onGameEnd, gameStartTime } = gameOptions;
+  const { level, onGameEnd } = gameOptions;
 
   // game constants
   const groupSize = 3;
-  // TODO: make game longer (for production)
   const gameDuration = 20_000;
 
   const initialCenterIcons = helpers.createCenterIcons(level, groupSize);
@@ -20,23 +24,44 @@ function useAssessmentGame(
 
   let intervalId: NodeJS.Timeout;
 
-  // states
-  const [centerIcons, setCenterIcons] = useState(initialCenterIcons);
-  const [sideIcons, setSideIcons] = useState(initialSideIcons);
-  const [timeLeft, setTimeLeft] = useState(gameDuration);
-  const [groupMatchesCount, setGroupMatchesCount] = useState(0);
-  const [totalMatchesCount, setTotalMatchesCount] = useState(0);
-  const [starsCount, setStarsCount] = useState<StarsCount>(0);
-  // interval on mount -> useEffect []
-  // read state inside set interval
+  const [gameState, setGameState] = useState<AssesmentGameState>({
+    centerIcons: initialCenterIcons,
+    sideIcons: initialSideIcons,
+    groupMatchesCount: 0,
+    starsCount: 0,
+    timeLeft: gameDuration,
+    totalMatchesCount: 0,
+    isOver: false,
+  });
 
-  useEffect(createInterval, []);
-  useEffect(updateStarsCount, [totalMatchesCount]);
+  useEffect(() => {
+    const clock = 50;
+    intervalId = setInterval(() => {
+      setGameState((state) => {
+        const isGameOver = state.timeLeft < 0;
+
+        if (!state.isOver && isGameOver) {
+          clearInterval(intervalId);
+          onGameEnd(state.starsCount);
+        }
+
+        return {
+          ...state,
+          timeLeft: state.timeLeft - clock,
+          isOver: state.isOver || isGameOver,
+        };
+      });
+    }, clock);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   function onIconMatch(index: number, draggedName: TechName) {
-    const { name } = sideIcons[index];
+    const { name } = gameState.sideIcons[index];
 
-    const centerIcon = centerIcons.find((icon) => icon.name === name);
+    const centerIcon = gameState.centerIcons.find((icon) => icon.name === name);
 
     if (centerIcon) {
       const isMatch = !centerIcon.isMatched && draggedName === name;
@@ -46,81 +71,79 @@ function useAssessmentGame(
       }
     }
 
-    setTotalMatchesCount((total) => total + 1);
-    matchCenterIcon(draggedName);
-    matchSideIcon(draggedName);
-    handleGroupProgression();
+    setGameState((state) => {
+      const centerIcons = matchCenterIcon(state, draggedName);
+      const sideIcons = matchSideIcon(state, draggedName);
+
+      const newPartOfState: AssesmentGameState = {
+        ...state,
+        totalMatchesCount: state.totalMatchesCount + 1,
+        centerIcons,
+        sideIcons,
+        starsCount: helpers.getStars(state.totalMatchesCount + 1),
+      };
+
+      const rest = handleGroupProgression(newPartOfState);
+
+      return {
+        ...newPartOfState,
+        ...rest,
+      };
+    });
   }
 
-  function matchCenterIcon(techName: TechName) {
-    const centerIconsCopy = deepCopy(centerIcons);
+  function matchCenterIcon(
+    state: AssesmentGameState,
+    techName: TechName
+  ): Icon[] {
+    const centerIconsCopy = deepCopy(state.centerIcons);
     const icon = helpers.findIconByTechName(centerIconsCopy, techName);
 
     if (icon) {
       icon.isMatched = true;
-      setCenterIcons(() => centerIconsCopy);
     }
+
+    return centerIconsCopy;
   }
 
-  function matchSideIcon(techName: TechName) {
-    const sideIconsCopy = deepCopy(sideIcons);
+  function matchSideIcon(
+    state: AssesmentGameState,
+    techName: TechName
+  ): Icon[] {
+    const sideIconsCopy = deepCopy(state.sideIcons);
     const icon = helpers.findIconByTechName(sideIconsCopy, techName);
 
     if (icon) {
       icon.isMatched = true;
-      setSideIcons(() => sideIconsCopy);
     }
+
+    return sideIconsCopy;
   }
 
-  function handleGroupProgression() {
-    const isGroupDone = groupMatchesCount === groupSize - 1;
+  function handleGroupProgression(
+    state: AssesmentGameState
+  ): Partial<AssesmentGameState> {
+    const isGroupDone = state.groupMatchesCount === groupSize - 1;
+    let newCenterIcons = state.centerIcons;
+    let newSideIcons = state.sideIcons;
+    let newGroupMatchesCount = state.groupMatchesCount;
 
     if (isGroupDone) {
-      const newCenterIcons = helpers.createCenterIcons(level, groupSize);
-      const newSideIcons = helpers.createSideIcons(newCenterIcons, level);
-
-      setCenterIcons(() => newCenterIcons);
-      setSideIcons(() => newSideIcons);
-      setGroupMatchesCount(() => 0);
+      newCenterIcons = helpers.createCenterIcons(level, groupSize);
+      newSideIcons = helpers.createSideIcons(newCenterIcons, level);
+      newGroupMatchesCount = 0;
     } else {
-      setGroupMatchesCount((count) => count + 1);
+      newGroupMatchesCount += 1;
     }
+
+    return {
+      centerIcons: newCenterIcons,
+      sideIcons: newSideIcons,
+      groupMatchesCount: newGroupMatchesCount,
+    };
   }
 
-  function createInterval() {
-    intervalId = setInterval(checkGameOver, 50);
-  }
-
-  function checkGameOver() {
-    const newTimeLeft = gameDuration - (Date.now() - gameStartTime);
-    setTimeLeft(() => newTimeLeft);
-
-    // could not figure out a better way to make it work
-    setTotalMatchesCount((totalMatches) => {
-      const isGameOver = newTimeLeft < 0;
-
-      if (isGameOver) {
-        clearInterval(intervalId);
-        onGameEnd(starsCount);
-      }
-
-      return totalMatches;
-    });
-  }
-
-  function updateStarsCount() {
-    const newStarsCount = helpers.getStars(totalMatchesCount);
-    setStarsCount(newStarsCount);
-  }
-
-  return {
-    onIconMatch,
-    centerIcons,
-    sideIcons,
-    timeLeft,
-    totalMatchesCount,
-    starsCount,
-  };
+  return { onIconMatch, gameState };
 }
 
 export default useAssessmentGame;

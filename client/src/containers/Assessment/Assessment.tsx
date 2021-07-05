@@ -26,15 +26,14 @@ const Assessment = (): JSX.Element => {
   const options: AssessmentGameOptions = {
     level: user?.gameData.level || 'junior',
     onGameEnd,
-    gameStartTime: Date.now(),
   };
 
-  const game = useAssessmentGame(options);
+  const { gameState, onIconMatch } = useAssessmentGame(options);
   usePageTitle('Assessment — Full Stuck');
 
   function handleIconMatch(index: number) {
     setIsDragging(false);
-    game.onIconMatch(index, draggedName);
+    onIconMatch(index, draggedName);
   }
 
   function onGameEnd(starsCount: StarsCount) {
@@ -59,14 +58,14 @@ const Assessment = (): JSX.Element => {
     setIsDragging(true);
   }
 
-  if (game.timeLeft < 0) {
+  if (gameState.timeLeft < 0) {
     return <div style={{ color: 'red' }}>game over!</div>;
   }
 
   // prepare props for children
-  const leftIcons = game.sideIcons.slice(0, 5);
-  const rightIcons = game.sideIcons.slice(5);
-  const centerNames = game.centerIcons
+  const leftIcons = gameState.sideIcons.slice(0, 5);
+  const rightIcons = gameState.sideIcons.slice(5);
+  const centerNames = gameState.centerIcons
     .filter((icon) => !icon.isMatched)
     .map((icon) => icon.name);
 
@@ -91,7 +90,7 @@ const Assessment = (): JSX.Element => {
             src={icons.hourGlassLogo}
           />
           <h1 className={styles.timeLeft}>
-            {(game.timeLeft / 1000).toFixed(1)}s
+            {(gameState.timeLeft / 1000).toFixed(1)}s
           </h1>
         </div>
         <div className={centerContainer}>
@@ -106,8 +105,8 @@ const Assessment = (): JSX.Element => {
             onClick={() => onGameEnd(3)}
           >
             <AssessmentScore
-              totalMatchesCount={game.totalMatchesCount}
-              starsCount={game.starsCount}
+              totalMatchesCount={gameState.totalMatchesCount}
+              starsCount={gameState.starsCount}
               minMatchesCount={15}
             />
           </button>
