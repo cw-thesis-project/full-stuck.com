@@ -1,4 +1,3 @@
-import { useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import styles from './SnakeGame.module.scss';
 import { actions, useAppDispatch } from '../../store';
