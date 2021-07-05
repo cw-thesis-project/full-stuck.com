@@ -33,9 +33,6 @@
   @include square(30em);
   @include circle(25em);
   background-color: $primary;
-  // background: url('../../assets/icons/blob.svg');
-  // background-position: center;
-  // background-size: cover;
 
   &.centerDark {
     background-color: $primaryDark;
@@ -63,4 +60,5 @@
 
 .cheatButton {
   @include reset-input;
+  cursor: pointer;
 }
