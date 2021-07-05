@@ -20,14 +20,19 @@ const ScheduleContainer = (): JSX.Element | null => {
 
   return (
     <div className={styles.screen}>
-      <Link to="/dashboard" className={styles.backIcon}>
-        <img src={back} alt="back icon" />
-      </Link>
       <Schedule
         history={lastHistory}
         nextActivity={nextActivity}
         historyLength={user.gameData.history.length}
       />
+      <div className={styles.footer}>
+        <Link to="/dashboard" className={styles.backIcon}>
+          <img src={back} alt="back icon" />
+        </Link>
+        <p className={styles.quote}>
+          “ 5 hours of debugging can save you 10 minutes of reading docs. ”
+        </p>
+      </div>
     </div>
   );
 };

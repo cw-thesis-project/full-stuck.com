@@ -1,18 +1,31 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './CurrentScheduleCard.module.scss';
 import icons from '../../assets/icons';
+import { Activity } from '../../shared/types';
+import StarsRow from '../StarsRow';
 
-const CurrentScheduleCard = (): JSX.Element => {
+interface Props {
+  nextActivity: Activity;
+}
+
+const CurrentScheduleCard = ({ nextActivity }: Props): JSX.Element => {
   return (
-    <div className={styles.container}>
-      <div className={styles.card}>
-        <ScheduleItemHeader topic="await" />
-        <div className={styles.imageContainer}>
-          <img src={icons.hourGlassLogo} alt="hourGlass" />
+    <div className={styles.card}>
+      <ScheduleItemHeader topic="null" variant="accent" />
+      <div className={styles.centerContainer}>
+        <div style={{ opacity: 0 }}>
+          <StarsRow starsCount={0} />
         </div>
-        <p className={styles.quote}>Who knows what the future will bring</p>
+        <div className={styles.imageContainer}>
+          <img src={icons.graduationHat} alt="graduation hat" />
+        </div>
       </div>
+      <p className={styles.quote}>Are you ready to learn a new tech?</p>
+      <Link className={styles.ribbon} to={`/game/${nextActivity}`}>
+        <p>Study!</p>
+      </Link>
     </div>
   );
 };

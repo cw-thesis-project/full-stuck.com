@@ -11,6 +11,15 @@
   height: 3em;
   width: 0.5em;
   margin-left: 1em;
+  background-color: $primaryLight;
+
+  &.accent {
+    background-color: $accent;
+  }
+
+  &.disabled {
+    background-color: $disabled;
+  }
 }
 
 .topic {

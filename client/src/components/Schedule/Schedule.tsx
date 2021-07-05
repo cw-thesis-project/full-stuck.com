@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Activity, PastActivity } from '../../shared/types';
 import FutureScheduleCard from '../FutureScheduleCard';
 import CurrentScheduleCard from '../CurrentScheduleCard';
@@ -7,7 +6,6 @@ import PastScheduleCard from '../PastScheduleCard';
 import CalendarDate from '../CalendarDate';
 import getDateVariant from './helperFunctions';
 import styles from './Schedule.module.scss';
-import graduationHat from '../../assets/icons/graduationHat.svg';
 
 interface Props {
   history: PastActivity[];
@@ -44,13 +42,7 @@ const Schedule = ({
           topic={pastActivity.topic}
         />
       ))}
-      <Link to={`/game/${nextActivity}`}>
-        <div className={styles.button}>
-          <img src={graduationHat} alt="study icon" />
-          <p>Study Now</p>
-        </div>
-      </Link>
-      <CurrentScheduleCard />
+      <CurrentScheduleCard nextActivity={nextActivity} />
       {futureCards.map(() => (
         <FutureScheduleCard />
       ))}

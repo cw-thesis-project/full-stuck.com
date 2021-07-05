@@ -13,6 +13,14 @@
 .circle {
   @include circle(5em);
   background-color: $primaryDark;
+
+  .number {
+    color: $accent;
+  }
+
+  .name {
+    color: $light;
+  }
 }
 
 .light {

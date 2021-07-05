@@ -1,13 +1,13 @@
 @import '../../style/style.scss';
 
 .container {
-  @include fill;
+  height: 85%;
   display: grid;
-  padding: 0 4em;
+  padding: 0 8em;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 1fr 1fr 3fr;
   color: white;
-  gap: 1em;
+  gap: 2em;
 
   a {
     color: white;

@@ -1,16 +1,25 @@
 import React from 'react';
-import TechIcon from '../TechIcon';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './FutureScheduleCard.module.scss';
+import icons from '../../assets/icons';
+import StarsRow from '../StarsRow';
 
 const FutureScheduleCard = (): JSX.Element => {
   return (
     <div className={styles.scheduleItem}>
-      <ScheduleItemHeader topic="undefined" />
-      <div className={styles.iconContainer}>
-        <TechIcon techName="javascript" iconSize="large" isGray isLocked />
+      <ScheduleItemHeader topic="<any>" variant="disabled" />
+      <div className={styles.centerContainer}>
+        <div style={{ opacity: 0 }}>
+          <StarsRow starsCount={0} />
+        </div>
+        <div className={styles.iconContainer}>
+          <img src={icons.questionLogo} alt="question icon" />
+        </div>
       </div>
-      <p className={styles.quote}>Who knows what the future will bring</p>
+      <p className={styles.quote}>What will the future bring?</p>
+      <div className={styles.ribbon}>
+        <p>Unknown</p>
+      </div>
     </div>
   );
 };

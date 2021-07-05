@@ -11,22 +11,15 @@
   text-align: center;
 }
 
-.starsRow {
-  @include row;
-  gap: 0.5em;
+.centerContainer {
+  @include column;
+  justify-content: space-between;
+  height: 10em;
 
-  img {
-    @include square(1em);
+  .sadFace {
+    @include square(6em);
+    margin-bottom: 1em;
   }
-
-  .grayStar {
-    filter: grayscale(1);
-    opacity: 0.5;
-  }
-}
-
-.sadFace {
-  @include square(7em);
 }
 
 .paragraph {
@@ -37,8 +30,14 @@
   @include center;
   @include rectangle(100%, 3em);
   background-color: $primaryLight;
+  justify-self: flex-end;
   color: $light;
   font-size: 1.5em;
+
+  p {
+    font-size: 1.3em;
+    font-weight: 600;
+  }
 
   &.failed {
     background-color: $primary;
