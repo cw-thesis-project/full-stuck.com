@@ -13,11 +13,10 @@
 .container {
   @include column;
   @include rounded;
+  @include rectangle(300px, 450px);
   justify-content: space-between;
   background-color: $primaryDark;
   box-shadow: $shadow;
-  margin-right: 1em;
-  margin-left: 1em;
 
   h2,
   h3,

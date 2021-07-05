@@ -61,15 +61,23 @@ const AssignPoints = (): JSX.Element => {
 
   return (
     <div className={styles.screen}>
-      <div className={styles.container}>
-        {leftCard}
-        {middleCard}
-        {rightCard}
+      <h1 className={styles.pageTitle}>Congratulations</h1>
+      {leftCard}
+      {middleCard}
+      {rightCard}
+      <div className={styles.footer}>
+        <p className={styles.footerText}>
+          Spend the points <br /> you have earned
+        </p>
+        <NavButtonAssignToSchedule
+          moveToSchedule={moveToSchedule}
+          redirectionAllowed={redirectionAllowed}
+        />
+        <p className={styles.footerText}>
+          to improve <br />
+          your knowledge!
+        </p>
       </div>
-      <NavButtonAssignToSchedule
-        moveToSchedule={moveToSchedule}
-        redirectionAllowed={redirectionAllowed}
-      />
     </div>
   );
 };
