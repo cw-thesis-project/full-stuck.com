@@ -21,6 +21,11 @@ export const slideLeft: gsap.TweenVars = {
   x: '2em',
 };
 
+export const slideRight: gsap.TweenVars = {
+  ...fadeIn,
+  x: '-2em',
+};
+
 // helper functions
 
 export function animateFrom(className: string, vars: gsap.TweenVars): void {
