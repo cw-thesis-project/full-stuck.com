@@ -1,5 +1,22 @@
 @import '../../style/style.scss';
 
+// global rules
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+body {
+  user-select: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .container {
   background-color: $light;
   color: $light;
