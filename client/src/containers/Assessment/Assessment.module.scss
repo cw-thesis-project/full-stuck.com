@@ -33,6 +33,7 @@
   @include square(30em);
   @include circle(25em);
   background-color: $primary;
+  transition: background-color 0.3s ease-in-out;
 
   &.centerDark {
     background-color: $primaryDark;

@@ -15,6 +15,7 @@ import { StarsCount, TechName } from '../../shared/types';
 import icons from '../../assets/icons';
 import usePageTitle from '../../shared/usePageTitle';
 import AssessmentBackground from '../../components/AssessmentBackground';
+import useAssessmentAnimations from './useAssessmentAnimations';
 
 const Assessment = (): JSX.Element => {
   const user = useAppSelector((state) => state.user);
@@ -30,6 +31,7 @@ const Assessment = (): JSX.Element => {
 
   const { gameState, onIconMatch } = useAssessmentGame(options);
   usePageTitle('Assessment — Full Stuck');
+  useAssessmentAnimations(gameState.totalMatchesCount);
 
   function handleIconMatch(index: number) {
     setIsDragging(false);
