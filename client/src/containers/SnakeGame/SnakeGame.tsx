@@ -2,13 +2,36 @@ import { useHistory } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import styles from './SnakeGame.module.scss';
 import { actions, useAppDispatch } from '../../store';
-import Snake from '../../components/Snake/Snake';
+import SnakeBoard from '../../components/SnakeBoard/SnakeBoard';
+import useSnakeGame from './useSnakeGame';
 
 const SnakeGame = (): JSX.Element => {
+  const {
+    start,
+    stop,
+    isGameOver,
+    score,
+    board,
+    block,
+    handleKeyDown,
+    snake,
+    apple,
+  } = useSnakeGame();
+
   const dispatch = useAppDispatch();
   const history = useHistory();
 
-  function afterGameOver(hasWon: boolean) {
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    start();
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      stop();
+    };
+  }, []);
+
+  function afterGameOver() {
+    const hasWon = score >= 20;
     if (hasWon) {
       dispatch(actions.setPointsToAssign(1));
     }
@@ -25,16 +48,16 @@ const SnakeGame = (): JSX.Element => {
   }
 
   function checkIfGameOver() {
-    if (false) {
-      afterGameOver(false);
+    if (isGameOver) {
+      afterGameOver();
     }
   }
 
-  useEffect(checkIfGameOver, []);
+  useEffect(checkIfGameOver, [isGameOver]);
 
   return (
     <div className={styles.screen}>
-      <Snake />
+      <SnakeBoard board={board} block={block} snake={snake} apple={apple} />
     </div>
   );
 };
