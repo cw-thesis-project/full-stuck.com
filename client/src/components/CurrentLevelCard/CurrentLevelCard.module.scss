@@ -3,6 +3,7 @@
 .container {
   @include column;
   @include rounded;
+  @include rectangle(300px, 450px);
   background-color: $primaryDark;
   justify-content: space-between;
   position: relative;

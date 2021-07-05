@@ -2,22 +2,34 @@
 
 .screen {
   @include center;
-  @include row;
+  @include column;
   @include screen;
-  flex-direction: column;
+  gap: 2em;
   background-image: url('../../assets/images/wave-bottom.svg'),
     linear-gradient($gradientLight, $gradientDark);
   background-size: cover;
-  padding: 0 10em;
-}
-
-.container {
+  padding: 0 10em 2em 10em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  width: 100%;
-  height: 60%;
-  gap: 4em;
-  padding: 0 6em;
+  grid-template-rows: 10% 1fr 10%;
+}
+
+.pageTitle {
+  color: $primaryDark;
+  grid-row: 1;
+  grid-column: 1 / 4;
+  text-align: center;
+}
+
+.footer {
+  @include row;
+  justify-content: space-evenly;
+  grid-column: 1 / 4;
+
+  .footerText {
+    text-align: center;
+    font-size: 1.5em;
+  }
 }
 
 .testZone {
