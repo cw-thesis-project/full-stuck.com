@@ -2,7 +2,7 @@ import React from 'react';
 import TechIcon from '../../TechIcon';
 import { TechName } from '../../../shared/types';
 import styles from './TechAchievementCard.module.scss';
-import { maxBubbles } from '../../../shared/utils';
+import { maxTechnologyExperience } from '../../../shared/constants';
 
 interface Props {
   techName: TechName;
@@ -24,7 +24,7 @@ const TechAchievementCard = ({
         isLocked={isLocked}
       />
       <h4>
-        {techSkillLevel}/{maxBubbles}
+        {techSkillLevel}/{maxTechnologyExperience}
       </h4>
     </div>
   );

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import axios from 'axios';
 import { PastActivity, TechName, User, ApiResponse } from '../shared/types';
 import { apiUrl, emptyUser } from '../shared/constants';
@@ -12,6 +11,7 @@ export async function getToken(
       const accessToken = await getAccessTokenSilently();
       localStorage.setItem('token', accessToken);
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
   }
@@ -30,6 +30,7 @@ export async function getUserData(username: string): Promise<User | null> {
     );
     return apiResponse.data.body;
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log(err);
     return null;
   }
@@ -50,6 +51,7 @@ export async function updateUser(user: User): Promise<User | null> {
     );
     return apiResponse.data.body;
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log(err);
     return null;
   }

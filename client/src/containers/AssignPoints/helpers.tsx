@@ -4,7 +4,7 @@ import { Level, TechExperience, TechName } from '../../shared/types';
 import CurrentLevelCard from '../../components/CurrentLevelCard';
 import CompletedLevelCard from '../../components/CompletedLevelCard';
 import NextLevelCard from '../../components/NextLevelCard';
-import { maxTechnologyExperience, levelToNumber } from '../../shared/constants';
+import { levelToNumber, maxTechnologyExperience } from '../../shared/constants';
 
 interface TechExperienceSubset {
   name: TechName;

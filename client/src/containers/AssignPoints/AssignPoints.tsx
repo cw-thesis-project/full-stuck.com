@@ -8,7 +8,6 @@ import NavButtonAssignToSchedule from '../../components/NavButtonAssignToSchedul
 
 import { assignCards, buttonAllowed } from './helpers';
 import { fakeState } from './localUtils';
-import usePageTitle from '../../shared/usePageTitle';
 
 const AssignPoints = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -27,8 +26,6 @@ const AssignPoints = (): JSX.Element => {
   const { level } = gameData;
   const { techExperience } = gameData;
   const { history: userHistory } = gameData;
-
-  usePageTitle('Game Over — Full Stuck');
 
   function onIconClick(techName: TechName) {
     if (pointsToAssign) {
@@ -61,23 +58,15 @@ const AssignPoints = (): JSX.Element => {
 
   return (
     <div className={styles.screen}>
-      <h1 className={styles.pageTitle}>Congratulations</h1>
-      {leftCard}
-      {middleCard}
-      {rightCard}
-      <div className={styles.footer}>
-        <p className={styles.footerText}>
-          Spend the points <br /> you have earned
-        </p>
-        <NavButtonAssignToSchedule
-          moveToSchedule={moveToSchedule}
-          redirectionAllowed={redirectionAllowed}
-        />
-        <p className={styles.footerText}>
-          to improve <br />
-          your knowledge!
-        </p>
+      <div className={styles.container}>
+        {leftCard}
+        {middleCard}
+        {rightCard}
       </div>
+      <NavButtonAssignToSchedule
+        moveToSchedule={moveToSchedule}
+        redirectionAllowed={redirectionAllowed}
+      />
     </div>
   );
 };
