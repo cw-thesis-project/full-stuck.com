@@ -1,5 +1,4 @@
 import React from 'react';
-import Countdown from 'react-countdown';
 import { TechName } from '../../shared/types';
 import styles from './QuizGame.module.scss';
 

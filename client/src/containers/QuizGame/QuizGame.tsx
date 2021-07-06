@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-param-reassign */
 /* eslint-disable consistent-return */
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Countdown from 'react-countdown';
-import { actions, useAppDispatch, useAppSelector } from '../../store';
+import { actions, useAppDispatch } from '../../store';
 import { pickTech, quizTechs, quizRules, renderer } from './helpers';
 import styles from './QuizGame.module.scss';
 import TechLogo from '../../components/TechLogo';
