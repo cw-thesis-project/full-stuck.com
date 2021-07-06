@@ -1,0 +1,15 @@
+@import '../../../style/style.scss';
+
+
+.medal {
+  @include column;
+  @include center;
+}
+
+h4 {
+  color: $light;
+}
+
+.img {
+  @include square(3em);
+}

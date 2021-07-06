@@ -3,9 +3,12 @@
 .container {
   @include column;
   @include rounded;
+  @include rectangle(300px, 450px);
+
   box-shadow: $shadow;
   justify-content: space-between;
   background-color: $light;
+  width: 15em;
 
   h2,
   h3,

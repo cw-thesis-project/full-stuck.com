@@ -18,7 +18,7 @@ export interface Tech {
 
 export type LevelMap = Record<Level, number>;
 
-export type Minigame = 'memory';
+export type Minigame = 'memory' | 'snake' | 'quiz';
 
 export type Activity = Minigame | 'assessment';
 

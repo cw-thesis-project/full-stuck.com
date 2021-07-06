@@ -1,57 +1,61 @@
-/* eslint-disable no-console */
-import React, { useEffect } from 'react';
+/* eslint-disable @typescript-eslint/no-use-before-define */
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-
 import styles from './MemoryGame.module.scss';
 import FlipsCounter from '../../components/FlipsCounter';
-import MatchedPile from '../../components/MatchedPile';
+import MemoryScore from '../../components/MemoryScore';
 import CardsTable from '../../components/CardsTable';
-import useMemoryGame from './useMemoryGame';
+import useMemoryGame, { allowedFlips } from './useMemoryGame';
 import { actions, useAppDispatch } from '../../store';
+import usePageTitle from '../../shared/usePageTitle';
+import { sleep } from '../../shared/utils';
+import { StarsCount } from '../../shared/types';
+import useMemoryGameAnimations from './useMemoryGameAnimations';
 
-const MemoryGame = (): JSX.Element => {
+const MemoryGameContainer = (): JSX.Element => {
+  // states
   const dispatch = useAppDispatch();
   const history = useHistory();
+  const { gameState, handleCardChoice } = useMemoryGame({
+    onGameOver,
+  });
 
-  const {
-    lastMatched,
-    matchesDone,
-    flipsDone,
-    allowedFlips,
-    cards,
-    handleCardChoice,
-  } = useMemoryGame();
+  // effects
+  usePageTitle('Memory — Full Stuck');
+  useMemoryGameAnimations();
 
-  useEffect(() => {
-    const areAllCardsMatched = matchesDone >= cards.length / 2;
-    const areAllFlipsUsed = flipsDone >= allowedFlips;
-
-    if (areAllCardsMatched) {
+  async function onGameOver(starsCount: StarsCount) {
+    if (starsCount > 0) {
       dispatch(actions.setPointsToAssign(1));
     }
 
-    if (areAllFlipsUsed || areAllCardsMatched) {
-      dispatch(
-        actions.saveActivity({
-          name: 'memory',
-          topic: 'git',
-          stars: areAllFlipsUsed ? 0 : 3,
-        })
-      );
-      history.replace('/assign-points');
-    }
-  }, [flipsDone, matchesDone]);
+    dispatch(
+      actions.saveActivity({
+        name: 'memory',
+        // topic is temporary, will be modified after assigning points
+        topic: 'git',
+        stars: starsCount,
+      })
+    );
+
+    await sleep(1_000);
+    history.replace('/assign-points');
+  }
 
   return (
     <div className={styles.screen}>
-      <FlipsCounter flipsDone={flipsDone} allowedFlips={allowedFlips} />
-      <CardsTable cards={cards} onCardClick={handleCardChoice} />
-      <MatchedPile
-        lastMatchedTech={lastMatched}
-        numberOfMatches={matchesDone}
+      <MemoryScore
+        starsCount={gameState.starsCount}
+        numberOfMatches={gameState.matchesDone}
+        onClick={() => onGameOver(2)}
       />
+      <div className={styles.gameContent}>
+        <FlipsCounter flipsLeft={allowedFlips - gameState.flipsDone} />
+        <CardsTable cards={gameState.cards} onCardClick={handleCardChoice} />
+        <h2 className={styles.helperText}>Match the pairs!</h2>
+      </div>
     </div>
   );
 };
 
-export default MemoryGame;
+export default MemoryGameContainer;

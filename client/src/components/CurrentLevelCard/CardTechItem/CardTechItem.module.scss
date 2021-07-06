@@ -6,6 +6,7 @@
 }
 
 .clickable {
+  @include reset-input;
   margin-top: 2em;
   cursor: pointer;
 
@@ -68,10 +69,7 @@
   width: 6em;
 }
 
-h2,
-h3,
-h4 {
+.techName {
   color: $light;
   text-transform: capitalize;
-  margin-top: 0em;
 }

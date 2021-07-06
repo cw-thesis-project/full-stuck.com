@@ -1,6 +1,7 @@
 import * as actions from './actions';
 import { Thunk } from './storeTypes';
-import { PastActivity, TechName } from '../shared/types';
+import { Level, PastActivity, TechName, User } from '../shared/types';
+import { deepCopy } from '../shared/utils';
 
 export function saveActivity(pastActivity: PastActivity): Thunk {
   return async function saveActivityThunk(dispatch, getState, apiService) {
@@ -79,6 +80,71 @@ export function getUserData(username: string): Thunk {
       }
     } catch (error) {
       dispatch(actions.getUserDataFailure(error));
+    }
+  };
+}
+
+export function levelUserUp(nextLevel: Level): Thunk {
+  return async function levelUserUpThunk(dispatch, getState, apiService) {
+    const { user } = getState();
+
+    dispatch(actions.levelUserUpRequest(nextLevel));
+
+    try {
+      if (!user) {
+        throw new Error('not logged in');
+      }
+      const userCopy = deepCopy(user);
+      userCopy.gameData.level = nextLevel;
+
+      const updatedUser = await apiService.updateUser(userCopy);
+
+      if (updatedUser) {
+        dispatch(actions.levelUserUpSuccess(updatedUser));
+      }
+    } catch (error) {
+      dispatch(actions.levelUserUpFailure(error));
+    }
+  };
+}
+export function updateUser(newUser: User): Thunk {
+  return async function levelUserUpThunk(dispatch, getState, apiService) {
+    dispatch(actions.updateUserRequest(newUser));
+    try {
+      const updatedUser = await apiService.updateUser(newUser);
+      if (updatedUser) {
+        dispatch(actions.updateUserSuccess(newUser));
+      }
+    } catch (error) {
+      dispatch(actions.updateUserFailure(error));
+    }
+  };
+}
+
+export function setActivityTopic(techName: TechName, user: User): Thunk {
+  return async function setActivityTopicThunk(dispatch, getState, apiService) {
+    dispatch(actions.setActivityTopicRequest(techName, user));
+
+    // just so es-lint does not complain
+    getState();
+
+    try {
+      let updatedUser = await apiService.learnTech(techName, user);
+      if (updatedUser) {
+        const { history } = updatedUser.gameData;
+        if (history[history.length - 1].name !== 'assessment') {
+          updatedUser = await apiService.changeActivityTopic(
+            techName,
+            updatedUser
+          );
+        }
+      }
+      if (updatedUser) {
+        dispatch(actions.setActivityTopicSuccess(updatedUser));
+        dispatch(actions.decreasePointsToAssign());
+      } else throw new Error('something wrong with the API');
+    } catch (error) {
+      dispatch(actions.setActivityTopicFailure(error));
     }
   };
 }

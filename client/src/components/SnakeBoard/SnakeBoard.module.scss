@@ -1,0 +1,18 @@
+@import '../../style/style.scss';
+
+.snakeContainer {
+  text-align: center;
+}
+
+.gameBorder {
+  -webkit-box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.75);
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+}
+

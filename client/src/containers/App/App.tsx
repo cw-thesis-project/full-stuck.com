@@ -11,8 +11,11 @@ import Schedule from '../Schedule/Schedule';
 import AssignPoints from '../AssignPoints/AssignPoints';
 import Assessment from '../Assessment/Assessment';
 import MemoryGame from '../MemoryGame/MemoryGame';
+import CEO from '../CEO/CEO';
 import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute';
 import TempNavBar from '../../components/TempNavBar/TempNavBar';
+import SnakeGame from '../SnakeGame/SnakeGame';
+import QuizGame from '../QuizGame/QuizGame';
 
 const App = (): JSX.Element => {
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
@@ -35,11 +38,14 @@ const App = (): JSX.Element => {
     <div className={styles.container}>
       <Switch>
         <Route path="/" component={Splash} exact />
+        <ProtectedRoute path="/ceo" component={CEO} />
         <ProtectedRoute path="/dashboard" component={Dashboard} />
         <ProtectedRoute path="/schedule" component={Schedule} />
         <ProtectedRoute path="/assign-points" component={AssignPoints} />
         <ProtectedRoute path="/game/assessment" component={Assessment} />
         <ProtectedRoute path="/game/memory" component={MemoryGame} />
+        <ProtectedRoute path="/game/snake" component={SnakeGame} />
+        <ProtectedRoute path="/game/quiz" component={QuizGame} />
         <Route path="/admin">
           <TempNavBar />
         </Route>

@@ -2,6 +2,7 @@ import React from 'react';
 import TechIcon from '../../TechIcon';
 import { TechName } from '../../../shared/types';
 import styles from './TechAchievementCard.module.scss';
+import { maxTechnologyExperience } from '../../../shared/constants';
 
 interface Props {
   techName: TechName;
@@ -18,11 +19,13 @@ const TechAchievementCard = ({
     <div className={styles.card}>
       <TechIcon
         techName={techName}
-        iconSize="small"
+        iconSize="medium"
         isGray={false}
         isLocked={isLocked}
       />
-      <h4>{techSkillLevel}/3</h4>
+      <h4 className={styles.techLevel}>
+        {techSkillLevel}/{maxTechnologyExperience}
+      </h4>
     </div>
   );
 };

@@ -1,47 +1,44 @@
 /* eslint-disable no-param-reassign */
-/* eslint-disable no-shadow */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { useState } from 'react';
-import { TechName } from '../../shared/types';
-import { deepCopy } from '../../shared/utils';
-import { technologies } from './helpers';
+import { useState, useEffect } from 'react';
+import { deepCopy, sleep } from '../../shared/utils';
+import { createCards, getStarsCount } from './helpers';
+import {
+  Card,
+  IMemoryGame,
+  MemoryGameOptions,
+  MemoryGameState,
+} from './interfaces';
 
-export interface Card {
-  name: TechName;
-  state: 'down' | 'up' | 'matched';
-}
+// game constants
 
-interface IMemoryGame {
-  cards: Card[];
-  matchesDone: number;
-  lastMatched: TechName;
-  flipsDone: number;
-  allowedFlips: number;
-  handleCardChoice(index: number): void;
-}
+export const allowedFlips = 45;
+const afterPairDelay = 800;
 
-function useMemoryGame(): IMemoryGame {
-  const [cards, setCards] = useState(createCards());
-  const [matchesDone, setMatchesDone] = useState(0);
-  const [lastMatched, setLastMatched] = useState<TechName>('git');
-  const [flipsDone, setFlipsDone] = useState(0);
-  const [upCards, setUpCards] = useState<Card[]>([]);
+function useMemoryGame(options: MemoryGameOptions): IMemoryGame {
+  const [gameState, setGameState] = useState<MemoryGameState>({
+    cards: createCards(),
+    matchesDone: 0,
+    flipsDone: 0,
+    upCards: [],
+    starsCount: 0,
+    isOver: false,
+  });
 
-  const allowedFlips = 30;
-  const afterPairDelay = 300;
+  useEffect(checkIfGameOver, [gameState]);
 
   function handleCardChoice(index: number) {
-    const newCards = deepCopy(cards);
+    const newCards = deepCopy(gameState.cards);
     const card = newCards[index];
 
-    if (upCards.length === 0) {
+    if (gameState.upCards.length === 0) {
       handleFirstCardFlip(card, newCards);
       return;
     }
 
-    const isSame = card.name === upCards[0].name;
+    const isSame = card.name === gameState.upCards[0].name;
 
-    if (upCards.length === 1) {
+    if (gameState.upCards.length === 1) {
       if (isSame) {
         handleMatchFlip(card, newCards);
       } else {
@@ -50,78 +47,94 @@ function useMemoryGame(): IMemoryGame {
     }
   }
 
-  function handleMatchFlip(card: Card, newCards: Card[]) {
-    card.state = 'up';
-    setLastMatched(card.name);
-    setMatchesDone(matchesDone + 1);
-    setCards(newCards);
-    setUpCards([...upCards, card]);
+  function checkIfGameOver() {
+    if (gameState.isOver) {
+      return;
+    }
 
-    setTimeout(() => afterMatchActions(card, newCards), afterPairDelay);
+    const areAllCardsMatched =
+      gameState.matchesDone >= gameState.cards.length / 2;
+    const areAllFlipsUsed = gameState.flipsDone >= allowedFlips;
+
+    if (areAllFlipsUsed || areAllCardsMatched) {
+      options.onGameOver(gameState.starsCount);
+
+      setGameState((state) => ({
+        ...state,
+        isOver: true,
+      }));
+    }
   }
 
-  function afterMatchActions(card: Card, newCards: Card[]) {
-    setUpCards([]);
+  async function handleMatchFlip(card: Card, newCards: Card[]) {
+    card.state = 'up';
 
-    const cardName = card.name;
-    const updatedCards = newCards.map((card) => {
-      return {
-        ...card,
-        state: card.name === cardName ? 'matched' : card.state,
-      };
-    });
+    setGameState((state) => ({
+      ...state,
+      matchesDone: state.matchesDone + 1,
+      cards: newCards,
+      upCards: [...state.upCards, card],
+      starsCount: getStarsCount(state.matchesDone + 1),
+    }));
 
-    setCards(updatedCards);
+    afterMatchActions(card, newCards);
+  }
+
+  async function afterMatchActions(card: Card, newCards: Card[]) {
+    const updatedCards = newCards.map((newCard) => ({
+      ...newCard,
+      state: newCard.name === card.name ? 'matched' : newCard.state,
+    }));
+
+    await sleep(afterPairDelay);
+
+    setGameState((state) => ({
+      ...state,
+      upCards: [],
+      cards: updatedCards,
+    }));
   }
 
   function handleFirstCardFlip(card: Card, newCards: Card[]) {
     card.state = 'up';
-    setFlipsDone(flipsDone + 1);
-    setUpCards([...upCards, card]);
-    setCards(newCards);
+
+    setGameState((state) => ({
+      ...state,
+      flipsDone: state.flipsDone + 1,
+      upCards: [...state.upCards, card],
+      cards: newCards,
+    }));
   }
 
   function handleDifferentChoice(card: Card, newCards: Card[]) {
     card.state = 'up';
-    setFlipsDone(flipsDone + 1);
-    setUpCards([...upCards, card]);
-    setCards(newCards);
 
-    setTimeout(() => afterDifferentActions(newCards), afterPairDelay);
+    setGameState((state) => ({
+      ...state,
+      flipsDone: state.flipsDone + 1,
+      upCards: [...state.upCards, card],
+      cards: newCards,
+    }));
+
+    afterDifferentActions(newCards);
   }
 
-  function afterDifferentActions(newCards: Card[]) {
-    setUpCards([]);
+  async function afterDifferentActions(newCards: Card[]) {
+    const noUpCards = newCards.map((card) => ({
+      ...card,
+      state: card.state === 'up' ? 'down' : card.state,
+    }));
 
-    const noUpCards = newCards.map((card) => {
-      return {
-        ...card,
-        state: card.state === 'up' ? 'down' : card.state,
-      };
-    });
+    await sleep(afterPairDelay);
 
-    setCards(noUpCards);
+    setGameState((state) => ({
+      ...state,
+      upCards: [],
+      cards: noUpCards,
+    }));
   }
 
-  return {
-    cards,
-    matchesDone,
-    lastMatched,
-    flipsDone,
-    allowedFlips,
-    handleCardChoice,
-  };
-}
-
-function createCards() {
-  const halfCards: Card[] = technologies.map((tech) => {
-    return {
-      name: tech.name,
-      state: 'down',
-    };
-  });
-
-  return [...halfCards, ...halfCards];
+  return { gameState, handleCardChoice };
 }
 
 export default useMemoryGame;

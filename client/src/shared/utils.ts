@@ -1,51 +1,52 @@
-import { Level, LevelMap, TechName } from './types';
+import { Level, TechName } from './types';
 import { technologies } from './constants';
 
 export function deepCopy<T>(value: T): T {
   return JSON.parse(JSON.stringify(value));
 }
 
-export function pickRandomElementsFromArray<T>(array: T[], count: number): T[] {
-  return array.slice(0, count);
-  // const choices = deepCopy(array);
-  // const picks: T[] = [];
-
-  // for (let i = 0; i < count; i += 1) {
-  //   const randomIndex = Math.floor(Math.random() * choices.length);
-  //   picks.push(choices[randomIndex]);
-  //   choices.splice(randomIndex);
-  // }
-
-  // return picks;
-}
-
-export function isUnlocked(currentLevel: Level, targetLevel: Level): boolean {
-  if (currentLevel === 'tutor' || currentLevel === 'CEO') {
+export function isTechUnlocked(techLevel: Level, userLevel: Level): boolean {
+  if (userLevel === 'tutor' || userLevel === 'CEO') {
     return true;
   }
 
-  if (currentLevel === 'senior') {
-    return targetLevel !== 'tutor';
+  if (userLevel === 'senior') {
+    return techLevel !== 'tutor';
   }
 
-  return targetLevel === 'junior';
+  return techLevel === 'junior';
 }
 
-export function getUnlockedTechNames(): TechName[] {
-  // .filter((tech) => isUnlocked(level, tech.level))
-  return technologies.map((tech) => tech.name);
+export function getUnlockedTechNames(userLevel: Level): TechName[] {
+  return technologies
+    .filter((tech) => isTechUnlocked(tech.level, userLevel))
+    .map((tech) => tech.name);
 }
 
 export function getTechnologiesNames(): TechName[] {
   return technologies.map((tech) => tech.name);
 }
-export const a = 1;
 
-export const levelToNumber: LevelMap = {
-  junior: 0,
-  senior: 1,
-  tutor: 2,
-  CEO: 3,
-};
+export function shuffle<T>(array: T[]): T[] {
+  const arrayCopy = deepCopy(array);
+  let currentIndex = array.length;
+  let randomIndex: number;
 
-export const maxBubbles = 3;
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    [arrayCopy[currentIndex], arrayCopy[randomIndex]] = [
+      arrayCopy[randomIndex],
+      arrayCopy[currentIndex],
+    ];
+  }
+
+  return arrayCopy;
+}
+
+export function sleep(ms: number): Promise<unknown> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}

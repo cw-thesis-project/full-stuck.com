@@ -2,7 +2,7 @@ import React from 'react';
 import { Level, TechName } from '../../shared/types';
 import styles from './CurrentLevelCard.module.scss';
 import CardTechItem from './CardTechItem/CardTechItem';
-import { maxBubbles } from '../../shared/utils';
+import { maxTechnologyExperience } from '../../shared/constants';
 
 interface TechExperienceSubset {
   name: TechName;
@@ -32,7 +32,7 @@ const CurrentLevelCard = ({
           techName={name}
           experience={experience}
           onIconClick={onIconClick}
-          maxBubbles={maxBubbles}
+          maxBubbles={maxTechnologyExperience}
         />
       );
     }

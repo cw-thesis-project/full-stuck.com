@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Activity, PastActivity } from '../../shared/types';
 import FutureScheduleCard from '../FutureScheduleCard';
 import CurrentScheduleCard from '../CurrentScheduleCard';
@@ -7,7 +6,6 @@ import PastScheduleCard from '../PastScheduleCard';
 import CalendarDate from '../CalendarDate';
 import getDateVariant from './helperFunctions';
 import styles from './Schedule.module.scss';
-import graduationHat from '../../assets/icons/graduationHat.svg';
 
 interface Props {
   history: PastActivity[];
@@ -25,14 +23,16 @@ const Schedule = ({
   futureCards.fill(0);
 
   const daysIndexes = [0, 1, 2, 3, 4, 5];
+  const quotient = Math.floor(historyLength / 6);
 
   return (
     <div className={styles.container}>
       {daysIndexes.map((index) => (
         <CalendarDate
           variant={getDateVariant(index, history.length)}
-          dayIndex={historyLength + index}
-          key={historyLength + index}
+          activityIndex={quotient * 6 + 1 + index}
+          dayIndex={index}
+          key={historyLength - index}
         />
       ))}
 
@@ -40,17 +40,15 @@ const Schedule = ({
         <PastScheduleCard
           stars={pastActivity.stars}
           topic={pastActivity.topic}
+          className={styles.scheduleCard}
         />
       ))}
-      <Link to={`/game/${nextActivity}`}>
-        <div className={styles.button}>
-          <img src={graduationHat} alt="study icon" />
-          <p>Study Now</p>
-        </div>
-      </Link>
-      <CurrentScheduleCard />
+      <CurrentScheduleCard
+        nextActivity={nextActivity}
+        className={styles.scheduleCard}
+      />
       {futureCards.map(() => (
-        <FutureScheduleCard />
+        <FutureScheduleCard className={styles.scheduleCard} />
       ))}
     </div>
   );

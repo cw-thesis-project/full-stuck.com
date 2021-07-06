@@ -80,3 +80,13 @@ export async function saveActivity(
   currentUserState.gameData.history.push(pastActivity);
   return updateUser(currentUserState);
 }
+
+export async function changeActivityTopic(
+  techName: TechName,
+  user: User
+): Promise<User | null> {
+  const currentUserState = deepCopy(user);
+  const { history } = currentUserState.gameData;
+  history[history.length - 1].topic = techName;
+  return updateUser(currentUserState);
+}

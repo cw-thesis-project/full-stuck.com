@@ -1,0 +1,36 @@
+@import '../../style/style.scss';
+
+.screen {
+  @include screen;
+  @include fixed;
+  @include center;
+  @include column;
+  gap: 4em;
+  background-color: $primary;
+}
+
+.title {
+  font-size: 8em;
+  color: $accent;
+}
+
+.subtitle {
+  font-size: 3.5em;
+  max-width: 70vw;
+  text-align: center;
+  color: $light;
+  margin: 0;
+}
+
+.button {
+  @include rectangle(13em, 4em);
+  @include reset-input;
+  @include rounded;
+  @include center;
+  text-decoration: none;
+  background-color: $accent;
+  color: $light;
+  font-weight: 700;
+  font-size: 1.5em;
+  cursor: pointer;
+}

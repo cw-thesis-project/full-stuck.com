@@ -1,14 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-
-import React from 'react';
+import React, { useRef } from 'react';
 import classNames from 'classnames';
 import styles from './CardComp.module.scss';
 import { TechName } from '../../../shared/types';
 import TechIcon from '../../TechIcon';
+import useCardCompAnimation from './useCardCompAnimation';
 
-type CardState = 'down' | 'up' | 'matched';
+export type CardState = 'down' | 'up' | 'matched';
 
 export interface Card {
   name: TechName;
@@ -21,8 +20,11 @@ interface CardProps {
 }
 
 const CardComp = ({ card, onCardClick }: CardProps): JSX.Element => {
-  const className = classNames({
-    [styles.card]: true,
+  const containerRef = useRef<any>();
+  useCardCompAnimation(containerRef, card.state);
+
+  const container = classNames({
+    [styles.container]: true,
     [styles[card.state]]: true,
   });
 
@@ -39,9 +41,14 @@ const CardComp = ({ card, onCardClick }: CardProps): JSX.Element => {
   };
 
   return (
-    <div onClick={handleClick} className={className}>
+    <button
+      type="button"
+      onClick={handleClick}
+      className={container}
+      ref={containerRef}
+    >
       {cardContentMap[card.state]}
-    </div>
+    </button>
   );
 };
 

@@ -1,0 +1,40 @@
+@import '../../style/style.scss';
+
+.container {
+  z-index:99;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000d5;
+}
+
+.container div, button {
+  margin: 20px 0;
+}
+
+.container div {
+  font-size: 60px;
+  color: white;
+}
+
+.container button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: #248ec2;
+  color: white;
+  font-size: 25px;
+  transition: 0.5s;
+}
+
+.container button:hover {
+  background-color: white;
+  cursor: pointer;
+  color: black;
+}

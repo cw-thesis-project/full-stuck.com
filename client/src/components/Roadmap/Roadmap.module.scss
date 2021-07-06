@@ -2,8 +2,9 @@
 
 .container {
   position: absolute;
-  right: 4em;
+  right: 10em;
   top: 40%;
+  transform: scale(1.5);
 }
 
 .levelContainer {
@@ -16,7 +17,7 @@
 
 .fullBar {
   @include square(4em);
-  background-color: $accent;
+  background-color: $primaryDark;
   position: absolute;
   top: 1.5em;
   left: 0.25em;
@@ -25,52 +26,51 @@
   z-index: 0;
 }
 
-.progressBar {
-  @include square(4em);
-  background-color: $primaryDark;
-  position: absolute;
-  left: 0.25em;
-  width: 0.5em;
-  z-index: 1;
+.blob {
+  @include circle(2em);
+  margin-left: -0.5em;
+  box-shadow: $shadow;
+}
+
+.levelText {
+  margin-left: 1em;
+  text-transform: capitalize;
+
+  h3 {
+    color: $primaryDark;
+  }
 }
 
 .pastLevel {
   color: $accent;
+
   .blob {
     background-color: $accent;
   }
 }
 
 .currentLevel {
-  background-color: red;
-  color: white;
+  background-color: $primaryDark;
+  width: 8em;
   border-radius: 50px;
   position: relative;
   left: -1em;
+  box-shadow: $shadow;
+
+  h3 {
+    color: $accent;
+  }
 
   .blob {
-    @include circle(2em);
-    background-color: $primaryDark;
+    background-color: $accent;
     margin-left: 0.5em;
   }
 }
 
 .futureLevel {
   color: $primaryDark;
+
   .blob {
     background-color: $primaryDark;
   }
-}
-
-.levelText {
-  margin: 0 0;
-  margin-right: 3em;
-
-  &::first-letter {
-    text-transform: capitalize;
-  }
-}
-
-.blob {
-  @include circle(1em);
 }

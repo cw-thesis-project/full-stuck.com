@@ -1,4 +1,4 @@
-import { PastActivity, TechName, User } from '../shared/types';
+import { Level, PastActivity, TechName, User } from '../shared/types';
 import { AppAction } from './storeTypes';
 
 // save activity
@@ -70,6 +70,29 @@ export function learnTechFailure(error: Error | string): AppAction {
   };
 }
 
+// level user up
+
+export function levelUserUpRequest(nextLevel: Level): AppAction {
+  return {
+    type: 'LEVEL_USER_UP_REQUEST',
+    nextLevel,
+  };
+}
+
+export function levelUserUpSuccess(user: User): AppAction {
+  return {
+    type: 'LEVEL_USER_UP_SUCCESS',
+    user,
+  };
+}
+
+export function levelUserUpFailure(error: Error | string): AppAction {
+  return {
+    type: 'LEVEL_USER_UP_FAILURE',
+    error,
+  };
+}
+
 // points to assign
 
 export function setPointsToAssign(amount: number): AppAction {
@@ -106,6 +129,52 @@ export function getUserDataFailure(error: Error | string): AppAction {
   };
 }
 
+// UPDATE USER
+
+export function updateUserRequest(user: User): AppAction {
+  return {
+    type: 'UPDATE_USER_REQUEST',
+    user,
+  };
+}
+export function updateUserSuccess(user: User): AppAction {
+  return {
+    type: 'UPDATE_USER_SUCCESS',
+    user,
+  };
+}
+
+export function updateUserFailure(error: Error | string): AppAction {
+  return {
+    type: 'UPDATE_USER_FAILURE',
+    error,
+  };
+}
+// set topic
+export function setActivityTopicRequest(
+  techName: TechName,
+  user: User
+): AppAction {
+  return {
+    type: 'SET_ACTIVITY_TOPIC_REQUEST',
+    techName,
+    user,
+  };
+}
+
+export function setActivityTopicSuccess(user: User): AppAction {
+  return {
+    type: 'SET_ACTIVITY_TOPIC_SUCCESS',
+    user,
+  };
+}
+
+export function setActivityTopicFailure(error: Error | string): AppAction {
+  return {
+    type: 'SET_ACTIVITY_TOPIC_FAILURE',
+    error,
+  };
+}
 // reset error
 
 export function resetError(): AppAction {

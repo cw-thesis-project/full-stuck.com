@@ -8,20 +8,24 @@ export type DateVariant = 'past' | 'current' | 'future';
 interface Props {
   variant: DateVariant;
   dayIndex: number;
+  activityIndex: number;
 }
 
 const dayNames = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
-const CalendarDate = ({ variant, dayIndex }: Props): JSX.Element => {
+const CalendarDate = ({
+  variant,
+  dayIndex,
+  activityIndex,
+}: Props): JSX.Element => {
   const container = classNames({
     [styles.container]: true,
     [styles.circle]: variant === 'current',
-    [styles.light]: variant === 'current' || dayIndex % 6 > 2,
   });
 
   return (
     <div className={container}>
-      <div className={styles.number}># {dayIndex}</div>
+      <div className={styles.number}># {activityIndex}</div>
       <div className={styles.name}>{dayNames[dayIndex]}</div>
     </div>
   );

@@ -1,30 +1,19 @@
-import { Activity } from '../../shared/types';
+import { maxTechnologyExperience, technologies } from '../../shared/constants';
+import { Activity, TechExperience } from '../../shared/types';
 
 export function lastFiveElements<T>(list: T[]): T[] {
-  const reversed = [...list].reverse();
-  const endIndex = list.length % 6;
-  return reversed.slice(0, endIndex);
+  const pastLength = list.length % 6;
+
+  return list.slice(list.length - pastLength, list.length);
 }
 
-// const technologies: Tech[] = [
-//   { name: 'javascript', level: 'junior' },
-//   { name: 'git', level: 'junior' },
-//   { name: 'react', level: 'junior' },
-//   { name: 'graphql', level: 'senior' },
-//   { name: 'rxjs', level: 'senior' },
-//   { name: 'typescript', level: 'senior' },
-//   { name: 'debugging', level: 'tutor' },
-//   { name: 'eloquence', level: 'tutor' },
-//   { name: 'espionage', level: 'tutor' },
-// ];
+export function getNextActivity(techExperience: TechExperience): Activity {
+  for (let i = 0; i < technologies.length; i += 1) {
+    const { name } = technologies[i];
+    if (techExperience[name] === maxTechnologyExperience) {
+      return 'assessment';
+    }
+  }
 
-export function getNextActivity(): Activity {
-  return Math.random() > 0.5 ? 'assessment' : 'memory';
-  // for (const { name } of technologies) {
-  //   if (techExperience[name] === 3) {
-  //     return 'assessment';
-  //   }
-  // }
-
-  // return 'memory';
+  return 'memory';
 }

@@ -1,6 +1,5 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 
 import React from 'react';
 import styles from './CardsTable.module.scss';
@@ -16,7 +15,7 @@ const CardsTable = ({ cards, onCardClick }: Props): JSX.Element => {
     <div>
       <div className={styles.container}>
         {cards.map((card: Card, i) => (
-          <CardComp card={card} onCardClick={() => onCardClick(i)} />
+          <CardComp card={card} onCardClick={() => onCardClick(i)} key={i} />
         ))}
       </div>
     </div>
