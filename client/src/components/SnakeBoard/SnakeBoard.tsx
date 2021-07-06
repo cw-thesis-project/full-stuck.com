@@ -13,7 +13,11 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-plusplus */
 import React, { useEffect, useState, useRef, useCallback } from 'react';
+import classNames from 'classnames';
 import styles from './SnakeBoard.module.scss';
+
+type Piece = 'bang' | 'fruit' | 'empty';
+type Direction = 'up' | 'down' | 'left' | 'right';
 
 const SnakeBoard = ({
   isGameOver,
@@ -21,12 +25,8 @@ const SnakeBoard = ({
   points,
   setPoints,
 }: any): JSX.Element => {
-  const [dim, setDim] = useState<number>(0);
-  const [chunk, setChunk] = useState<number>(0);
   const [direction, setDirection] = useState('right');
   const [fruit, setFruit] = useState<number>(26);
-
-  const width: number = window.innerWidth;
   const speedRef = useRef(75);
   const [snake, setSnake] = useState<any>([
     {
@@ -35,12 +35,14 @@ const SnakeBoard = ({
     },
   ]);
 
-  const pieces = () => {
+  const pieces = (): Piece[] => {
     // functionally label snake pieces (bang) and return
-    const arr = [];
+    const arr: Piece[] = [];
+
     for (let i = 0; i < 400; i++) {
       let addToArr = false;
       let j = 0;
+
       while (j < snake.length) {
         if (snake[j].part.indexOf(i) >= 0) {
           addToArr = true;
@@ -50,19 +52,30 @@ const SnakeBoard = ({
         }
         j++;
       }
+
       addToArr
         ? arr.push('bang')
         : i === fruit
         ? arr.push('fruit')
-        : arr.push('');
+        : arr.push('empty');
     }
+
     return arr;
   };
 
   // handle direction changes
-  const turn = useCallback(
-    (dir: string, opp: string) => {
+  const makeSnakeTurn = useCallback(
+    (dir: Direction) => {
+      const oppositeDirections: Record<Direction, Direction> = {
+        down: 'up',
+        up: 'down',
+        left: 'right',
+        right: 'left',
+      };
+
+      const opp = oppositeDirections[dir];
       const tempSnake: any = [...snake];
+
       if (direction !== opp && direction !== dir) {
         setDirection(dir);
         tempSnake.unshift({
@@ -70,20 +83,13 @@ const SnakeBoard = ({
           part: [],
         });
       }
+
       setSnake(tempSnake);
     },
     [snake, direction]
   );
 
   useEffect(() => {
-    // determine relative dimensions of isGameOver portal
-    if (width >= 800) {
-      setDim(width * 0.35);
-    } else if (width < 800) {
-      setDim(width * 0.9);
-    }
-    setChunk(dim / 20);
-
     // points and get longer after eating
     if (snake[0].part[0] === fruit) {
       setPoints(points + 1);
@@ -140,19 +146,19 @@ const SnakeBoard = ({
         switch (e.code) {
           case 'ArrowUp':
             e.preventDefault();
-            turn('up', 'down');
+            makeSnakeTurn('up');
             break;
           case 'ArrowRight':
             e.preventDefault();
-            turn('right', 'left');
+            makeSnakeTurn('right');
             break;
           case 'ArrowDown':
             e.preventDefault();
-            turn('down', 'up');
+            makeSnakeTurn('down');
             break;
           case 'ArrowLeft':
             e.preventDefault();
-            turn('left', 'right');
+            makeSnakeTurn('left');
             break;
         }
       };
@@ -221,41 +227,18 @@ const SnakeBoard = ({
         document.removeEventListener('keydown', handleKeydown);
       };
     }
-  }, [turn, width, dim, chunk, snake, direction, points, fruit, isGameOver]);
+  }, [makeSnakeTurn, snake, direction, points, fruit, isGameOver]);
 
   return (
-    <div className={styles.snakeContainer}>
-      <div
-        className={styles.gameBorder}
-        style={{
-          width: dim,
-          height: dim,
-          backgroundColor: '#ebebeb',
-        }}
-      >
-        {pieces().map((piece, i) => {
-          return (
-            <div
-              key={`piece${i}`}
-              style={
-                piece === 'bang'
-                  ? {
-                      width: chunk,
-                      height: chunk,
-                      backgroundColor: '#248ec2',
-                    }
-                  : piece === 'fruit'
-                  ? {
-                      width: chunk,
-                      height: chunk,
-                      backgroundColor: '#1d355e',
-                    }
-                  : { width: chunk, height: chunk }
-              }
-            />
-          );
-        })}
-      </div>
+    <div className={styles.container}>
+      {pieces().map((piece, i) => {
+        const className = classNames({
+          [styles.square]: true,
+          [styles[piece]]: true,
+        });
+
+        return <div key={`piece${i}`} className={className} />;
+      })}
     </div>
   );
 };

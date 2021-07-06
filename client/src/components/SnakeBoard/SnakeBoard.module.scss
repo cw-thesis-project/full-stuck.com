@@ -1,18 +1,28 @@
 @import '../../style/style.scss';
 
-.snakeContainer {
-  text-align: center;
+.container {
+  @include square(90vh);
+  box-shadow: 0px 0px 23px 0px rgba(0, 0, 0, 0.75);
+  // margin: auto;
+  display: grid;
+  grid-template: repeat(20, 1fr) / repeat(20, 1fr);
+  gap: 2px;
+  background-color: $light;
+  // position: relative;
 }
 
-.gameBorder {
-  -webkit-box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.75);
-  margin: auto;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: relative;
-}
+.square {
+  // @include debug;
+  @include square(100%);
 
+  &.bang {
+    @include square(100%);
+    background-color: #248ec2;
+  }
+
+  &.fruit {
+    @include square(100%);
+    background-image: url('https://pics.freeicons.io/uploads/icons/png/20716690701555931396-512.png');
+    background-size: cover;
+  }
+}
