@@ -44,10 +44,11 @@ const MemoryGameContainer = (): JSX.Element => {
   }
 
   const showGameOver = gameState.isOver || cheatUsed;
+  const starsNumber = cheatUsed ? 3 : gameState.starsCount;
 
   return (
     <div className={styles.screen}>
-      {showGameOver && <GameOver starsCount={2} showStars />}
+      {showGameOver && <GameOver starsCount={starsNumber} showStars />}
       <MemoryScore
         starsCount={gameState.starsCount}
         numberOfMatches={gameState.matchesDone}

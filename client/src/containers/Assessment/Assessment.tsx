@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { useHistory } from 'react-router-dom';
 import SideColumn from '../../components/SideColumn';
 import CenterIcons from '../../components/CenterIcons';
 import AssessmentScore from '../../components/AssessmentScore';
+import GameOver from '../../components/GameOver';
 import useAssessmentGame from './useAssessmentGame';
 import styles from './Assessment.module.scss';
 import { userAfterAssessment } from './helpers';
@@ -19,10 +19,10 @@ import useAssessmentAnimations from './useAssessmentAnimations';
 
 const Assessment = (): JSX.Element => {
   const user = useAppSelector((state) => state.user);
-  const history = useHistory();
   const dispatch = useAppDispatch();
   const [draggedName, setDraggedName] = useState<TechName>('javascript');
   const [isDragging, setIsDragging] = useState(false);
+  const [wasCheatUsed, setWasCheatUsed] = useState(false);
 
   const options: AssessmentGameOptions = {
     level: user?.gameData.level || 'junior',
@@ -47,8 +47,6 @@ const Assessment = (): JSX.Element => {
 
     dispatch(updateUser(newUser));
     dispatch(actions.setPointsToAssign(starsCount));
-
-    history.replace('/assign-points');
   }
 
   function handleDragEnd() {
@@ -58,6 +56,11 @@ const Assessment = (): JSX.Element => {
   function handleDragStart(techName: TechName) {
     setDraggedName(techName);
     setIsDragging(true);
+  }
+
+  function handleCheat() {
+    setWasCheatUsed(true);
+    onGameEnd(2);
   }
 
   if (gameState.timeLeft < 0) {
@@ -76,8 +79,12 @@ const Assessment = (): JSX.Element => {
     [styles.centerDark]: isDragging,
   });
 
+  const showGameOver = gameState.isOver || wasCheatUsed;
+  const starsNumber = wasCheatUsed ? 2 : gameState.starsCount;
+
   return (
     <div className={styles.page}>
+      {showGameOver && <GameOver starsCount={starsNumber} showStars />}
       <AssessmentBackground isDragging={isDragging} />
       <SideColumn
         variant="left"
@@ -105,7 +112,7 @@ const Assessment = (): JSX.Element => {
             <button
               className={styles.cheatButton}
               type="button"
-              onClick={() => onGameEnd(3)}
+              onClick={handleCheat}
             >
               <AssessmentScore
                 totalMatchesCount={gameState.totalMatchesCount}
