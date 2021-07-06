@@ -4,9 +4,8 @@
   @include screen;
   @include row;
   background-color: $primary;
-  background-image: url('./dashboardBackground.svg'),
-    linear-gradient($gradientLight, $gradientDark);
-  background-repeat: no-repeat;
+  background-image: url('./dashboardBackground.svg');
+  background-size: cover;
   padding: 4em 8em;
   align-items: stretch;
 
