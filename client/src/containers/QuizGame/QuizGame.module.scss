@@ -1,15 +1,63 @@
 @import '../../style/style.scss';
 
-.iconZone {
-  color: $primaryDark;
+.container {
+  @include column;
+  @include center;
+  background-color: $primaryDark;
+  position: relative;
+  margin-top: 1em;
+  padding: 1em;
 }
 
-.container {
+.iconZone {
   color: $primaryDark;
+  @include row;
+  position: relative;
+}
+
+.innerBar {
+  @include rounded;
+  height: 1em;
+  background-color: $primaryLight;
+  z-index: 1;
+}
+
+.logosContainer {
+  @include column;
+  // @include center;
 }
 
 .outerBar {
-  width: 10em;
+  @include rounded;
   height: 1em;
-  background-color: grey;
+  background-color: $primary;
+  margin-bottom: 1em;
+}
+
+.score {
+  color: $accent;
+  font-size: 3em;
+  margin-right: 0.1em;
+}
+
+.scoreContainer {
+  @include row;
+}
+
+.tempText {
+  opacity: 60%;
+}
+
+.textInput {
+  @include rounded;
+  margin-top: 1em;
+  z-index: 1;
+  box-shadow: $shadow;
+  background-color: $light;
+  height: 3em;
+  width: 20em;
+  text-align: center;
+  &:focus {
+    outline-width: 0;
+  }
 }

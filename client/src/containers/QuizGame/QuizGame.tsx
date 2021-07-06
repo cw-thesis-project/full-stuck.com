@@ -5,16 +5,10 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import Countdown from 'react-countdown';
 import { actions, useAppDispatch, useAppSelector } from '../../store';
-import { quizTechs, quizRules } from './helpers';
+import { pickTech, quizTechs, quizRules, renderer } from './helpers';
 import styles from './QuizGame.module.scss';
 import TechLogo from '../../components/TechLogo';
 import { TechName } from '../../shared/types';
-
-interface CountDownProps {
-  milliseconds: number;
-  seconds: number;
-  completed: boolean;
-}
 
 const QuizGame = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -28,6 +22,8 @@ const QuizGame = (): JSX.Element => {
   const [outcome, setOutcome] = useState<'failed' | 'completed' | 'ongoing'>(
     'ongoing'
   );
+  const [lastRoundWon, setLastRoundWon] = useState(false);
+  const winThreshold = quizRules.threshold * quizRules.rounds;
 
   useEffect(() => {
     setLogos(pickTech(quizRules.rounds, quizTechs));
@@ -35,21 +31,24 @@ const QuizGame = (): JSX.Element => {
 
   function onTextchange(string: string) {
     setText(string);
-    checkIfGameOver();
+
     if (logos && currentIndex > -1) {
       if (string.toLowerCase() === logos[currentIndex].toLowerCase()) {
         setOutcome('completed');
+        setLastRoundWon(true);
       }
       if (
         string[string.length - 1] !== logos[currentIndex][string.length - 1]
       ) {
         setOutcome('failed');
+        setLastRoundWon(false);
       }
     }
   }
 
   // reset each round
   useEffect(() => {
+    checkIfGameOver();
     if (logos && outcome !== 'ongoing') {
       if (outcome === 'completed') setScore((prev) => prev + 1);
       setCurrentIndex((prev) => prev - 1);
@@ -58,21 +57,10 @@ const QuizGame = (): JSX.Element => {
     }
   }, [outcome]);
 
-  function pickTech(rounds: number, techs: TechName[]): TechName[] {
-    const gameIcons: TechName[] = [];
-    while (gameIcons.length < rounds) {
-      const randomTech = techs[Math.floor(Math.random() * techs.length)];
-      if (!gameIcons.includes(randomTech)) gameIcons.push(randomTech);
-    }
-    return gameIcons;
-  }
-
   function gimmeTechName(index: number): TechName | 'empty' {
     if (logos && logos[index]) return logos[index];
     return 'empty';
   }
-
-  const winThreshold = 0.3 * quizRules.rounds;
 
   function checkIfGameOver() {
     if (currentIndex < 0) afterGameOver(score > winThreshold);
@@ -92,70 +80,58 @@ const QuizGame = (): JSX.Element => {
     history.replace('/assign-points');
   }
 
-  const delay = 20000;
-
-  const renderer = ({
-    seconds,
-    milliseconds,
-    completed,
-  }: CountDownProps): JSX.Element => {
-    const outerBarWidth = 10;
-    const outerBarStyle = {
-      width: `${outerBarWidth}em`,
-      backgroundColor: 'blue',
-      height: '1em',
-    };
-    const timeLeft = (seconds + milliseconds / 1000) / (delay / 1000);
-    const currentWidth = timeLeft * outerBarWidth;
-
-    const InnerBarStyle = {
-      width: `${currentWidth}em`,
-      backgroundColor: 'red',
-      height: '1em',
-      zIndex: 1,
-    };
-    if (completed) {
-      // Render a completed state
-      return <div>YOU SUCK</div>;
-    }
-    // Render a countdown
-    return (
-      <div className="outerBar" style={outerBarStyle}>
-        {`${' '}`}
-        <div className="innerBar" style={InnerBarStyle}>{`${' '}`}</div>
-      </div>
-    );
-  };
   const memoizedCountdown = React.useMemo(() => {
     return (
       <Countdown
-        date={Date.now() + delay}
-        onComplete={() => console.log('')}
+        date={Date.now() + quizRules.countdownDuration}
+        onComplete={() => setOutcome('failed')}
         intervalDelay={0}
         precision={2}
         renderer={renderer}
+        key={currentIndex}
       />
     );
   }, [outcome]);
 
   return (
     <div className={styles.container}>
-      {score}
-      {/* <CountDownBar/> */}
-      <TechLogo status="upcoming" techName={gimmeTechName(currentIndex - 1)} />
-      <TechLogo status="current" techName={gimmeTechName(currentIndex)} />
-      <TechLogo status={outcome} techName={gimmeTechName(currentIndex + 1)} />
-      <form>
-        <input
-          value={text}
-          type="text"
-          placeholder="what is the tech?"
-          onChange={(e) => {
-            onTextchange(e.target.value);
-          }}
-        />
-      </form>
       {memoizedCountdown}
+      <div className={styles.scoreContainer}>
+        <h1 className={styles.score}>
+          {score}
+          {`${' '}`}
+        </h1>
+        <h2> / {quizRules.rounds}</h2>
+      </div>
+      <div className={styles.logosContainer}>
+        <div className={styles.tempText}>The answer (to be coded)</div>
+        <div className={styles.iconZone}>
+          <TechLogo
+            status="upcoming"
+            techName={gimmeTechName(currentIndex - 1)}
+          />
+          <TechLogo status="current" techName={gimmeTechName(currentIndex)} />
+          <TechLogo
+            lastRoundWon={lastRoundWon}
+            status={outcome}
+            techName={gimmeTechName(currentIndex + 1)}
+          />
+        </div>
+      </div>
+      <div>How big is your tech knowledge ?</div>
+      <div>
+        <form>
+          <input
+            className={styles.textInput}
+            value={text}
+            type="text"
+            placeholder="Type carefully ! "
+            onChange={(e) => {
+              onTextchange(e.target.value);
+            }}
+          />
+        </form>
+      </div>
     </div>
   );
 };

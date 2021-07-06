@@ -1,1 +1,13 @@
 @import '../../style/style.scss';
+
+.currentTech {
+  filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+}
+
+.empty {
+  @include square(5em);
+}
+
+.logoContainer {
+  margin: 1em;
+}
