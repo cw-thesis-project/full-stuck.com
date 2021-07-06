@@ -79,6 +79,15 @@
     color: $light;
     font-weight: 600;
     box-shadow: $shadow;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $accentHover;
+    }
+
+    &:active {
+      background-color: $accentActive;
+    }
   }
 }
 
