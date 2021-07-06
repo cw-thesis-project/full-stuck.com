@@ -15,18 +15,26 @@
   z-index: 0;
 }
 
-.backIcon img {
-  @include square(2em);
-  opacity: 0.5;
-  cursor: pointer;
-}
-
 .footer {
   @include row;
   justify-content: space-between;
   padding: 0 8em;
   margin-top: 2em;
   height: 6em;
+
+  .backIcon img {
+    @include square(2em);
+    opacity: 0.5;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+      top: 0.25em;
+    }
+  }
 
   .quote {
     font-size: 1.6em;
