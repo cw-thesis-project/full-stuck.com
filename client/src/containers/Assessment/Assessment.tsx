@@ -63,10 +63,6 @@ const Assessment = (): JSX.Element => {
     onGameEnd(2);
   }
 
-  if (gameState.timeLeft < 0) {
-    return <div style={{ color: 'red' }}>game over!</div>;
-  }
-
   // prepare props for children
   const leftIcons = gameState.sideIcons.slice(0, 5);
   const rightIcons = gameState.sideIcons.slice(5);
@@ -81,6 +77,10 @@ const Assessment = (): JSX.Element => {
 
   const showGameOver = gameState.isOver || wasCheatUsed;
   const starsNumber = wasCheatUsed ? 2 : gameState.starsCount;
+
+  if (gameState.timeLeft < 0) {
+    return <GameOver starsCount={starsNumber} showStars />;
+  }
 
   return (
     <div className={styles.page}>
