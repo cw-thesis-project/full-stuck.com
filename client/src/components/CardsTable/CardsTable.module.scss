@@ -5,8 +5,5 @@
   gap: 2em;
   grid-template-columns: repeat(6, 5em);
   grid-template-rows: repeat(3, 8em);
-
-  * {
-    text-align: center;
-  }
+  place-items: center;
 }
