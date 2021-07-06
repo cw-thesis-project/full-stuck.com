@@ -95,23 +95,25 @@ const Assessment = (): JSX.Element => {
             {(gameState.timeLeft / 1000).toFixed(1)}s
           </h1>
         </div>
-        <div className={centerContainer}>
-          <CenterIcons
-            techNames={centerNames}
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-          />
-          <button
-            className={styles.cheatButton}
-            type="button"
-            onClick={() => onGameEnd(3)}
-          >
-            <AssessmentScore
-              totalMatchesCount={gameState.totalMatchesCount}
-              starsCount={gameState.starsCount}
-              minMatchesCount={15}
+        <div className={styles.circleContainer}>
+          <div className={centerContainer}>
+            <CenterIcons
+              techNames={centerNames}
+              onDragStart={handleDragStart}
+              onDragEnd={handleDragEnd}
             />
-          </button>
+            <button
+              className={styles.cheatButton}
+              type="button"
+              onClick={() => onGameEnd(3)}
+            >
+              <AssessmentScore
+                totalMatchesCount={gameState.totalMatchesCount}
+                starsCount={gameState.starsCount}
+                minMatchesCount={15}
+              />
+            </button>
+          </div>
         </div>
         <h2 className={styles.helperText}>Drag the icons!</h2>
       </div>
