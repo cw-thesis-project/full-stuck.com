@@ -32,13 +32,15 @@
 
   .textContainer {
     @include column;
+    align-items: flex-start;
     justify-content: space-between;
 
+    .pageTitle,
     h1 {
       font-size: 3em;
     }
 
-    h2 {
+    .greeting {
       font-size: 2em;
       font-weight: 500;
     }

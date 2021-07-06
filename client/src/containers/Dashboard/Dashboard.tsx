@@ -49,12 +49,12 @@ const Dashboard = (): JSX.Element => {
         <div className={styles.header}>
           <div className={styles.textContainer}>
             <div className={styles.title}>
-              <h1>Hello, </h1>
+              <h1 className={styles.pageTitle}>Hello, </h1>
               <h1 className={styles.username}>
                 {userStore.username ? userStore.username : 'coder'}
               </h1>
             </div>
-            <h2>{greetingMessage}</h2>
+            <h2 className={styles.greeting}>{greetingMessage}</h2>
           </div>
           <img
             alt="avatar logo"
