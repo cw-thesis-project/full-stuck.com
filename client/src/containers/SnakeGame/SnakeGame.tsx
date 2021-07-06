@@ -36,8 +36,7 @@ const SnakeGame = (): JSX.Element => {
   useEffect(checkIfGameOver, [isGameOver]);
   return (
     <div className={styles.screen}>
-      {isGameOver && <GameOver hasWon={hasWon} />}
-      {/* <SnakeScore score={points} targetScore={targetScore} /> */}
+      {isGameOver && <GameOver starsCount={points >= targetScore ? 1 : 0} />}
       <div className={styles.snakeBoardContainer}>
         <SnakeBoard
           isGameOver={isGameOver}
@@ -52,7 +51,7 @@ const SnakeGame = (): JSX.Element => {
           Your code ran into problems, are you missing a bracket?
         </p>
         <p className={styles.subtitle}>
-          {Math.floor((points / targetScore) * 100)}% BUGS_FOUND
+          {Math.floor((points / targetScore) * 100)}% BUGS_FIXED
         </p>
         <div className={styles.footer}>
           <p>
