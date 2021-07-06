@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { StarsCount } from '../../shared/types';
 import styles from './GameOver.module.scss';
 import StarsRow from '../StarsRow';
+import useGameOverAnimations from './useGameOverAnimations';
 
 interface Props {
   starsCount: StarsCount;
@@ -10,6 +11,8 @@ interface Props {
 }
 
 const GameOver = ({ starsCount, showStars }: Props): JSX.Element => {
+  useGameOverAnimations();
+
   return (
     <div className={styles.container}>
       {showStars && (

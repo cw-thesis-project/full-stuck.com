@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styles from './SnakeGame.module.scss';
 import { actions, useAppDispatch } from '../../store';
 import SnakeBoard from '../../components/SnakeBoard/SnakeBoard';
-import SnakeScore from '../../components/SnakeScore/SnakeScore';
 import GameOver from '../../components/GameOver/GameOver';
 
 const SnakeGame = (): JSX.Element => {
