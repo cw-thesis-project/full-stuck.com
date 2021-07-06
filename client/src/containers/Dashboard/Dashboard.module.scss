@@ -19,6 +19,7 @@
 
   .rightColumn {
     @include column;
+    justify-content: space-between;
     align-items: flex-end;
     flex-grow: 1;
   }
@@ -81,7 +82,8 @@
 }
 
 .logo {
-  margin-right: 6em;
+  margin-right: 4em;
+
   h1 {
     color: $primaryDark;
   }

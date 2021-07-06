@@ -89,8 +89,8 @@ const Dashboard = (): JSX.Element => {
             <h1>K</h1>
           </div>
         </div>
+        <Roadmap userLevel={userStore.gameData.level} />
       </div>
-      <Roadmap userLevel={userStore.gameData.level} />
     </div>
   );
 };

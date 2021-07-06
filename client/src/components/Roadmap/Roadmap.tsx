@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import { Level } from '../../shared/types';
 import { levelToNumber } from '../../shared/constants';
 import styles from './Roadmap.module.scss';
@@ -10,36 +11,40 @@ interface Props {
 const Roadmap = ({ userLevel }: Props): JSX.Element => {
   const levels: Level[] = ['junior', 'senior', 'tutor', 'CEO'];
 
-  const display = levels.map((level, index) => {
-    let levelStatus = '';
+  const display = levels.map((level) => {
+    const isFuture = levelToNumber[level] > levelToNumber[userLevel];
+    const isCurrent = level === userLevel;
 
-    if (levelToNumber[level] < levelToNumber[userLevel])
-      levelStatus = styles.pastLevel;
-    if (levelToNumber[level] === levelToNumber[userLevel])
-      levelStatus = styles.currentLevel;
-    if (levelToNumber[level] > levelToNumber[userLevel])
-      levelStatus = styles.futureLevel;
+    const blobClass = classNames({
+      [styles.blob]: true,
+      [styles.future]: isFuture,
+      [styles[level]]: true,
+    });
 
-    const containerStyle = {
-      top: `${index * 4.5}em`,
-    };
+    const levelClass = classNames({
+      [styles.levelText]: true,
+      [styles.current]: isCurrent,
+      [styles[level]]: true,
+    });
+
+    const wrapperClass = classNames({
+      [styles[level]]: true,
+      [styles.wrapper]: true,
+      [styles.current]: isCurrent,
+    });
 
     return (
-      <div
-        className={`${levelStatus} ${styles.levelContainer}`}
-        style={containerStyle}
-      >
-        <div className={styles.blob} />
-        <div className={styles.levelText}>
-          <h3>{level}</h3>
-        </div>
-      </div>
+      <>
+        <div className={wrapperClass} />
+        <div className={blobClass} />
+        <h3 className={levelClass}>{level}</h3>
+      </>
     );
   });
 
   return (
     <div className={styles.container}>
-      <div className={styles.fullBar}>{`${' '}`}</div>
+      <div className={styles.fullBar} />
       {display}
     </div>
   );
