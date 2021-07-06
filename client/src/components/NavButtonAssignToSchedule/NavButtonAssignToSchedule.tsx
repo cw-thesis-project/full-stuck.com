@@ -21,7 +21,7 @@ const NavButtonAssignToSchedule = ({
         redirectionAllowed ? styles.activeBtn : styles.inactiveBtn
       }`}
     >
-      <h2>Schedule</h2>
+      Schedule
     </div>
   );
 };

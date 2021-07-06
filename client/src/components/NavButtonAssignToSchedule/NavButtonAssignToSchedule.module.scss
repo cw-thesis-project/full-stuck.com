@@ -7,8 +7,8 @@
   font-weight: 600;
   font-size: 1.5em;
   box-shadow: $shadow;
-  padding: 1em;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .activeBtn {
@@ -24,7 +24,7 @@
 }
 
 .inactiveBtn {
-  background-color: grey;
+  background-color: $primaryDark;
 
   &:hover {
     cursor: not-allowed;
