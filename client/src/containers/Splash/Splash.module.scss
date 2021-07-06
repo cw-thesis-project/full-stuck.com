@@ -7,6 +7,10 @@
   @include column;
   gap: 4em;
   background-color: $primary;
+}
+
+.logo {
+  @include row;
 
   h1 {
     font-size: 8em;
@@ -19,10 +23,10 @@
       color: $light;
     }
   }
-}
 
-.logo {
-  @include row;
+  .logoPart {
+    opacity: 1;
+  }
 }
 
 .subtitle {
