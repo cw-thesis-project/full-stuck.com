@@ -4,9 +4,39 @@
   @include center;
   @include row;
   @include screen;
-  flex-direction: column;
-  background-image: url('../../assets/images/wave-corners.svg'),
-    radial-gradient($gradientLight, $gradientDark);
-  background-size: cover;
+  background-color: $accent;
+  background: linear-gradient(108.5deg, #ff3471 1.58%, #440232 97.5%);
+
+  justify-items: stretch;
+  align-items: stretch;
+  padding: 4em;
+  gap: 2em;
 }
 
+.snakeBoardContainer {
+  align-self: center;
+}
+
+.rightSide {
+  @include column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 65%;
+
+  .sadFace {
+    font-size: 10em;
+  }
+
+  .subtitle {
+    font-size: 2.5em;
+    padding-right: 6em;
+  }
+
+  .footer p {
+    font-size: 1.5em;
+
+    &:first-of-type {
+      margin-bottom: 1.5em;
+    }
+  }
+}

@@ -31,6 +31,10 @@
   border-radius: 0.5em;
 }
 
+@mixin roundedBig {
+  border-radius: 1.5em;
+}
+
 @mixin rounded-full {
   border-radius: 10000px;
 }

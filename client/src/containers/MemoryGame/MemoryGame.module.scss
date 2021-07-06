@@ -6,8 +6,7 @@
   @include screen;
   gap: 4em;
   padding: 0 4em;
-  background-image: url('../../assets/images/wave-corners.svg'),
-    radial-gradient($gradientLight, $gradientDark);
+  background-image: url('./memoryBackground.svg');
   background-size: cover;
 }
 
@@ -19,4 +18,5 @@
 
 .helperText {
   color: $primaryDark;
+  font-size: 2em;
 }

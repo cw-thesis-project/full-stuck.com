@@ -11,7 +11,7 @@ const TechMedal = ({ techName }: Props): JSX.Element => {
   return (
     <div className={styles.medal}>
       <img src={icons.medal} alt="medal" className={styles.img} />
-      <h4>{techName}</h4>
+      <h4 className={styles.techName}>{techName}</h4>
     </div>
   );
 };

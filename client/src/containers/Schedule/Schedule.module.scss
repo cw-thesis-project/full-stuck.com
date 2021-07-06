@@ -3,25 +3,40 @@
 .screen {
   @include screen;
   @include column;
-  background-image: url('../../assets/images/wave-diagonal.svg'),
-    linear-gradient($gradientLight, $gradientDark);
+  background-image: url('../../assets/images/triangleUp.svg');
   background-size: cover;
+  align-items: stretch;
 }
 
-.backIcon img {
-  @include square(2em);
-  opacity: 0.5;
-  cursor: pointer;
+.screenBackground {
+  @include debug;
+  position: absolute;
+  bottom: 0;
+  z-index: 0;
 }
 
 .footer {
   @include row;
   justify-content: space-between;
-  width: 100%;
-  height: 20em;
   padding: 0 8em;
+  margin-top: 2em;
+  height: 6em;
+
+  .backIcon img {
+    @include square(2em);
+    opacity: 0.5;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+      top: 0.25em;
+    }
+  }
 
   .quote {
-    font-size: 1.5em;
+    font-size: 1.6em;
   }
 }

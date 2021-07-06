@@ -1,18 +1,23 @@
 // palette
-
 $accent: #ff4034;
-$accentFocus: #da2e21;
-$accentActive: #ac2218;
 $light: #f5f8ff;
 $primaryLight: #6435e9;
 $primary: #3b1c94;
 $primaryDark: #200f50;
 $disabled: #e2d8ff;
 
+// dynamic
+$accentHover: #da2e21;
+$accentActive: #ac2218;
+$primaryHover: #341686;
+$primaryActive: #3911a7;
+$primaryDarkHover: #32177a;
+$primaryDarkActive: #4720b4;
+
 // gradients
 $gradientLight: rgba(181, 219, 255, 1);
 $gradientDark: rgba(161, 146, 252, 1);
 
 // shadows
-
 $shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+$shadowHigh: 6px 6px 10px rgba(0, 0, 0, 0.4);

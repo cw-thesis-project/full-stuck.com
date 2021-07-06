@@ -29,6 +29,11 @@
   grid-template-columns: repeat($count, 1fr);
 }
 
+@mixin center-in-cell {
+  align-self: center;
+  justify-self: center;
+}
+
 // others
 
 @mixin fixed {

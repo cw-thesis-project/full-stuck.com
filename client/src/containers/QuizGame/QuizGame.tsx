@@ -2,20 +2,22 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable consistent-return */
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import Countdown from 'react-countdown';
 import { actions, useAppDispatch } from '../../store';
 import { pickTech, quizTechs, quizRules, renderer } from './helpers';
 import styles from './QuizGame.module.scss';
 import TechLogo from '../../components/TechLogo';
 import { TechName } from '../../shared/types';
+import StarsRow from '../../components/StarsRow';
+import GameOver from '../../components/GameOver';
+import useQuizGameAnimations from './useQuizGameAnimations';
 
 const QuizGame = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const history = useHistory();
   const [currentIndex, setCurrentIndex] = useState<number>(
     quizRules.rounds - 1
   );
+  const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [text, setText] = useState('');
   const [logos, setLogos] = useState<TechName[]>();
@@ -28,6 +30,8 @@ const QuizGame = (): JSX.Element => {
   useEffect(() => {
     setLogos(pickTech(quizRules.rounds, quizTechs));
   }, []);
+
+  useQuizGameAnimations();
 
   function onTextchange(string: string) {
     setText(string);
@@ -67,6 +71,7 @@ const QuizGame = (): JSX.Element => {
   }
 
   function afterGameOver(hasWon: boolean) {
+    setIsGameOver(true);
     if (hasWon) dispatch(actions.setPointsToAssign(1));
     else dispatch(actions.setPointsToAssign(0));
 
@@ -77,7 +82,6 @@ const QuizGame = (): JSX.Element => {
         stars: hasWon ? 0 : 3,
       })
     );
-    history.replace('/assign-points');
   }
 
   const memoizedCountdown = React.useMemo(() => {
@@ -94,43 +98,41 @@ const QuizGame = (): JSX.Element => {
   }, [outcome]);
 
   return (
-    <div className={styles.container}>
-      {memoizedCountdown}
-      <div className={styles.scoreContainer}>
-        <h1 className={styles.score}>
-          {score}
-          {`${' '}`}
-        </h1>
-        <h2> / {quizRules.rounds}</h2>
-      </div>
-      <div className={styles.logosContainer}>
-        <div className={styles.tempText}>The answer (to be coded)</div>
-        <div className={styles.iconZone}>
-          <TechLogo
-            status="upcoming"
-            techName={gimmeTechName(currentIndex - 1)}
-          />
-          <TechLogo status="current" techName={gimmeTechName(currentIndex)} />
-          <TechLogo
-            lastRoundWon={lastRoundWon}
-            status={outcome}
-            techName={gimmeTechName(currentIndex + 1)}
-          />
+    <div className={styles.screen}>
+      {isGameOver && (
+        <GameOver starsCount={score > winThreshold ? 3 : 0} showStars />
+      )}
+      <div className={styles.header}>
+        <StarsRow starsCount={1} />
+        <div className={styles.scoreContainer}>
+          <h1 className={styles.score}>{score}</h1>
+          <h1>{currentIndex}</h1>
         </div>
       </div>
-      <div>How big is your tech knowledge ?</div>
-      <div>
-        <form>
-          <input
-            className={styles.textInput}
-            value={text}
-            type="text"
-            placeholder="Type carefully ! "
-            onChange={(e) => {
-              onTextchange(e.target.value);
-            }}
-          />
-        </form>
+      <div className={styles.logosContainer}>
+        <TechLogo
+          status="upcoming"
+          techName={gimmeTechName(currentIndex - 1)}
+        />
+        <TechLogo status="current" techName={gimmeTechName(currentIndex)} />
+        <TechLogo
+          lastRoundWon={lastRoundWon}
+          status={outcome}
+          techName={gimmeTechName(currentIndex + 1)}
+        />
+      </div>
+      <h2 className={styles.helperText}>Name the icon!</h2>
+      <div className={styles.inputContainer}>
+        <input
+          className={styles.textInput}
+          value={text}
+          type="text"
+          placeholder="Type carefully ..."
+          onChange={(e) => {
+            onTextchange(e.target.value);
+          }}
+        />
+        {memoizedCountdown}
       </div>
     </div>
   );

@@ -2,6 +2,9 @@
 
 .container {
   @include reset-input;
+  @include column;
+  justify-content: space-between;
+  height: 10em;
   cursor: pointer;
 }
 
@@ -11,12 +14,17 @@
 }
 
 .matchesDone {
-  font-size: 3em;
+  font-size: 4em;
   color: $accent;
 }
 
 .matchesTotal {
-  font-size: 2em;
+  font-size: 3em;
   color: $light;
   margin-left: 0.2em;
+}
+
+.matchedText {
+  font-size: 1.5em;
+  color: $light;
 }

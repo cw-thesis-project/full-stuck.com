@@ -5,11 +5,18 @@
   @include fixed;
   @include center;
   @include column;
+  justify-content: space-between;
+  padding: 6em 0;
   gap: 4em;
   background-color: $primary;
+}
+
+.logo {
+  @include row;
+  margin-bottom: auto;
 
   h1 {
-    font-size: 8em;
+    font-size: 10em;
 
     &:nth-of-type(odd) {
       color: $accent;
@@ -19,14 +26,14 @@
       color: $light;
     }
   }
-}
 
-.logo {
-  @include row;
+  .logoPart {
+    opacity: 1;
+  }
 }
 
 .subtitle {
-  font-size: 3.5em;
+  font-size: 3em;
   max-width: 70vw;
   text-align: center;
   color: $light;

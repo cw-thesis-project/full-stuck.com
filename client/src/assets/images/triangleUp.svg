@@ -1,10 +1,10 @@
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="1920" height="1080" fill="url(#paint0_linear)"/>
 <g filter="url(#filter0_d)">
-<path d="M0 1080V0H1431L1273.44 1080H0Z" fill="#3B1C94"/>
+<path d="M1920 1080V768L960 639L0 768V1080H1920Z" fill="#3B1C94"/>
 </g>
 <defs>
-<filter id="filter0_d" x="-45" y="-45" width="1521" height="1170" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d" x="-45" y="594" width="2010" height="531" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
 <feMorphology radius="15" operator="dilate" in="SourceAlpha" result="effect1_dropShadow"/>
@@ -14,9 +14,9 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
 </filter>
-<linearGradient id="paint0_linear" x1="1835.5" y1="-18.5" x2="1253" y2="1080" gradientUnits="userSpaceOnUse">
-<stop stop-color="#946FFF"/>
-<stop offset="1" stop-color="#FEE5C0"/>
+<linearGradient id="paint0_linear" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FEE5C0"/>
+<stop offset="1" stop-color="#946FFF"/>
 </linearGradient>
 </defs>
 </svg>

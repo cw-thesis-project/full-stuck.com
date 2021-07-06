@@ -1,13 +1,14 @@
 @import '../../../style/style.scss';
 
-
 .medal {
   @include column;
   @include center;
 }
 
-h4 {
+.techName {
+  text-transform: capitalize;
   color: $light;
+  margin-top: 1em;
 }
 
 .img {

@@ -10,14 +10,14 @@ interface Props {
 const NextLevel = ({ level }: Props): JSX.Element => {
   const previousLevel: Level = level === 'tutor' ? 'senior' : 'junior';
   return (
-    <div className={styles.container}>
+    <button type="button" className={styles.container}>
       <h2 className={styles.title}>{level}</h2>
       <img src={icons.lock} alt="medal" className={styles.lockIcon} />
-      <h3>locked</h3>
-      <p className={styles.bottom}>
-        You must complete the {previousLevel} part first!
+      <h3 className={styles.cardStatus}>locked</h3>
+      <p className={styles.textBottom}>
+        Complete the {previousLevel} part first!
       </p>
-    </div>
+    </button>
   );
 };
 

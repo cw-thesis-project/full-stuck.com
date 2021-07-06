@@ -4,9 +4,8 @@
   @include screen;
   @include row;
   background-color: $primary;
-  background-image: url('./dashboardBackground.svg'),
-    linear-gradient($gradientLight, $gradientDark);
-  background-repeat: no-repeat;
+  background-image: url('./dashboardBackground.svg');
+  background-size: cover;
   padding: 4em 8em;
   align-items: stretch;
 
@@ -19,6 +18,7 @@
 
   .rightColumn {
     @include column;
+    justify-content: space-between;
     align-items: flex-end;
     flex-grow: 1;
   }
@@ -32,13 +32,15 @@
 
   .textContainer {
     @include column;
+    align-items: flex-start;
     justify-content: space-between;
 
+    .pageTitle,
     h1 {
       font-size: 3em;
     }
 
-    h2 {
+    .greeting {
       font-size: 2em;
       font-weight: 500;
     }
@@ -77,11 +79,21 @@
     color: $light;
     font-weight: 600;
     box-shadow: $shadow;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $accentHover;
+    }
+
+    &:active {
+      background-color: $accentActive;
+    }
   }
 }
 
 .logo {
-  margin-right: 6em;
+  margin-right: 4em;
+
   h1 {
     color: $primaryDark;
   }

@@ -19,29 +19,24 @@ const CompletedLevelCard = ({ level }: Props): JSX.Element => {
     .map((tech) => <TechMedal techName={tech.name} />);
 
   return (
-    <div
-      role="button"
-      tabIndex={0}
-      // eslint-disable-next-line no-console
-      onKeyDown={() => console.log('')}
+    <button
+      type="button"
       onClick={() => setShowDetails(!showDetails)}
       className={styles.container}
     >
-      <div className={styles.title}>
-        <h2>{level}</h2>
-      </div>
+      <h2 className={styles.title}>{level}</h2>
       {showDetails ? (
-        techMedals
+        <div className={styles.medalsContainer}>{techMedals}</div>
       ) : (
-        <div className={styles.medalZone}>
+        <>
           <img src={icons.medal} alt="medal" className={styles.img} />
-          <h3>Completed</h3>
-        </div>
+          <h3 className={styles.cardStatus}>Completed</h3>
+        </>
       )}
-      <div className={styles.bottom}>
-        <h4>Be proud of yourself! This was not easy</h4>
-      </div>
-    </div>
+      <p className={styles.textBottom}>
+        Be proud of yourself! This was not easy
+      </p>
+    </button>
   );
 };
 

@@ -8,16 +8,24 @@ const starsArray = [0, 1, 2];
 
 interface Props {
   starsCount: StarsCount;
+  isBig?: boolean;
 }
 
-const StarsRow = ({ starsCount }: Props): JSX.Element => {
+const StarsRow = ({ starsCount, isBig }: Props): JSX.Element => {
+  const container = classnames({
+    [styles.container]: true,
+    [styles.big]: isBig,
+  });
+
   return (
-    <div className={styles.container}>
+    <div className={container}>
       {starsArray.map((number) => {
         const className = classnames({
           [styles.star]: true,
           [styles.gray]: starsCount <= number,
+          [styles.big]: isBig,
         });
+
         return (
           <img
             alt="star icon"
@@ -29,6 +37,10 @@ const StarsRow = ({ starsCount }: Props): JSX.Element => {
       })}
     </div>
   );
+};
+
+StarsRow.defaultProps = {
+  isBig: false,
 };
 
 export default StarsRow;

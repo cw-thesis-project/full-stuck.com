@@ -21,7 +21,7 @@ const MemoryScore = ({
         <h2 className={styles.matchesDone}>{numberOfMatches}</h2>
         <h3 className={styles.matchesTotal}>/9</h3>
       </div>
-      <h3>Matched</h3>
+      <h3 className={styles.matchedText}>Matched</h3>
     </button>
   );
 };

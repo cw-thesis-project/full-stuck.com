@@ -1,14 +1,21 @@
 @import '../../style/style.scss';
 
 .card {
-  @include column();
-  @include rounded();
+  @include column;
+  @include rounded;
   justify-content: space-between;
   background-color: $primaryDark;
   grid-row: 2 / 4;
   padding: 1.5em 0 2.5em 0;
   box-shadow: $shadow;
   text-align: center;
+  position: relative;
+  top: 0;
+  transition: top 0.3s ease-in-out;
+
+  &:hover {
+    top: 1em;
+  }
 }
 
 .centerContainer {
@@ -37,7 +44,7 @@
   font-size: 1.5em;
 
   &:hover {
-    background-color: $accentFocus;
+    background-color: $accentHover;
   }
 
   &:active {

@@ -1,7 +1,7 @@
 @import '../../style/style.scss';
 
 .container {
-  height: 85%;
+  flex-grow: 1;
   display: grid;
   padding: 0 8em;
   grid-template-columns: repeat(6, 1fr);

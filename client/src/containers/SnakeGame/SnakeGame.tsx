@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styles from './SnakeGame.module.scss';
 import { actions, useAppDispatch } from '../../store';
 import SnakeBoard from '../../components/SnakeBoard/SnakeBoard';
-import SnakeScore from '../../components/SnakeScore/SnakeScore';
 import GameOver from '../../components/GameOver/GameOver';
 
 const SnakeGame = (): JSX.Element => {
@@ -36,14 +35,30 @@ const SnakeGame = (): JSX.Element => {
   useEffect(checkIfGameOver, [isGameOver]);
   return (
     <div className={styles.screen}>
-      {isGameOver ? <GameOver hasWon={hasWon} /> : null}
-      <SnakeScore score={points} targetScore={targetScore} />
-      <SnakeBoard
-        isGameOver={isGameOver}
-        setIsGameOver={setIsGameOver}
-        points={points}
-        setPoints={setPoints}
-      />
+      {isGameOver && <GameOver starsCount={points >= targetScore ? 1 : 0} />}
+      <div className={styles.snakeBoardContainer}>
+        <SnakeBoard
+          isGameOver={isGameOver}
+          setIsGameOver={setIsGameOver}
+          points={points}
+          setPoints={setPoints}
+        />
+      </div>
+      <div className={styles.rightSide}>
+        <h1 className={styles.sadFace}>:(</h1>
+        <p className={styles.subtitle}>
+          Your code ran into problems, are you missing a bracket?
+        </p>
+        <p className={styles.subtitle}>
+          {Math.floor((points / targetScore) * 100)}% BUGS_FIXED
+        </p>
+        <div className={styles.footer}>
+          <p>
+            For more informations about this issue and possible fixes, visit
+          </p>
+          <p>https://tools.codeworks.me/#/help-request</p>
+        </div>
+      </div>
     </div>
   );
 };
