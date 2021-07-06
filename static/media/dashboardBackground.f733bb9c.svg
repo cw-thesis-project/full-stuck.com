@@ -1,4 +1,5 @@
-<svg width="1200" viewBox="0 0 1476 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1920" height="1080" fill="url(#paint0_linear)"/>
 <g filter="url(#filter0_d)">
 <path d="M0 1080V0H1431L1273.44 1080H0Z" fill="#3B1C94"/>
 </g>
@@ -13,5 +14,9 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
 </filter>
+<linearGradient id="paint0_linear" x1="1835.5" y1="-18.5" x2="1253" y2="1080" gradientUnits="userSpaceOnUse">
+<stop stop-color="#946FFF"/>
+<stop offset="1" stop-color="#FEE5C0"/>
+</linearGradient>
 </defs>
 </svg>
