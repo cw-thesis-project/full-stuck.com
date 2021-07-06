@@ -9,6 +9,13 @@
   box-shadow: $shadow;
   text-align: center;
   grid-row: 2/4;
+  position: relative;
+  top: 0;
+  transition: top 0.3s ease-in-out;
+
+  &:hover {
+    top: 1em;
+  }
 }
 
 .centerContainer {
