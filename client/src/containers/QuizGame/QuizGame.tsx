@@ -9,6 +9,8 @@ import { pickTech, quizTechs, quizRules, renderer } from './helpers';
 import styles from './QuizGame.module.scss';
 import TechLogo from '../../components/TechLogo';
 import { TechName } from '../../shared/types';
+import StarsRow from '../../components/StarsRow';
+import useQuizGameAnimations from './useQuizGameAnimations';
 
 const QuizGame = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -28,6 +30,8 @@ const QuizGame = (): JSX.Element => {
   useEffect(() => {
     setLogos(pickTech(quizRules.rounds, quizTechs));
   }, []);
+
+  useQuizGameAnimations();
 
   function onTextchange(string: string) {
     setText(string);
@@ -94,43 +98,38 @@ const QuizGame = (): JSX.Element => {
   }, [outcome]);
 
   return (
-    <div className={styles.container}>
-      {memoizedCountdown}
-      <div className={styles.scoreContainer}>
-        <h1 className={styles.score}>
-          {score}
-          {`${' '}`}
-        </h1>
-        <h2> / {quizRules.rounds}</h2>
-      </div>
-      <div className={styles.logosContainer}>
-        <div className={styles.tempText}>The answer (to be coded)</div>
-        <div className={styles.iconZone}>
-          <TechLogo
-            status="upcoming"
-            techName={gimmeTechName(currentIndex - 1)}
-          />
-          <TechLogo status="current" techName={gimmeTechName(currentIndex)} />
-          <TechLogo
-            lastRoundWon={lastRoundWon}
-            status={outcome}
-            techName={gimmeTechName(currentIndex + 1)}
-          />
+    <div className={styles.screen}>
+      <div className={styles.header}>
+        <StarsRow starsCount={1} />
+        <div className={styles.scoreContainer}>
+          <h1 className={styles.score}>{score}</h1>
+          <h1>{currentIndex}</h1>
         </div>
       </div>
-      <div>How big is your tech knowledge ?</div>
-      <div>
-        <form>
-          <input
-            className={styles.textInput}
-            value={text}
-            type="text"
-            placeholder="Type carefully ! "
-            onChange={(e) => {
-              onTextchange(e.target.value);
-            }}
-          />
-        </form>
+      <div className={styles.logosContainer}>
+        <TechLogo
+          status="upcoming"
+          techName={gimmeTechName(currentIndex - 1)}
+        />
+        <TechLogo status="current" techName={gimmeTechName(currentIndex)} />
+        <TechLogo
+          lastRoundWon={lastRoundWon}
+          status={outcome}
+          techName={gimmeTechName(currentIndex + 1)}
+        />
+      </div>
+      <h2 className={styles.helperText}>Name the icon!</h2>
+      <div className={styles.inputContainer}>
+        <input
+          className={styles.textInput}
+          value={text}
+          type="text"
+          placeholder="Type carefully ..."
+          onChange={(e) => {
+            onTextchange(e.target.value);
+          }}
+        />
+        {memoizedCountdown}
       </div>
     </div>
   );

@@ -18,9 +18,9 @@ interface QuizRules {
 }
 
 export const quizRules: QuizRules = {
-  rounds: 4,
+  rounds: 100,
   threshold: 0.3,
-  countdownDuration: 5000,
+  countdownDuration: 10000,
 };
 
 interface CountDownProps {
@@ -34,7 +34,7 @@ export const renderer = ({
   milliseconds,
   completed,
 }: CountDownProps): JSX.Element => {
-  const outerBarWidth = 10;
+  const outerBarWidth = 20;
   const outerBarStyle = {
     width: `${outerBarWidth}em`,
   };
@@ -61,7 +61,8 @@ export const pickTech = (rounds: number, techs: TechName[]): TechName[] => {
   const gameIcons: TechName[] = [];
   while (gameIcons.length < rounds) {
     const randomTech = techs[Math.floor(Math.random() * techs.length)];
-    if (!gameIcons.includes(randomTech)) gameIcons.push(randomTech);
+    // if (!gameIcons.includes(randomTech)) gameIcons.push(randomTech);
+    gameIcons.push(randomTech);
   }
   return gameIcons;
 };
