@@ -2,8 +2,7 @@
 
 .screen {
   @include screen;
-  background-image: url('../../assets/images/wave-bottom.svg'),
-    linear-gradient($gradientLight, $gradientDark);
+  background-image: url('../../assets/images/triangleUp.svg');
   background-size: cover;
   padding: 0 10em;
   display: grid;

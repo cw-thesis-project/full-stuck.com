@@ -3,8 +3,7 @@
 .screen {
   @include screen;
   @include column;
-  background-image: url('./triangleUp.svg'),
-    linear-gradient($gradientLight, $gradientDark);
+  background-image: url('../../assets/images/triangleUp.svg');
   background-size: cover;
   align-items: stretch;
 }
