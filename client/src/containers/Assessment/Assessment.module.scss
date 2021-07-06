@@ -2,6 +2,7 @@
 
 .page {
   @include screen;
+  background: radial-gradient(50% 154.24% at 50% 50%, #fee5c0 0%, #946fff 100%);
 }
 
 .centerSection {
@@ -39,6 +40,7 @@
   @include circle(25em);
   background-color: $primary;
   transition: all 0.3s ease-in-out;
+  box-shadow: $shadow;
 
   &.centerDark {
     @include circle(24.5em);
