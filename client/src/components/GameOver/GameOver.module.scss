@@ -5,8 +5,9 @@
   @include center;
   @include screen;
   @include fixed;
+  z-index: 2;
   gap: 4em;
-  background-color: rgba(0, 0, 0, 0.89);
+  background-color: rgba(0, 0, 0, 0.925);
 }
 
 .title {
