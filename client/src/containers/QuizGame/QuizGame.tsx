@@ -2,7 +2,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable consistent-return */
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import Countdown from 'react-countdown';
 import { actions, useAppDispatch } from '../../store';
 import { pickTech, quizTechs, quizRules, renderer } from './helpers';
@@ -10,14 +9,15 @@ import styles from './QuizGame.module.scss';
 import TechLogo from '../../components/TechLogo';
 import { TechName } from '../../shared/types';
 import StarsRow from '../../components/StarsRow';
+import GameOver from '../../components/GameOver';
 import useQuizGameAnimations from './useQuizGameAnimations';
 
 const QuizGame = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const history = useHistory();
   const [currentIndex, setCurrentIndex] = useState<number>(
     quizRules.rounds - 1
   );
+  const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [text, setText] = useState('');
   const [logos, setLogos] = useState<TechName[]>();
@@ -71,6 +71,7 @@ const QuizGame = (): JSX.Element => {
   }
 
   function afterGameOver(hasWon: boolean) {
+    setIsGameOver(true);
     if (hasWon) dispatch(actions.setPointsToAssign(1));
     else dispatch(actions.setPointsToAssign(0));
 
@@ -81,7 +82,6 @@ const QuizGame = (): JSX.Element => {
         stars: hasWon ? 0 : 3,
       })
     );
-    history.replace('/assign-points');
   }
 
   const memoizedCountdown = React.useMemo(() => {
@@ -99,6 +99,9 @@ const QuizGame = (): JSX.Element => {
 
   return (
     <div className={styles.screen}>
+      {isGameOver && (
+        <GameOver starsCount={score > winThreshold ? 3 : 0} showStars />
+      )}
       <div className={styles.header}>
         <StarsRow starsCount={1} />
         <div className={styles.scoreContainer}>
