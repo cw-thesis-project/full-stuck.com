@@ -3,9 +3,17 @@
 .screen {
   @include screen;
   @include column;
-  background-image: url('../../assets/images/wave-diagonal.svg'),
+  background-image: url('./triangleUp.svg'),
     linear-gradient($gradientLight, $gradientDark);
   background-size: cover;
+  align-items: stretch;
+}
+
+.screenBackground {
+  @include debug;
+  position: absolute;
+  bottom: 0;
+  z-index: 0;
 }
 
 .backIcon img {
@@ -17,11 +25,11 @@
 .footer {
   @include row;
   justify-content: space-between;
-  width: 100%;
-  height: 20em;
   padding: 0 8em;
+  margin-top: 2em;
+  height: 6em;
 
   .quote {
-    font-size: 1.5em;
+    font-size: 1.6em;
   }
 }

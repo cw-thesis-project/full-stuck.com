@@ -5,7 +5,7 @@
   @include center;
   @include square(4em);
   justify-self: center;
-  align-self: center;
+  align-self: flex-end;
   gap: 0;
   color: $primaryDark;
 }

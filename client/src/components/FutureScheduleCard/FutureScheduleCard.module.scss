@@ -1,8 +1,8 @@
 @import '../../style/style.scss';
 
 .scheduleItem {
-  @include column();
-  @include rounded();
+  @include column;
+  @include rounded;
   justify-content: space-between;
   padding: 1.5em 0 2.5em 0;
   background-color: $primaryDark;

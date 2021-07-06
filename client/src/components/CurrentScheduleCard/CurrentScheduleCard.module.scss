@@ -1,8 +1,8 @@
 @import '../../style/style.scss';
 
 .card {
-  @include column();
-  @include rounded();
+  @include column;
+  @include rounded;
   justify-content: space-between;
   background-color: $primaryDark;
   grid-row: 2 / 4;
@@ -37,7 +37,7 @@
   font-size: 1.5em;
 
   &:hover {
-    background-color: $accentFocus;
+    background-color: $accentHover;
   }
 
   &:active {
