@@ -16,7 +16,13 @@ function useAssessmentGame(
   const { level, onGameEnd } = gameOptions;
 
   // game constants
-  const groupSize = 3;
+  let groupSize = 1;
+  if (level === 'senior') {
+    groupSize = 2;
+  } else if (level !== 'junior') {
+    groupSize = 3;
+  }
+
   const gameDuration = 20_000;
 
   const initialCenterIcons = helpers.createCenterIcons(level, groupSize);
