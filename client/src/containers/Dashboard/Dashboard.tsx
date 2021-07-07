@@ -39,11 +39,13 @@ const Dashboard = (): JSX.Element => {
             </div>
             <h2 className={styles.greeting}>{greetingMessage}</h2>
           </div>
-          <img
-            alt="avatar logo"
-            className={styles.avatarIcon}
-            src={user?.picture}
-          />
+          <Link to="/game/snake">
+            <img
+              alt="avatar logo"
+              className={styles.avatarIcon}
+              src={user?.picture}
+            />
+          </Link>
         </div>
         <div className={styles.learntTech}>
           <LearntTech techAchievements={userTechAchievements} />

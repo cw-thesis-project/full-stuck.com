@@ -59,6 +59,14 @@
     @include circle(5em);
     @include rounded-full;
     box-shadow: $shadow;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 0;
+
+    &:hover {
+      margin-top: 1em;
+      box-shadow: $shadowHigh;
+    }
   }
 }
 
