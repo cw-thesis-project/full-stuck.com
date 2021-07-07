@@ -1,40 +1,22 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React, { useEffect } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { getToken } from '../../services/apiServices';
-import { getUserData } from '../../store/thunks';
-import { useAppDispatch, useAppSelector } from '../../store';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useAppSelector } from '../../store';
 import LearntTech from '../../components/LearntTech/index';
 import Roadmap from '../../components/Roadmap';
 import { createTechAchievements, createGreeting } from './helpers';
 import styles from './Dashboard.module.scss';
 import usePageTitle from '../../shared/usePageTitle';
-import icons from '../../assets/icons';
 import useDashboardAnimation from './useDashboardAnimation';
+import Loading from '../../components/Loading';
 
 const Dashboard = (): JSX.Element => {
-  const { user, isLoading, getAccessTokenSilently } = useAuth0();
+  const { user } = useAuth0();
+  const isLoading = useAppSelector((state) => state.loading);
   const userStore = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
-
-  useEffect(storeTokenAndUser, []);
   usePageTitle('Dashboard — Full Stuck');
   useDashboardAnimation();
-
-  function storeTokenAndUser() {
-    if (!isLoading && !userStore) {
-      (async () => {
-        await getToken(getAccessTokenSilently);
-        const username: string = user?.['https://full-stuck.com/username'];
-        dispatch(getUserData(username));
-      })();
-    }
-  }
-
-  if (!userStore) {
-    return <div>fetching user data...</div>;
-  }
 
   const userTechAchievements = createTechAchievements(
     userStore.gameData.level,
@@ -45,6 +27,7 @@ const Dashboard = (): JSX.Element => {
 
   return (
     <div className={styles.screen}>
+      {isLoading ? <Loading /> : null}
       <div className={styles.leftColumn}>
         <div className={styles.header}>
           <div className={styles.textContainer}>
@@ -59,7 +42,7 @@ const Dashboard = (): JSX.Element => {
           <img
             alt="avatar logo"
             className={styles.avatarIcon}
-            src={icons.avatar}
+            src={user?.picture}
           />
         </div>
         <div className={styles.learntTech}>

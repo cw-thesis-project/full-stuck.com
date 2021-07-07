@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export type TechName =
   | 'javascript'
   | 'git'
@@ -39,13 +40,21 @@ export interface UserGameData {
 }
 
 export interface User {
+  _id: string;
   username: string;
   gameData: UserGameData;
 }
 
+export interface Auth0User {
+  email: string;
+  email_verified: boolean;
+  name: string;
+  nickname: string;
+  picture: string;
+  sub: string;
+  updated_at: string;
+}
+
 export interface ApiResponse {
-  data: {
-    headers: string;
-    body: User;
-  };
+  data: User;
 }

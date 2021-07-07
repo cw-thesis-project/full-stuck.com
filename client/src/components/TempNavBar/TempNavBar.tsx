@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { saveActivity, learnTech, newGame } from '../../store/thunks';
 import usePageTitle from '../../shared/usePageTitle';
 import styles from './TempNavBar.module.scss';
-import { TechName } from '../../shared/types';
+import { Auth0User, TechName } from '../../shared/types';
 
 const TempNavBar = (): JSX.Element => {
   const userStore = useAppSelector((state) => state.user);
@@ -13,8 +13,8 @@ const TempNavBar = (): JSX.Element => {
   const dispatch = useAppDispatch();
   usePageTitle('Admin — Full Stuck');
 
-  const { isLoading, isAuthenticated, error, loginWithRedirect, logout } =
-    useAuth0();
+  const { isLoading, isAuthenticated, error, loginWithRedirect, logout, user } =
+    useAuth0<Auth0User>();
   const gettingUserData = useAppSelector((state) => state.loading);
 
   if (isLoading) {
@@ -33,8 +33,9 @@ const TempNavBar = (): JSX.Element => {
   }
 
   function newGameButton() {
-    if (userStore) {
-      dispatch(newGame(userStore.username));
+    if (user) {
+      const auth0user = user;
+      dispatch(newGame(auth0user));
     }
   }
 
@@ -42,7 +43,7 @@ const TempNavBar = (): JSX.Element => {
     return (
       <div className={styles.container}>
         <p>
-          username: {userStore?.username} level: {userStore?.gameData.level}
+          username: {user?.nickname} level: {userStore?.gameData.level}
         </p>
         <p>history: {JSON.stringify(userStore?.gameData.history, null, 2)} </p>
         <p>history length: {userStore?.gameData.history.length || 0} </p>

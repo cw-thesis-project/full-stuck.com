@@ -1,6 +1,12 @@
 import * as actions from './actions';
 import { Thunk } from './storeTypes';
-import { Level, PastActivity, TechName, User } from '../shared/types';
+import {
+  Level,
+  PastActivity,
+  TechName,
+  User,
+  Auth0User,
+} from '../shared/types';
 import { deepCopy } from '../shared/utils';
 
 export function saveActivity(pastActivity: PastActivity): Thunk {
@@ -23,17 +29,17 @@ export function saveActivity(pastActivity: PastActivity): Thunk {
   };
 }
 
-export function newGame(username: string): Thunk {
+export function newGame(auth0User: Auth0User): Thunk {
   return async function newGameThunk(dispatch, getState, apiService) {
     const { user } = getState();
 
-    dispatch(actions.newGameRequest(username));
+    dispatch(actions.newGameRequest(auth0User));
 
     try {
       if (!user) {
         throw new Error('not logged in');
       }
-      const updatedUser = await apiService.newGame(username);
+      const updatedUser = await apiService.newGame(auth0User);
       if (updatedUser) {
         dispatch(actions.newGameSuccess(updatedUser));
       }
@@ -64,15 +70,15 @@ export function learnTech(techName: TechName): Thunk {
   };
 }
 
-export function getUserData(username: string): Thunk {
+export function getUserData(auth0User: Auth0User): Thunk {
   return async function getUserDataThunk(dispatch, getState, apiService) {
-    dispatch(actions.getUserDataRequest(username));
+    dispatch(actions.getUserDataRequest(auth0User));
 
     // just so es-lint does not complain
     getState();
 
     try {
-      const user = await apiService.getUserData(username);
+      const user = await apiService.getUserData(auth0User);
       if (user !== null) {
         dispatch(actions.getUserDataSuccess(user));
       } else {
@@ -113,7 +119,9 @@ export function updateUser(newUser: User): Thunk {
     try {
       const updatedUser = await apiService.updateUser(newUser);
       if (updatedUser) {
-        dispatch(actions.updateUserSuccess(newUser));
+        dispatch(actions.updateUserSuccess(updatedUser));
+      } else {
+        throw new Error('no response from API');
       }
     } catch (error) {
       dispatch(actions.updateUserFailure(error));

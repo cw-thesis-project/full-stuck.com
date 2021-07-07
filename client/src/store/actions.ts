@@ -1,4 +1,10 @@
-import { Level, PastActivity, TechName, User } from '../shared/types';
+import {
+  Auth0User,
+  Level,
+  PastActivity,
+  TechName,
+  User,
+} from '../shared/types';
 import { AppAction } from './storeTypes';
 
 // save activity
@@ -26,10 +32,10 @@ export function saveActivityFailure(error: Error | string): AppAction {
 
 // new game
 
-export function newGameRequest(username: string): AppAction {
+export function newGameRequest(auth0User: Auth0User): AppAction {
   return {
     type: 'NEW_GAME_REQUEST',
-    username,
+    auth0User,
   };
 }
 
@@ -108,10 +114,10 @@ export function decreasePointsToAssign(): AppAction {
   };
 }
 
-export function getUserDataRequest(username: string): AppAction {
+export function getUserDataRequest(auth0User: Auth0User): AppAction {
   return {
     type: 'GET_USER_DATA_REQUEST',
-    username,
+    auth0User,
   };
 }
 
@@ -176,6 +182,20 @@ export function setActivityTopicFailure(error: Error | string): AppAction {
   };
 }
 // reset error
+
+export function createUserStore(auth0User: Auth0User): AppAction {
+  return {
+    type: 'CREATE_USER_STORE',
+    auth0User,
+  };
+}
+
+export function setAppLoading(loading: boolean): AppAction {
+  if (loading) {
+    return { type: 'SET_APP_LOADING_TRUE' };
+  }
+  return { type: 'SET_APP_LOADING_FALSE' };
+}
 
 export function resetError(): AppAction {
   return {

@@ -1,18 +1,43 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { User } from '../shared/types';
+import { Auth0User, User } from '../shared/types';
 import { AppState, AppAction, FailureAction } from './storeTypes';
+import { emptyUser } from '../shared/constants';
+import { deepCopy } from '../shared/utils';
 
 export const defaultState: AppState = {
   pointsToAssign: 0,
-  user: null,
   loading: false,
   error: '',
+  user: {
+    _id: 'unregister',
+    username: 'unregister',
+    gameData: {
+      techExperience: {
+        javascript: 0,
+        git: 0,
+        react: 0,
+        graphql: 0,
+        rxjs: 0,
+        typescript: 0,
+        debugging: 0,
+        eloquence: 0,
+        espionage: 0,
+      },
+      history: [],
+      level: 'junior',
+    },
+  },
 };
 
 export function reducer(state = defaultState, action: AppAction): AppState {
   let auxState: AppState;
 
   switch (action.type) {
+    case 'CREATE_USER_STORE':
+      return createUserStore(action.auth0User, state);
+
     case 'SET_POINTS_TO_ASSIGN':
       return setPointsToAssign(action.amount, state);
 
@@ -51,6 +76,7 @@ export function reducer(state = defaultState, action: AppAction): AppState {
     case 'LEVEL_USER_UP_REQUEST':
     case 'UPDATE_USER_REQUEST':
     case 'SET_ACTIVITY_TOPIC_REQUEST':
+    case 'SET_APP_LOADING_TRUE':
       return startLoading(state);
 
     case 'NEW_GAME_FAILURE':
@@ -63,12 +89,27 @@ export function reducer(state = defaultState, action: AppAction): AppState {
       auxState = stopLoading(state);
       return handleError(auxState, action as FailureAction);
 
+    case 'SET_APP_LOADING_FALSE':
+      return stopLoading(state);
+
     case 'RESET_ERROR':
       return resetError(state);
 
     default:
       return state;
   }
+}
+
+function createUserStore(auth0User: Auth0User, state: AppState): AppState {
+  const user = deepCopy(emptyUser);
+  user._id = auth0User.sub;
+  user.username = auth0User?.nickname
+    ? auth0User.nickname
+    : auth0User?.name
+    ? auth0User.name
+    : auth0User?.email;
+
+  return { ...state, user };
 }
 
 function setPointsToAssign(amount: number, state: AppState): AppState {
