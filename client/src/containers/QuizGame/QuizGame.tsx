@@ -31,7 +31,7 @@ const QuizGame = (): JSX.Element => {
     setLogos(pickTech(quizRules.rounds, quizTechs));
   }, []);
 
-  useQuizGameAnimations();
+  useQuizGameAnimations(currentIndex);
 
   function onTextchange(string: string) {
     setText(string);
@@ -105,8 +105,8 @@ const QuizGame = (): JSX.Element => {
       <div className={styles.header}>
         <StarsRow starsCount={1} />
         <div className={styles.scoreContainer}>
-          <h1 className={styles.score}>{score}</h1>
-          <h1>{currentIndex}</h1>
+          <h1 className={styles.score}>+{score}</h1>
+          <h1>-{currentIndex}</h1>
         </div>
       </div>
       <div className={styles.logosContainer}>
