@@ -7,7 +7,7 @@ export const auth0 = {
   audience: process.env.REACT_APP_AUTH0_AUDIENCE as string,
 };
 
-export const apiUrl = process.env.REACT_APP_API_URL as string;
+export const apiEndpoint = process.env.REACT_APP_API_ENDPOINT as string;
 
 export const technologies: Tech[] = [
   { name: 'javascript', level: 'junior' },
@@ -24,6 +24,7 @@ export const technologies: Tech[] = [
 export const maxTechnologyExperience = 3;
 
 export const emptyUser: User = {
+  _id: '',
   username: '',
   gameData: {
     techExperience: {

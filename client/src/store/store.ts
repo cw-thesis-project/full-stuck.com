@@ -14,8 +14,8 @@ import { ApiService, AppState, AppAction } from './storeTypes';
 const apiService: ApiService = {
   learnTech: (techName, user) => learnTech(techName, user),
   saveActivity: (activity, user) => saveActivity(activity, user),
-  getUserData: (username) => getUserData(username),
-  newGame: (username) => newGame(username),
+  getUserData: (auth0User) => getUserData(auth0User),
+  newGame: (auth0User) => newGame(auth0User),
   updateUser: (user) => updateUser(user),
   changeActivityTopic: (techName, user) => changeActivityTopic(techName, user),
 };

@@ -1,23 +1,13 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useHistory } from 'react-router-dom';
 import styles from './Splash.module.scss';
 import usePageTitle from '../../shared/usePageTitle';
 import useSplashAnimations from './useSplashAnimations';
 
 const Splash = (): JSX.Element => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
-  const history = useHistory();
   usePageTitle('Full Stuck');
   useSplashAnimations();
-
-  function handleButtonClick() {
-    if (isAuthenticated) {
-      history.push('/dashboard');
-    } else {
-      loginWithRedirect();
-    }
-  }
 
   const buttonText = isAuthenticated ? 'Dashboard' : 'Log in';
 
@@ -32,11 +22,11 @@ const Splash = (): JSX.Element => {
         <h1 className={styles.logoPart}>CK</h1>
       </div>
       <p className={styles.subtitle}>
-        Take part to the bootcamp, <br /> become CEO as quick as you can!
+        Take part in the bootcamp, <br /> become CEO as quick as you can!
       </p>
       <button
         type="button"
-        onClick={handleButtonClick}
+        onClick={loginWithRedirect}
         className={styles.button}
       >
         {buttonText}

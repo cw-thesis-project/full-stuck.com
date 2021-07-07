@@ -33,6 +33,7 @@ export interface FakeState {
 }
 
 const mockUser: User = {
+  _id: '',
   username: 'Pablo',
   gameData: {
     techExperience: {
