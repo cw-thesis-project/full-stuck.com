@@ -41,12 +41,24 @@
 }
 
 .button {
-  @include rectangle(13em, 4em);
-  @include reset-input;
+  @include rectangle(8em, 3em);
   @include rounded;
+  @include center;
+  @include reset-input;
+  font-size: 1.5em;
+  text-decoration: none;
   background-color: $accent;
   color: $light;
-  font-weight: 700;
-  font-size: 1.5em;
+  font-weight: 600;
+  box-shadow: $shadow;
+  transition: background-color 0.3s ease-in-out;
   cursor: pointer;
+
+  &:hover {
+    background-color: $accentHover;
+  }
+
+  &:active {
+    background-color: $accentActive;
+  }
 }
