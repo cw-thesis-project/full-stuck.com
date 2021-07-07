@@ -56,8 +56,9 @@
   }
 
   .avatarIcon {
-border-radius: 50%
-
+    @include circle(5em);
+    @include rounded-full;
+    box-shadow: $shadow;
   }
 }
 
