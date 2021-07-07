@@ -22,7 +22,7 @@ const Splash = (): JSX.Element => {
         <h1 className={styles.logoPart}>CK</h1>
       </div>
       <p className={styles.subtitle}>
-        Take part to the bootcamp, <br /> become CEO as quick as you can!
+        Take part in the bootcamp, <br /> become CEO as quick as you can!
       </p>
       <button
         type="button"
