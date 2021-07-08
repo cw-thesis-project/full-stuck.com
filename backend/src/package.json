@@ -1,0 +1,9 @@
+{
+  "name": "api.full-stuck.com",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "mongodb": "^3.6.9",
+    "mongodb-client-encryption": "^1.2.6"
+  }
+}
