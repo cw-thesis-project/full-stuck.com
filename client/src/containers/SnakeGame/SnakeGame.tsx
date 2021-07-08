@@ -3,7 +3,7 @@ import { TechName } from 'shared/types';
 import { pickRandomTopic } from 'shared/utils';
 import { actions, useAppDispatch } from 'store';
 import styles from './SnakeGame.module.scss';
-import SnakeBoard from '../../components/SnakeBoard/SnakeBoard';
+import SnakeBoard from './SnakeBoard/SnakeBoard';
 import GameOver from '../../components/GameOver/GameOver';
 
 const SnakeGame = (): JSX.Element => {

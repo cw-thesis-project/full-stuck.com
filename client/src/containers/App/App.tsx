@@ -15,7 +15,7 @@ import Assessment from '../Assessment/Assessment';
 import MemoryGame from '../MemoryGame/MemoryGame';
 import CEO from '../CEO/CEO';
 import HallOfFame from '../HallOfFame';
-import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
 import TempNavBar from '../../components/TempNavBar/TempNavBar';
 import SnakeGame from '../SnakeGame/SnakeGame';
 import QuizGame from '../QuizGame/QuizGame';

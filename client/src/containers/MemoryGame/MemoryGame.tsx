@@ -5,7 +5,7 @@ import { StarsCount, TechName } from 'shared/types';
 import { pickRandomTopic } from 'shared/utils';
 import { actions, useAppDispatch } from 'store';
 import styles from './MemoryGame.module.scss';
-import FlipsCounter from '../../components/FlipsCounter';
+import FlipsCounter from './FlipsCounter';
 import MemoryScore from '../../components/MemoryScore';
 import CardsTable from '../../components/CardsTable';
 import GameOver from '../../components/GameOver';

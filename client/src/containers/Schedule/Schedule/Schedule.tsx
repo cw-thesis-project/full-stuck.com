@@ -1,8 +1,8 @@
 import React from 'react';
 import { Activity, PastActivity } from 'shared/types';
-import FutureScheduleCard from '../FutureScheduleCard';
-import CurrentScheduleCard from '../CurrentScheduleCard';
-import PastScheduleCard from '../PastScheduleCard';
+import FutureScheduleCard from '../../../components/FutureScheduleCard';
+import CurrentScheduleCard from '../../../components/CurrentScheduleCard';
+import PastScheduleCard from '../../../components/PastScheduleCard';
 import CalendarDate from '../CalendarDate';
 import getDateVariant from './helperFunctions';
 import styles from './Schedule.module.scss';

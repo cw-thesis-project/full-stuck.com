@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { back } from 'assets/icons';
 import usePageTitle from 'shared/usePageTitle';
 import { useAppSelector } from 'store';
-import Schedule from '../../components/Schedule';
+import Schedule from './Schedule';
 import { lastFiveElements, getNextActivity } from './helperFunctions';
 import styles from './Schedule.module.scss';
 import useScheduleAnimation from './useScheduleAnimation';

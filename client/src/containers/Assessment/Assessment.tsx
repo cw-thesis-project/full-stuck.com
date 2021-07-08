@@ -8,13 +8,13 @@ import { updateUser } from 'store/thunks';
 import { useAppDispatch, useAppSelector, actions } from 'store';
 import SideColumn from '../../components/SideColumn';
 import CenterIcons from '../../components/CenterIcons';
-import AssessmentScore from '../../components/AssessmentScore';
+import AssessmentScore from './AssessmentScore';
 import GameOver from '../../components/GameOver';
 import useAssessmentGame from './useAssessmentGame';
 import styles from './Assessment.module.scss';
 import { userAfterAssessment } from './helpers';
 import { AssessmentGameOptions } from './interfaces';
-import AssessmentBackground from '../../components/AssessmentBackground';
+import AssessmentBackground from './AssessmentBackground';
 import useAssessmentAnimations from './useAssessmentAnimations';
 
 const Assessment = (): JSX.Element => {
