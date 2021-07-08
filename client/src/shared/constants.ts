@@ -1,4 +1,4 @@
-import { LevelMap, Tech, User } from './types';
+import { LevelMap, Minigame, Tech, User } from './types';
 
 export const auth0 = {
   domain: process.env.REACT_APP_AUTH0_DOMAIN as string,
@@ -49,3 +49,5 @@ export const levelToNumber: LevelMap = {
   tutor: 2,
   CEO: 3,
 };
+
+export const minigames: Minigame[] = ['memory', 'quiz', 'snake'];
