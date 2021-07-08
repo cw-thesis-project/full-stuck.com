@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import { TechName } from 'shared/types';
+import { useAppDispatch, useAppSelector } from 'store';
+import { setActivityTopic } from 'store/thunks';
 import styles from './AssignPoints.module.scss';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { setActivityTopic } from '../../store/thunks';
 import { assignCards, buttonAllowed } from './helpers';
 import useAssignPointsAnimation from './useAssignPointsAnimation';
 

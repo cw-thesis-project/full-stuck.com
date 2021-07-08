@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import Countdown from 'react-countdown';
 import { StarsCount, TechName } from 'shared/types';
 import { pickRandomTopic } from 'shared/utils';
-import { actions, useAppDispatch } from '../../store';
+import { actions, useAppDispatch } from 'store';
 import {
   pickTech,
   quizTechs,

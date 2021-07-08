@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { trophy } from 'assets/icons';
+import { useAppSelector } from 'store';
 import styles from './CEO.module.scss';
-import { useAppSelector } from '../../store';
 
 const CEO = (): JSX.Element => {
   const user = useAppSelector((state) => state.user);

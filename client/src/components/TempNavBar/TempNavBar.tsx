@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'store';
+import { saveActivity, learnTech, newGame } from 'store/thunks';
 import usePageTitle from 'shared/usePageTitle';
 import { Auth0User, TechName } from 'shared/types';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { saveActivity, learnTech, newGame } from '../../store/thunks';
 import styles from './TempNavBar.module.scss';
 
 const TempNavBar = (): JSX.Element => {

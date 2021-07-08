@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { store } from 'store';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { HashRouter as Router } from 'react-router-dom';
 import './index.css';
@@ -7,7 +8,6 @@ import * as dotenv from 'dotenv';
 import { Provider } from 'react-redux';
 import App from './containers/App/App';
 import { auth0 } from './shared/constants';
-import { store } from './store';
 
 dotenv.config();
 

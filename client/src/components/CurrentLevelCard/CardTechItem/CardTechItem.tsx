@@ -1,8 +1,8 @@
 import React from 'react';
 import { TechName } from 'shared/types';
+import { useAppSelector } from 'store';
 import styles from './CardTechItem.module.scss';
 import TechIcon from '../../TechIcon';
-import { useAppSelector } from '../../../store';
 
 interface Props {
   experience: number;

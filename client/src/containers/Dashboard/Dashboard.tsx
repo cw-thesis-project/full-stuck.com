@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import usePageTitle from 'shared/usePageTitle';
-import { useAppSelector } from '../../store';
+import { useAppSelector } from 'store';
 import LearntTech from '../../components/LearntTech/index';
 import Roadmap from '../../components/Roadmap';
 import { createTechAchievements, createGreeting } from './helpers';
