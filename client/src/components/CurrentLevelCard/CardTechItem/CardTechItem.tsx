@@ -59,8 +59,8 @@ const CardTechItem = ({
         className={styles.clickable}
       >
         <TechIcon techName={techName} iconSize="small" isGray={false} />
+        <h4 className={styles.techName}>{techName}</h4>
       </button>
-      <h4 className={styles.techName}>{techName}</h4>
     </div>
   );
 };
