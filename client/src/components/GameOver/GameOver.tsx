@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { StarsCount } from '../../shared/types';
+import { StarsCount } from 'shared/types';
 import styles from './GameOver.module.scss';
 import StarsRow from '../StarsRow';
 import useGameOverAnimations from './useGameOverAnimations';

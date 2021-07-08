@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { sadFace } from 'assets/icons';
-import { StarsCount, TechName } from '../../shared/types';
+import { StarsCount, TechName } from 'shared/types';
 import TechIcon from '../TechIcon';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './PastScheduleCard.module.scss';

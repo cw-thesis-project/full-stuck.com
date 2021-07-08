@@ -1,5 +1,5 @@
-import { maxTechnologyExperience, technologies } from '../../shared/constants';
-import { Activity, TechExperience } from '../../shared/types';
+import { maxTechnologyExperience, technologies } from 'shared/constants';
+import { Activity, TechExperience } from 'shared/types';
 
 export function lastFiveElements<T>(list: T[]): T[] {
   const pastLength = list.length % 6;

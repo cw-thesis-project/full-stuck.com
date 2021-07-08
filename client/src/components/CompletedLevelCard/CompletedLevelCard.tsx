@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { medal } from 'assets/icons';
-import { Level } from '../../shared/types';
+import { Level } from 'shared/types';
+import { technologies } from 'shared/constants';
 import styles from './CompletedLevelCard.module.scss';
 import TechMedal from './TechMedal';
-import { technologies } from '../../shared/constants';
 
 interface Props {
   level: Level;

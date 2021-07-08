@@ -1,6 +1,6 @@
 import React from 'react';
+import usePageTitle from 'shared/usePageTitle';
 import styles from './HallOfFame.module.scss';
-import usePageTitle from '../../shared/usePageTitle';
 
 const Splash = (): JSX.Element => {
   usePageTitle('Full Stuck − Hall of Fame');

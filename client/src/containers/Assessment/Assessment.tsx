@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { StarsCount, TechName } from 'shared/types';
+import usePageTitle from 'shared/usePageTitle';
 import { hourGlassLogo } from 'assets/icons';
 import SideColumn from '../../components/SideColumn';
 import CenterIcons from '../../components/CenterIcons';
@@ -12,8 +14,6 @@ import { userAfterAssessment } from './helpers';
 import { useAppDispatch, useAppSelector, actions } from '../../store';
 import { updateUser } from '../../store/thunks';
 import { AssessmentGameOptions } from './interfaces';
-import { StarsCount, TechName } from '../../shared/types';
-import usePageTitle from '../../shared/usePageTitle';
 import AssessmentBackground from '../../components/AssessmentBackground';
 import useAssessmentAnimations from './useAssessmentAnimations';
 

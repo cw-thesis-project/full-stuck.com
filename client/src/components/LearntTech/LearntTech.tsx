@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { arrow } from 'assets/icons';
-import { TechExperience, TechName } from '../../shared/types';
+import { TechExperience, TechName } from 'shared/types';
 import TechAchievementCard from './TechAchievementCard';
 import styles from './LearntTech.module.scss';
 

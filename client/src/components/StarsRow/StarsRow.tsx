@@ -1,8 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
+import { StarsCount } from 'shared/types';
 import { star } from 'assets/icons';
 import styles from './StarsRow.module.scss';
-import { StarsCount } from '../../shared/types';
 
 const starsArray = [0, 1, 2];
 

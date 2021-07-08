@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, PastActivity } from '../../shared/types';
+import { Activity, PastActivity } from 'shared/types';
 import FutureScheduleCard from '../FutureScheduleCard';
 import CurrentScheduleCard from '../CurrentScheduleCard';
 import PastScheduleCard from '../PastScheduleCard';

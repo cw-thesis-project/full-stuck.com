@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect, useState } from 'react';
-import { TechName } from '../../shared/types';
-import { deepCopy } from '../../shared/utils';
+import { TechName } from 'shared/types';
+import { deepCopy } from 'shared/utils';
 import {
   AssesmentGameState,
   AssessmentGameOptions,

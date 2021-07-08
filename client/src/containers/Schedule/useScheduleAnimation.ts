@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect } from 'react';
-import { animateFrom, fadeIn, slideRight } from '../../shared/animations';
+import { animateFrom, fadeIn, slideRight } from 'shared/animations';
 import calendarDate from '../../components/CalendarDate/CalendarDate.module.scss';
 import schedule from '../../components/Schedule/Schedule.module.scss';
 import container from './Schedule.module.scss';

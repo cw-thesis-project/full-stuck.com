@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
-import { slideDown, fadeIn, slideUp } from '../../shared/animations';
+import { slideDown, fadeIn, slideUp } from 'shared/animations';
 import quizGame from './QuizGame.module.scss';
 import techLogo from '../../components/TechLogo/TechLogo.module.scss';
 

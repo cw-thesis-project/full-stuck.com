@@ -2,7 +2,7 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 import classNames from 'classnames';
-import { TechName } from '../../shared/types';
+import { TechName } from 'shared/types';
 import styles from './TechLogo.module.scss';
 import TechIcon from '../TechIcon';
 

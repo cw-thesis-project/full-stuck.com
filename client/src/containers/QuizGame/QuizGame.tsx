@@ -3,6 +3,8 @@
 /* eslint-disable consistent-return */
 import React, { useEffect, useState } from 'react';
 import Countdown from 'react-countdown';
+import { StarsCount, TechName } from 'shared/types';
+import { pickRandomTopic } from 'shared/utils';
 import { actions, useAppDispatch } from '../../store';
 import {
   pickTech,
@@ -13,11 +15,9 @@ import {
 } from './helpers';
 import styles from './QuizGame.module.scss';
 import TechLogo from '../../components/TechLogo';
-import { StarsCount, TechName } from '../../shared/types';
 import StarsRow from '../../components/StarsRow';
 import GameOver from '../../components/GameOver';
 import useQuizGameAnimations from './useQuizGameAnimations';
-import { pickRandomTopic } from '../../shared/utils';
 
 const QuizGame = (): JSX.Element => {
   const dispatch = useAppDispatch();

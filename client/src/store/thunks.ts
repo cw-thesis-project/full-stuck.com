@@ -1,13 +1,7 @@
+import { Level, PastActivity, TechName, User, Auth0User } from 'shared/types';
+import { deepCopy } from 'shared/utils';
 import * as actions from './actions';
 import { Thunk } from './storeTypes';
-import {
-  Level,
-  PastActivity,
-  TechName,
-  User,
-  Auth0User,
-} from '../shared/types';
-import { deepCopy } from '../shared/utils';
 
 export function saveActivity(pastActivity: PastActivity): Thunk {
   return async function saveActivityThunk(dispatch, getState, apiService) {

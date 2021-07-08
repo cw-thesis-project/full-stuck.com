@@ -1,9 +1,9 @@
-import { Level, TechExperience } from '../../shared/types';
+import { Level, TechExperience } from 'shared/types';
 import {
   technologies,
   levelToNumber,
   maxTechnologyExperience,
-} from '../../shared/constants';
+} from 'shared/constants';
 import { TechAchievements } from '../../components/LearntTech/LearntTech';
 
 export const createGreeting = (level: Level): string => {

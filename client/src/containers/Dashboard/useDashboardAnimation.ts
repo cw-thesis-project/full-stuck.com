@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
-import { slideUp, fadeIn, slideLeft } from '../../shared/animations';
+import { slideUp, fadeIn, slideLeft } from 'shared/animations';
 import dashboard from './Dashboard.module.scss';
 import roadmap from '../../components/Roadmap/Roadmap.module.scss';
 

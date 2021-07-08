@@ -1,5 +1,5 @@
 import React from 'react';
-import { TechName } from '../../../shared/types';
+import { TechName } from 'shared/types';
 import styles from './CardTechItem.module.scss';
 import TechIcon from '../../TechIcon';
 import { useAppSelector } from '../../../store';

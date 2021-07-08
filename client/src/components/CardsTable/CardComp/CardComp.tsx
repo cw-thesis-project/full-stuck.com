@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useRef } from 'react';
 import classNames from 'classnames';
+import { TechName } from 'shared/types';
 import styles from './CardComp.module.scss';
-import { TechName } from '../../../shared/types';
 import TechIcon from '../../TechIcon';
 import useCardCompAnimation from './useCardCompAnimation';
 

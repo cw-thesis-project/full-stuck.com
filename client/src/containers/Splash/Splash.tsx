@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import usePageTitle from 'shared/usePageTitle';
 import styles from './Splash.module.scss';
-import usePageTitle from '../../shared/usePageTitle';
 import useSplashAnimations from './useSplashAnimations';
 
 const Splash = (): JSX.Element => {

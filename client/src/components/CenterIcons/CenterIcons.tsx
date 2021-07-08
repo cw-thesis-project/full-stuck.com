@@ -1,6 +1,6 @@
 import React from 'react';
+import { TechName } from 'shared/types';
 import classnames from 'classnames';
-import { TechName } from '../../shared/types';
 import styles from './CenterIcons.module.scss';
 import TechIcon from '../TechIcon';
 

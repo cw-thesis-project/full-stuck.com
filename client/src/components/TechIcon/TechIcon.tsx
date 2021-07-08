@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import * as logos from 'assets/icons';
-import { TechName } from '../../shared/types';
+import { TechName } from 'shared/types';
 import styles from './TechIcon.module.scss';
 
 interface Props {

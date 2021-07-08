@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
-import { slideDown, fadeIn } from '../../shared/animations';
+import { slideDown, fadeIn } from 'shared/animations';
 import splash from './Splash.module.scss';
 
 function useSplashAnimations(): void {

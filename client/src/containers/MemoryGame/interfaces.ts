@@ -1,4 +1,4 @@
-import { StarsCount, TechName } from '../../shared/types';
+import { StarsCount, TechName } from 'shared/types';
 
 export interface Card {
   name: TechName;

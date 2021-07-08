@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { back } from 'assets/icons';
+import usePageTitle from 'shared/usePageTitle';
 import Schedule from '../../components/Schedule';
 import { useAppSelector } from '../../store';
 import { lastFiveElements, getNextActivity } from './helperFunctions';
 import styles from './Schedule.module.scss';
-import usePageTitle from '../../shared/usePageTitle';
 import useScheduleAnimation from './useScheduleAnimation';
 
 const ScheduleContainer = (): JSX.Element | null => {

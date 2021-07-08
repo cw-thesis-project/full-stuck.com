@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useState, useEffect } from 'react';
-import { deepCopy, sleep } from '../../shared/utils';
+import { deepCopy, sleep } from 'shared/utils';
 import { createCards, getStarsCount } from './helpers';
 import {
   Card,

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import { Level } from '../../shared/types';
-import { levelToNumber } from '../../shared/constants';
+import { Level } from 'shared/types';
+import { levelToNumber } from 'shared/constants';
 import styles from './Roadmap.module.scss';
 
 interface Props {

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
-import { slideUp, slideDown } from '../../shared/animations';
+import { slideUp, slideDown } from 'shared/animations';
 import gameOver from './GameOver.module.scss';
 import stars from '../StarsRow/StarsRow.module.scss';
 

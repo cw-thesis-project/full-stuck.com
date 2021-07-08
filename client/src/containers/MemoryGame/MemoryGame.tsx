@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useState } from 'react';
+import usePageTitle from 'shared/usePageTitle';
+import { StarsCount, TechName } from 'shared/types';
+import { pickRandomTopic } from 'shared/utils';
 import styles from './MemoryGame.module.scss';
 import FlipsCounter from '../../components/FlipsCounter';
 import MemoryScore from '../../components/MemoryScore';
@@ -7,10 +10,7 @@ import CardsTable from '../../components/CardsTable';
 import GameOver from '../../components/GameOver';
 import useMemoryGame, { allowedFlips } from './useMemoryGame';
 import { actions, useAppDispatch } from '../../store';
-import usePageTitle from '../../shared/usePageTitle';
-import { StarsCount, TechName } from '../../shared/types';
 import useMemoryGameAnimations from './useMemoryGameAnimations';
-import { pickRandomTopic } from '../../shared/utils';
 
 const MemoryGameContainer = (): JSX.Element => {
   // states

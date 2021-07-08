@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { Auth0User } from 'shared/types';
 import { getToken } from '../../services/apiServices';
 import { getUserData } from '../../store/thunks';
 import { setAppLoading, createUserStore } from '../../store/actions';
@@ -18,7 +19,6 @@ import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute';
 import TempNavBar from '../../components/TempNavBar/TempNavBar';
 import SnakeGame from '../SnakeGame/SnakeGame';
 import QuizGame from '../QuizGame/QuizGame';
-import { Auth0User } from '../../shared/types';
 import Loading from '../../components/Loading';
 
 const App = (): JSX.Element => {

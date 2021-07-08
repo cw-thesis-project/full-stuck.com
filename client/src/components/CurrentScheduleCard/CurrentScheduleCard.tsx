@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { graduationHat } from 'assets/icons';
+import { Activity } from 'shared/types';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './CurrentScheduleCard.module.scss';
-import { Activity } from '../../shared/types';
 import StarsRow from '../StarsRow';
 
 interface Props {

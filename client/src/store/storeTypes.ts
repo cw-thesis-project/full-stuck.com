@@ -1,11 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import {
-  Level,
-  PastActivity,
-  TechName,
-  User,
-  Auth0User,
-} from '../shared/types';
+import { Level, PastActivity, TechName, User, Auth0User } from 'shared/types';
 
 export interface AppState {
   pointsToAssign: number;

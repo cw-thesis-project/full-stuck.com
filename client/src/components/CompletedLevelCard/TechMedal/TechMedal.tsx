@@ -1,6 +1,6 @@
 import React from 'react';
 import { medal } from 'assets/icons';
-import { TechName } from '../../../shared/types';
+import { TechName } from 'shared/types';
 import styles from './TechMedal.module.scss';
 
 interface Props {

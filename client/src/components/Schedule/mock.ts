@@ -1,4 +1,4 @@
-import { PastActivity } from '../../shared/types';
+import { PastActivity } from 'shared/types';
 
 export const newWeek: PastActivity[] = [];
 

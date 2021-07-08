@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { TechName } from 'shared/types';
+import { pickRandomTopic } from 'shared/utils';
 import styles from './SnakeGame.module.scss';
 import { actions, useAppDispatch } from '../../store';
 import SnakeBoard from '../../components/SnakeBoard/SnakeBoard';
 import GameOver from '../../components/GameOver/GameOver';
-import { TechName } from '../../shared/types';
-import { pickRandomTopic } from '../../shared/utils';
 
 const SnakeGame = (): JSX.Element => {
   const dispatch = useAppDispatch();
