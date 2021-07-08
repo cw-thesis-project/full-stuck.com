@@ -4,7 +4,7 @@
 import React, { useRef } from 'react';
 import classNames from 'classnames';
 import { TechName } from 'shared/types';
-import TechIcon from 'components/TechIcon';
+import { TechIcon } from 'components';
 import styles from './CardComp.module.scss';
 import useCardCompAnimation from './useCardCompAnimation';
 

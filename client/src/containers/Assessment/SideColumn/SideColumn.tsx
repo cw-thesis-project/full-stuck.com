@@ -2,7 +2,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import classNames from 'classnames';
-import TechIcon from 'components/TechIcon';
+import { TechIcon } from 'components';
 import { Icon } from 'containers/Assessment/interfaces';
 import styles from './SideColumn.module.scss';
 

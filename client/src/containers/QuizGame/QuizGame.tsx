@@ -7,9 +7,7 @@ import Countdown from 'react-countdown';
 import { StarsCount, TechName } from 'shared/types';
 import { pickRandomTopic } from 'shared/utils';
 import { actions, useAppDispatch } from 'store';
-import TechLogo from 'components/TechLogo';
-import StarsRow from 'components/StarsRow';
-import GameOver from 'components/GameOver';
+import { TechLogo, StarsRow, GameOver } from 'components';
 import {
   pickTech,
   quizTechs,

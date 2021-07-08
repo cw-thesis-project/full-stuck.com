@@ -1,9 +1,9 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { sadFace } from 'assets/icons';
 import { StarsCount, TechName } from 'shared/types';
-import TechIcon from 'components/TechIcon';
-import StarsRow from 'components/StarsRow';
+import { TechIcon, StarsRow } from 'components';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './PastScheduleCard.module.scss';
 

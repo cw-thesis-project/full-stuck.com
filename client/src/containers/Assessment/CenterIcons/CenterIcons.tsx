@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import { TechName } from 'shared/types';
-import TechIcon from 'components/TechIcon';
+import { TechIcon } from 'components';
 import classnames from 'classnames';
 import styles from './CenterIcons.module.scss';
 

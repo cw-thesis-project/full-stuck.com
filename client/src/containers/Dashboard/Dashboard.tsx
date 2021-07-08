@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import usePageTitle from 'shared/usePageTitle';
 import { useAppSelector } from 'store';
-import Loading from 'components/Loading';
+import { Loading } from 'components';
 import LearntTech from './LearntTech/index';
 import Roadmap from './Roadmap';
 import { createTechAchievements, createGreeting } from './helpers';

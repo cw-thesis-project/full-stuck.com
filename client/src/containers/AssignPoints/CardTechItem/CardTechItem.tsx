@@ -2,7 +2,7 @@
 import React from 'react';
 import { TechName } from 'shared/types';
 import { useAppSelector } from 'store';
-import TechIcon from 'components/TechIcon';
+import { TechIcon } from 'components';
 import styles from './CardTechItem.module.scss';
 
 interface Props {

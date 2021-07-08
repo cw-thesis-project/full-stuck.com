@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import { StarsCount } from 'shared/types';
-import StarsRow from 'components/StarsRow';
+import { StarsRow } from 'components';
 import styles from './MemoryScore.module.scss';
 
 interface Props {

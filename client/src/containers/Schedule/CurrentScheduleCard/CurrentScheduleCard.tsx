@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { graduationHat } from 'assets/icons';
 import { Activity } from 'shared/types';
-import StarsRow from 'components/StarsRow';
+import { StarsRow } from 'components';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './CurrentScheduleCard.module.scss';
 

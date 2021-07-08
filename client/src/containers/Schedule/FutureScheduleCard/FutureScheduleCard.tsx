@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import { questionLogo } from 'assets/icons';
-import StarsRow from 'components/StarsRow';
+import { StarsRow } from 'components';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './FutureScheduleCard.module.scss';
 

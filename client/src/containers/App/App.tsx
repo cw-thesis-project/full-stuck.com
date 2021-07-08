@@ -6,6 +6,7 @@ import { Auth0User } from 'shared/types';
 import { getUserData } from 'store/thunks';
 import { useAppDispatch } from 'store';
 import { setAppLoading, createUserStore } from 'store/actions';
+import { Loading } from 'components';
 import { getToken } from '../../services/apiServices';
 import styles from './App.module.scss';
 import Splash from '../Splash/Splash';
@@ -17,10 +18,9 @@ import MemoryGame from '../MemoryGame/MemoryGame';
 import CEO from '../CEO/CEO';
 import HallOfFame from '../HallOfFame';
 import ProtectedRoute from './ProtectedRoute';
-import TempNavBar from '../../components/TempNavBar/TempNavBar';
+import TempNavBar from './TempNavBar/TempNavBar';
 import SnakeGame from '../SnakeGame/SnakeGame';
 import QuizGame from '../QuizGame/QuizGame';
-import Loading from '../../components/Loading';
 
 const App = (): JSX.Element => {
   const { user, isLoading, getAccessTokenSilently, isAuthenticated } =

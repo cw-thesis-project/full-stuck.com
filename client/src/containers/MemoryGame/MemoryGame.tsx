@@ -5,7 +5,7 @@ import usePageTitle from 'shared/usePageTitle';
 import { StarsCount, TechName } from 'shared/types';
 import { pickRandomTopic } from 'shared/utils';
 import { actions, useAppDispatch } from 'store';
-import GameOver from 'components/GameOver';
+import { GameOver } from 'components';
 import CardsTable from './CardsTable';
 import MemoryScore from './MemoryScore';
 import styles from './MemoryGame.module.scss';

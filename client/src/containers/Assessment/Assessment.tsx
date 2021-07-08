@@ -6,7 +6,7 @@ import { StarsCount, TechName } from 'shared/types';
 import usePageTitle from 'shared/usePageTitle';
 import { hourGlassLogo } from 'assets/icons';
 import { updateUser } from 'store/thunks';
-import GameOver from 'components/GameOver';
+import { GameOver } from 'components';
 import { useAppDispatch, useAppSelector, actions } from 'store';
 import SideColumn from './SideColumn';
 import CenterIcons from './CenterIcons';
