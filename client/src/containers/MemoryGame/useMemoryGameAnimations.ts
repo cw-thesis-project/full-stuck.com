@@ -1,10 +1,11 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { slideRight, slideUp } from 'shared/animations';
-import cardsTable from '../../components/CardsTable/CardsTable.module.scss';
-import flipCounter from '../../components/FlipsCounter/FlipsCounter.module.scss';
-import memoryScore from '../../components/MemoryScore/MemoryScore.module.scss';
+import cardsTable from './CardsTable/CardsTable.module.scss';
+import flipCounter from './FlipsCounter/FlipsCounter.module.scss';
+import memoryScore from './MemoryScore/MemoryScore.module.scss';
 import memoryGame from './MemoryGame.module.scss';
 
 function useMemoryGameAnimations(): void {

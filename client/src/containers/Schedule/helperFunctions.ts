@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { maxTechnologyExperience, technologies } from 'shared/constants';
 import { Activity, TechExperience } from 'shared/types';
 

@@ -1,9 +1,10 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import classNames from 'classnames';
 import { Level, TechName } from 'shared/types';
 import { maxTechnologyExperience } from 'shared/constants';
 import styles from './CurrentLevelCard.module.scss';
-import CardTechItem from './CardTechItem/CardTechItem';
+import CardTechItem from '../CardTechItem';
 
 interface TechExperienceSubset {
   name: TechName;

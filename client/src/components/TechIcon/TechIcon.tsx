@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import classnames from 'classnames';
 import * as logos from 'assets/icons';

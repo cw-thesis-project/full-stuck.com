@@ -1,9 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-
 import React from 'react';
 import styles from './CardsTable.module.scss';
-import CardComp, { Card } from './CardComp/CardComp';
+import CardComp, { Card } from '../CardComp';
 
 interface Props {
   cards: Card[];

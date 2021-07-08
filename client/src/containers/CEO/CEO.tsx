@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { trophy } from 'assets/icons';

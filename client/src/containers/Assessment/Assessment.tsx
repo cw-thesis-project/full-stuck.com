@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useState } from 'react';
 import classNames from 'classnames';
@@ -5,11 +6,11 @@ import { StarsCount, TechName } from 'shared/types';
 import usePageTitle from 'shared/usePageTitle';
 import { hourGlassLogo } from 'assets/icons';
 import { updateUser } from 'store/thunks';
+import GameOver from 'components/GameOver';
 import { useAppDispatch, useAppSelector, actions } from 'store';
-import SideColumn from '../../components/SideColumn';
-import CenterIcons from '../../components/CenterIcons';
+import SideColumn from './SideColumn';
+import CenterIcons from './CenterIcons';
 import AssessmentScore from './AssessmentScore';
-import GameOver from '../../components/GameOver';
 import useAssessmentGame from './useAssessmentGame';
 import styles from './Assessment.module.scss';
 import { userAfterAssessment } from './helpers';

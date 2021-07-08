@@ -1,7 +1,8 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { StarsCount } from 'shared/types';
+import StarsRow from 'components/StarsRow';
 import styles from './AssessmentScore.module.scss';
-import StarsRow from '../StarsRow';
 
 interface Props {
   totalMatchesCount: number;

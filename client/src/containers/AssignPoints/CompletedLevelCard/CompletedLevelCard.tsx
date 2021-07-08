@@ -1,9 +1,10 @@
+/* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
 import { medal } from 'assets/icons';
 import { Level } from 'shared/types';
 import { technologies } from 'shared/constants';
 import styles from './CompletedLevelCard.module.scss';
-import TechMedal from './TechMedal';
+import TechMedal from '../TechMedal';
 
 interface Props {
   level: Level;

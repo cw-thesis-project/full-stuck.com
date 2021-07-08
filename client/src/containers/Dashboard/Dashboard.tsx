@@ -1,15 +1,16 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import usePageTitle from 'shared/usePageTitle';
 import { useAppSelector } from 'store';
+import Loading from 'components/Loading';
 import LearntTech from './LearntTech/index';
 import Roadmap from './Roadmap';
 import { createTechAchievements, createGreeting } from './helpers';
 import styles from './Dashboard.module.scss';
 import useDashboardAnimation from './useDashboardAnimation';
-import Loading from '../../components/Loading';
 
 const Dashboard = (): JSX.Element => {
   const { user, logout } = useAuth0();

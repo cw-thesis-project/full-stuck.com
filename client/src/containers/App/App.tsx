@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React, { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Switch, Route, Redirect } from 'react-router-dom';
@@ -15,7 +16,7 @@ import Assessment from '../Assessment/Assessment';
 import MemoryGame from '../MemoryGame/MemoryGame';
 import CEO from '../CEO/CEO';
 import HallOfFame from '../HallOfFame';
-import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from './ProtectedRoute';
 import TempNavBar from '../../components/TempNavBar/TempNavBar';
 import SnakeGame from '../SnakeGame/SnakeGame';
 import QuizGame from '../QuizGame/QuizGame';

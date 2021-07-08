@@ -1,10 +1,11 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { graduationHat } from 'assets/icons';
 import { Activity } from 'shared/types';
+import StarsRow from 'components/StarsRow';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './CurrentScheduleCard.module.scss';
-import StarsRow from '../StarsRow';
 
 interface Props {
   nextActivity: Activity;

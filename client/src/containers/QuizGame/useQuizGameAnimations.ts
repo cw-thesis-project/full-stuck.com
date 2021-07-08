@@ -1,9 +1,10 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { slideDown, fadeIn, slideUp } from 'shared/animations';
+import techLogo from 'components/TechLogo/TechLogo.module.scss';
 import quizGame from './QuizGame.module.scss';
-import techLogo from '../../components/TechLogo/TechLogo.module.scss';
 
 function useQuizGameAnimations(currentIndex: number): void {
   useEffect(animateAllItems, []);

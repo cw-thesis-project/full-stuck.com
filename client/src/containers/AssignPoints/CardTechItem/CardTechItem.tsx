@@ -1,8 +1,9 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { TechName } from 'shared/types';
 import { useAppSelector } from 'store';
+import TechIcon from 'components/TechIcon';
 import styles from './CardTechItem.module.scss';
-import TechIcon from '../../TechIcon';
 
 interface Props {
   experience: number;

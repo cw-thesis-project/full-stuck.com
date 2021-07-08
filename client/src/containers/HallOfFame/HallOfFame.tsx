@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import usePageTitle from 'shared/usePageTitle';
 import styles from './HallOfFame.module.scss';

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { StarsCount, TechName } from 'shared/types';
 
 export interface Card {

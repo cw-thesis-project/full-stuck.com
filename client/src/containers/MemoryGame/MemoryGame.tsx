@@ -1,14 +1,15 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useState } from 'react';
 import usePageTitle from 'shared/usePageTitle';
 import { StarsCount, TechName } from 'shared/types';
 import { pickRandomTopic } from 'shared/utils';
 import { actions, useAppDispatch } from 'store';
+import GameOver from 'components/GameOver';
+import CardsTable from './CardsTable';
+import MemoryScore from './MemoryScore';
 import styles from './MemoryGame.module.scss';
 import FlipsCounter from './FlipsCounter';
-import MemoryScore from '../../components/MemoryScore';
-import CardsTable from '../../components/CardsTable';
-import GameOver from '../../components/GameOver';
 import useMemoryGame, { allowedFlips } from './useMemoryGame';
 import useMemoryGameAnimations from './useMemoryGameAnimations';
 

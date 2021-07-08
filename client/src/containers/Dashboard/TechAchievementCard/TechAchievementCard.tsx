@@ -1,8 +1,9 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TechName } from 'shared/types';
 import { maxTechnologyExperience } from 'shared/constants';
-import TechIcon from '../../TechIcon';
+import TechIcon from 'components/TechIcon';
 import styles from './TechAchievementCard.module.scss';
 
 interface Props {

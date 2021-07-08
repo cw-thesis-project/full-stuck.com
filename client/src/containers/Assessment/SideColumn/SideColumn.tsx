@@ -1,9 +1,10 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import classNames from 'classnames';
+import TechIcon from 'components/TechIcon';
+import { Icon } from 'containers/Assessment/interfaces';
 import styles from './SideColumn.module.scss';
-import TechIcon from '../TechIcon';
-import { Icon } from '../../containers/Assessment/interfaces';
 
 interface Props {
   icons: Icon[];

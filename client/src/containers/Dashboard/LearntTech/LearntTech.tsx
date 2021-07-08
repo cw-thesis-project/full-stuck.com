@@ -1,9 +1,10 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { arrow } from 'assets/icons';
 import { TechExperience, TechName } from 'shared/types';
-import TechAchievementCard from './TechAchievementCard';
+import TechAchievementCard from '../TechAchievementCard';
 import styles from './LearntTech.module.scss';
 
 export type TechAchievement = { experience: number; isLocked: boolean };

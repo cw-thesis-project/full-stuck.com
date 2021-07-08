@@ -1,8 +1,9 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Level, TechExperience, TechName } from 'shared/types';
 import { levelToNumber, maxTechnologyExperience } from 'shared/constants';
 import { technologies } from './localUtils';
-import CurrentLevelCard from '../../components/CurrentLevelCard';
+import CurrentLevelCard from './CurrentLevelCard';
 import CompletedLevelCard from './CompletedLevelCard';
 import NextLevelCard from './NextLevelCard';
 

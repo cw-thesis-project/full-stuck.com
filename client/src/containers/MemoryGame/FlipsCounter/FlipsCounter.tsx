@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { flipCounter } from 'assets/icons';
 import styles from './FlipsCounter.module.scss';

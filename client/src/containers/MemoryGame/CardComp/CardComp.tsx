@@ -1,10 +1,11 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useRef } from 'react';
 import classNames from 'classnames';
 import { TechName } from 'shared/types';
+import TechIcon from 'components/TechIcon';
 import styles from './CardComp.module.scss';
-import TechIcon from '../../TechIcon';
 import useCardCompAnimation from './useCardCompAnimation';
 
 export type CardState = 'down' | 'up' | 'matched';

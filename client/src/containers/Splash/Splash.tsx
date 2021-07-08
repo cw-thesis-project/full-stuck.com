@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import usePageTitle from 'shared/usePageTitle';

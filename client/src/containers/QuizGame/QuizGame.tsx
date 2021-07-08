@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-param-reassign */
 /* eslint-disable consistent-return */
@@ -6,6 +7,9 @@ import Countdown from 'react-countdown';
 import { StarsCount, TechName } from 'shared/types';
 import { pickRandomTopic } from 'shared/utils';
 import { actions, useAppDispatch } from 'store';
+import TechLogo from 'components/TechLogo';
+import StarsRow from 'components/StarsRow';
+import GameOver from 'components/GameOver';
 import {
   pickTech,
   quizTechs,
@@ -14,9 +18,6 @@ import {
   getStarsCount,
 } from './helpers';
 import styles from './QuizGame.module.scss';
-import TechLogo from '../../components/TechLogo';
-import StarsRow from '../../components/StarsRow';
-import GameOver from '../../components/GameOver';
 import useQuizGameAnimations from './useQuizGameAnimations';
 
 const QuizGame = (): JSX.Element => {

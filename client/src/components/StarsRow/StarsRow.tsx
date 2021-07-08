@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import classnames from 'classnames';
 import { StarsCount } from 'shared/types';
