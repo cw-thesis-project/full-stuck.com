@@ -50,3 +50,9 @@ export function sleep(ms: number): Promise<unknown> {
     setTimeout(resolve, ms);
   });
 }
+
+export function pickRandomTopic(): TechName {
+  const techNames = technologies.map((tech) => tech.name);
+  const shuffled = shuffle(techNames);
+  return shuffled[0];
+}

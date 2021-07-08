@@ -17,6 +17,7 @@ import { StarsCount, TechName } from '../../shared/types';
 import StarsRow from '../../components/StarsRow';
 import GameOver from '../../components/GameOver';
 import useQuizGameAnimations from './useQuizGameAnimations';
+import { pickRandomTopic } from '../../shared/utils';
 
 const QuizGame = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -90,10 +91,16 @@ const QuizGame = (): JSX.Element => {
       dispatch(actions.setPointsToAssign(1));
     }
 
+    let topic: TechName = 'git';
+
+    if (starsCount === 0) {
+      topic = pickRandomTopic();
+    }
+
     dispatch(
       actions.saveActivity({
         name: 'quiz',
-        topic: 'git',
+        topic,
         stars: starsCount,
       })
     );
