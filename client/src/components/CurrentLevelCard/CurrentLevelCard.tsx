@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import { Level, TechName } from '../../shared/types';
 import styles from './CurrentLevelCard.module.scss';
 import CardTechItem from './CardTechItem/CardTechItem';
@@ -40,10 +41,15 @@ const CurrentLevelCard = ({
 
   const pointsString = `${plusOrNot}${pointsToAssign}`;
 
+  const badgeClass = classNames({
+    [styles.pointsBadge]: true,
+    [styles.dark]: pointsToAssign === 0,
+  });
+
   return (
     <button type="button" className={styles.container}>
       <h2 className={styles.title}>{level}</h2>
-      <h3 className={styles.pointsBadge}>{pointsString}</h3>
+      <h3 className={badgeClass}>{pointsString}</h3>
       <div className={styles.techZone}>{techZone}</div>
       <p className={styles.textBottom}>Spend points to improve your skills</p>
     </button>
