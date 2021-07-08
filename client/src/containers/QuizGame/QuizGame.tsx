@@ -18,7 +18,10 @@ import {
 import styles from './QuizGame.module.scss';
 import useQuizGameAnimations from './useQuizGameAnimations';
 
+type QuizOutcome = 'failed' | 'completed' | 'ongoing';
+
 const QuizGame = (): JSX.Element => {
+  const initialLogos = pickTech(quizRules.rounds, quizTechs);
   const dispatch = useAppDispatch();
   const [currentIndex, setCurrentIndex] = useState<number>(
     quizRules.rounds - 1
@@ -26,18 +29,13 @@ const QuizGame = (): JSX.Element => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [text, setText] = useState('');
-  const [logos, setLogos] = useState<TechName[]>();
+  const [logos] = useState(initialLogos);
   const [starsCount, setStarsCount] = useState<StarsCount>(0);
-  const [outcome, setOutcome] = useState<'failed' | 'completed' | 'ongoing'>(
-    'ongoing'
-  );
+  const [outcome, setOutcome] = useState<QuizOutcome>('ongoing');
   const [lastRoundWon, setLastRoundWon] = useState(false);
 
-  useEffect(() => {
-    setLogos(pickTech(quizRules.rounds, quizTechs));
-  }, []);
-
   useEffect(updateStarsCount, [score]);
+  useEffect(resetEachRound, [outcome]);
 
   useQuizGameAnimations(currentIndex);
 
@@ -63,8 +61,7 @@ const QuizGame = (): JSX.Element => {
     }
   }
 
-  // reset each round
-  useEffect(() => {
+  function resetEachRound() {
     checkIfGameOver();
     if (logos && outcome !== 'ongoing') {
       if (outcome === 'completed') setScore((prev) => prev + 1);
@@ -72,7 +69,7 @@ const QuizGame = (): JSX.Element => {
       setText('');
       setOutcome('ongoing');
     }
-  }, [outcome]);
+  }
 
   function gimmeTechName(index: number): TechName | 'empty' {
     if (logos && logos[index]) return logos[index];
