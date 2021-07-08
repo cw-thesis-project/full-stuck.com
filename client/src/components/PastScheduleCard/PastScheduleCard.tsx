@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { StarsCount, TechName } from '../../shared/types';
 import TechIcon from '../TechIcon';
 import ScheduleItemHeader from '../ScheduleItemHeader';
@@ -14,7 +15,7 @@ interface Props {
 const PastScheduleCard = ({ stars, topic, className }: Props): JSX.Element => {
   if (!stars) {
     return (
-      <div className={`${styles.card} ${className}`}>
+      <Link to="/game/snake" className={`${styles.card} ${className}`}>
         <ScheduleItemHeader topic="Test" variant="disabled" />
         <div className={styles.centerContainer}>
           <StarsRow starsCount={0} />
@@ -24,12 +25,12 @@ const PastScheduleCard = ({ stars, topic, className }: Props): JSX.Element => {
         <div className={`${styles.ribbon} ${styles.failed}`}>
           <p>Failed</p>
         </div>
-      </div>
+      </Link>
     );
   }
 
   return (
-    <div className={`${styles.card} ${className}`}>
+    <Link to="/game/snake" className={`${styles.card} ${className}`}>
       <ScheduleItemHeader topic={topic} variant="primary" />
       <div className={styles.centerContainer}>
         <StarsRow starsCount={stars} />
@@ -39,7 +40,7 @@ const PastScheduleCard = ({ stars, topic, className }: Props): JSX.Element => {
       <div className={styles.ribbon}>
         <p>Learnt</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

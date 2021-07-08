@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './FutureScheduleCard.module.scss';
 import icons from '../../assets/icons';
@@ -10,7 +11,7 @@ interface Props {
 
 const FutureScheduleCard = ({ className }: Props): JSX.Element => {
   return (
-    <div className={`${styles.scheduleItem} ${className}`}>
+    <Link to="/game/snake" className={`${styles.scheduleItem} ${className}`}>
       <ScheduleItemHeader topic="<any>" variant="disabled" />
       <div className={styles.centerContainer}>
         <div style={{ opacity: 0 }}>
@@ -24,7 +25,7 @@ const FutureScheduleCard = ({ className }: Props): JSX.Element => {
       <div className={styles.ribbon}>
         <p>Unknown</p>
       </div>
-    </div>
+    </Link>
   );
 };
 
