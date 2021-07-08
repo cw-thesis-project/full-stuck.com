@@ -1,5 +1,5 @@
 import React from 'react';
-import { TechName } from '../../shared/types';
+import { StarsCount, TechName } from '../../shared/types';
 import styles from './QuizGame.module.scss';
 
 export const quizTechs: TechName[] = [
@@ -13,14 +13,14 @@ export const quizTechs: TechName[] = [
 
 interface QuizRules {
   rounds: number;
-  threshold: number;
+  scoreThresholds: number[];
   countdownDuration: number;
 }
 
 export const quizRules: QuizRules = {
   rounds: 15,
-  threshold: 0.3,
-  countdownDuration: 10000,
+  scoreThresholds: [0.3, 0.6, 0.9],
+  countdownDuration: 10_000,
 };
 
 interface CountDownProps {
@@ -67,3 +67,15 @@ export const pickTech = (rounds: number, techs: TechName[]): TechName[] => {
   }
   return gameIcons;
 };
+
+export function getStarsCount(score: number): StarsCount {
+  const completion = score / quizRules.rounds;
+
+  for (let i = 0; i < 3; i += 1) {
+    if (completion <= quizRules.scoreThresholds[i]) {
+      return i as StarsCount;
+    }
+  }
+
+  return 3;
+}
