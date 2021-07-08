@@ -1,9 +1,15 @@
 import { ThunkAction } from 'redux-thunk';
-import { Level, PastActivity, TechName, User } from '../shared/types';
+import {
+  Level,
+  PastActivity,
+  TechName,
+  User,
+  Auth0User,
+} from '../shared/types';
 
 export interface AppState {
   pointsToAssign: number;
-  user: User | null;
+  user: User;
   loading: boolean;
   error: Error | string;
 }
@@ -27,13 +33,15 @@ export type AppAction =
   | FailureAction
   | SetActivityTopicRequestAction
   | SetActivityTopicSuccesAction
-  | SetActivityTopicFailureAction;
+  | SetActivityTopicFailureAction
+  | setAppLoading
+  | createUserStore;
 
 export interface ApiService {
   learnTech(techName: TechName, user: User): Promise<User | null>;
   saveActivity(activity: PastActivity, user: User): Promise<User | null>;
-  newGame(username: string): Promise<User | null>;
-  getUserData(username: string): Promise<User | null>;
+  newGame(auth0User: Auth0User): Promise<User | null>;
+  getUserData(auth0User: Auth0User): Promise<User | null>;
   updateUser(user: User): Promise<User | null>;
   changeActivityTopic(techName: TechName, user: User): Promise<User | null>;
 }
@@ -84,7 +92,7 @@ interface GetUserDataSuccessAction {
 
 interface GetUserDataRequestAction {
   type: typeof GET_USER_DATA_REQUEST;
-  username: string;
+  auth0User: Auth0User;
 }
 
 interface UpdateUserSuccessAction {
@@ -101,12 +109,17 @@ interface UpdateUserRequestAction {
 
 interface NewGameRequestAction {
   type: typeof NEW_GAME_REQUEST;
-  username: string;
+  auth0User: Auth0User;
 }
 
 interface NewGameSuccessAction {
   type: typeof NEW_GAME_SUCCESS;
   user: User;
+}
+
+interface createUserStore {
+  type: typeof CREATE_USER_STORE;
+  auth0User: Auth0User;
 }
 
 // level user up
@@ -150,8 +163,14 @@ interface SetActivityTopicFailureAction {
   type: typeof SET_ACTIVITY_TOPIC_FAILURE;
   error: Error | string;
 }
+interface setAppLoading {
+  type: typeof SET_APP_LOADING_TRUE | typeof SET_APP_LOADING_FALSE;
+}
 
 // action types
+
+const SET_APP_LOADING_TRUE = 'SET_APP_LOADING_TRUE';
+const SET_APP_LOADING_FALSE = 'SET_APP_LOADING_FALSE';
 
 const SAVE_ACTIVITY_REQUEST = 'SAVE_ACTIVITY_REQUEST';
 const SAVE_ACTIVITY_SUCCESS = 'SAVE_ACTIVITY_SUCCESS';
@@ -183,5 +202,7 @@ const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
 const SET_ACTIVITY_TOPIC_REQUEST = 'SET_ACTIVITY_TOPIC_REQUEST';
 const SET_ACTIVITY_TOPIC_SUCCESS = 'SET_ACTIVITY_TOPIC_SUCCESS';
 const SET_ACTIVITY_TOPIC_FAILURE = 'SET_ACTIVITY_TOPIC_FAILURE';
+
+const CREATE_USER_STORE = 'CREATE_USER_STORE';
 
 const RESET_ERROR = 'RESET_ERROR';

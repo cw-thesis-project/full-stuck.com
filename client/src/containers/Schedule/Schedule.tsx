@@ -28,7 +28,7 @@ const ScheduleContainer = (): JSX.Element | null => {
         historyLength={user.gameData.history.length}
       />
       <div className={styles.footer}>
-        <Link to="/dashboard" className={styles.backIcon}>
+        <Link to="/dashboard" className={styles.backIcon} title="dashboard">
           <img src={back} alt="back icon" />
         </Link>
         <p className={styles.quote}>

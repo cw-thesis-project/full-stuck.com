@@ -1,48 +1,50 @@
 @import '../../style/style.scss';
 
-.bottom {
-  text-align: center;
-  width: 10em;
-  position: relative;
-  bottom: 1em;
-  h4 {
-    text-transform: none;
-  }
-}
-
 .container {
   @include column;
-  @include rounded;
+  @include roundedBig;
   @include rectangle(300px, 450px);
+  @include reset-input;
+  padding: 2em 0 3em 0;
   justify-content: space-between;
   background-color: $primaryDark;
   box-shadow: $shadow;
-  margin-right: 1em;
-  margin-left: 1em;
-  width: 15em;
+  cursor: pointer;
 
   h2,
-  h3,
-  h4 {
+  h3 {
     color: $light;
+    text-transform: capitalize;
   }
+}
+
+.title {
+  font-size: 2em;
 }
 
 .img {
   @include square(8em);
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(0.5em);
+  }
 }
 
-.medalZone {
-  @include column;
+.cardStatus {
+  font-size: 1.5em;
 }
 
-.title {
-  margin-top: 1em;
-}
-
-h2,
-h3,
-h4 {
+.textBottom {
   color: $light;
-  text-transform: capitalize;
+  text-align: center;
+  padding: 0 4em;
+  font-size: 1.2em;
+}
+
+.medalsContainer {
+  @include column;
+  justify-content: space-between;
+  gap: 2em;
 }

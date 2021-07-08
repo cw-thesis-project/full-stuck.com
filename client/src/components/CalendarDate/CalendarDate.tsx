@@ -18,15 +18,15 @@ const CalendarDate = ({
   dayIndex,
   activityIndex,
 }: Props): JSX.Element => {
-  const container = classNames({
-    [styles.container]: true,
+  const number = classNames({
+    [styles.number]: true,
     [styles.circle]: variant === 'current',
   });
 
   return (
-    <div className={container}>
-      <div className={styles.number}># {activityIndex}</div>
+    <div className={styles.container}>
       <div className={styles.name}>{dayNames[dayIndex]}</div>
+      <div className={number}>{activityIndex}</div>
     </div>
   );
 };

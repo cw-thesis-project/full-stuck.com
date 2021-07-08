@@ -1,63 +1,85 @@
 @import '../../style/style.scss';
 
-.container {
+.screen {
   @include column;
   @include center;
-  background-color: $primaryDark;
-  position: relative;
-  margin-top: 1em;
-  padding: 1em;
+  @include screen;
+  gap: 1em;
+  padding: 4em 0;
+  background-image: url('./quizGameBackground.svg');
+  background-size: cover;
 }
 
-.iconZone {
-  color: $primaryDark;
-  @include row;
-  position: relative;
-}
+.header {
+  @include column;
+  @include center;
+  opacity: 1;
 
-.innerBar {
-  @include rounded;
-  height: 1em;
-  background-color: $primaryLight;
-  z-index: 1;
+  .scoreContainer {
+    @include row;
+    @include center;
+    align-items: flex-end;
+    gap: 1em;
+    color: $light;
+
+    h1 {
+      font-size: 3em;
+    }
+
+    .score {
+      color: $accent;
+    }
+  }
 }
 
 .logosContainer {
-  @include column;
-  // @include center;
-}
-
-.outerBar {
-  @include rounded;
-  height: 1em;
-  background-color: $primary;
-  margin-bottom: 1em;
-}
-
-.score {
-  color: $accent;
-  font-size: 3em;
-  margin-right: 0.1em;
-}
-
-.scoreContainer {
   @include row;
+  gap: 2em;
+  margin-top: 4em;
 }
 
-.tempText {
-  opacity: 60%;
+.helperText {
+  font-size: 2em;
+  margin-top: auto;
+  color: $primary;
+  margin-bottom: 1.5em;
 }
 
-.textInput {
-  @include rounded;
-  margin-top: 1em;
-  z-index: 1;
-  box-shadow: $shadow;
-  background-color: $light;
-  height: 3em;
-  width: 20em;
-  text-align: center;
-  &:focus {
-    outline-width: 0;
+.inputContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+
+  .textInput {
+    @include rounded;
+    @include reset-input;
+    grid-area: 1 / 1;
+    z-index: 1;
+    box-shadow: $shadow;
+    height: 3em;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+    color: $light;
+
+    &::placeholder {
+      color: $light;
+      opacity: 0.5;
+    }
+  }
+
+  .outerBar {
+    @include rounded;
+    grid-area: 1 / 1;
+    height: 100%;
+    background-color: $primary;
+    margin-bottom: 1em;
+  }
+
+  .innerBar {
+    @include rounded;
+    height: 100%;
+    background-color: $primaryDark;
+    z-index: 1;
   }
 }

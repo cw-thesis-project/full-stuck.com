@@ -24,7 +24,18 @@
 
 .scrollButton {
   @include reset-input;
-  cursor: pointer;
+  position: relative;
+  top: 0;
+  transition: top 0.3s ease-in-out;
+
+  &:not(.disabled) {
+    cursor: pointer;
+  }
+
+  &:hover:not(.disabled) {
+    top: 0.5em;
+    opacity: 1;
+  }
 
   img {
     @include square(2em);

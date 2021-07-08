@@ -15,5 +15,5 @@ export function getNextActivity(techExperience: TechExperience): Activity {
     }
   }
 
-  return 'memory';
+  return Math.random() > 0.5 ? 'memory' : 'quiz';
 }

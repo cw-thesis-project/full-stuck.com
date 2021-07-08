@@ -1,4 +1,4 @@
-import { LevelMap, Tech, User } from './types';
+import { LevelMap, Minigame, Tech, User } from './types';
 
 export const auth0 = {
   domain: process.env.REACT_APP_AUTH0_DOMAIN as string,
@@ -7,7 +7,7 @@ export const auth0 = {
   audience: process.env.REACT_APP_AUTH0_AUDIENCE as string,
 };
 
-export const apiUrl = process.env.REACT_APP_API_URL as string;
+export const apiEndpoint = process.env.REACT_APP_API_ENDPOINT as string;
 
 export const technologies: Tech[] = [
   { name: 'javascript', level: 'junior' },
@@ -24,6 +24,7 @@ export const technologies: Tech[] = [
 export const maxTechnologyExperience = 3;
 
 export const emptyUser: User = {
+  _id: '',
   username: '',
   gameData: {
     techExperience: {
@@ -48,3 +49,5 @@ export const levelToNumber: LevelMap = {
   tutor: 2,
   CEO: 3,
 };
+
+export const minigames: Minigame[] = ['memory', 'quiz', 'snake'];

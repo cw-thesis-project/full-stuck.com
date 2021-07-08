@@ -27,7 +27,11 @@ const CurrentScheduleCard = ({
         </div>
       </div>
       <p className={styles.quote}>Are you ready to learn a new tech?</p>
-      <Link className={styles.ribbon} to={`/game/${nextActivity}`}>
+      <Link
+        className={styles.ribbon}
+        to={`/game/${nextActivity}`}
+        title={`play ${nextActivity}`}
+      >
         <p>Study!</p>
       </Link>
     </div>

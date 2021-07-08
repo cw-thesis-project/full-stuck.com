@@ -8,7 +8,7 @@ interface Props {
 
 const FlipsCounter = ({ flipsLeft }: Props): JSX.Element => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} title="flips left">
       <img
         className={styles.flipIcon}
         alt="flip counter"

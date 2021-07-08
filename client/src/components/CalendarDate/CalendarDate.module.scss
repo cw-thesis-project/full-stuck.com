@@ -1,26 +1,21 @@
 @import '../../style/style.scss';
 
 .container {
-  @include column;
-  @include center;
-  @include square(4em);
+  display: grid;
+  place-items: center;
+  grid-template-rows: 1em 3em;
+  grid-template-columns: 3em;
   justify-self: center;
-  align-self: center;
-  gap: 0;
+  align-self: flex-end;
+  gap: 0.8em;
   color: $primaryDark;
 }
 
 .circle {
-  @include circle(5em);
+  @include circle(2em);
+  @include center;
   background-color: $primaryDark;
-
-  .number {
-    color: $accent;
-  }
-
-  .name {
-    color: $light;
-  }
+  color: $accent;
 }
 
 .light {
@@ -34,5 +29,6 @@
 
 .name {
   text-transform: uppercase;
-  letter-spacing: 0.5em;
+  letter-spacing: 0.25em;
+  font-weight: 500;
 }

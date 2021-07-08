@@ -35,7 +35,7 @@ const CardComp = ({ card, onCardClick }: CardProps): JSX.Element => {
   }
 
   const cardContentMap: Record<CardState, JSX.Element> = {
-    down: <h1>?</h1>,
+    down: <h1 className={styles.questionMark}>?</h1>,
     up: <TechIcon techName={card.name} iconSize="medium" isGray={false} />,
     matched: <TechIcon techName={card.name} iconSize="medium" isGray />,
   };
@@ -46,6 +46,7 @@ const CardComp = ({ card, onCardClick }: CardProps): JSX.Element => {
       onClick={handleClick}
       className={container}
       ref={containerRef}
+      title={card.state === 'matched' ? card.name : ''}
     >
       {cardContentMap[card.state]}
     </button>

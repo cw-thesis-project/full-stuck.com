@@ -8,12 +8,14 @@ interface Props {
   techNames: TechName[];
   onDragStart(techName: TechName): void;
   onDragEnd(): void;
+  isDragging: boolean;
 }
 
 const CenterIcons = ({
   techNames,
   onDragStart,
   onDragEnd,
+  isDragging,
 }: Props): JSX.Element => {
   const container = classnames({
     [styles.container]: true,
@@ -31,6 +33,7 @@ const CenterIcons = ({
           onDragStart={() => onDragStart(techName)}
           onDragEnd={onDragEnd}
           className={styles.draggable}
+          title={isDragging ? '' : 'drag me!'}
         >
           <TechIcon
             iconSize="medium"

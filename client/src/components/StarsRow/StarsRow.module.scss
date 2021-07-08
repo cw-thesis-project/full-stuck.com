@@ -3,10 +3,18 @@
 .container {
   @include row;
   gap: 0.5em;
+
+  &.big {
+    gap: 1.5em;
+  }
 }
 
 .star {
   @include square(1em);
+
+  &.big {
+    @include square(4em);
+  }
 }
 
 .gray {

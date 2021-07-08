@@ -1,6 +1,6 @@
 import { gsap } from 'gsap';
 
-export const unit = '1em';
+export const unit = 48;
 export const unitBig = '2em';
 export const unitSmall = '0.5em';
 
@@ -13,17 +13,22 @@ export const fadeIn: gsap.TweenVars = {
 
 export const slideUp: gsap.TweenVars = {
   ...fadeIn,
-  y: '2em',
+  y: unit,
+};
+
+export const slideDown: gsap.TweenVars = {
+  ...fadeIn,
+  y: -unit,
 };
 
 export const slideLeft: gsap.TweenVars = {
   ...fadeIn,
-  x: '2em',
+  x: unit,
 };
 
 export const slideRight: gsap.TweenVars = {
   ...fadeIn,
-  x: '-2em',
+  x: -unit,
 };
 
 // helper functions

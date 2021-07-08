@@ -13,10 +13,10 @@ function useMemoryGameAnimations(): void {
   function animateCenterItems() {
     gsap
       .timeline({ delay: 0.5 })
-      .from(`.${flipCounter.container}`, slideUp)
-      .from(`.${cardsTable.container}`, slideUp)
-      .from(`.${memoryGame.helperText}`, slideUp)
-      .from(`.${memoryScore.container}`, slideRight);
+      .from(`.${flipCounter.container}`, slideUp, 0)
+      .from(`.${cardsTable.container}`, slideUp, 0.15)
+      .from(`.${memoryGame.helperText}`, slideUp, 0.3)
+      .from(`.${memoryScore.container}`, slideRight, 0.45);
   }
 }
 

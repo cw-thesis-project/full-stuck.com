@@ -3,16 +3,12 @@ import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const ProtectedRoute = ({ path, component }: RouteProps): JSX.Element => {
-  const { isAuthenticated, isLoading } = useAuth0();
-
-  if (isLoading) {
-    return <div>loading authetication</div>;
-  }
-  if (isAuthenticated) {
-    if (path === '/') return <Redirect to="/dashboard" />;
-    return <Route path={path} component={component} exact />;
-  }
-  return <Redirect to="/" />;
+  const { isAuthenticated } = useAuth0();
+  return isAuthenticated ? (
+    <Route path={path} component={component} exact />
+  ) : (
+    <Redirect to="/" />
+  );
 };
 
 export default ProtectedRoute;

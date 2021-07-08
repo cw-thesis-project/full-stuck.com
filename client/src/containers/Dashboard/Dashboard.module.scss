@@ -4,9 +4,8 @@
   @include screen;
   @include row;
   background-color: $primary;
-  background-image: url('./dashboardBackground.svg'),
-    linear-gradient($gradientLight, $gradientDark);
-  background-repeat: no-repeat;
+  background-image: url('./dashboardBackground.svg');
+  background-size: cover;
   padding: 4em 8em;
   align-items: stretch;
 
@@ -19,6 +18,7 @@
 
   .rightColumn {
     @include column;
+    justify-content: space-between;
     align-items: flex-end;
     flex-grow: 1;
   }
@@ -32,13 +32,15 @@
 
   .textContainer {
     @include column;
+    align-items: flex-start;
     justify-content: space-between;
 
+    .pageTitle,
     h1 {
       font-size: 3em;
     }
 
-    h2 {
+    .greeting {
       font-size: 2em;
       font-weight: 500;
     }
@@ -53,8 +55,22 @@
     }
   }
 
+  .avatarContainer {
+    @include reset-input;
+  }
+
   .avatarIcon {
-    @include square(8em);
+    @include circle(5em);
+    @include rounded-full;
+    box-shadow: $shadow;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 0;
+
+    &:hover {
+      margin-top: 1em;
+      box-shadow: $shadowHigh;
+    }
   }
 }
 
@@ -68,20 +84,13 @@
   }
 
   .button {
-    @include rectangle(8em, 3em);
-    @include rounded;
-    @include center;
-    font-size: 1.5em;
-    text-decoration: none;
-    background-color: $accent;
-    color: $light;
-    font-weight: 600;
-    box-shadow: $shadow;
+    @include app-button;
   }
 }
 
 .logo {
-  margin-right: 6em;
+  margin-right: 4em;
+
   h1 {
     color: $primaryDark;
   }

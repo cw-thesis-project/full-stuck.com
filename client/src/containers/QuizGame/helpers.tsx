@@ -1,5 +1,5 @@
 import React from 'react';
-import { TechName } from '../../shared/types';
+import { StarsCount, TechName } from '../../shared/types';
 import styles from './QuizGame.module.scss';
 
 export const quizTechs: TechName[] = [
@@ -13,14 +13,14 @@ export const quizTechs: TechName[] = [
 
 interface QuizRules {
   rounds: number;
-  threshold: number;
+  scoreThresholds: number[];
   countdownDuration: number;
 }
 
 export const quizRules: QuizRules = {
-  rounds: 4,
-  threshold: 0.3,
-  countdownDuration: 5000,
+  rounds: 15,
+  scoreThresholds: [0.3, 0.6, 0.9],
+  countdownDuration: 5_000,
 };
 
 interface CountDownProps {
@@ -34,7 +34,7 @@ export const renderer = ({
   milliseconds,
   completed,
 }: CountDownProps): JSX.Element => {
-  const outerBarWidth = 10;
+  const outerBarWidth = 20;
   const outerBarStyle = {
     width: `${outerBarWidth}em`,
   };
@@ -61,7 +61,21 @@ export const pickTech = (rounds: number, techs: TechName[]): TechName[] => {
   const gameIcons: TechName[] = [];
   while (gameIcons.length < rounds) {
     const randomTech = techs[Math.floor(Math.random() * techs.length)];
-    if (!gameIcons.includes(randomTech)) gameIcons.push(randomTech);
+    // if (!gameIcons.includes(randomTech)) gameIcons.push(randomTech);
+    // when rounds > 6 remove if statement (for testing)
+    gameIcons.push(randomTech);
   }
   return gameIcons;
 };
+
+export function getStarsCount(score: number): StarsCount {
+  const completion = score / quizRules.rounds;
+
+  for (let i = 0; i < 3; i += 1) {
+    if (completion <= quizRules.scoreThresholds[i]) {
+      return i as StarsCount;
+    }
+  }
+
+  return 3;
+}

@@ -23,17 +23,22 @@ const CardTechItem = ({
     grayBubbleCount > 0
       ? Array(grayBubbleCount)
           .fill(null)
-          .map(() => (
-            <div className={`${styles.bubble} ${styles.greyBubble}`} />
+          .map((index) => (
+            <div
+              key={index}
+              className={`${styles.bubble} ${styles.greyBubble}`}
+            />
           ))
       : [];
 
-  const coloredBubbles = Array(
-    experience < maxBubbles ? experience : maxBubbles
-  )
+  const coloredBubblesNumber =
+    experience < maxBubbles ? experience : maxBubbles;
+
+  const coloredBubbles = Array(coloredBubblesNumber)
     .fill(null)
-    .map(() => (
+    .map((index) => (
       <div
+        key={index}
         className={`${styles.bubble} ${styles[techName]} ${
           grayBubbleCount > 0 ? '' : styles.glow
         }`}
@@ -48,17 +53,15 @@ const CardTechItem = ({
     <div className={styles.techColumn}>
       {grayBubbles}
       {coloredBubbles}
-      <div
-        role="button"
-        // eslint-disable-next-line no-console
-        onKeyDown={() => console.log('hi buddy')}
+      <button
+        type="button"
         onClick={() => preventFrivolousSpending(techName)}
         className={styles.clickable}
-        tabIndex={0}
+        title="assign point"
       >
         <TechIcon techName={techName} iconSize="small" isGray={false} />
-      </div>
-      <h4>{techName}</h4>
+        <h4 className={styles.techName}>{techName}</h4>
+      </button>
     </div>
   );
 };

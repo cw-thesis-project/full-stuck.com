@@ -16,8 +16,14 @@ function useAssessmentGame(
   const { level, onGameEnd } = gameOptions;
 
   // game constants
-  const groupSize = 3;
-  const gameDuration = 200_000;
+  let groupSize = 1;
+  if (level === 'senior') {
+    groupSize = 2;
+  } else if (level !== 'junior') {
+    groupSize = 3;
+  }
+
+  const gameDuration = 20_000;
 
   const initialCenterIcons = helpers.createCenterIcons(level, groupSize);
   const initialSideIcons = helpers.createSideIcons(initialCenterIcons, level);
@@ -60,7 +66,6 @@ function useAssessmentGame(
 
   function onIconMatch(index: number, draggedName: TechName) {
     const { name } = gameState.sideIcons[index];
-
     const centerIcon = gameState.centerIcons.find((icon) => icon.name === name);
 
     if (centerIcon) {
@@ -69,6 +74,8 @@ function useAssessmentGame(
       if (!isMatch) {
         return;
       }
+    } else {
+      return;
     }
 
     setGameState((state) => {

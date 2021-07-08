@@ -5,11 +5,11 @@
 }
 
 .flipIcon {
-  @include square(4em);
+  @include square(3em);
   margin-right: 1em;
 }
 
 .flipsLeft {
   color: $accent;
-  font-size: 3em;
+  font-size: 4em;
 }
