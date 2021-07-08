@@ -1,8 +1,4 @@
-import {
-  maxTechnologyExperience,
-  technologies,
-  minigames,
-} from '../../shared/constants';
+import { maxTechnologyExperience, technologies } from '../../shared/constants';
 import { Activity, TechExperience } from '../../shared/types';
 
 export function lastFiveElements<T>(list: T[]): T[] {
@@ -19,7 +15,5 @@ export function getNextActivity(techExperience: TechExperience): Activity {
     }
   }
 
-  const minigameIndex = Math.floor(Math.random() * minigames.length);
-
-  return minigames[minigameIndex];
+  return Math.random() > 0.5 ? 'memory' : 'quiz';
 }
