@@ -48,7 +48,7 @@ const Dashboard = (): JSX.Element => {
               })
             }
             type="button"
-          />
+          >
             <img
               alt="avatar logo"
               className={styles.avatarIcon}
