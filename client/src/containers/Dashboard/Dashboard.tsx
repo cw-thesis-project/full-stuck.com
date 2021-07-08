@@ -42,11 +42,13 @@ const Dashboard = (): JSX.Element => {
           <button
             title="logout"
             className={styles.avatarContainer}
-            onClick={() => logout({
-  returnTo: 'https://full-stuck.com/#/'
-})}
+            onClick={() =>
+              logout({
+                returnTo: 'https://full-stuck.com/#/',
+              })
+            }
             type="button"
-          >
+          />
             <img
               alt="avatar logo"
               className={styles.avatarIcon}
