@@ -20,7 +20,7 @@ interface QuizRules {
 export const quizRules: QuizRules = {
   rounds: 15,
   scoreThresholds: [0.3, 0.6, 0.9],
-  countdownDuration: 10_000,
+  countdownDuration: 5_000,
 };
 
 interface CountDownProps {
