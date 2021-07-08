@@ -49,7 +49,9 @@ const CurrentLevelCard = ({
   return (
     <button type="button" className={styles.container}>
       <h2 className={styles.title}>{level}</h2>
-      <h3 className={badgeClass}>{pointsString}</h3>
+      <h3 title="points to assign" className={badgeClass}>
+        {pointsString}
+      </h3>
       <div className={styles.techZone}>{techZone}</div>
       <p className={styles.textBottom}>Spend points to improve your skills</p>
     </button>

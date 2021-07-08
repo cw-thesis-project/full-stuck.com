@@ -57,7 +57,7 @@ const Dashboard = (): JSX.Element => {
         </div>
         <div className={styles.footer}>
           <p>Start learning new technologies</p>
-          <Link to="/schedule" className={styles.button}>
+          <Link to="/schedule" className={styles.button} title="schedule">
             Schedule
           </Link>
         </div>

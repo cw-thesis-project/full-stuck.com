@@ -17,7 +17,11 @@ const TechAchievementCard = ({
   isLocked,
 }: Props): JSX.Element => {
   return (
-    <Link to="/assign-points" className={styles.card}>
+    <Link
+      to="/assign-points"
+      className={styles.card}
+      title={isLocked ? 'unknown' : techName}
+    >
       <TechIcon
         techName={techName}
         iconSize="medium"

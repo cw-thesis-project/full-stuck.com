@@ -15,7 +15,11 @@ interface Props {
 const PastScheduleCard = ({ stars, topic, className }: Props): JSX.Element => {
   if (!stars) {
     return (
-      <Link to="/game/snake" className={`${styles.card} ${className}`}>
+      <Link
+        to="/game/snake"
+        className={`${styles.card} ${className}`}
+        title="play snake"
+      >
         <ScheduleItemHeader topic="Test" variant="disabled" />
         <div className={styles.centerContainer}>
           <StarsRow starsCount={0} />
@@ -30,7 +34,7 @@ const PastScheduleCard = ({ stars, topic, className }: Props): JSX.Element => {
   }
 
   return (
-    <Link to="/game/snake" className={`${styles.card} ${className}`}>
+    <div className={`${styles.card} ${className}`}>
       <ScheduleItemHeader topic={topic} variant="primary" />
       <div className={styles.centerContainer}>
         <StarsRow starsCount={stars} />
@@ -40,7 +44,7 @@ const PastScheduleCard = ({ stars, topic, className }: Props): JSX.Element => {
       <div className={styles.ribbon}>
         <p>Learnt</p>
       </div>
-    </Link>
+    </div>
   );
 };
 

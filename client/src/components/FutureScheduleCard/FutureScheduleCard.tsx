@@ -11,7 +11,7 @@ interface Props {
 
 const FutureScheduleCard = ({ className }: Props): JSX.Element => {
   return (
-    <Link to="/game/snake" className={`${styles.scheduleItem} ${className}`}>
+    <div className={`${styles.scheduleItem} ${className}`}>
       <ScheduleItemHeader topic="<any>" variant="disabled" />
       <div className={styles.centerContainer}>
         <div style={{ opacity: 0 }}>
@@ -25,7 +25,7 @@ const FutureScheduleCard = ({ className }: Props): JSX.Element => {
       <div className={styles.ribbon}>
         <p>Unknown</p>
       </div>
-    </Link>
+    </div>
   );
 };
 

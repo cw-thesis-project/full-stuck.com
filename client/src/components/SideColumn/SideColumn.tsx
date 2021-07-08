@@ -17,6 +17,11 @@ const SideColumn = ({ icons, onIconMatch, variant }: Props): JSX.Element => {
     [styles[variant]]: true,
   });
 
+  const techContainer = classNames({
+    [styles.leftIcon]: variant === 'left',
+    [styles.rightIcon]: variant === 'right',
+  });
+
   return (
     <div className={container}>
       {icons.map(({ isMatched, name }, index) => (
@@ -24,9 +29,8 @@ const SideColumn = ({ icons, onIconMatch, variant }: Props): JSX.Element => {
           key={index}
           onDrop={() => onIconMatch(index)}
           onDragOver={(e) => e.preventDefault()}
-          className={`${
-            variant === 'left' ? styles.leftIcon : styles.rightIcon
-          }`}
+          className={techContainer}
+          title={name}
         >
           <TechIcon isGray={isMatched} techName={name} iconSize="medium" />
         </div>

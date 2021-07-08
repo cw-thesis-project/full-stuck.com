@@ -44,10 +44,16 @@ const Roadmap = ({ userLevel }: Props): JSX.Element => {
       }
     }
 
+    let blobTitle = level as string;
+
+    if (level === 'CEO') {
+      blobTitle = userLevel === 'CEO' ? 'ceo' : 'play snake';
+    }
+
     return (
       <>
         <div className={wrapperClass} />
-        <Link className={blobClass} to={toPage} />
+        <Link className={blobClass} to={toPage} title={blobTitle} />
         <h3 className={levelClass}>{level}</h3>
       </>
     );

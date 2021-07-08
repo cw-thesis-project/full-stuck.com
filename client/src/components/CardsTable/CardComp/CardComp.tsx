@@ -46,6 +46,7 @@ const CardComp = ({ card, onCardClick }: CardProps): JSX.Element => {
       onClick={handleClick}
       className={container}
       ref={containerRef}
+      title={card.state === 'matched' ? card.name : ''}
     >
       {cardContentMap[card.state]}
     </button>

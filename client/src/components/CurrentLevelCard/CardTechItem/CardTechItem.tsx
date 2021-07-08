@@ -57,6 +57,7 @@ const CardTechItem = ({
         type="button"
         onClick={() => preventFrivolousSpending(techName)}
         className={styles.clickable}
+        title="assign point"
       >
         <TechIcon techName={techName} iconSize="small" isGray={false} />
         <h4 className={styles.techName}>{techName}</h4>

@@ -125,8 +125,10 @@ const QuizGame = (): JSX.Element => {
       <div className={styles.header}>
         <StarsRow starsCount={starsCount} />
         <div className={styles.scoreContainer}>
-          <h1 className={styles.score}>+{score}</h1>
-          <h1>-{currentIndex}</h1>
+          <h1 title="correct icons" className={styles.score}>
+            +{score}
+          </h1>
+          <h1 title="icons left">-{currentIndex}</h1>
         </div>
       </div>
       <div className={styles.logosContainer}>
