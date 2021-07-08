@@ -1,0 +1,12 @@
+@import '../../style/style.scss';
+
+.screen {
+  @include screen;
+  @include fixed;
+  @include center;
+  @include column;
+  justify-content: space-between;
+  padding: 6em 0;
+  gap: 4em;
+  background-color: $primary;
+}
