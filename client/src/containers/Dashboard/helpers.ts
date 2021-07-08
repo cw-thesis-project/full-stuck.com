@@ -17,22 +17,22 @@ export const createGreeting = (level: Level): string => {
   return greetingsMap[level];
 };
 
-const techAchievements: TechAchievements = {
-  javascript: { experience: 0, isLocked: false },
-  git: { experience: 0, isLocked: false },
-  react: { experience: 0, isLocked: false },
-  graphql: { experience: 0, isLocked: false },
-  rxjs: { experience: 0, isLocked: false },
-  typescript: { experience: 0, isLocked: false },
-  debugging: { experience: 0, isLocked: false },
-  eloquence: { experience: 0, isLocked: false },
-  espionage: { experience: 0, isLocked: false },
-};
-
 export const createTechAchievements = (
   userLevel: Level,
   techExperience: TechExperience
 ): TechAchievements => {
+  const techAchievements: TechAchievements = {
+    javascript: { experience: 0, isLocked: false },
+    git: { experience: 0, isLocked: false },
+    react: { experience: 0, isLocked: false },
+    graphql: { experience: 0, isLocked: false },
+    rxjs: { experience: 0, isLocked: false },
+    typescript: { experience: 0, isLocked: false },
+    debugging: { experience: 0, isLocked: false },
+    eloquence: { experience: 0, isLocked: false },
+    espionage: { experience: 0, isLocked: false },
+  };
+
   Object.entries(techExperience).forEach(([tech, userExperienceLevel]) => {
     techAchievements[tech as keyof TechAchievements].experience =
       userExperienceLevel > maxTechnologyExperience
