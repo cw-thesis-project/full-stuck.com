@@ -55,6 +55,10 @@
     }
   }
 
+  .avatarContainer {
+    @include reset-input;
+  }
+
   .avatarIcon {
     @include circle(5em);
     @include rounded-full;

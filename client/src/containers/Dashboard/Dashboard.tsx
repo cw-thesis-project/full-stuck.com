@@ -12,7 +12,7 @@ import useDashboardAnimation from './useDashboardAnimation';
 import Loading from '../../components/Loading';
 
 const Dashboard = (): JSX.Element => {
-  const { user } = useAuth0();
+  const { user, logout } = useAuth0();
   const isLoading = useAppSelector((state) => state.loading);
   const userStore = useAppSelector((state) => state.user);
   usePageTitle('Dashboard — Full Stuck');
@@ -39,13 +39,18 @@ const Dashboard = (): JSX.Element => {
             </div>
             <h2 className={styles.greeting}>{greetingMessage}</h2>
           </div>
-          <Link to="/game/snake">
+          <button
+            title="logout"
+            className={styles.avatarContainer}
+            onClick={() => logout()}
+            type="button"
+          >
             <img
               alt="avatar logo"
               className={styles.avatarIcon}
               src={user?.picture}
             />
-          </Link>
+          </button>
         </div>
         <div className={styles.learntTech}>
           <LearntTech techAchievements={userTechAchievements} />
