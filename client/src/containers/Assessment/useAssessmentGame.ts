@@ -66,7 +66,6 @@ function useAssessmentGame(
 
   function onIconMatch(index: number, draggedName: TechName) {
     const { name } = gameState.sideIcons[index];
-
     const centerIcon = gameState.centerIcons.find((icon) => icon.name === name);
 
     if (centerIcon) {
@@ -75,6 +74,8 @@ function useAssessmentGame(
       if (!isMatch) {
         return;
       }
+    } else {
+      return;
     }
 
     setGameState((state) => {
