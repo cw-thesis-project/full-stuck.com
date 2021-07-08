@@ -1,0 +1,10 @@
+export { default as Assessment } from './Assessment';
+export { default as AssignPoints } from './AssignPoints';
+export { default as CEO } from './CEO';
+export { default as Dashboard } from './Dashboard';
+export { default as HallOfFame } from './HallOfFame';
+export { default as MemoryGame } from './MemoryGame';
+export { default as QuizGame } from './QuizGame';
+export { default as Schedule } from './Schedule';
+export { default as SnakeGame } from './SnakeGame';
+export { default as Splash } from './Splash';
