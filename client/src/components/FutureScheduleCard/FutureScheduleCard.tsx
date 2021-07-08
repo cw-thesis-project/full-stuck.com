@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './FutureScheduleCard.module.scss';
 import icons from '../../assets/icons';
