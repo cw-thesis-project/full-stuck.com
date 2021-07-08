@@ -61,4 +61,12 @@
     background-color: $accentActive;
   }
   cursor: pointer;
+
+  &:hover {
+    background-color: $accentHover;
+  }
+
+  &:active {
+    background-color: $accentActive;
+  }
 }

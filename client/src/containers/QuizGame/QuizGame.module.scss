@@ -11,15 +11,23 @@
 }
 
 .header {
+  @include column;
+  @include center;
   opacity: 1;
 
   .scoreContainer {
     @include row;
+    @include center;
+    align-items: flex-end;
+    gap: 1em;
+    color: $light;
+
+    h1 {
+      font-size: 3em;
+    }
 
     .score {
       color: $accent;
-      font-size: 3em;
-      margin-right: 0.1em;
     }
   }
 }
@@ -52,10 +60,10 @@
     width: 100%;
     text-align: center;
     font-size: 1.5em;
-    color: $primaryDark;
+    color: $light;
 
     &::placeholder {
-      color: $primaryLight;
+      color: $light;
       opacity: 0.5;
     }
   }
@@ -64,14 +72,14 @@
     @include rounded;
     grid-area: 1 / 1;
     height: 100%;
-    background-color: $light;
+    background-color: $primary;
     margin-bottom: 1em;
   }
 
   .innerBar {
     @include rounded;
     height: 100%;
-    background-color: $disabled;
+    background-color: $primaryDark;
     z-index: 1;
   }
 }

@@ -18,7 +18,7 @@ interface QuizRules {
 }
 
 export const quizRules: QuizRules = {
-  rounds: 5,
+  rounds: 15,
   threshold: 0.3,
   countdownDuration: 10000,
 };
@@ -61,8 +61,9 @@ export const pickTech = (rounds: number, techs: TechName[]): TechName[] => {
   const gameIcons: TechName[] = [];
   while (gameIcons.length < rounds) {
     const randomTech = techs[Math.floor(Math.random() * techs.length)];
-    if (!gameIcons.includes(randomTech)) gameIcons.push(randomTech);
-    // gameIcons.push(randomTech);
+    // if (!gameIcons.includes(randomTech)) gameIcons.push(randomTech);
+    // when rounds > 6 remove if statement (for testing)
+    gameIcons.push(randomTech);
   }
   return gameIcons;
 };
