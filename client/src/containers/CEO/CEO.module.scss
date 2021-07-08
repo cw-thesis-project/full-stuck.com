@@ -5,13 +5,28 @@
   @include fixed;
   @include center;
   @include column;
-  gap: 4em;
+  gap: 2em;
   background-color: $primary;
+}
+
+.congratsContainer {
+  @include column;
+
+  h2 {
+    font-size: 2.5em;
+  }
+
+  .accent {
+    color: $accent;
+  }
+}
+
+.trophyIcon {
+  @include square(12em);
 }
 
 .title {
   font-size: 8em;
-  color: $accent;
 }
 
 .subtitle {
