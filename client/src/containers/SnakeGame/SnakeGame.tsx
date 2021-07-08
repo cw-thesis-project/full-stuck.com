@@ -17,7 +17,7 @@ const SnakeGame = (): JSX.Element => {
         actions.saveActivity({
           name: 'snake',
           topic: 'git',
-          stars: hasWon ? 0 : 3,
+          stars: hasWon ? 3 : 0,
         })
       );
     }
@@ -33,9 +33,10 @@ const SnakeGame = (): JSX.Element => {
 
   useEffect(checkIfWon, [points]);
   useEffect(checkIfGameOver, [isGameOver]);
+
   return (
     <div className={styles.screen}>
-      {isGameOver && <GameOver starsCount={points >= targetScore ? 1 : 0} />}
+      {isGameOver && <GameOver starsCount={points >= targetScore ? 3 : 0} />}
       <div className={styles.snakeBoardContainer}>
         <SnakeBoard
           isGameOver={isGameOver}
