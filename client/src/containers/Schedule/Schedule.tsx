@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { back } from 'assets/icons';
 import Schedule from '../../components/Schedule';
 import { useAppSelector } from '../../store';
 import { lastFiveElements, getNextActivity } from './helperFunctions';
 import styles from './Schedule.module.scss';
-import back from '../../assets/icons/back.svg';
 import usePageTitle from '../../shared/usePageTitle';
 import useScheduleAnimation from './useScheduleAnimation';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { trophy } from 'assets/icons';
 import styles from './CEO.module.scss';
 import { useAppSelector } from '../../store';
-import icons from '../../assets/icons';
 
 const CEO = (): JSX.Element => {
   const user = useAppSelector((state) => state.user);
@@ -18,11 +18,7 @@ const CEO = (): JSX.Element => {
         <h2 className={styles.accent}>{user.username}</h2>
       </div>
       <Link to="/hall-of-fame" title="hall of fame">
-        <img
-          className={styles.trophyIcon}
-          src={icons.trophy}
-          alt="trophy icon"
-        />
+        <img className={styles.trophyIcon} src={trophy} alt="trophy icon" />
       </Link>
       <h1 className={styles.title}>CEO!</h1>
       <Link to="/dashboard" className={styles.button}>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { graduationHat } from 'assets/icons';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './CurrentScheduleCard.module.scss';
-import icons from '../../assets/icons';
 import { Activity } from '../../shared/types';
 import StarsRow from '../StarsRow';
 
@@ -23,7 +23,7 @@ const CurrentScheduleCard = ({
           <StarsRow starsCount={0} />
         </div>
         <div className={styles.imageContainer}>
-          <img src={icons.graduationHat} alt="graduation hat" />
+          <img src={graduationHat} alt="graduation hat" />
         </div>
       </div>
       <p className={styles.quote}>Are you ready to learn a new tech?</p>

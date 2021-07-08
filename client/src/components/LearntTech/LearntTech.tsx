@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { arrow } from 'assets/icons';
 import { TechExperience, TechName } from '../../shared/types';
 import TechAchievementCard from './TechAchievementCard';
 import styles from './LearntTech.module.scss';
-import icons from '../../assets/icons';
 
 export type TechAchievement = { experience: number; isLocked: boolean };
 
@@ -72,7 +72,7 @@ const ScrollButton = ({ type, onClick, disabled }: ScrollButtonProps) => {
       onClick={onClick}
       type="button"
     >
-      <img src={icons.arrow} alt="arrow icon" />
+      <img src={arrow} alt="arrow icon" />
     </button>
   );
 };

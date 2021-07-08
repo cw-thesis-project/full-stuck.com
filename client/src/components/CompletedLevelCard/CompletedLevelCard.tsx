@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { medal } from 'assets/icons';
 import { Level } from '../../shared/types';
 import styles from './CompletedLevelCard.module.scss';
-import icons from '../../assets/icons';
 import TechMedal from './TechMedal';
 import { technologies } from '../../shared/constants';
 
@@ -30,7 +30,7 @@ const CompletedLevelCard = ({ level }: Props): JSX.Element => {
         <div className={styles.medalsContainer}>{techMedals}</div>
       ) : (
         <>
-          <img src={icons.medal} alt="medal" className={styles.img} />
+          <img src={medal} alt="medal" className={styles.img} />
           <h3 className={styles.cardStatus}>Completed</h3>
         </>
       )}

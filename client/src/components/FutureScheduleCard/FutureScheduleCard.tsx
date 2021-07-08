@@ -1,7 +1,7 @@
 import React from 'react';
+import { questionLogo } from 'assets/icons';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './FutureScheduleCard.module.scss';
-import icons from '../../assets/icons';
 import StarsRow from '../StarsRow';
 
 interface Props {
@@ -17,7 +17,7 @@ const FutureScheduleCard = ({ className }: Props): JSX.Element => {
           <StarsRow starsCount={0} />
         </div>
         <div className={styles.iconContainer}>
-          <img src={icons.questionLogo} alt="question icon" />
+          <img src={questionLogo} alt="question icon" />
         </div>
       </div>
       <p className={styles.quote}>What will the future bring?</p>

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { hourGlassLogo } from 'assets/icons';
 import SideColumn from '../../components/SideColumn';
 import CenterIcons from '../../components/CenterIcons';
 import AssessmentScore from '../../components/AssessmentScore';
@@ -12,7 +13,6 @@ import { useAppDispatch, useAppSelector, actions } from '../../store';
 import { updateUser } from '../../store/thunks';
 import { AssessmentGameOptions } from './interfaces';
 import { StarsCount, TechName } from '../../shared/types';
-import icons from '../../assets/icons';
 import usePageTitle from '../../shared/usePageTitle';
 import AssessmentBackground from '../../components/AssessmentBackground';
 import useAssessmentAnimations from './useAssessmentAnimations';
@@ -96,7 +96,7 @@ const Assessment = (): JSX.Element => {
           <img
             alt="hourglass icon"
             className={styles.hourGlassIcon}
-            src={icons.hourGlassLogo}
+            src={hourGlassLogo}
           />
           <h1 title="time left" className={styles.timeLeft}>
             {(gameState.timeLeft / 1000).toFixed(1)}s

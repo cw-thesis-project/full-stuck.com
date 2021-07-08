@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { sadFace } from 'assets/icons';
 import { StarsCount, TechName } from '../../shared/types';
 import TechIcon from '../TechIcon';
 import ScheduleItemHeader from '../ScheduleItemHeader';
 import styles from './PastScheduleCard.module.scss';
-import icons from '../../assets/icons';
 import StarsRow from '../StarsRow';
 
 interface Props {
@@ -23,7 +23,7 @@ const PastScheduleCard = ({ stars, topic, className }: Props): JSX.Element => {
         <ScheduleItemHeader topic="Test" variant="disabled" />
         <div className={styles.centerContainer}>
           <StarsRow starsCount={0} />
-          <img className={styles.sadFace} src={icons.sadFace} alt="sad face" />
+          <img className={styles.sadFace} src={sadFace} alt="sad face" />
         </div>
         <p className={styles.paragraph}>Maybe you’ll get it right next time!</p>
         <div className={`${styles.ribbon} ${styles.failed}`}>

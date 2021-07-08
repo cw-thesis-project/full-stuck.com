@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
+import { star } from 'assets/icons';
 import styles from './StarsRow.module.scss';
-import icons from '../../assets/icons';
 import { StarsCount } from '../../shared/types';
 
 const starsArray = [0, 1, 2];
@@ -27,12 +27,7 @@ const StarsRow = ({ starsCount, isBig }: Props): JSX.Element => {
         });
 
         return (
-          <img
-            alt="star icon"
-            className={className}
-            src={icons.star}
-            key={number}
-          />
+          <img alt="star icon" className={className} src={star} key={number} />
         );
       })}
     </div>
