@@ -38,14 +38,5 @@
 }
 
 .button {
-  @include rectangle(13em, 4em);
-  @include reset-input;
-  @include rounded;
-  @include center;
-  text-decoration: none;
-  background-color: $accent;
-  color: $light;
-  font-weight: 700;
-  font-size: 1.5em;
-  cursor: pointer;
+  @include app-button;
 }

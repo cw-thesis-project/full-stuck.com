@@ -84,24 +84,7 @@
   }
 
   .button {
-    @include rectangle(8em, 3em);
-    @include rounded;
-    @include center;
-    font-size: 1.5em;
-    text-decoration: none;
-    background-color: $accent;
-    color: $light;
-    font-weight: 600;
-    box-shadow: $shadow;
-    transition: background-color 0.3s ease-in-out;
-
-    &:hover {
-      background-color: $accentHover;
-    }
-
-    &:active {
-      background-color: $accentActive;
-    }
+    @include app-button;
   }
 }
 
