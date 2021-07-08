@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import TechIcon from '../../TechIcon';
 import { TechName } from '../../../shared/types';
 import styles from './TechAchievementCard.module.scss';
@@ -16,7 +17,11 @@ const TechAchievementCard = ({
   isLocked,
 }: Props): JSX.Element => {
   return (
-    <div className={styles.card}>
+    <Link
+      to="/assign-points"
+      className={styles.card}
+      title={isLocked ? 'unknown' : techName}
+    >
       <TechIcon
         techName={techName}
         iconSize="medium"
@@ -26,7 +31,7 @@ const TechAchievementCard = ({
       <h4 className={styles.techLevel}>
         {techSkillLevel}/{maxTechnologyExperience}
       </h4>
-    </div>
+    </Link>
   );
 };
 

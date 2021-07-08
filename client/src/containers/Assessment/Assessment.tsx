@@ -98,7 +98,7 @@ const Assessment = (): JSX.Element => {
             className={styles.hourGlassIcon}
             src={icons.hourGlassLogo}
           />
-          <h1 className={styles.timeLeft}>
+          <h1 title="time left" className={styles.timeLeft}>
             {(gameState.timeLeft / 1000).toFixed(1)}s
           </h1>
         </div>
@@ -108,11 +108,13 @@ const Assessment = (): JSX.Element => {
               techNames={centerNames}
               onDragStart={handleDragStart}
               onDragEnd={handleDragEnd}
+              isDragging={isDragging}
             />
             <button
               className={styles.cheatButton}
               type="button"
               onClick={handleCheat}
+              title="cheat!"
             >
               <AssessmentScore
                 totalMatchesCount={gameState.totalMatchesCount}

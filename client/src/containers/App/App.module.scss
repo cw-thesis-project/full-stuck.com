@@ -18,7 +18,14 @@ body {
 }
 
 .container {
-  overflow:hidden;
+  overflow: hidden;
   background-color: $light;
   color: $light;
+}
+
+@media screen and (min-width: 3000px) {
+  body {
+    @include debug;
+    font-size: 2em;
+  }
 }

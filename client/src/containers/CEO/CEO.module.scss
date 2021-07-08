@@ -5,13 +5,35 @@
   @include fixed;
   @include center;
   @include column;
-  gap: 4em;
+  gap: 2em;
   background-color: $primary;
+}
+
+.congratsContainer {
+  @include column;
+
+  h2 {
+    font-size: 2.5em;
+  }
+
+  .accent {
+    color: $accent;
+  }
+}
+
+.trophyIcon {
+  @include square(12em);
+  position: relative;
+  top: 0em;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    top: 0.5em;
+  }
 }
 
 .title {
   font-size: 8em;
-  color: $accent;
 }
 
 .subtitle {
@@ -23,14 +45,5 @@
 }
 
 .button {
-  @include rectangle(13em, 4em);
-  @include reset-input;
-  @include rounded;
-  @include center;
-  text-decoration: none;
-  background-color: $accent;
-  color: $light;
-  font-weight: 700;
-  font-size: 1.5em;
-  cursor: pointer;
+  @include app-button;
 }

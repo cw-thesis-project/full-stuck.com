@@ -4,13 +4,20 @@
 import React, { useEffect, useState } from 'react';
 import Countdown from 'react-countdown';
 import { actions, useAppDispatch } from '../../store';
-import { pickTech, quizTechs, quizRules, renderer } from './helpers';
+import {
+  pickTech,
+  quizTechs,
+  quizRules,
+  renderer,
+  getStarsCount,
+} from './helpers';
 import styles from './QuizGame.module.scss';
 import TechLogo from '../../components/TechLogo';
-import { TechName } from '../../shared/types';
+import { StarsCount, TechName } from '../../shared/types';
 import StarsRow from '../../components/StarsRow';
 import GameOver from '../../components/GameOver';
 import useQuizGameAnimations from './useQuizGameAnimations';
+import { pickRandomTopic } from '../../shared/utils';
 
 const QuizGame = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -21,17 +28,24 @@ const QuizGame = (): JSX.Element => {
   const [score, setScore] = useState(0);
   const [text, setText] = useState('');
   const [logos, setLogos] = useState<TechName[]>();
+  const [starsCount, setStarsCount] = useState<StarsCount>(0);
   const [outcome, setOutcome] = useState<'failed' | 'completed' | 'ongoing'>(
     'ongoing'
   );
   const [lastRoundWon, setLastRoundWon] = useState(false);
-  const winThreshold = quizRules.threshold * quizRules.rounds;
 
   useEffect(() => {
     setLogos(pickTech(quizRules.rounds, quizTechs));
   }, []);
 
-  useQuizGameAnimations();
+  useEffect(updateStarsCount, [score]);
+
+  useQuizGameAnimations(currentIndex);
+
+  function updateStarsCount() {
+    const newStars = getStarsCount(score);
+    setStarsCount(newStars);
+  }
 
   function onTextchange(string: string) {
     setText(string);
@@ -67,19 +81,27 @@ const QuizGame = (): JSX.Element => {
   }
 
   function checkIfGameOver() {
-    if (currentIndex < 0) afterGameOver(score > winThreshold);
+    if (currentIndex < 0) afterGameOver();
   }
 
-  function afterGameOver(hasWon: boolean) {
+  function afterGameOver() {
     setIsGameOver(true);
-    if (hasWon) dispatch(actions.setPointsToAssign(1));
-    else dispatch(actions.setPointsToAssign(0));
+
+    if (starsCount > 0) {
+      dispatch(actions.setPointsToAssign(1));
+    }
+
+    let topic: TechName = 'git';
+
+    if (starsCount === 0) {
+      topic = pickRandomTopic();
+    }
 
     dispatch(
       actions.saveActivity({
-        name: 'memory',
-        topic: 'git',
-        stars: hasWon ? 0 : 3,
+        name: 'quiz',
+        topic,
+        stars: starsCount,
       })
     );
   }
@@ -99,14 +121,14 @@ const QuizGame = (): JSX.Element => {
 
   return (
     <div className={styles.screen}>
-      {isGameOver && (
-        <GameOver starsCount={score > winThreshold ? 3 : 0} showStars />
-      )}
+      {isGameOver && <GameOver starsCount={starsCount} showStars />}
       <div className={styles.header}>
-        <StarsRow starsCount={1} />
+        <StarsRow starsCount={starsCount} />
         <div className={styles.scoreContainer}>
-          <h1 className={styles.score}>{score}</h1>
-          <h1>{currentIndex}</h1>
+          <h1 title="correct icons" className={styles.score}>
+            +{score}
+          </h1>
+          <h1 title="icons left">-{currentIndex}</h1>
         </div>
       </div>
       <div className={styles.logosContainer}>

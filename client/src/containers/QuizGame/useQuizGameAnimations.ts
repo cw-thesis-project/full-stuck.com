@@ -3,9 +3,11 @@ import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { slideDown, fadeIn, slideUp } from '../../shared/animations';
 import quizGame from './QuizGame.module.scss';
+import techLogo from '../../components/TechLogo/TechLogo.module.scss';
 
-function useQuizGameAnimations(): void {
+function useQuizGameAnimations(currentIndex: number): void {
   useEffect(animateAllItems, []);
+  useEffect(animateLogos, [currentIndex]);
 
   function animateAllItems() {
     gsap
@@ -21,9 +23,13 @@ function useQuizGameAnimations(): void {
       )
       .from(`.${quizGame.helperText}`, slideDown, 0.5)
       .from(`.${quizGame.inputContainer}`, slideDown, 0.5);
-    // .from(`.${cardsTable.container}`, slideUp, 0.15)
-    // .from(`.${memoryGame.helperText}`, slideUp, 0.3)
-    // .from(`.${memoryScore.container}`, slideRight, 0.45);
+  }
+
+  function animateLogos() {
+    gsap.from(`.${techLogo.logoContainer}`, {
+      ...slideUp,
+      stagger: 0.15,
+    });
   }
 }
 

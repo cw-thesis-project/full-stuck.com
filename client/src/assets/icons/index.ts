@@ -18,6 +18,7 @@ import debuggingLogo from './debugging.svg';
 import eloquenceLogo from './eloquence.svg';
 import espionageLogo from './espionage.svg';
 import sadFace from './sadFace.svg';
+import trophy from './trophy.svg';
 
 const toExport = {
   javascriptLogo,
@@ -40,6 +41,7 @@ const toExport = {
   espionageLogo,
   sadFace,
   avatar,
+  trophy,
 };
 
 export default toExport;

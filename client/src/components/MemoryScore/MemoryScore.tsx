@@ -15,7 +15,12 @@ const MemoryScore = ({
   onClick,
 }: Props): JSX.Element => {
   return (
-    <button type="button" className={styles.container} onClick={onClick}>
+    <button
+      type="button"
+      className={styles.container}
+      onClick={onClick}
+      title="cheat!"
+    >
       <StarsRow starsCount={starsCount} />
       <div className={styles.matchesContainer}>
         <h2 className={styles.matchesDone}>{numberOfMatches}</h2>

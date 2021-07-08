@@ -24,6 +24,13 @@
 .failed {
   margin-left: 10em;
   transform: rotate(-15deg);
+  color: $light;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: rotate(0deg);
+    color: $accent;
+  }
 }
 
 .button {

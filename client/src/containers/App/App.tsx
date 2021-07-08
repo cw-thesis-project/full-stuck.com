@@ -13,6 +13,7 @@ import AssignPoints from '../AssignPoints/AssignPoints';
 import Assessment from '../Assessment/Assessment';
 import MemoryGame from '../MemoryGame/MemoryGame';
 import CEO from '../CEO/CEO';
+import HallOfFame from '../HallOfFame';
 import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute';
 import TempNavBar from '../../components/TempNavBar/TempNavBar';
 import SnakeGame from '../SnakeGame/SnakeGame';
@@ -54,6 +55,7 @@ const App = (): JSX.Element => {
         <ProtectedRoute path="/game/memory" component={MemoryGame} />
         <ProtectedRoute path="/game/snake" component={SnakeGame} />
         <ProtectedRoute path="/game/quiz" component={QuizGame} />
+        <Route path="/hall-of-fame" component={HallOfFame} exact />
         <Route path="/admin">
           <TempNavBar />
         </Route>

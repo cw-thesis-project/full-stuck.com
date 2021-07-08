@@ -9,6 +9,7 @@
   justify-content: space-between;
   background-color: $primaryDark;
   box-shadow: $shadow;
+  cursor: pointer;
 
   h2,
   h3 {
@@ -23,7 +24,6 @@
 
 .img {
   @include square(8em);
-  cursor: pointer;
   transform: translateY(0);
   transition: transform 0.3s ease-in-out;
 

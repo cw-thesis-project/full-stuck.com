@@ -38,3 +38,26 @@
 @mixin rounded-full {
   border-radius: 10000px;
 }
+
+@mixin app-button {
+  @include reset-input;
+  @include rectangle(8em, 3em);
+  @include rounded;
+  @include center;
+  font-weight: 600;
+  font-size: 1.5em;
+  box-shadow: $shadow;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  background-color: $accent;
+  color: $light;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $accentHover;
+  }
+
+  &:active {
+    background-color: $accentActive;
+  }
+}

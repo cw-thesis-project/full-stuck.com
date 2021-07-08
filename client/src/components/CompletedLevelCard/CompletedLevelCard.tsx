@@ -23,6 +23,7 @@ const CompletedLevelCard = ({ level }: Props): JSX.Element => {
       type="button"
       onClick={() => setShowDetails(!showDetails)}
       className={styles.container}
+      title={showDetails ? 'flip back' : 'show achievements'}
     >
       <h2 className={styles.title}>{level}</h2>
       {showDetails ? (

@@ -8,8 +8,9 @@ import GameOver from '../../components/GameOver';
 import useMemoryGame, { allowedFlips } from './useMemoryGame';
 import { actions, useAppDispatch } from '../../store';
 import usePageTitle from '../../shared/usePageTitle';
-import { StarsCount } from '../../shared/types';
+import { StarsCount, TechName } from '../../shared/types';
 import useMemoryGameAnimations from './useMemoryGameAnimations';
+import { pickRandomTopic } from '../../shared/utils';
 
 const MemoryGameContainer = (): JSX.Element => {
   // states
@@ -28,11 +29,17 @@ const MemoryGameContainer = (): JSX.Element => {
       dispatch(actions.setPointsToAssign(1));
     }
 
+    // topic is temporary, will be modified after assigning points
+    let topic: TechName = 'git';
+
+    if (starsCount === 0) {
+      topic = pickRandomTopic();
+    }
+
     dispatch(
       actions.saveActivity({
         name: 'memory',
-        // topic is temporary, will be modified after assigning points
-        topic: 'git',
+        topic,
         stars: starsCount,
       })
     );

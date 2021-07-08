@@ -1,5 +1,11 @@
 @import '../../../style/style.scss';
 
+.techColumn {
+  @include column;
+  gap: 0.5em;
+  width: 6em;
+}
+
 .bubble {
   @include circle(2.5em);
   margin: 0;
@@ -9,26 +15,42 @@
   @include reset-input;
   margin-top: 2em;
   cursor: pointer;
+  position: relative;
+  top: 0;
+  transition: all 0.3s ease-in-out;
+
+  .techName {
+    color: $light;
+    text-transform: capitalize;
+    margin-top: 0.5em;
+  }
 
   &:hover {
     fill: $disabled;
-    filter: grayscale(100%) sepia(100%);
+    top: 0.5em;
   }
+
   &:active {
-    filter: invert(100%);
+    filter: grayscale(100%);
   }
 }
 
+.greyBubble {
+  background-color: grey;
+}
+
+// tech colors
+
 .debugging {
-  background-color: #784421;
+  background-color: #9dcc6b;
 }
 
 .eloquence {
-  background-color: #01d2c7;
+  background-color: #bc9a7e;
 }
 
 .espionage {
-  background-color: $light;
+  background-color: #47677c;
 }
 
 .git {
@@ -41,10 +63,6 @@
 
 .graphql {
   background-color: #e534ab;
-}
-
-.greyBubble {
-  background-color: grey;
 }
 
 .javascript {
@@ -61,15 +79,4 @@
 
 .typescript {
   background-color: #3078c6;
-}
-
-.techColumn {
-  @include column;
-  gap: 0.5em;
-  width: 6em;
-}
-
-.techName {
-  color: $light;
-  text-transform: capitalize;
 }

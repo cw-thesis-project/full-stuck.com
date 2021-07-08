@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { Level } from '../../shared/types';
 import { levelToNumber } from '../../shared/constants';
@@ -33,10 +34,26 @@ const Roadmap = ({ userLevel }: Props): JSX.Element => {
       [styles.current]: isCurrent,
     });
 
+    let toPage = '/assign-points';
+
+    if (level === 'CEO') {
+      if (userLevel === 'CEO') {
+        toPage = '/ceo';
+      } else {
+        toPage = '/game/snake';
+      }
+    }
+
+    let blobTitle = level as string;
+
+    if (level === 'CEO') {
+      blobTitle = userLevel === 'CEO' ? 'ceo' : 'play snake';
+    }
+
     return (
       <>
         <div className={wrapperClass} />
-        <div className={blobClass} />
+        <Link className={blobClass} to={toPage} title={blobTitle} />
         <h3 className={levelClass}>{level}</h3>
       </>
     );
