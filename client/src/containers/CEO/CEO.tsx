@@ -17,7 +17,13 @@ const CEO = (): JSX.Element => {
         <h2>Well done,</h2>
         <h2 className={styles.accent}>{user.username}</h2>
       </div>
-      <img className={styles.trophyIcon} src={icons.trophy} alt="trophy icon" />
+      <Link to="/hall-of-fame" title="hall of fame">
+        <img
+          className={styles.trophyIcon}
+          src={icons.trophy}
+          alt="trophy icon"
+        />
+      </Link>
       <h1 className={styles.title}>CEO!</h1>
       <Link to="/dashboard" className={styles.button}>
         Dashboard

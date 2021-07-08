@@ -23,6 +23,13 @@
 
 .trophyIcon {
   @include square(12em);
+  position: relative;
+  top: 0em;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    top: 0.5em;
+  }
 }
 
 .title {
