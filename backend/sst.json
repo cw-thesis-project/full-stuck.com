@@ -1,0 +1,6 @@
+{
+  "name": "api-full-stuck",
+  "stage": "prod",
+  "region": "eu-central-1",
+  "lint": true
+}
