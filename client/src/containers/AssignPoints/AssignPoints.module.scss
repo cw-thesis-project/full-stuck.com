@@ -8,30 +8,46 @@
   display: grid;
   grid-template-rows: 20% 1fr 20%;
   grid-template-columns: repeat(3, 1fr);
+  place-items: center;
 }
 
 .pageTitle {
   grid-column: 1 / 4;
   grid-row: 1;
-  place-self: center;
   font-size: 3em;
   color: $primaryDark;
 }
 
 .footerText {
   font-size: 1.5em;
-  align-self: center;
-  justify-self: center;
   padding: 0 4em;
   text-align: center;
 }
 
 .card {
-  @include center-in-cell;
   opacity: 1;
 }
 
-.scheduleButton {
-  @include center-in-cell;
-  opacity: 1;
+.button {
+  @include app-button;
+}
+
+.activeBtn {
+  background-color: $accent;
+
+  &:hover {
+    background-color: $accentHover;
+  }
+
+  &:active {
+    background-color: $accentActive;
+  }
+}
+
+.inactiveBtn {
+  background-color: $primaryDark;
+
+  &:hover {
+    cursor: not-allowed;
+  }
 }

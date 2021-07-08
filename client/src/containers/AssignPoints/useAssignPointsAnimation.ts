@@ -16,7 +16,8 @@ function useAssignPointsAnimation(): void {
         stagger: 0.3,
       })
       .from(`.${assignPoints.footerText}`, slideDown, 2)
-      .from(`.${assignPoints.scheduleButton}`, slideDown, 2);
+      .from(`.${assignPoints.scheduleButton}`, slideDown, 2)
+      .from(`.${assignPoints.button}`, slideDown, 2);
   }
 }
 
