@@ -1,4 +1,4 @@
-# FULL STUCK
+# Full-Stuck
 
 <!-- badges -->
 
@@ -33,7 +33,9 @@ Full Stack is a **game** where you are a software bootcamp student.
 
 Your goal is to reach to **CEO** by completing all the previous levels.
 
-<img align="center" width="400px" src="./docs-assets/screens-mocks.png">
+<a href="https://full-stuck.com">
+  <img width="100%" src="./docs-assets/screens-mocks.png">
+</a>
 
 Complete a level by learning 3 different **technologies** in any order you want.
 
@@ -43,7 +45,17 @@ Once you have master your developer skill, you will have to pass the **assessmen
 
 Be careful with bugs!
 
-# About the project
+## Demo Video
+
+This video was prepared by our team using [Adobe Premiere](https://www.adobe.com/products/premiere.html) for editing and [Audacity](https://www.audacityteam.org/) for the voice-overs.
+
+<a href="https://www.youtube.com/watch?v=RHwkrV2tcAw">
+  <img width="100%" src="./docs-assets/youtube-preview.png">
+</a>
+
+It is meant to appeal to both a technical audience and the stakeholders.
+
+## About the project
 
 **Full Stack** was developed in 2 weeks during [CodeWorks software bootcamp](https://codeworks.me/software-engineering-bootcamp/) by the following students:
 
@@ -53,7 +65,7 @@ Be careful with bugs!
 - [Pablo Carbonell](https://github.com/carbonellpablo)
 - [Viktor Ricchiuto](https://github.com/vikvikvr)
 
-# Architecture
+## Architecture
 
 **Full Stack** is a full stack **serverless** application deployed on https://full-stuck.com
 
@@ -69,7 +81,7 @@ This architecture has the following characteristics:
 - maintaince-free
 - cost-effective
 
-# Development cycle
+## Development cycle
 
 We have also implemented a very simple “continuous delivery / continuous integration “ process with Github Actions.
 
@@ -79,6 +91,6 @@ Thanks to this, we improve our testing and reviewing procedures before every mer
 
 ![logo](./cd-ci.png 'logo')
 
-# Run the project
+## Run the project
 
 Check for the `readme.md` inside `client` and `backend` folders for the instructions on how to run this project.
