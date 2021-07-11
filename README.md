@@ -1,4 +1,4 @@
-# FULL STUCK
+# Full-Stuck
 
 <!-- badges -->
 
@@ -33,7 +33,9 @@ Full Stack is a **game** where you are a software bootcamp student.
 
 Your goal is to reach to **CEO** by completing all the previous levels.
 
-<img align="center" width="400px" src="./docs-assets/screens-mocks.png">
+<a href="https://full-stuck.com">
+  <img width="100%" src="./docs-assets/screens-mocks.png">
+</a>
 
 Complete a level by learning 3 different **technologies** in any order you want.
 
@@ -43,21 +45,31 @@ Once you have master your developer skill, you will have to pass the **assessmen
 
 Be careful with bugs!
 
-# About the project
+## Demo Video
+
+This video was prepared by our team using [Adobe Premiere](https://www.adobe.com/products/premiere.html) for editing and [Audacity](https://www.audacityteam.org/) for the voice-overs.
+
+<a href="https://www.youtube.com/watch?v=RHwkrV2tcAw">
+  <img width="100%" src="./docs-assets/youtube-preview.png">
+</a>
+
+It is meant to appeal to both a technical audience and the stakeholders.
+
+## About the project
 
 **Full Stack** was developed in 2 weeks during [CodeWorks software bootcamp](https://codeworks.me/software-engineering-bootcamp/) by the following students:
 
-- [Gil Reich](https://github.com/GILREICH1)
-- [Ron Chamma](https://github.com/CalimeRon)
-- [David Spanjaard](https://github.com/davidspanjaard)
-- [Pablo Carbonell](https://github.com/carbonellpablo)
-- [Viktor Ricchiuto](https://github.com/vikvikvr)
+| Gil                                                                             | Ron                                                                             | David                                                                           | Pablo                                                                           | Viktor                                                                         |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| <img src="https://avatars.githubusercontent.com/u/78416008?&v=4" width="100px"> | <img src="https://avatars.githubusercontent.com/u/65477545?&v=4" width="100px"> | <img src="https://avatars.githubusercontent.com/u/35059811?&v=4" width="100px"> | <img src="https://avatars.githubusercontent.com/u/16283826?&v=4" width="100px"> | <img src="https://avatars.githubusercontent.com/u/39421290?v=4" width="100px"> |
+| [GitHub](https://github.com/GILREICH1)                                          | [GitHub](https://github.com/CalimeRon)                                          | [GitHub](https://github.com/davidspanjaard)                                     | [GitHub](https://github.com/carbonellpablo)                                     | [GitHub](https://github.com/vikvikvr)                                          |
+| [LinkedIn](https://www.linkedin.com/in/greich/)                                 | [LinkedIn](https://www.linkedin.com/in/ron-chamma/)                             | [LinkedIn](https://www.linkedin.com/in/david-spanjaard-757135210/)              | [LinkedIn](https://www.linkedin.com/in/carbonellpablo/)                         | [LinkedIn](https://www.linkedin.com/in/vikvikvr/)                              |
 
-# Architecture
+## Architecture
 
 **Full Stack** is a full stack **serverless** application deployed on https://full-stuck.com
 
-![logo](./architecture.png 'logo')
+![logo](./docs-assets/architecture.png 'logo')
 
 The frontend is hosted on Amazon S3 and we are using Amazon Cloudfront as CDN to improve performance.
 
@@ -69,7 +81,7 @@ This architecture has the following characteristics:
 - maintaince-free
 - cost-effective
 
-# Development cycle
+## Development cycle
 
 We have also implemented a very simple “continuous delivery / continuous integration “ process with Github Actions.
 
@@ -77,8 +89,8 @@ For example, a pull request to dev or main will automatically deploy the branch 
 
 Thanks to this, we improve our testing and reviewing procedures before every merge.
 
-![logo](./cd-ci.png 'logo')
+![logo](./docs-assets/cd-ci.png 'logo')
 
-# Run the project
+## Run the project
 
 Check for the `readme.md` inside `client` and `backend` folders for the instructions on how to run this project.
