@@ -57,7 +57,7 @@ It is meant to appeal to both a technical audience and the stakeholders.
 
 ## About the project
 
-**Full Stack** was developed in 2 weeks during [CodeWorks software bootcamp](https://codeworks.me/software-engineering-bootcamp/) by the following students:
+**Full Stack** is being developed by the following people:
 
 | Gil                                                                             | Ron                                                                             | David                                                                           | Pablo                                                                           | Viktor                                                                         |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
