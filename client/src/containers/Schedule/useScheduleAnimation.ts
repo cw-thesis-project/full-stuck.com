@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect } from 'react';
 import { animateFrom, fadeIn, slideRight } from 'shared/animations';
+import { playSound } from 'services/audioService';
 import calendarDate from './CalendarDate/CalendarDate.module.scss';
 import schedule from './Schedule/Schedule.module.scss';
 import container from './Schedule.module.scss';
@@ -14,7 +15,10 @@ function useScheduleAnimation(): void {
   function animateScheduleCards() {
     animateFrom(schedule.scheduleCard, {
       ...slideRight,
-      stagger: 0.15,
+      stagger: {
+        each: 0.15,
+        onStart: () => playSound('scheduleCard'),
+      },
     });
   }
 
