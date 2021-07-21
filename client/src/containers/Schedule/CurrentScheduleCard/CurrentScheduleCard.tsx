@@ -33,7 +33,7 @@ const CurrentScheduleCard = ({
         className={styles.ribbon}
         to={`/game/${nextActivity}`}
         title={`play ${nextActivity}`}
-        onClick={() => playSound('scheduleCard')}
+        onClick={() => playSound('buttonClick')}
       >
         <p>Study!</p>
       </Link>

@@ -80,7 +80,7 @@ const SnakeBoard = ({
 
       if (direction !== opp && direction !== dir) {
         setDirection(dir);
-        playSound('scheduleCard');
+        playSound('snakeChangeDirection');
         tempSnake.unshift({
           direction: dir,
           part: [],
@@ -95,8 +95,7 @@ const SnakeBoard = ({
   useEffect(() => {
     // points and get longer after eating
     if (snake[0].part[0] === fruit) {
-      // just eaten a fruit
-      playSound('scheduleCard');
+      playSound('snakeEat');
       setPoints(points + 1);
       const sneak = [...snake];
       const firstSection = sneak[0];

@@ -18,7 +18,7 @@ function useMemoryGameAnimations(): void {
       .from(`.${flipCounter.container}`, slideUp, 0)
       .from(
         `.${cardsTable.container}`,
-        { ...slideUp, onStart: () => playSound('scheduleCard') },
+        { ...slideUp, onStart: () => playSound('slide') },
         0.15
       )
       .from(`.${memoryGame.helperText}`, slideDown, 0.6)

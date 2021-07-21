@@ -17,7 +17,7 @@ function useScheduleAnimation(): void {
       ...slideRight,
       stagger: {
         each: 0.15,
-        onStart: () => playSound('scheduleCard'),
+        onStart: () => playSound('slide'),
       },
     });
   }
@@ -35,7 +35,7 @@ function useScheduleAnimation(): void {
       opacity: 0,
       ease: 'power3.out',
       delay: 1.3,
-      onStart: () => playSound('scheduleCard'),
+      onStart: () => playSound('slide'),
     });
   }
 }

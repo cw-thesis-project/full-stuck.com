@@ -22,7 +22,7 @@ const Dashboard = (): JSX.Element => {
   useDashboardAnimation();
 
   function handleLogout(): void {
-    playSound('scheduleCard');
+    playSound('buttonClick');
     logout({
       returnTo: 'https://full-stuck.com/#/',
     });
@@ -71,7 +71,7 @@ const Dashboard = (): JSX.Element => {
             to="/schedule"
             className={styles.button}
             title="schedule"
-            onClick={() => playSound('scheduleCard')}
+            onClick={() => playSound('buttonClick')}
           >
             Schedule
           </Link>

@@ -15,11 +15,11 @@ function useAssignPointsAnimation(): void {
       .from(`.${assignPoints.pageTitle}`, fadeIn)
       .from(`.${assignPoints.card}`, {
         ...slideUp,
-        stagger: { each: 0.3, onStart: () => playSound('scheduleCard') },
+        stagger: { each: 0.3, onStart: () => playSound('slide') },
       })
       .from(
         `.${assignPoints.footerText}`,
-        { ...slideDown, onStart: () => playSound('scheduleCard') },
+        { ...slideDown, onStart: () => playSound('slide') },
         2
       )
       .from(`.${assignPoints.scheduleButton}`, slideDown, 2)

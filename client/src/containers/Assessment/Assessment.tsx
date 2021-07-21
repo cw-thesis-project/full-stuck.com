@@ -38,7 +38,7 @@ const Assessment = (): JSX.Element => {
   function handleIconMatch(index: number) {
     setIsDragging(false);
     onIconMatch(index, draggedName);
-    playSound('scheduleCard');
+    playSound('dragSuccess');
   }
 
   function onGameEnd(starsCount: StarsCount) {
@@ -54,17 +54,17 @@ const Assessment = (): JSX.Element => {
 
   function handleDragEnd() {
     setIsDragging(false);
-    playSound('scheduleCard');
+    playSound('dragSuccess');
   }
 
   function handleDragStart(techName: TechName) {
     setDraggedName(techName);
     setIsDragging(true);
-    playSound('scheduleCard');
+    playSound('dragStart');
   }
 
   function handleCheat() {
-    playSound('scheduleCard');
+    playSound('buttonClick');
     setWasCheatUsed(true);
     onGameEnd(2);
   }

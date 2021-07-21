@@ -48,7 +48,7 @@ const MemoryGameContainer = (): JSX.Element => {
   }
 
   function handleCheat() {
-    playSound('scheduleCard');
+    playSound('buttonClick');
     setCheatUsed(true);
     onGameOver(2);
   }

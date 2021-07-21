@@ -29,7 +29,7 @@ const AssignPoints = (): JSX.Element => {
 
   function onIconClick(techName: TechName) {
     if (pointsToAssign && user) {
-      playSound('scheduleCard');
+      playSound('techLearnt');
       dispatch(setActivityTopic(techName, user));
     }
   }

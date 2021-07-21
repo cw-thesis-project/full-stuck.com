@@ -47,7 +47,7 @@ const QuizGame = (): JSX.Element => {
 
   function onTextchange(string: string) {
     setText(string);
-    playSound('scheduleCard');
+    playSound('letterTyped');
 
     if (logos && currentIndex > -1) {
       if (string.toLowerCase() === logos[currentIndex].toLowerCase()) {

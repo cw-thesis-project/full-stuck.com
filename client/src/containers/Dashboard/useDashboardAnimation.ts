@@ -21,18 +21,18 @@ function useDashboardAnimation(): void {
       .timeline({ delay: 0.5 })
       .from(`.${dashboard.header}`, {
         ...slideUp,
-        onStart: () => playSound('scheduleCard'),
+        onStart: () => playSound('slide'),
       })
       .from(`.${dashboard.learntTech}`, {
         ...slideUp,
-        onStart: () => playSound('scheduleCard'),
+        onStart: () => playSound('slide'),
       })
       .from(`.${dashboard.footer}`, slideDown)
       .from(
         `.${appLogo.logo}`,
         {
           ...slideLeft,
-          onStart: () => playSound('scheduleCard'),
+          onStart: () => playSound('slide'),
         },
         0.9
       )

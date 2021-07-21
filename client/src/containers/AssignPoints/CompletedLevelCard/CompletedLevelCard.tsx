@@ -22,7 +22,7 @@ const CompletedLevelCard = ({ level }: Props): JSX.Element => {
 
   function handleClick() {
     setShowDetails(!showDetails);
-    playSound('scheduleCard');
+    playSound('slide');
   }
 
   return (

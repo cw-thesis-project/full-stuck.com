@@ -23,7 +23,7 @@ const TechAchievementCard = ({
       to="/assign-points"
       className={styles.card}
       title={isLocked ? 'unknown' : techName}
-      onClick={() => playSound('scheduleCard')}
+      onClick={() => playSound('buttonClick')}
     >
       <TechIcon
         techName={techName}

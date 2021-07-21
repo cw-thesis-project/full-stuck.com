@@ -68,7 +68,7 @@ const ScrollButton = ({ type, onClick, disabled }: ScrollButtonProps) => {
   });
 
   function handleClick(): void {
-    playSound('scheduleCard');
+    playSound('buttonClick');
     onClick();
   }
 

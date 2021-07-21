@@ -59,7 +59,7 @@ const Roadmap = ({ userLevel }: Props): JSX.Element => {
           className={blobClass}
           to={toPage}
           title={blobTitle}
-          onClick={() => playSound('scheduleCard')}
+          onClick={() => playSound('buttonClick')}
         />
         <h3 className={levelClass}>{level}</h3>
       </>

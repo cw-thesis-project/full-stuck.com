@@ -20,7 +20,7 @@ function useQuizGameAnimations(currentIndex: number): void {
         {
           ...fadeIn,
           y: '4em',
-          onStart: () => playSound('scheduleCard'),
+          onStart: () => playSound('slide'),
         },
         0
       )
@@ -32,7 +32,7 @@ function useQuizGameAnimations(currentIndex: number): void {
     gsap.from(`.${techLogo.logoContainer}`, {
       ...slideUp,
       stagger: 0.15,
-      onStart: () => playSound('scheduleCard'),
+      onStart: () => playSound('slide'),
     });
   }
 }

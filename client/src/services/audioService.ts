@@ -3,7 +3,21 @@
 import { Howl } from 'howler';
 import { swipe } from 'assets/audio';
 
-type SoundName = 'scheduleCard';
+type SoundName =
+  | 'buttonClick'
+  | 'cardFlip'
+  | 'dragFailure'
+  | 'dragStart'
+  | 'dragSuccess'
+  | 'gameOver'
+  | 'gameWon'
+  | 'letterTyped'
+  | 'mistake'
+  | 'slide'
+  | 'snakeChangeDirection'
+  | 'snakeEat'
+  | 'stars'
+  | 'techLearnt';
 
 export function playSound(name: SoundName, delaySeconds = 0): void {
   const howl = soundsMap[name];
@@ -15,5 +29,18 @@ export function playSound(name: SoundName, delaySeconds = 0): void {
 export const a = {};
 
 const soundsMap: Record<SoundName, Howl> = {
-  scheduleCard: swipe,
+  buttonClick: swipe,
+  cardFlip: swipe,
+  dragFailure: swipe,
+  dragStart: swipe,
+  dragSuccess: swipe,
+  gameOver: swipe,
+  gameWon: swipe,
+  letterTyped: swipe,
+  mistake: swipe,
+  slide: swipe,
+  snakeChangeDirection: swipe,
+  snakeEat: swipe,
+  stars: swipe,
+  techLearnt: swipe,
 };

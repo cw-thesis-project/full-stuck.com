@@ -34,7 +34,7 @@ const ScheduleContainer = (): JSX.Element | null => {
           to="/dashboard"
           className={styles.backIcon}
           title="dashboard"
-          onClick={() => playSound('scheduleCard')}
+          onClick={() => playSound('buttonClick')}
         >
           <img src={back} alt="back icon" />
         </Link>

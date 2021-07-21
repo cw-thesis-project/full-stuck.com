@@ -14,8 +14,9 @@ interface Props {
 const CardsTable = ({ cards, onCardClick }: Props): JSX.Element => {
   function handleCardClick(index: number): void {
     onCardClick(index);
-    playSound('scheduleCard');
+    playSound('cardFlip');
   }
+
   return (
     <div>
       <div className={styles.container}>

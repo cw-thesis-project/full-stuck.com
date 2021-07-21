@@ -21,13 +21,13 @@ function useGameOverAnimations(): void {
           ...slideUp,
           duration: 0.3,
           stagger: 0.15,
-          onStart: () => playSound('scheduleCard'),
+          onStart: () => playSound('stars'),
         },
         0.6
       )
       .from(
         `.${gameOver.button}`,
-        { ...slideDown, onStart: () => playSound('scheduleCard') },
+        { ...slideDown, onStart: () => playSound('slide') },
         1.2
       );
   }
