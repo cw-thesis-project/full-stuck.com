@@ -1,7 +1,9 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import usePageTitle from 'shared/usePageTitle';
+import AppLogo from './AppLogo';
 import styles from './Splash.module.scss';
-import usePageTitle from '../../shared/usePageTitle';
 import useSplashAnimations from './useSplashAnimations';
 
 const Splash = (): JSX.Element => {
@@ -13,14 +15,7 @@ const Splash = (): JSX.Element => {
 
   return (
     <div className={styles.screen}>
-      <div className={styles.logo}>
-        <h1 className={styles.logoPart}>F</h1>
-        <h1 className={styles.logoPart}>ULL</h1>
-        <h1 className={styles.logoPart}>_</h1>
-        <h1 className={styles.logoPart}>ST</h1>
-        <h1 className={styles.logoPart}>U</h1>
-        <h1 className={styles.logoPart}>CK</h1>
-      </div>
+      <AppLogo />
       <p className={styles.subtitle}>
         Take part in the bootcamp, <br /> become CEO as quick as you can!
       </p>

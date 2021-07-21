@@ -1,10 +1,10 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { Auth0User, User } from '../shared/types';
+import { Auth0User, User } from 'shared/types';
+import { emptyUser } from 'shared/constants';
+import { deepCopy } from 'shared/utils';
 import { AppState, AppAction, FailureAction } from './storeTypes';
-import { emptyUser } from '../shared/constants';
-import { deepCopy } from '../shared/utils';
 
 export const defaultState: AppState = {
   pointsToAssign: 0,

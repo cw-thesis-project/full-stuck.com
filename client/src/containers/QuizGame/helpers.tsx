@@ -1,5 +1,6 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
-import { StarsCount, TechName } from '../../shared/types';
+import { StarsCount, TechName } from 'shared/types';
 import styles from './QuizGame.module.scss';
 
 export const quizTechs: TechName[] = [

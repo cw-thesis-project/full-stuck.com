@@ -1,0 +1,50 @@
+@import '../../../style';
+
+.container {
+  @include column;
+  @include roundedBig;
+  @include rectangle(300px, 450px);
+  @include reset-input;
+  padding: 2em 0 3em 0;
+  justify-content: space-between;
+  position: relative;
+  background-color: $primaryDark;
+  box-shadow: $shadow;
+
+  h2,
+  h3 {
+    color: $light;
+    text-transform: capitalize;
+  }
+}
+
+.pointsBadge {
+  @include square(3em);
+  @include column;
+  @include center;
+  border-radius: 0 1.2em 0 1.2em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: $accent;
+  transition: all 0.3s ease-in-out;
+
+  &.dark {
+    background-color: $primary;
+  }
+}
+
+.title {
+  font-size: 2em;
+}
+
+.techZone {
+  @include row;
+}
+
+.textBottom {
+  color: $light;
+  text-align: center;
+  padding: 0 4em;
+  font-size: 1.2em;
+}

@@ -1,15 +1,17 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useAppSelector } from '../../store';
-import LearntTech from '../../components/LearntTech/index';
-import Roadmap from '../../components/Roadmap';
+import usePageTitle from 'shared/usePageTitle';
+import { useAppSelector } from 'store';
+import { Loading } from 'components';
+import LearntTech from './LearntTech/index';
+import Roadmap from './Roadmap';
 import { createTechAchievements, createGreeting } from './helpers';
+import SmallAppLogo from './SmallAppLogo';
 import styles from './Dashboard.module.scss';
-import usePageTitle from '../../shared/usePageTitle';
 import useDashboardAnimation from './useDashboardAnimation';
-import Loading from '../../components/Loading';
 
 const Dashboard = (): JSX.Element => {
   const { user, logout } = useAuth0();
@@ -67,22 +69,7 @@ const Dashboard = (): JSX.Element => {
         </div>
       </div>
       <div className={styles.rightColumn}>
-        <div className={styles.logo}>
-          <div className={styles.row}>
-            <h1 className={styles.accent}>F</h1>
-            <h1>U</h1>
-            <h1>L</h1>
-            <h1>L</h1>
-            <h1 className={styles.accent}>_</h1>
-          </div>
-          <div className={styles.row}>
-            <h1>S</h1>
-            <h1>T</h1>
-            <h1 className={styles.accent}>U</h1>
-            <h1>C</h1>
-            <h1>K</h1>
-          </div>
-        </div>
+        <SmallAppLogo />
         <Roadmap userLevel={userStore.gameData.level} />
       </div>
     </div>

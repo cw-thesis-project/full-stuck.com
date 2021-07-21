@@ -1,10 +1,4 @@
-import {
-  Auth0User,
-  Level,
-  PastActivity,
-  TechName,
-  User,
-} from '../shared/types';
+import { Auth0User, Level, PastActivity, TechName, User } from 'shared/types';
 import { AppAction } from './storeTypes';
 
 // save activity

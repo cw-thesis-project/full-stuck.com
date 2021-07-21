@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
-import { slideUp, fadeIn, slideDown } from '../../shared/animations';
+import { slideUp, fadeIn, slideDown } from 'shared/animations';
 import assignPoints from './AssignPoints.module.scss';
 
 function useAssignPointsAnimation(): void {

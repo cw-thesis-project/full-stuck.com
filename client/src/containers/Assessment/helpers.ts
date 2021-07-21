@@ -4,12 +4,12 @@ import {
   TechExperience,
   User,
   StarsCount,
-} from '../../shared/types';
-import { getUnlockedTechNames, deepCopy, shuffle } from '../../shared/utils';
+} from 'shared/types';
+import { getUnlockedTechNames, deepCopy, shuffle } from 'shared/utils';
 import {
   technologies,
   maxTechnologyExperience as maxTechLevel,
-} from '../../shared/constants';
+} from 'shared/constants';
 import { Icon } from './interfaces';
 
 export const scoreThresholds = [5, 10, 15];

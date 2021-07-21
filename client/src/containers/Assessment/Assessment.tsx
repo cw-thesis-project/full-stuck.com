@@ -1,20 +1,21 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import SideColumn from '../../components/SideColumn';
-import CenterIcons from '../../components/CenterIcons';
-import AssessmentScore from '../../components/AssessmentScore';
-import GameOver from '../../components/GameOver';
+import { StarsCount, TechName } from 'shared/types';
+import usePageTitle from 'shared/usePageTitle';
+import { hourGlassLogo } from 'assets/icons';
+import { updateUser } from 'store/thunks';
+import { GameOver } from 'components';
+import { useAppDispatch, useAppSelector, actions } from 'store';
+import SideColumn from './SideColumn';
+import CenterIcons from './CenterIcons';
+import AssessmentScore from './AssessmentScore';
 import useAssessmentGame from './useAssessmentGame';
 import styles from './Assessment.module.scss';
 import { userAfterAssessment } from './helpers';
-import { useAppDispatch, useAppSelector, actions } from '../../store';
-import { updateUser } from '../../store/thunks';
 import { AssessmentGameOptions } from './interfaces';
-import { StarsCount, TechName } from '../../shared/types';
-import icons from '../../assets/icons';
-import usePageTitle from '../../shared/usePageTitle';
-import AssessmentBackground from '../../components/AssessmentBackground';
+import AssessmentBackground from './AssessmentBackground';
 import useAssessmentAnimations from './useAssessmentAnimations';
 
 const Assessment = (): JSX.Element => {
@@ -96,7 +97,7 @@ const Assessment = (): JSX.Element => {
           <img
             alt="hourglass icon"
             className={styles.hourGlassIcon}
-            src={icons.hourGlassLogo}
+            src={hourGlassLogo}
           />
           <h1 title="time left" className={styles.timeLeft}>
             {(gameState.timeLeft / 1000).toFixed(1)}s

@@ -1,0 +1,51 @@
+@import '../../../style';
+
+.container {
+  @include column;
+
+  .header {
+    color: $light;
+    font-size: 1.5em;
+  }
+}
+
+.techRow {
+  @include row;
+  margin-top: 4em;
+  width: 100%;
+  height: 120px;
+  justify-content: space-between;
+}
+
+.cardsContainer {
+  @include row;
+  gap: 1.5em;
+}
+
+.scrollButton {
+  @include reset-input;
+  position: relative;
+  top: 0;
+  transition: top 0.3s ease-in-out;
+
+  &:not(.disabled) {
+    cursor: pointer;
+  }
+
+  &:hover:not(.disabled) {
+    top: 0.5em;
+    opacity: 1;
+  }
+
+  img {
+    @include square(2em);
+  }
+}
+
+.disabled {
+  opacity: 0.3;
+}
+
+.flipped {
+  transform: scaleX(-1);
+}

@@ -1,10 +1,11 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
-import { slideRight, slideLeft, slideUp } from '../../shared/animations';
-import sideColumn from '../../components/SideColumn/SideColumn.module.scss';
+import { slideRight, slideLeft, slideUp } from 'shared/animations';
+import sideColumn from './SideColumn/SideColumn.module.scss';
+import centerIcons from './CenterIcons/CenterIcons.module.scss';
 import assessment from './Assessment.module.scss';
-import centerIcons from '../../components/CenterIcons/CenterIcons.module.scss';
 
 function useAssessmentAnimations(totalMatchesCount: number): void {
   const [groupsMatched, setGroupsMatched] = useState(0);

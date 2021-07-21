@@ -1,7 +1,8 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import classnames from 'classnames';
-import { TechName } from '../../shared/types';
-import logos from '../../assets/icons';
+import * as logos from 'assets/icons';
+import { TechName } from 'shared/types';
 import styles from './TechIcon.module.scss';
 
 interface Props {

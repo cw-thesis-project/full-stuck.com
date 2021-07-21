@@ -1,4 +1,4 @@
-@import '../../style/style.scss';
+@import '../../style';
 
 .screen {
   @include center;
@@ -6,7 +6,6 @@
   @include screen;
   background-color: $accent;
   background: linear-gradient(108.5deg, #ff3471 1.58%, #440232 97.5%);
-
   justify-items: stretch;
   align-items: stretch;
   padding: 4em;

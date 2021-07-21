@@ -1,4 +1,4 @@
-@import './reset.scss';
+@import './reset';
 
 // page change animations
 // used by <CSSTransition> inside <App>
@@ -17,7 +17,7 @@
 
 .fade-enter {
   @include hide-scrollbar;
-  opacity: 0
+  opacity: 0;
   transform: scale(0.7);
 
   &.fade-enter-active {

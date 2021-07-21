@@ -1,10 +1,11 @@
+/* eslint-disable import/no-unresolved */
 import React, { useEffect, useState } from 'react';
+import { TechName } from 'shared/types';
+import { pickRandomTopic } from 'shared/utils';
+import { actions, useAppDispatch } from 'store';
+import { GameOver } from 'components';
 import styles from './SnakeGame.module.scss';
-import { actions, useAppDispatch } from '../../store';
-import SnakeBoard from '../../components/SnakeBoard/SnakeBoard';
-import GameOver from '../../components/GameOver/GameOver';
-import { TechName } from '../../shared/types';
-import { pickRandomTopic } from '../../shared/utils';
+import SnakeBoard from './SnakeBoard/SnakeBoard';
 
 const SnakeGame = (): JSX.Element => {
   const dispatch = useAppDispatch();

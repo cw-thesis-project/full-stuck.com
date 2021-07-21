@@ -1,47 +1,22 @@
-import avatar from './avatar.svg';
-import javascriptLogo from './javascript.svg';
-import gitLogo from './git.svg';
-import questionLogo from './question.svg';
-import reactLogo from './react.svg';
-import typescriptLogo from './typescript.svg';
-import graphqlLogo from './graphql.svg';
-import blob from './blob.svg';
-import medal from './medal.svg';
-import lock from './lock.svg';
-import star from './star.svg';
-import hourGlassLogo from './hourGlass.svg';
-import graduationHat from './graduationHat.svg';
-import arrow from './arrow.svg';
-import flipCounter from './flipCounter.svg';
-import rxjsLogo from './rxjs.svg';
-import debuggingLogo from './debugging.svg';
-import eloquenceLogo from './eloquence.svg';
-import espionageLogo from './espionage.svg';
-import sadFace from './sadFace.svg';
-import trophy from './trophy.svg';
-
-const toExport = {
-  javascriptLogo,
-  gitLogo,
-  typescriptLogo,
-  reactLogo,
-  graphqlLogo,
-  blob,
-  medal,
-  lock,
-  questionLogo,
-  hourGlassLogo,
-  star,
-  graduationHat,
-  arrow,
-  flipCounter,
-  rxjsLogo,
-  debuggingLogo,
-  eloquenceLogo,
-  espionageLogo,
-  sadFace,
-  avatar,
-  trophy,
-};
-
-export default toExport;
+export { default as arrow } from './arrow.svg';
+export { default as avatar } from './avatar.svg';
+export { default as back } from './back.svg';
+export { default as blob } from './blob.svg';
+export { default as debuggingLogo } from './debugging.svg';
+export { default as eloquenceLogo } from './eloquence.svg';
+export { default as espionageLogo } from './espionage.svg';
+export { default as flipCounter } from './flipCounter.svg';
+export { default as gitLogo } from './git.svg';
+export { default as graduationHat } from './graduationHat.svg';
+export { default as graphqlLogo } from './graphql.svg';
+export { default as hourGlassLogo } from './hourGlass.svg';
+export { default as javascriptLogo } from './javascript.svg';
+export { default as lock } from './lock.svg';
+export { default as medal } from './medal.svg';
+export { default as questionLogo } from './question.svg';
+export { default as reactLogo } from './react.svg';
+export { default as rxjsLogo } from './rxjs.svg';
+export { default as sadFace } from './sadFace.svg';
+export { default as star } from './star.svg';
+export { default as trophy } from './trophy.svg';
+export { default as typescriptLogo } from './typescript.svg';

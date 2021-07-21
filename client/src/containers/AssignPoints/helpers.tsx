@@ -1,10 +1,11 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
+import { Level, TechExperience, TechName } from 'shared/types';
+import { levelToNumber, maxTechnologyExperience } from 'shared/constants';
 import { technologies } from './localUtils';
-import { Level, TechExperience, TechName } from '../../shared/types';
-import CurrentLevelCard from '../../components/CurrentLevelCard';
-import CompletedLevelCard from '../../components/CompletedLevelCard';
-import NextLevelCard from '../../components/NextLevelCard';
-import { levelToNumber, maxTechnologyExperience } from '../../shared/constants';
+import CurrentLevelCard from './CurrentLevelCard';
+import CompletedLevelCard from './CompletedLevelCard';
+import NextLevelCard from './NextLevelCard';
 
 interface TechExperienceSubset {
   name: TechName;

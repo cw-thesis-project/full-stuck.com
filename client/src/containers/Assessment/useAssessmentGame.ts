@@ -1,7 +1,8 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect, useState } from 'react';
-import { TechName } from '../../shared/types';
-import { deepCopy } from '../../shared/utils';
+import { TechName } from 'shared/types';
+import { deepCopy } from 'shared/utils';
 import {
   AssesmentGameState,
   AssessmentGameOptions,
@@ -40,7 +41,9 @@ function useAssessmentGame(
     isOver: false,
   });
 
-  useEffect(() => {
+  useEffect(setupGameLoopTimer, []);
+
+  function setupGameLoopTimer() {
     const clock = 50;
     intervalId = setInterval(() => {
       setGameState((state) => {
@@ -62,7 +65,7 @@ function useAssessmentGame(
     return () => {
       clearInterval(intervalId);
     };
-  }, []);
+  }
 
   function onIconMatch(index: number, draggedName: TechName) {
     const { name } = gameState.sideIcons[index];

@@ -1,0 +1,17 @@
+@import '../../../style';
+
+.logo {
+  margin-right: 4em;
+
+  h1 {
+    color: $primaryDark;
+  }
+
+  .row {
+    @include row;
+
+    .accent {
+      color: $accent;
+    }
+  }
+}

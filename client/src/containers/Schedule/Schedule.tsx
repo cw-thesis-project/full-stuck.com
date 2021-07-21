@@ -1,11 +1,12 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Schedule from '../../components/Schedule';
-import { useAppSelector } from '../../store';
+import { back } from 'assets/icons';
+import usePageTitle from 'shared/usePageTitle';
+import { useAppSelector } from 'store';
+import Schedule from './Schedule/Schedule';
 import { lastFiveElements, getNextActivity } from './helperFunctions';
 import styles from './Schedule.module.scss';
-import back from '../../assets/icons/back.svg';
-import usePageTitle from '../../shared/usePageTitle';
 import useScheduleAnimation from './useScheduleAnimation';
 
 const ScheduleContainer = (): JSX.Element | null => {

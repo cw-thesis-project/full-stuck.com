@@ -1,4 +1,4 @@
-import { Tech, User } from '../../shared/types';
+import { Tech, User } from 'shared/types';
 
 export const technologies: Tech[] = [
   { name: 'javascript', level: 'junior' },

@@ -1,4 +1,4 @@
-@import '../../style/style.scss';
+@import '../../style';
 
 .screen {
   @include screen;
@@ -85,21 +85,6 @@
 
   .button {
     @include app-button;
-  }
-}
-
-.logo {
-  margin-right: 4em;
-
-  h1 {
-    color: $primaryDark;
-  }
-
-  .row {
-    @include row;
-    .accent {
-      color: $accent;
-    }
   }
 }
 

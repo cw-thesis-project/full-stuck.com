@@ -1,6 +1,7 @@
-import { technologies } from '../../shared/constants';
-import { StarsCount, Tech } from '../../shared/types';
-import { shuffle } from '../../shared/utils';
+/* eslint-disable import/no-unresolved */
+import { technologies } from 'shared/constants';
+import { StarsCount, Tech } from 'shared/types';
+import { shuffle } from 'shared/utils';
 import { Card } from './interfaces';
 
 const matchesThresholds = [3, 6, 9];

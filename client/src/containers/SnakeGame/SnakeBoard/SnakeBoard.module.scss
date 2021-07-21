@@ -1,0 +1,29 @@
+@import '../../../style';
+
+.container {
+  @include square(50vh);
+  // box-shadow: 0px 0px 23px 0px rgba(0, 0, 0, 0.75);
+  // margin: auto;
+  display: grid;
+  grid-template: repeat(20, 1fr) / repeat(20, 1fr);
+  gap: 2px;
+  // background-color: $light;
+  // position: relative;
+}
+
+.square {
+  @include square(100%);
+  border-radius: 4px;
+
+  &.bang {
+    @include square(100%);
+    background-color: $light;
+  }
+
+  &.fruit {
+    @include square(100%);
+    // background-image: url('https://pics.freeicons.io/uploads/icons/png/20716690701555931396-512.png');
+    // background-size: cover;
+    background-color: $primaryDark;
+  }
+}

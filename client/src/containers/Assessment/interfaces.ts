@@ -1,4 +1,4 @@
-import { Level, StarsCount, TechName } from '../../shared/types';
+import { Level, StarsCount, TechName } from 'shared/types';
 
 export interface Icon {
   name: TechName;

@@ -1,0 +1,50 @@
+@import '../../../style';
+
+.container {
+  @include column;
+  @include roundedBig;
+  @include rectangle(300px, 450px);
+  @include reset-input;
+  padding: 2em 0 3em 0;
+  justify-content: space-between;
+  background-color: $primaryDark;
+  box-shadow: $shadow;
+  cursor: pointer;
+
+  h2,
+  h3 {
+    color: $light;
+    text-transform: capitalize;
+  }
+}
+
+.title {
+  font-size: 2em;
+}
+
+.img {
+  @include square(8em);
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(0.5em);
+  }
+}
+
+.cardStatus {
+  font-size: 1.5em;
+}
+
+.textBottom {
+  color: $light;
+  text-align: center;
+  padding: 0 4em;
+  font-size: 1.2em;
+}
+
+.medalsContainer {
+  @include column;
+  justify-content: space-between;
+  gap: 2em;
+}

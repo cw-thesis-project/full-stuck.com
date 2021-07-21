@@ -1,10 +1,10 @@
-import { Level, TechExperience } from '../../shared/types';
+import { Level, TechExperience } from 'shared/types';
 import {
   technologies,
   levelToNumber,
   maxTechnologyExperience,
-} from '../../shared/constants';
-import { TechAchievements } from '../../components/LearntTech/LearntTech';
+} from 'shared/constants';
+import { TechAchievements } from './LearntTech/LearntTech';
 
 export const createGreeting = (level: Level): string => {
   const greetingsMap: Record<Level, string> = {

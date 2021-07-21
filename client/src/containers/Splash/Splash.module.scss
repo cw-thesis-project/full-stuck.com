@@ -1,4 +1,4 @@
-@import '../../style/style.scss';
+@import '../../style';
 
 .screen {
   @include screen;
@@ -9,27 +9,6 @@
   padding: 6em 0;
   gap: 4em;
   background-color: $primary;
-}
-
-.logo {
-  @include row;
-  margin-bottom: auto;
-
-  h1 {
-    font-size: 10em;
-
-    &:nth-of-type(odd) {
-      color: $accent;
-    }
-
-    &:nth-of-type(even) {
-      color: $light;
-    }
-  }
-
-  .logoPart {
-    opacity: 1;
-  }
 }
 
 .subtitle {

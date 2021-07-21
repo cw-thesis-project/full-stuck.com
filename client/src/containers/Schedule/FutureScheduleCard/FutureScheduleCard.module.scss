@@ -1,0 +1,55 @@
+@import '../../../style';
+
+.scheduleItem {
+  @include column;
+  @include rounded;
+  justify-content: space-between;
+  padding: 1.5em 0 2.5em 0;
+  background-color: $primaryDark;
+  box-shadow: $shadow;
+  text-align: center;
+  grid-row: 2/4;
+  position: relative;
+  top: 0;
+  transition: top 0.3s ease-in-out;
+
+  &:hover {
+    top: 1em;
+  }
+}
+
+.centerContainer {
+  @include column;
+  justify-content: space-between;
+  height: 10em;
+
+  .iconContainer {
+    @include center;
+    flex-grow: 1;
+
+    img {
+      @include square(6em);
+    }
+  }
+}
+
+.quote {
+  text-align: center;
+  padding: 0 2em;
+}
+
+.ribbon {
+  @include center;
+  @include rectangle(100%, 3em);
+  justify-self: flex-end;
+  color: $primaryDark;
+  background-color: $disabled;
+  opacity: 0.5;
+  font-size: 1.5em;
+
+  p {
+    font-size: 1.3em;
+    font-weight: 600;
+    opacity: 0.5;
+  }
+}

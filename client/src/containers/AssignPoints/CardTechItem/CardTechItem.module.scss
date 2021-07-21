@@ -1,0 +1,82 @@
+@import '../../../style';
+
+.techColumn {
+  @include column;
+  gap: 0.5em;
+  width: 6em;
+}
+
+.bubble {
+  @include circle(2.5em);
+  margin: 0;
+}
+
+.clickable {
+  @include reset-input;
+  margin-top: 2em;
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  transition: all 0.3s ease-in-out;
+
+  .techName {
+    color: $light;
+    text-transform: capitalize;
+    margin-top: 0.5em;
+  }
+
+  &:hover {
+    fill: $disabled;
+    top: 0.5em;
+  }
+
+  &:active {
+    filter: grayscale(100%);
+  }
+}
+
+.greyBubble {
+  background-color: grey;
+}
+
+// tech colors
+
+.debugging {
+  background-color: #9dcc6b;
+}
+
+.eloquence {
+  background-color: #bc9a7e;
+}
+
+.espionage {
+  background-color: #47677c;
+}
+
+.git {
+  background-color: #f15133;
+}
+
+.glow {
+  box-shadow: 0 0 0.3em 0.2em #ffd983;
+}
+
+.graphql {
+  background-color: #e534ab;
+}
+
+.javascript {
+  background-color: #f7df34;
+}
+
+.react {
+  background-color: #67c8e2;
+}
+
+.rxjs {
+  background-color: #cf2286;
+}
+
+.typescript {
+  background-color: #3078c6;
+}

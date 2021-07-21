@@ -8,9 +8,9 @@ import {
   User,
   ApiResponse,
   Auth0User,
-} from '../shared/types';
-import { apiEndpoint, emptyUser } from '../shared/constants';
-import { deepCopy } from '../shared/utils';
+} from 'shared/types';
+import { apiEndpoint, emptyUser } from 'shared/constants';
+import { deepCopy } from 'shared/utils';
 
 export async function getToken(
   getAccessTokenSilently: () => Promise<string>

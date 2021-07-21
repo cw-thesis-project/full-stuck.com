@@ -1,0 +1,32 @@
+@import '../../../style';
+
+.container {
+  flex-grow: 1;
+  display: grid;
+  padding: 0 8em;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr 1fr 3fr;
+  color: white;
+  gap: 2em;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.button {
+  @include column;
+  @include rounded;
+  background-color: $accent;
+  font-size: 1.5em;
+  padding: 0.5em;
+  p {
+    font-weight: 700;
+  }
+}
+
+// just for animation
+.scheduleCard {
+  opacity: 1;
+}
