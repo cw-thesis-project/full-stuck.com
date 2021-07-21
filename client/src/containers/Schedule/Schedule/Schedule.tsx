@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Activity, PastActivity } from 'shared/types';
@@ -33,12 +34,13 @@ const Schedule = ({
           variant={getDateVariant(index, history.length)}
           activityIndex={quotient * 6 + 1 + index}
           dayIndex={index}
-          key={historyLength - index}
+          key={index}
         />
       ))}
 
-      {history.map((pastActivity) => (
+      {history.map((pastActivity, index) => (
         <PastScheduleCard
+          key={index}
           stars={pastActivity.stars}
           topic={pastActivity.topic}
           className={styles.scheduleCard}
@@ -48,8 +50,8 @@ const Schedule = ({
         nextActivity={nextActivity}
         className={styles.scheduleCard}
       />
-      {futureCards.map(() => (
-        <FutureScheduleCard className={styles.scheduleCard} />
+      {futureCards.map((_, index) => (
+        <FutureScheduleCard className={styles.scheduleCard} key={index} />
       ))}
     </div>
   );
