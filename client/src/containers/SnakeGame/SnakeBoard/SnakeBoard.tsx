@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/button-has-type */
@@ -14,6 +15,7 @@
 /* eslint-disable no-plusplus */
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import classNames from 'classnames';
+import { playSound } from 'services/audioService';
 import styles from './SnakeBoard.module.scss';
 
 type Piece = 'bang' | 'fruit' | 'empty';
@@ -78,6 +80,7 @@ const SnakeBoard = ({
 
       if (direction !== opp && direction !== dir) {
         setDirection(dir);
+        playSound('scheduleCard');
         tempSnake.unshift({
           direction: dir,
           part: [],
@@ -92,6 +95,8 @@ const SnakeBoard = ({
   useEffect(() => {
     // points and get longer after eating
     if (snake[0].part[0] === fruit) {
+      // just eaten a fruit
+      playSound('scheduleCard');
       setPoints(points + 1);
       const sneak = [...snake];
       const firstSection = sneak[0];

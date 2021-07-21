@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import usePageTitle from 'shared/usePageTitle';
 import { StarsCount, TechName } from 'shared/types';
+import { playSound } from 'services/audioService';
 import { pickRandomTopic } from 'shared/utils';
 import { actions, useAppDispatch } from 'store';
 import { GameOver } from 'components';
@@ -47,6 +48,7 @@ const MemoryGameContainer = (): JSX.Element => {
   }
 
   function handleCheat() {
+    playSound('scheduleCard');
     setCheatUsed(true);
     onGameOver(2);
   }

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { arrow } from 'assets/icons';
+import { playSound } from 'services/audioService';
 import { TechExperience, TechName } from 'shared/types';
 import TechAchievementCard from '../TechAchievementCard';
 import styles from './LearntTech.module.scss';
@@ -66,11 +67,16 @@ const ScrollButton = ({ type, onClick, disabled }: ScrollButtonProps) => {
     [styles.flipped]: type === 'back',
   });
 
+  function handleClick(): void {
+    playSound('scheduleCard');
+    onClick();
+  }
+
   return (
     <button
       disabled={disabled}
       className={className}
-      onClick={onClick}
+      onClick={handleClick}
       type="button"
     >
       <img src={arrow} alt="arrow icon" />

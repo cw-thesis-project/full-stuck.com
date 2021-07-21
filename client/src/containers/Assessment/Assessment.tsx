@@ -7,6 +7,7 @@ import usePageTitle from 'shared/usePageTitle';
 import { hourGlassLogo } from 'assets/icons';
 import { updateUser } from 'store/thunks';
 import { GameOver } from 'components';
+import { playSound } from 'services/audioService';
 import { useAppDispatch, useAppSelector, actions } from 'store';
 import SideColumn from './SideColumn';
 import CenterIcons from './CenterIcons';
@@ -37,6 +38,7 @@ const Assessment = (): JSX.Element => {
   function handleIconMatch(index: number) {
     setIsDragging(false);
     onIconMatch(index, draggedName);
+    playSound('scheduleCard');
   }
 
   function onGameEnd(starsCount: StarsCount) {
@@ -52,14 +54,17 @@ const Assessment = (): JSX.Element => {
 
   function handleDragEnd() {
     setIsDragging(false);
+    playSound('scheduleCard');
   }
 
   function handleDragStart(techName: TechName) {
     setDraggedName(techName);
     setIsDragging(true);
+    playSound('scheduleCard');
   }
 
   function handleCheat() {
+    playSound('scheduleCard');
     setWasCheatUsed(true);
     onGameEnd(2);
   }

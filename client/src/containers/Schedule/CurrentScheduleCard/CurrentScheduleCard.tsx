@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { graduationHat } from 'assets/icons';
+import { playSound } from 'services/audioService';
 import { Activity } from 'shared/types';
 import { StarsRow } from 'components';
 import ScheduleItemHeader from '../ScheduleItemHeader';
@@ -32,6 +33,7 @@ const CurrentScheduleCard = ({
         className={styles.ribbon}
         to={`/game/${nextActivity}`}
         title={`play ${nextActivity}`}
+        onClick={() => playSound('scheduleCard')}
       >
         <p>Study!</p>
       </Link>

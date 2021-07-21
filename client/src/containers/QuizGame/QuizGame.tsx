@@ -8,6 +8,7 @@ import { StarsCount, TechName } from 'shared/types';
 import { pickRandomTopic } from 'shared/utils';
 import { actions, useAppDispatch } from 'store';
 import { TechLogo, StarsRow, GameOver } from 'components';
+import { playSound } from 'services/audioService';
 import {
   pickTech,
   quizTechs,
@@ -46,6 +47,7 @@ const QuizGame = (): JSX.Element => {
 
   function onTextchange(string: string) {
     setText(string);
+    playSound('scheduleCard');
 
     if (logos && currentIndex > -1) {
       if (string.toLowerCase() === logos[currentIndex].toLowerCase()) {

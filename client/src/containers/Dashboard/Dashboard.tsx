@@ -6,6 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import usePageTitle from 'shared/usePageTitle';
 import { useAppSelector } from 'store';
 import { Loading } from 'components';
+import { playSound } from 'services/audioService';
 import LearntTech from './LearntTech/index';
 import Roadmap from './Roadmap';
 import { createTechAchievements, createGreeting } from './helpers';
@@ -19,6 +20,13 @@ const Dashboard = (): JSX.Element => {
   const userStore = useAppSelector((state) => state.user);
   usePageTitle('Dashboard — Full Stuck');
   useDashboardAnimation();
+
+  function handleLogout(): void {
+    playSound('scheduleCard');
+    logout({
+      returnTo: 'https://full-stuck.com/#/',
+    });
+  }
 
   const userTechAchievements = createTechAchievements(
     userStore.gameData.level,
@@ -44,11 +52,7 @@ const Dashboard = (): JSX.Element => {
           <button
             title="logout"
             className={styles.avatarContainer}
-            onClick={() =>
-              logout({
-                returnTo: 'https://full-stuck.com/#/',
-              })
-            }
+            onClick={handleLogout}
             type="button"
           >
             <img
@@ -63,7 +67,12 @@ const Dashboard = (): JSX.Element => {
         </div>
         <div className={styles.footer}>
           <p>Start learning new technologies</p>
-          <Link to="/schedule" className={styles.button} title="schedule">
+          <Link
+            to="/schedule"
+            className={styles.button}
+            title="schedule"
+            onClick={() => playSound('scheduleCard')}
+          >
             Schedule
           </Link>
         </div>

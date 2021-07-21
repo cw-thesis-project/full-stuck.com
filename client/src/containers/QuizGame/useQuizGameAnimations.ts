@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { slideDown, fadeIn, slideUp } from 'shared/animations';
+import { playSound } from 'services/audioService';
 import techLogo from 'components/TechLogo/TechLogo.module.scss';
 import quizGame from './QuizGame.module.scss';
 
@@ -19,6 +20,7 @@ function useQuizGameAnimations(currentIndex: number): void {
         {
           ...fadeIn,
           y: '4em',
+          onStart: () => playSound('scheduleCard'),
         },
         0
       )
@@ -30,6 +32,7 @@ function useQuizGameAnimations(currentIndex: number): void {
     gsap.from(`.${techLogo.logoContainer}`, {
       ...slideUp,
       stagger: 0.15,
+      onStart: () => playSound('scheduleCard'),
     });
   }
 }

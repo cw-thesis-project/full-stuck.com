@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { Level } from 'shared/types';
+import { playSound } from 'services/audioService';
 import { levelToNumber } from 'shared/constants';
 import styles from './Roadmap.module.scss';
 
@@ -54,7 +55,12 @@ const Roadmap = ({ userLevel }: Props): JSX.Element => {
     return (
       <>
         <div className={wrapperClass} />
-        <Link className={blobClass} to={toPage} title={blobTitle} />
+        <Link
+          className={blobClass}
+          to={toPage}
+          title={blobTitle}
+          onClick={() => playSound('scheduleCard')}
+        />
         <h3 className={levelClass}>{level}</h3>
       </>
     );

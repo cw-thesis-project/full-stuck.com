@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import { TechName } from 'shared/types';
@@ -24,7 +25,7 @@ const CardTechItem = ({
     grayBubbleCount > 0
       ? Array(grayBubbleCount)
           .fill(null)
-          .map((index) => (
+          .map((_, index) => (
             <div
               key={index}
               className={`${styles.bubble} ${styles.greyBubble}`}
@@ -37,7 +38,7 @@ const CardTechItem = ({
 
   const coloredBubbles = Array(coloredBubblesNumber)
     .fill(null)
-    .map((index) => (
+    .map((_, index) => (
       <div
         key={index}
         className={`${styles.bubble} ${styles[techName]} ${

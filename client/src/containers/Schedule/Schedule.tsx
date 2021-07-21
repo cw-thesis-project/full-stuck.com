@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { back } from 'assets/icons';
 import usePageTitle from 'shared/usePageTitle';
+import { playSound } from 'services/audioService';
 import { useAppSelector } from 'store';
 import Schedule from './Schedule/Schedule';
 import { lastFiveElements, getNextActivity } from './helperFunctions';
@@ -29,7 +30,12 @@ const ScheduleContainer = (): JSX.Element | null => {
         historyLength={user.gameData.history.length}
       />
       <div className={styles.footer}>
-        <Link to="/dashboard" className={styles.backIcon} title="dashboard">
+        <Link
+          to="/dashboard"
+          className={styles.backIcon}
+          title="dashboard"
+          onClick={() => playSound('scheduleCard')}
+        >
           <img src={back} alt="back icon" />
         </Link>
         <p className={styles.quote}>

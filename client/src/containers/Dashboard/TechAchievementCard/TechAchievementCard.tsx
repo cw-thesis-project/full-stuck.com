@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { TechName } from 'shared/types';
 import { maxTechnologyExperience } from 'shared/constants';
+import { playSound } from 'services/audioService';
 import { TechIcon } from 'components';
 import styles from './TechAchievementCard.module.scss';
 
@@ -22,6 +23,7 @@ const TechAchievementCard = ({
       to="/assign-points"
       className={styles.card}
       title={isLocked ? 'unknown' : techName}
+      onClick={() => playSound('scheduleCard')}
     >
       <TechIcon
         techName={techName}

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { medal } from 'assets/icons';
 import { Level } from 'shared/types';
+import { playSound } from 'services/audioService';
 import { technologies } from 'shared/constants';
 import styles from './CompletedLevelCard.module.scss';
 import TechMedal from '../TechMedal';
@@ -19,10 +20,15 @@ const CompletedLevelCard = ({ level }: Props): JSX.Element => {
     })
     .map((tech) => <TechMedal techName={tech.name} />);
 
+  function handleClick() {
+    setShowDetails(!showDetails);
+    playSound('scheduleCard');
+  }
+
   return (
     <button
       type="button"
-      onClick={() => setShowDetails(!showDetails)}
+      onClick={handleClick}
       className={styles.container}
       title={showDetails ? 'flip back' : 'show achievements'}
     >

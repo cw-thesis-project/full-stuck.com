@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { slideUp, fadeIn, slideLeft } from 'shared/animations';
+import { playSound } from 'services/audioService';
 import roadmap from './Roadmap/Roadmap.module.scss';
 import dashboard from './Dashboard.module.scss';
 import appLogo from './SmallAppLogo/SmallAppLogo.module.scss';
@@ -18,10 +19,23 @@ function useDashboardAnimation(): void {
   function animateDashboardComponents() {
     gsap
       .timeline({ delay: 0.5 })
-      .from(`.${dashboard.header}`, slideUp)
-      .from(`.${dashboard.learntTech}`, slideUp)
+      .from(`.${dashboard.header}`, {
+        ...slideUp,
+        onStart: () => playSound('scheduleCard'),
+      })
+      .from(`.${dashboard.learntTech}`, {
+        ...slideUp,
+        onStart: () => playSound('scheduleCard'),
+      })
       .from(`.${dashboard.footer}`, slideDown)
-      .from(`.${appLogo.logo}`, slideLeft, 0.9)
+      .from(
+        `.${appLogo.logo}`,
+        {
+          ...slideLeft,
+          onStart: () => playSound('scheduleCard'),
+        },
+        0.9
+      )
       .from(`.${roadmap.container}`, slideLeft, 0.9);
   }
 }

@@ -1,7 +1,9 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { slideUp, fadeIn, slideDown } from 'shared/animations';
+import { playSound } from 'services/audioService';
 import assignPoints from './AssignPoints.module.scss';
 
 function useAssignPointsAnimation(): void {
@@ -13,9 +15,13 @@ function useAssignPointsAnimation(): void {
       .from(`.${assignPoints.pageTitle}`, fadeIn)
       .from(`.${assignPoints.card}`, {
         ...slideUp,
-        stagger: 0.3,
+        stagger: { each: 0.3, onStart: () => playSound('scheduleCard') },
       })
-      .from(`.${assignPoints.footerText}`, slideDown, 2)
+      .from(
+        `.${assignPoints.footerText}`,
+        { ...slideDown, onStart: () => playSound('scheduleCard') },
+        2
+      )
       .from(`.${assignPoints.scheduleButton}`, slideDown, 2)
       .from(`.${assignPoints.button}`, slideDown, 2);
   }

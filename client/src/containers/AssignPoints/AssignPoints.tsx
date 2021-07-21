@@ -1,5 +1,7 @@
+/* eslint-disable import/no-unresolved */
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
+import { playSound } from 'services/audioService';
 import { TechName } from 'shared/types';
 import { useAppDispatch, useAppSelector } from 'store';
 import { setActivityTopic } from 'store/thunks';
@@ -26,8 +28,9 @@ const AssignPoints = (): JSX.Element => {
   const { level, techExperience, history: userHistory } = user.gameData;
 
   function onIconClick(techName: TechName) {
-    if (pointsToAssign) {
-      if (user) dispatch(setActivityTopic(techName, user));
+    if (pointsToAssign && user) {
+      playSound('scheduleCard');
+      dispatch(setActivityTopic(techName, user));
     }
   }
 
